@@ -7,6 +7,7 @@
 	"ChaosModifierEmptyMagazine": "No Lead",
 	"ChaosModifierEnemyLasers": "Laser Party",
 	"ChaosModifierExplodingEnemies": "Deadly Deaths",
+	"ChaosModifierExplosiveBullets": "Heavy Munitions",
 	"ChaosModifierFastEnemies": "Cocaine is a hell of a drug",
 	"ChaosModifierFlashBurst": "Your opinion, my choice",
 	"ChaosModifierForceCrouch": "True Slav",
