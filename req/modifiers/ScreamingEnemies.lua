@@ -1,6 +1,4 @@
----@class ChaosModifierScreamingEnemies : ChaosModifier
-ChaosModifierScreamingEnemies = class(ChaosModifier)
-ChaosModifierScreamingEnemies.class_name = "ChaosModifierScreamingEnemies"
+ChaosModifierScreamingEnemies = ChaosModifier.class("ChaosModifierScreamingEnemies")
 ChaosModifierScreamingEnemies.duration = 60
 
 function ChaosModifierScreamingEnemies:update(t, dt)

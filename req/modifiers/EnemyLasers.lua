@@ -1,8 +1,6 @@
----@class ChaosModifierEnemyLasers : ChaosModifier
-ChaosModifierEnemyLasers = class(ChaosModifier)
-ChaosModifierEnemyLasers.class_name = "ChaosModifierEnemyLasers"
-ChaosModifierEnemyLasers.duration = 60
+ChaosModifierEnemyLasers = ChaosModifier.class("ChaosModifierEnemyLasers")
 ChaosModifierEnemyLasers.run_as_client = true
+ChaosModifierEnemyLasers.duration = 60
 
 function ChaosModifierEnemyLasers:set_laser_enabled(unit, enabled)
 	local weapon = alive(unit) and unit:inventory():equipped_unit()
@@ -23,15 +21,15 @@ function ChaosModifierEnemyLasers:start()
 		self:set_laser_enabled(data.unit, true)
 	end
 
-	Hooks:PreHook(NPCRaycastWeaponBase, "destroy", self.class_name, function(weaponbase)
+	self:pre_hook(NPCRaycastWeaponBase, "destroy", function(weaponbase)
 		weaponbase:set_laser_enabled(false)
 	end)
 
-	Hooks:PostHook(PlayerInventory, "_place_selection", self.class_name, function(inventory, selection_index, is_equip)
+	self:post_hook(PlayerInventory, "_place_selection", function(inventory, selection_index, is_equip)
 		self:set_laser_enabled(inventory._unit, is_equip)
 	end)
 
-	Hooks:PreHook(CopInventory, "drop_weapon", self.class_name, function(inventory)
+	self:pre_hook(CopInventory, "drop_weapon", function(inventory)
 		self:set_laser_enabled(inventory._unit, false)
 	end)
 end
@@ -40,9 +38,6 @@ function ChaosModifierEnemyLasers:stop()
 	for _, data in pairs(managers.enemy:all_enemies()) do
 		self:set_laser_enabled(data.unit, false)
 	end
-
-	Hooks:RemovePreHook(self.class_name)
-	Hooks:RemovePostHook(self.class_name)
 end
 
 return ChaosModifierEnemyLasers

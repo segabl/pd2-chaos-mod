@@ -1,6 +1,4 @@
----@class ChaosModifierLimitFps : ChaosModifier
-ChaosModifierLimitFps = class(ChaosModifier)
-ChaosModifierLimitFps.class_name = "ChaosModifierLimitFps"
+ChaosModifierLimitFps = ChaosModifier.class("ChaosModifierLimitFps")
 ChaosModifierLimitFps.run_as_client = true
 ChaosModifierLimitFps.duration = 30
 

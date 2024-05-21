@@ -1,6 +1,4 @@
----@class ChaosModifierChargingCloakers : ChaosModifier
-ChaosModifierChargingCloakers = class(ChaosModifier)
-ChaosModifierChargingCloakers.class_name = "ChaosModifierChargingCloakers"
+ChaosModifierChargingCloakers = ChaosModifier.class("ChaosModifierChargingCloakers")
 ChaosModifierChargingCloakers.duration = 30
 
 function ChaosModifierChargingCloakers:charge(target_unit)

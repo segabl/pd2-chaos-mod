@@ -1,10 +1,8 @@
----@class ChaosModifierRandomEnemyWeapons : ChaosModifier
-ChaosModifierRandomEnemyWeapons = class(ChaosModifier)
-ChaosModifierRandomEnemyWeapons.class_name = "ChaosModifierRandomEnemyWeapons"
+ChaosModifierRandomEnemyWeapons = ChaosModifier.class("ChaosModifierRandomEnemyWeapons")
 ChaosModifierRandomEnemyWeapons.duration = 90
 
 function ChaosModifierRandomEnemyWeapons:start()
-	Hooks:PreHook(CopBase, "post_init", self.class_name, function(copbase)
+	self:pre_hook(CopBase, "post_init", function(copbase)
 		if not self.available_weapons then
 			self.available_weapons = {}
 			for i, unit_name in pairs(tweak_data.character.weap_unit_names) do
@@ -15,10 +13,6 @@ function ChaosModifierRandomEnemyWeapons:start()
 		end
 		copbase._default_weapon_id = table.random(self.available_weapons) or copbase._default_weapon_id
 	end)
-end
-
-function ChaosModifierRandomEnemyWeapons:stop()
-	Hooks:RemovePreHook(self.class_name)
 end
 
 return ChaosModifierRandomEnemyWeapons

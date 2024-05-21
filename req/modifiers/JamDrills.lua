@@ -1,6 +1,4 @@
----@class ChaosModifierJamDrills : ChaosModifier
-ChaosModifierJamDrills = class(ChaosModifier)
-ChaosModifierJamDrills.class_name = "ChaosModifierJamDrills"
+ChaosModifierJamDrills = ChaosModifier.class("ChaosModifierJamDrills")
 
 function ChaosModifierJamDrills:can_trigger()
 	return table.size(TimerGui.active_units) > 0

@@ -1,6 +1,4 @@
----@class ChaosModifierTase : ChaosModifier
-ChaosModifierTase = class(ChaosModifier)
-ChaosModifierTase.class_name = "ChaosModifierTase"
+ChaosModifierTase = ChaosModifier.class("ChaosModifierTase")
 ChaosModifierTase.run_as_client = true
 
 function ChaosModifierTase:start()

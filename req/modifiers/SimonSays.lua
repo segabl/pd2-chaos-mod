@@ -1,11 +1,9 @@
----@class ChaosModifierSimonSays : ChaosModifier
-ChaosModifierSimonSays = class(ChaosModifier)
-ChaosModifierSimonSays.class_name = "ChaosModifierSimonSays"
+ChaosModifierSimonSays = ChaosModifier.class("ChaosModifierSimonSays")
 ChaosModifierSimonSays.run_as_client = true
 ChaosModifierSimonSays.activity_time = 3
 ChaosModifierSimonSays.pause_time = 2
 ChaosModifierSimonSays.num_activities = 6
-ChaosModifierSimonSays.duration = (ChaosModifierSimonSays.activity_time + ChaosModifierSimonSays.pause_time) * ChaosModifierSimonSays.num_activities
+ChaosModifierSimonSays.duration = 1 + (ChaosModifierSimonSays.activity_time + ChaosModifierSimonSays.pause_time) * ChaosModifierSimonSays.num_activities
 ChaosModifierSimonSays.fixed_duration = true
 ChaosModifierSimonSays.activities = {
 	{
@@ -96,7 +94,7 @@ function ChaosModifierSimonSays:start()
 
 	self:show_text(managers.localization:to_upper_text("ChaosModifierSimonSaysStart"), self.pause_time, true)
 
-	DelayedCalls:Add(tostring(self), self.pause_time, callback(self, self, "start_activity"))
+	self:queue("start_activity", self.pause_time)
 end
 
 function ChaosModifierSimonSays:start_activity()
@@ -108,7 +106,7 @@ function ChaosModifierSimonSays:start_activity()
 
 	self:show_text(text, self.activity_time)
 
-	DelayedCalls:Add(tostring(self), self.activity_time, callback(self, self, "end_activity"))
+	self:queue("end_activity", self.activity_time)
 end
 
 function ChaosModifierSimonSays:end_activity()
@@ -119,7 +117,7 @@ function ChaosModifierSimonSays:end_activity()
 	self._activity = nil
 
 	if #self._activities > 0 then
-		DelayedCalls:Add(tostring(self), self.pause_time, callback(self, self, "start_activity"))
+		self:queue("start_activity", self.pause_time)
 	end
 end
 
@@ -181,7 +179,7 @@ function ChaosModifierSimonSays:update(t, dt)
 			self._activity = nil
 		elseif t > self._activity_start_t + 1 then
 			self._activity = nil
-			DelayedCalls:Add(tostring(self) .. "punish", 0.2, callback(self, self, "punish"))
+			self:queue("punish", 0.2)
 		end
 	end
 end

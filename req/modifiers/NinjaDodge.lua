@@ -1,6 +1,4 @@
----@class ChaosModifierNinjaDodge : ChaosModifier
-ChaosModifierNinjaDodge = class(ChaosModifier)
-ChaosModifierNinjaDodge.class_name = "ChaosModifierNinjaDodge"
+ChaosModifierNinjaDodge = ChaosModifier.class("ChaosModifierNinjaDodge")
 ChaosModifierNinjaDodge.duration = 120
 ChaosModifierNinjaDodge.dodge_preset = {
 	speed = 1.6,
@@ -84,17 +82,7 @@ function ChaosModifierNinjaDodge:start()
 	for _, enemy_name in pairs(tweak_data.character._enemy_list) do
 		local enemy = tweak_data.character[enemy_name]
 		if enemy.dodge ~= tweak_data.character.presets.dodge.ninja then
-			enemy.original_dodge = Utils:FirstNonNil(enemy.original_dodge, enemy.dodge, false)
-			enemy.dodge = self.dodge_preset
-		end
-	end
-end
-
-function ChaosModifierNinjaDodge:stop()
-	for _, enemy_name in pairs(tweak_data.character._enemy_list) do
-		local enemy = tweak_data.character[enemy_name]
-		if enemy.original_dodge ~= nil then
-			enemy.dodge = enemy.original_dodge or nil
+			self:override(enemy, "dodge", self.dodge_preset)
 		end
 	end
 end

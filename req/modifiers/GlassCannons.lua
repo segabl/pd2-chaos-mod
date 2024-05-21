@@ -1,6 +1,4 @@
----@class ChaosModifierGlassCannons : ChaosModifier
-ChaosModifierGlassCannons = class(ChaosModifier)
-ChaosModifierGlassCannons.class_name = "ChaosModifierGlassCannons"
+ChaosModifierGlassCannons = ChaosModifier.class("ChaosModifierGlassCannons")
 ChaosModifierGlassCannons.register_name = "ChaosModifierUnitCategories"
 ChaosModifierGlassCannons.duration = 60
 ChaosModifierGlassCannons.unit_category = "CS_cop_stealth_MP5"

@@ -1,11 +1,9 @@
----@class ChaosModifierExplodingEnemies : ChaosModifier
-ChaosModifierExplodingEnemies = class(ChaosModifier)
-ChaosModifierExplodingEnemies.class_name = "ChaosModifierExplodingEnemies"
-ChaosModifierExplodingEnemies.duration = 30
+ChaosModifierExplodingEnemies = ChaosModifier.class("ChaosModifierExplodingEnemies")
 ChaosModifierExplodingEnemies.run_as_client = true
+ChaosModifierExplodingEnemies.duration = 30
 
 function ChaosModifierExplodingEnemies:start()
-	Hooks:PostHook(CopDamage, "_on_death", self.class_name, function(copdamage)
+	self:post_hook(CopDamage, "_on_death", function(copdamage)
 		local pos = copdamage._unit:movement():m_com()
 		local range = 500
 		managers.explosion:give_local_player_dmg(pos, range, 50)
@@ -17,10 +15,6 @@ function ChaosModifierExplodingEnemies:start()
 			feedback_range = range * 2
 		})
 	end)
-end
-
-function ChaosModifierExplodingEnemies:stop()
-	Hooks:RemovePostHook(self.class_name)
 end
 
 return ChaosModifierExplodingEnemies

@@ -1,6 +1,4 @@
----@class ChaosModifierSubsOverDubs : ChaosModifier
-ChaosModifierSubsOverDubs = class(ChaosModifier)
-ChaosModifierSubsOverDubs.class_name = "ChaosModifierSubsOverDubs"
+ChaosModifierSubsOverDubs = ChaosModifier.class("ChaosModifierSubsOverDubs")
 ChaosModifierSubsOverDubs.register_name = "ChaosModifierVoiceChange"
 ChaosModifierSubsOverDubs.run_as_client = true
 ChaosModifierSubsOverDubs.duration = 90

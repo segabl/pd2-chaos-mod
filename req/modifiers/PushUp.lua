@@ -1,17 +1,11 @@
----@class ChaosModifierPushUp : ChaosModifier
-ChaosModifierPushUp = class(ChaosModifier)
-ChaosModifierPushUp.class_name = "ChaosModifierPushUp"
-ChaosModifierPushUp.duration = 20
+ChaosModifierPushUp = ChaosModifier.class("ChaosModifierPushUp")
 ChaosModifierPushUp.run_as_client = true
+ChaosModifierPushUp.duration = 20
 
 function ChaosModifierPushUp:start()
-	Hooks:PreHook(PlayerDamage, "damage_fall", self.class_name, function(playerdamage, data)
+	self:pre_hook(PlayerDamage, "damage_fall", function(playerdamage, data)
 		data.height = 0
 	end)
-end
-
-function ChaosModifierPushUp:stop()
-	Hooks:RemovePreHook(self.class_name)
 end
 
 function ChaosModifierPushUp:update(t, dt)

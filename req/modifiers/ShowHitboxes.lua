@@ -1,8 +1,6 @@
----@class ChaosModifierShowHitboxes : ChaosModifier
-ChaosModifierShowHitboxes = class(ChaosModifier)
-ChaosModifierShowHitboxes.class_name = "ChaosModifierShowHitboxes"
-ChaosModifierShowHitboxes.duration = 40
+ChaosModifierShowHitboxes = ChaosModifier.class("ChaosModifierShowHitboxes")
 ChaosModifierShowHitboxes.run_as_client = true
+ChaosModifierShowHitboxes.duration = 40
 
 function ChaosModifierShowHitboxes:start()
 	self._hitbox_mask = managers.slot:get_mask("world_geometry", "persons", "pickups", "vehicles") - managers.slot:get_mask("players_only_local")

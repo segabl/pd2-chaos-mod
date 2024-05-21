@@ -1,6 +1,4 @@
----@class ChaosModifierShields : ChaosModifier
-ChaosModifierShields = class(ChaosModifierGlassCannons)
-ChaosModifierShields.name = "Riot Police"
+ChaosModifierShields = ChaosModifier.class("ChaosModifierShields", ChaosModifierGlassCannons)
 ChaosModifierShields.unit_category = "FBI_shield"
 
 return ChaosModifierShields

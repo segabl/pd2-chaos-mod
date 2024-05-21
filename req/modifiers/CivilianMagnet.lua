@@ -1,6 +1,4 @@
----@class ChaosModifierCivilianMagnet : ChaosModifier
-ChaosModifierCivilianMagnet = class(ChaosModifier)
-ChaosModifierCivilianMagnet.class_name = "ChaosModifierCivilianMagnet"
+ChaosModifierCivilianMagnet = ChaosModifier.class("ChaosModifierCivilianMagnet")
 ChaosModifierCivilianMagnet.duration = 30
 
 function ChaosModifierCivilianMagnet:is_valid_civilian(unit)

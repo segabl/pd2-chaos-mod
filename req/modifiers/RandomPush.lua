@@ -1,8 +1,6 @@
----@class ChaosModifierRandomPush : ChaosModifier
-ChaosModifierRandomPush = class(ChaosModifier)
-ChaosModifierRandomPush.class_name = "ChaosModifierRandomPush"
-ChaosModifierRandomPush.duration = 30
+ChaosModifierRandomPush = ChaosModifier.class("ChaosModifierRandomPush")
 ChaosModifierRandomPush.run_as_client = true
+ChaosModifierRandomPush.duration = 30
 
 function ChaosModifierRandomPush:update(t, dt)
 	if self._next_t and self._next_t > t then

@@ -1,6 +1,4 @@
----@class ChaosModifierSlowMotion : ChaosModifier
-ChaosModifierSlowMotion = class(ChaosModifier)
-ChaosModifierSlowMotion.class_name = "ChaosModifierSlowMotion"
+ChaosModifierSlowMotion = ChaosModifier.class("ChaosModifierSlowMotion")
 ChaosModifierSlowMotion.register_name = "ChaosModifierTimeSpeed"
 ChaosModifierSlowMotion.run_as_client = true
 ChaosModifierSlowMotion.duration = 10

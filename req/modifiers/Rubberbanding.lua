@@ -1,6 +1,4 @@
----@class ChaosModifierRubberbanding : ChaosModifier
-ChaosModifierRubberbanding = class(ChaosModifier)
-ChaosModifierRubberbanding.class_name = "ChaosModifierRubberbanding"
+ChaosModifierRubberbanding = ChaosModifier.class("ChaosModifierRubberbanding")
 ChaosModifierRubberbanding.run_as_client = true
 ChaosModifierRubberbanding.duration = 30
 
@@ -9,7 +7,7 @@ function ChaosModifierRubberbanding:start()
 end
 
 function ChaosModifierRubberbanding:stop()
-	DelayedCalls:Remove(tostring(self))
+	self:unqueue("set_position")
 end
 
 function ChaosModifierRubberbanding:update(t, dt)
@@ -25,7 +23,8 @@ function ChaosModifierRubberbanding:update(t, dt)
 	end
 
 	self._recorded_position = player_unit:position()
-	DelayedCalls:Add(tostring(self), math.rand(0.5, 1), callback(self, self, "set_position"))
+
+	self:queue("set_position", math.rand(0.5, 1))
 end
 
 function ChaosModifierRubberbanding:set_position()

@@ -1,6 +1,4 @@
----@class ChaosModifierEmptyMagazine : ChaosModifier
-ChaosModifierEmptyMagazine = class(ChaosModifier)
-ChaosModifierEmptyMagazine.class_name = "ChaosModifierEmptyMagazine"
+ChaosModifierEmptyMagazine = ChaosModifier.class("ChaosModifierEmptyMagazine")
 ChaosModifierEmptyMagazine.run_as_client = true
 
 function ChaosModifierEmptyMagazine:start()

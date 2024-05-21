@@ -1,8 +1,6 @@
----@class ChaosModifierNoSleep : ChaosModifier
-ChaosModifierNoSleep = class(ChaosModifier)
-ChaosModifierNoSleep.class_name = "ChaosModifierNoSleep"
-ChaosModifierNoSleep.duration = 45
+ChaosModifierNoSleep = ChaosModifier.class("ChaosModifierNoSleep")
 ChaosModifierNoSleep.run_as_client = true
+ChaosModifierNoSleep.duration = 45
 
 function ChaosModifierNoSleep:start()
 	local panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
