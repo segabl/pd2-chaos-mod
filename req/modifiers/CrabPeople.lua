@@ -2,7 +2,6 @@
 ChaosModifierCrabPeople = class(ChaosModifier)
 ChaosModifierCrabPeople.class_name = "ChaosModifierCrabPeople"
 ChaosModifierCrabPeople.register_name = "ChaosModifierPlayerMovement"
-ChaosModifierCrabPeople.name = "Crab People"
 ChaosModifierCrabPeople.run_as_client = true
 ChaosModifierCrabPeople.duration = 20
 

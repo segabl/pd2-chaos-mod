@@ -1,7 +1,6 @@
 ---@class ChaosModifierRubberbanding : ChaosModifier
 ChaosModifierRubberbanding = class(ChaosModifier)
 ChaosModifierRubberbanding.class_name = "ChaosModifierRubberbanding"
-ChaosModifierRubberbanding.name = "Cheap Internet"
 ChaosModifierRubberbanding.run_as_client = true
 ChaosModifierRubberbanding.duration = 30
 

@@ -1,7 +1,6 @@
 ---@class ChaosModifierFlashBurst : ChaosModifier
 ChaosModifierFlashBurst = class(ChaosModifier)
 ChaosModifierFlashBurst.class_name = "ChaosModifierFlashBurst"
-ChaosModifierFlashBurst.name = "Your opinion, my choice"
 
 function ChaosModifierFlashBurst:start()
 	for i = 1, 4 do

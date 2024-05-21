@@ -2,7 +2,6 @@
 ChaosModifierForceMove = class(ChaosModifier)
 ChaosModifierForceMove.class_name = "ChaosModifierForceMove"
 ChaosModifierForceMove.register_name = "ChaosModifierPlayerMovement"
-ChaosModifierForceMove.name = "Autopilot"
 ChaosModifierForceMove.run_as_client = true
 ChaosModifierForceMove.duration = 20
 

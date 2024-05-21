@@ -1,7 +1,6 @@
 ---@class ChaosModifierRandomPush : ChaosModifier
 ChaosModifierRandomPush = class(ChaosModifier)
 ChaosModifierRandomPush.class_name = "ChaosModifierRandomPush"
-ChaosModifierRandomPush.name = "Pinball"
 ChaosModifierRandomPush.duration = 30
 ChaosModifierRandomPush.run_as_client = true
 

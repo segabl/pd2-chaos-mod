@@ -2,7 +2,6 @@
 ChaosModifierSlowMotion = class(ChaosModifier)
 ChaosModifierSlowMotion.class_name = "ChaosModifierSlowMotion"
 ChaosModifierSlowMotion.register_name = "ChaosModifierTimeSpeed"
-ChaosModifierSlowMotion.name = "Bullet Time"
 ChaosModifierSlowMotion.run_as_client = true
 ChaosModifierSlowMotion.duration = 10
 ChaosModifierSlowMotion.speed = 0.5

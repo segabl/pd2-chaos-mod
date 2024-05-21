@@ -1,7 +1,6 @@
 ---@class ChaosModifierShowHitboxes : ChaosModifier
 ChaosModifierShowHitboxes = class(ChaosModifier)
 ChaosModifierShowHitboxes.class_name = "ChaosModifierShowHitboxes"
-ChaosModifierShowHitboxes.name = "A deeper Insight"
 ChaosModifierShowHitboxes.duration = 40
 ChaosModifierShowHitboxes.run_as_client = true
 

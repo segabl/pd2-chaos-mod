@@ -1,7 +1,6 @@
 ---@class ChaosModifierNoSleep : ChaosModifier
 ChaosModifierNoSleep = class(ChaosModifier)
 ChaosModifierNoSleep.class_name = "ChaosModifierNoSleep"
-ChaosModifierNoSleep.name = "No Sleep"
 ChaosModifierNoSleep.duration = 45
 ChaosModifierNoSleep.run_as_client = true
 

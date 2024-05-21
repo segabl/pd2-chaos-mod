@@ -1,7 +1,6 @@
 ---@class ChaosModifierLimitFps : ChaosModifier
 ChaosModifierLimitFps = class(ChaosModifier)
 ChaosModifierLimitFps.class_name = "ChaosModifierLimitFps"
-ChaosModifierLimitFps.name = "Console Experience"
 ChaosModifierLimitFps.run_as_client = true
 ChaosModifierLimitFps.duration = 30
 

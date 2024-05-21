@@ -1,7 +1,6 @@
 ---@class ChaosModifierNoHeadshots : ChaosModifier
 ChaosModifierNoHeadshots = class(ChaosModifier)
 ChaosModifierNoHeadshots.class_name = "ChaosModifierNoHeadshots"
-ChaosModifierNoHeadshots.name = "Protective Headgear"
 ChaosModifierNoHeadshots.duration = 30
 ChaosModifierNoHeadshots.run_as_client = true
 

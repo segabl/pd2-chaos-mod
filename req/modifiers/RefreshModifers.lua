@@ -1,7 +1,6 @@
 ---@class ChaosModifierRefreshModifers : ChaosModifier
 ChaosModifierRefreshModifers = class(ChaosModifier)
 ChaosModifierRefreshModifers.class_name = "ChaosModifierRefreshModifers"
-ChaosModifierRefreshModifers.name = "Refresh Modifiers"
 ChaosModifierRefreshModifers.run_as_client = true
 
 function ChaosModifierRefreshModifers:can_trigger()

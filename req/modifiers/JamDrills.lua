@@ -1,7 +1,6 @@
 ---@class ChaosModifierJamDrills : ChaosModifier
 ChaosModifierJamDrills = class(ChaosModifier)
 ChaosModifierJamDrills.class_name = "ChaosModifierJamDrills"
-ChaosModifierJamDrills.name = "Why don't we just use a spoon?"
 
 function ChaosModifierJamDrills:can_trigger()
 	return table.size(TimerGui.active_units) > 0

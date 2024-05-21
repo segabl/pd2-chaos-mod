@@ -1,7 +1,6 @@
 ---@class ChaosModifierNinjaDodge : ChaosModifier
 ChaosModifierNinjaDodge = class(ChaosModifier)
 ChaosModifierNinjaDodge.class_name = "ChaosModifierNinjaDodge"
-ChaosModifierNinjaDodge.name = "Seems Dodgy"
 ChaosModifierNinjaDodge.duration = 120
 ChaosModifierNinjaDodge.dodge_preset = {
 	speed = 1.6,

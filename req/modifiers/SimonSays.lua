@@ -1,7 +1,6 @@
 ---@class ChaosModifierSimonSays : ChaosModifier
 ChaosModifierSimonSays = class(ChaosModifier)
 ChaosModifierSimonSays.class_name = "ChaosModifierSimonSays"
-ChaosModifierSimonSays.name = "Simon Says"
 ChaosModifierSimonSays.run_as_client = true
 ChaosModifierSimonSays.activity_time = 3
 ChaosModifierSimonSays.pause_time = 2
@@ -10,62 +9,72 @@ ChaosModifierSimonSays.duration = (ChaosModifierSimonSays.activity_time + ChaosM
 ChaosModifierSimonSays.fixed_duration = true
 ChaosModifierSimonSays.activities = {
 	{
-		name = "JUMP",
+		name_id = "ChaosModifierSimonSaysJump",
+		inverted_name_id = "ChaosModifierSimonSaysJumpInverted",
 		func = function(player)
 			return player:mover():velocity().z > 0
 		end
 	},
 	{
-		name = "SPRINT",
+		name_id = "ChaosModifierSimonSaysSprint",
+		inverted_name_id = "ChaosModifierSimonSaysSprintInverted",
 		func = function(player)
 			return player:movement():running()
 		end
 	},
 	{
-		name = "CROUCH",
+		name_id = "ChaosModifierSimonSaysCrouch",
+		inverted_name_id = "ChaosModifierSimonSaysCrouchInverted",
 		func = function(player)
 			return player:movement():crouching()
 		end
 	},
 	{
-		name = "RELOAD",
+		name_id = "ChaosModifierSimonSaysReload",
+		inverted_name_id = "ChaosModifierSimonSaysReloadInverted",
 		func = function(player)
 			return player:movement():current_state():_is_reloading()
 		end
 	},
 	{
-		name = "MELEE",
+		name_id = "ChaosModifierSimonSaysMelee",
+		inverted_name_id = "ChaosModifierSimonSaysMeleeInverted",
 		func = function(player)
 			return player:movement():current_state():_is_meleeing()
 		end
 	},
 	{
-		name = "INSPECT WEAPON",
+		name_id = "ChaosModifierSimonSaysInspectWeapon",
+		inverted_name_id = "ChaosModifierSimonSaysInspectWeaponInverted",
 		func = function(player)
 			return player:movement():current_state():_is_cash_inspecting()
 		end
 	},
 	{
-		name = "AIM DOWN SIGHTS",
+		name_id = "ChaosModifierSimonSaysAimDownSights",
+		inverted_name_id = "ChaosModifierSimonSaysAimDownSightsInverted",
 		func = function(player)
 			return player:movement():current_state():in_steelsight()
 		end
 	},
 	{
-		name = "SHOUT",
+		name_id = "ChaosModifierSimonSaysShout",
+		inverted_name_id = "ChaosModifierSimonSaysShoutInverted",
 		func = function(player, t)
 			local playerstate = player:movement():current_state()
 			return playerstate._intimidate_t and playerstate._intimidate_t >= t - tweak_data.player.movement_state.interaction_delay * 0.5
 		end
 	},
 	{
-		name = "LOOK UP",
+		name_id = "ChaosModifierSimonSaysLookUp",
+		inverted_name_id = "ChaosModifierSimonSaysLookUpInverted",
 		func = function(player)
 			return math.UP:dot(player:movement():detect_look_dir()) > 0.95
 		end
 	},
 	{
-		name = "LOOK DOWN",
+		name_id = "ChaosModifierSimonSaysLookDown",
+		inverted_name_id = "ChaosModifierSimonSaysLookDownInverted",
 		func = function(player)
 			return math.UP:dot(player:movement():detect_look_dir()) < -0.95
 		end
@@ -85,29 +94,32 @@ function ChaosModifierSimonSays:start()
 		})
 	end
 
-	self:show_text("SIMON SAYS...", ChaosModifierSimonSays.pause_time, true)
+	self:show_text(managers.localization:to_upper_text("ChaosModifierSimonSaysStart"), self.pause_time, true)
 
-	DelayedCalls:Add(tostring(self), ChaosModifierSimonSays.pause_time, callback(self, self, "start_activity"))
+	DelayedCalls:Add(tostring(self), self.pause_time, callback(self, self, "start_activity"))
 end
 
 function ChaosModifierSimonSays:start_activity()
-	self._activity, self._activity_inverted, self._activity_simon_said_it = unpack(table.remove(self._activities))
+	self._activity, self._activity_inverted, self._activity_valid = unpack(table.remove(self._activities))
 	self._activity_start_t = TimerManager:game():time()
 
-	self:show_text((self._activity_simon_said_it and "SIMON SAYS: " or "") .. (self._activity_inverted and "DON'T " or "") .. self._activity.name, ChaosModifierSimonSays.activity_time)
+	local activity_text = managers.localization:to_upper_text(self._activity_inverted and self._activity.inverted_name_id or self._activity.name_id)
+	local text = self._activity_valid and managers.localization:to_upper_text("ChaosModifierSimonSaysActivity", { ACTIVITY = activity_text }) or activity_text
 
-	DelayedCalls:Add(tostring(self), ChaosModifierSimonSays.activity_time, callback(self, self, "end_activity"))
+	self:show_text(text, self.activity_time)
+
+	DelayedCalls:Add(tostring(self), self.activity_time, callback(self, self, "end_activity"))
 end
 
 function ChaosModifierSimonSays:end_activity()
-	if self._activity and self._activity_simon_said_it ~= self._activity_inverted then
+	if self._activity and self._activity_valid ~= self._activity_inverted then
 		self:punish()
 	end
 
 	self._activity = nil
 
 	if #self._activities > 0 then
-		DelayedCalls:Add(tostring(self), ChaosModifierSimonSays.pause_time, callback(self, self, "start_activity"))
+		DelayedCalls:Add(tostring(self), self.pause_time, callback(self, self, "start_activity"))
 	end
 end
 
@@ -165,7 +177,7 @@ function ChaosModifierSimonSays:update(t, dt)
 	end
 
 	if self._activity.func(player_unit, t) then
-		if self._activity_simon_said_it ~= self._activity_inverted then
+		if self._activity_valid ~= self._activity_inverted then
 			self._activity = nil
 		elseif t > self._activity_start_t + 1 then
 			self._activity = nil

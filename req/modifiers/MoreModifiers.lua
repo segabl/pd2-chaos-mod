@@ -1,7 +1,6 @@
 ---@class ChaosModifierMoreModifiers : ChaosModifier
 ChaosModifierMoreModifiers = class(ChaosModifier)
 ChaosModifierMoreModifiers.class_name = "ChaosModifierMoreModifiers"
-ChaosModifierMoreModifiers.name = "More Modifiers"
 ChaosModifierMoreModifiers.duration = 30
 
 function ChaosModifierMoreModifiers:start()

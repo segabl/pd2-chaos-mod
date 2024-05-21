@@ -3,7 +3,6 @@
 ChaosModifier = class()
 ChaosModifier.class_name = "ChaosModifier"
 ChaosModifier.register_name = nil
-ChaosModifier.name = "You shouldn't see this"
 ChaosModifier.run_as_client = false
 ChaosModifier.duration = 0
 

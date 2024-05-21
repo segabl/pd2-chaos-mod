@@ -1,7 +1,6 @@
 ---@class ChaosModifierEnemyLasers : ChaosModifier
 ChaosModifierEnemyLasers = class(ChaosModifier)
 ChaosModifierEnemyLasers.class_name = "ChaosModifierEnemyLasers"
-ChaosModifierEnemyLasers.name = "Laser Party"
 ChaosModifierEnemyLasers.duration = 60
 ChaosModifierEnemyLasers.run_as_client = true
 

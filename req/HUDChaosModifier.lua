@@ -30,7 +30,7 @@ function HUDChaosModifier:init(modifier)
 
 	self._panel:text({
 		layer = 3,
-		text = modifier.name:upper(),
+		text = managers.localization:to_upper_text(modifier.class_name),
 		font = tweak_data.menu.pd2_medium_font,
 		font_size = 16,
 		color = Color.white,

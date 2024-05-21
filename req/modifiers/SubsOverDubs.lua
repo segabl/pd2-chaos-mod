@@ -2,7 +2,6 @@
 ChaosModifierSubsOverDubs = class(ChaosModifier)
 ChaosModifierSubsOverDubs.class_name = "ChaosModifierSubsOverDubs"
 ChaosModifierSubsOverDubs.register_name = "ChaosModifierVoiceChange"
-ChaosModifierSubsOverDubs.name = "Subs > Dubs"
 ChaosModifierSubsOverDubs.run_as_client = true
 ChaosModifierSubsOverDubs.duration = 90
 

@@ -1,7 +1,6 @@
 ---@class ChaosModifierExplodingEnemies : ChaosModifier
 ChaosModifierExplodingEnemies = class(ChaosModifier)
 ChaosModifierExplodingEnemies.class_name = "ChaosModifierExplodingEnemies"
-ChaosModifierExplodingEnemies.name = "Deadly Deaths"
 ChaosModifierExplodingEnemies.duration = 30
 ChaosModifierExplodingEnemies.run_as_client = true
 

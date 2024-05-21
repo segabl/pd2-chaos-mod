@@ -1,7 +1,6 @@
 ---@class ChaosModifierScreamingEnemies : ChaosModifier
 ChaosModifierScreamingEnemies = class(ChaosModifier)
 ChaosModifierScreamingEnemies.class_name = "ChaosModifierScreamingEnemies"
-ChaosModifierScreamingEnemies.name = "Louder Enemies"
 ChaosModifierScreamingEnemies.duration = 60
 
 function ChaosModifierScreamingEnemies:update(t, dt)

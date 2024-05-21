@@ -2,7 +2,6 @@
 ChaosModifierDallasMedicBag = class(ChaosModifier)
 ChaosModifierDallasMedicBag.class_name = "ChaosModifierDallasMedicBag"
 ChaosModifierDallasMedicBag.register_name = "ChaosModifierVoiceChange"
-ChaosModifierDallasMedicBag.name = "Peak Comedy"
 ChaosModifierDallasMedicBag.run_as_client = true
 ChaosModifierDallasMedicBag.duration = 60
 

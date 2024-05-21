@@ -2,7 +2,6 @@
 ChaosModifierRandomVoices = class(ChaosModifier)
 ChaosModifierRandomVoices.class_name = "ChaosModifierRandomVoices"
 ChaosModifierRandomVoices.register_name = "ChaosModifierVoiceChange"
-ChaosModifierRandomVoices.name = "Voice Crack"
 ChaosModifierRandomVoices.run_as_client = true
 ChaosModifierRandomVoices.duration = 90
 

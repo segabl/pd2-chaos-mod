@@ -2,7 +2,6 @@
 ChaosModifierGlassCannons = class(ChaosModifier)
 ChaosModifierGlassCannons.class_name = "ChaosModifierGlassCannons"
 ChaosModifierGlassCannons.register_name = "ChaosModifierUnitCategories"
-ChaosModifierGlassCannons.name = "Glass Cannons"
 ChaosModifierGlassCannons.duration = 60
 ChaosModifierGlassCannons.unit_category = "CS_cop_stealth_MP5"
 

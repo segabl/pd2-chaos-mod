@@ -1,7 +1,6 @@
 ---@class ChaosModifierFastEnemies : ChaosModifier
 ChaosModifierFastEnemies = class(ChaosModifier)
 ChaosModifierFastEnemies.class_name = "ChaosModifierFastEnemies"
-ChaosModifierFastEnemies.name = "Cocaine is a hell of a drug"
 ChaosModifierFastEnemies.run_as_client = true
 ChaosModifierFastEnemies.duration = 45
 

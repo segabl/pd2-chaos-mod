@@ -1,7 +1,6 @@
 ---@class ChaosModifierGasGrenades : ChaosModifier
 ChaosModifierGasGrenades = class(ChaosModifier)
 ChaosModifierGasGrenades.class_name = "ChaosModifierGasGrenades"
-ChaosModifierGasGrenades.name = "Who farted?"
 ChaosModifierGasGrenades.duration = 60
 
 function ChaosModifierGasGrenades:update(t, dt)

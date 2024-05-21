@@ -1,7 +1,6 @@
 ---@class ChaosModifierBulletHose : ChaosModifier
 ChaosModifierBulletHose = class(ChaosModifier)
 ChaosModifierBulletHose.class_name = "ChaosModifierBulletHose"
-ChaosModifierBulletHose.name = "Bullet Hose"
 ChaosModifierBulletHose.run_as_client = true
 ChaosModifierBulletHose.duration = 20
 

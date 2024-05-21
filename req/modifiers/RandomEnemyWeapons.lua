@@ -1,7 +1,6 @@
 ---@class ChaosModifierRandomEnemyWeapons : ChaosModifier
 ChaosModifierRandomEnemyWeapons = class(ChaosModifier)
 ChaosModifierRandomEnemyWeapons.class_name = "ChaosModifierRandomEnemyWeapons"
-ChaosModifierRandomEnemyWeapons.name = "Diverse Armament"
 ChaosModifierRandomEnemyWeapons.duration = 90
 
 function ChaosModifierRandomEnemyWeapons:start()

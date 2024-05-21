@@ -1,7 +1,6 @@
 ---@class ChaosModifierHeadshotsOnly : ChaosModifier
 ChaosModifierHeadshotsOnly = class(ChaosModifier)
 ChaosModifierHeadshotsOnly.class_name = "ChaosModifierHeadshotsOnly"
-ChaosModifierHeadshotsOnly.name = "Aim for the Head"
 ChaosModifierHeadshotsOnly.duration = 60
 ChaosModifierHeadshotsOnly.run_as_client = true
 

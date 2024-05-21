@@ -1,7 +1,6 @@
 ---@class ChaosModifierNoJumping : ChaosModifier
 ChaosModifierNoJumping = class(ChaosModifier)
 ChaosModifierNoJumping.class_name = "ChaosModifierNoJumping"
-ChaosModifierNoJumping.name = "Never skip leg day"
 ChaosModifierNoJumping.run_as_client = true
 ChaosModifierNoJumping.duration = 40
 

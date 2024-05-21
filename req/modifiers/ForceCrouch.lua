@@ -1,7 +1,6 @@
 ---@class ChaosModifierForceCrouch : ChaosModifier
 ChaosModifierForceCrouch = class(ChaosModifier)
 ChaosModifierForceCrouch.class_name = "ChaosModifierForceCrouch"
-ChaosModifierForceCrouch.name = "True Slav"
 ChaosModifierForceCrouch.run_as_client = true
 ChaosModifierForceCrouch.duration = 20
 

@@ -2,7 +2,6 @@
 ChaosModifierNoMoving = class(ChaosModifier)
 ChaosModifierNoMoving.class_name = "ChaosModifierNoMoving"
 ChaosModifierNoMoving.register_name = "ChaosModifierPlayerMovement"
-ChaosModifierNoMoving.name = "Stop right there criminal scum!"
 ChaosModifierNoMoving.run_as_client = true
 ChaosModifierNoMoving.duration = 3
 

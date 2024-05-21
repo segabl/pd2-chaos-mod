@@ -1,7 +1,6 @@
 ---@class ChaosModifierPortraitMode : ChaosModifier
 ChaosModifierPortraitMode = class(ChaosModifier)
 ChaosModifierPortraitMode.class_name = "ChaosModifierPortraitMode"
-ChaosModifierPortraitMode.name = "Portrait Mode"
 ChaosModifierPortraitMode.duration = 45
 ChaosModifierPortraitMode.run_as_client = true
 

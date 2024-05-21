@@ -1,7 +1,6 @@
 ---@class ChaosModifierItchyTriggerFinger : ChaosModifier
 ChaosModifierItchyTriggerFinger = class(ChaosModifier)
 ChaosModifierItchyTriggerFinger.class_name = "ChaosModifierItchyTriggerFinger"
-ChaosModifierItchyTriggerFinger.name = "Itchy Trigger Finger"
 ChaosModifierItchyTriggerFinger.run_as_client = true
 ChaosModifierItchyTriggerFinger.duration = 40
 

@@ -1,7 +1,6 @@
 ---@class ChaosModifierPushUp : ChaosModifier
 ChaosModifierPushUp = class(ChaosModifier)
 ChaosModifierPushUp.class_name = "ChaosModifierPushUp"
-ChaosModifierPushUp.name = "Pogo Stick"
 ChaosModifierPushUp.duration = 20
 ChaosModifierPushUp.run_as_client = true
 

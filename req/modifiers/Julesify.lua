@@ -1,7 +1,6 @@
 ---@class ChaosModifierJulesify : ChaosModifier
 ChaosModifierJulesify = class(ChaosModifier)
 ChaosModifierJulesify.class_name = "ChaosModifierJulesify"
-ChaosModifierJulesify.name = "Jules-ify"
 ChaosModifierJulesify.duration = 120
 ChaosModifierJulesify.allowed_poses = { crouch = true }
 

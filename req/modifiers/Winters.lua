@@ -1,7 +1,6 @@
 ---@class ChaosModifierWinters : ChaosModifier
 ChaosModifierWinters = class(ChaosModifier)
 ChaosModifierWinters.class_name = "ChaosModifierWinters"
-ChaosModifierWinters.name = "THERE, THE PAYDAY GANG!"
 ChaosModifierWinters.duration = -1
 
 function ChaosModifierWinters:can_trigger()

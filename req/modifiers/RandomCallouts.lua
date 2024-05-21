@@ -1,7 +1,6 @@
 ---@class ChaosModifierRandomCallouts : ChaosModifier
 ChaosModifierRandomCallouts = class(ChaosModifier)
 ChaosModifierRandomCallouts.class_name = "ChaosModifierRandomCallouts"
-ChaosModifierRandomCallouts.name = "Gaslighting"
 ChaosModifierRandomCallouts.duration = 60
 ChaosModifierRandomCallouts.run_as_client = true
 ChaosModifierRandomCallouts.event_names = {

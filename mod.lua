@@ -2,7 +2,6 @@ if not ChaosMod then
 
 	ChaosMod = {}
 	ChaosMod.mod_path = ModPath
-	ChaosMod.required = {}
 	ChaosMod.modifiers = {} ---@type table<string, ChaosModifier>
 	ChaosMod.active_modifiers = {} ---@type table<string, ChaosModifier>
 	ChaosMod.hud_modifiers = {} ---@type HUDChaosModifier[]
@@ -126,6 +125,10 @@ if not ChaosMod then
 
 	ChaosMod:load_modifiers()
 
+	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitChaosMod", function(loc)
+		HopLib:load_localization(ChaosMod.mod_path .. "loc/", loc)
+	end)
+
 	Hooks:Add("GameSetupUpdate", "GameSetupUpdateChaosMod", function(t, dt)
 		ChaosMod:update_modifiers(t, dt)
 		ChaosMod:update_modifiers_hud(t, dt)
@@ -139,12 +142,4 @@ if not ChaosMod then
 	end
 end
 
-if RequiredScript and not ChaosMod.required[RequiredScript] then
-
-	local fname = ChaosMod.mod_path .. RequiredScript:gsub(".+/(.+)", "lua/%1.lua")
-	if io.file_is_readable(fname) then
-		dofile(fname)
-	end
-
-	ChaosMod.required[RequiredScript] = true
-end
+HopLib:run_required(ChaosMod.mod_path .. "lua/")
