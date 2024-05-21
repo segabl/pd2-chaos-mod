@@ -3,6 +3,7 @@
 	"description" : "Enables random modifiers during gameplay",
 	"author" : "Hoppip",
 	"color" : "0.043 0.808 0.6",
+	"image" : "mod.png",
 	"version" : "1.0",
 	"dependencies" : {
 		"pd2-hoplib" : { "meta" : "https://updates.hoppip.at/pd2-hoplib" }
