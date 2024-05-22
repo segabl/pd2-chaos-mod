@@ -33,7 +33,7 @@
 	"ChaosModifierRandomPush": "弹球",
 	"ChaosModifierRandomVoices": "语音错乱",
 	"ChaosModifierRefreshModifers": "刷新因子",
-	"ChaosModifierRubberbanding": "便宜的宽带",
+	"ChaosModifierRubberbanding": "高ping战士",
 	"ChaosModifierScreamingEnemies": "更吵的敌人",
 	"ChaosModifierShields": "防暴警察",
 	"ChaosModifierShowHitboxes": "深入洞察",
