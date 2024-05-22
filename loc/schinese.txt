@@ -25,7 +25,7 @@
 	"ChaosModifierNoHeadshots": "防弹头盔",
 	"ChaosModifierNoJumping": "不要错过了护腿日",
 	"ChaosModifierNoMoving": "站住！你这个人渣罪犯",
-	"ChaosModifierNoSleep": "别睡着了",
+	"ChaosModifierNoSleep": "昏昏欲睡",
 	"ChaosModifierPortraitMode": "短视频模式",
 	"ChaosModifierPushUp": "弹跳杆",
 	"ChaosModifierRandomCallouts": "谎报军情",
