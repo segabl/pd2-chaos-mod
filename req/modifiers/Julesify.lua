@@ -53,20 +53,28 @@ function ChaosModifierJulesify:start()
 		end
 	end
 
+	for tactic_name, tactic_data in pairs(tweak_data.group_ai._tactics) do
+		local new_tactic_data = clone(tactic_data)
+		table.delete(new_tactic_data, "shield")
+		table.delete(new_tactic_data, "shield_cover")
+		table.delete(new_tactic_data, "flank")
+		table.delete(new_tactic_data, "ranged_fire")
+		table.delete(new_tactic_data, "murder")
+		self:override(tweak_data.group_ai._tactics, tactic_name, new_tactic_data)
+	end
+
+	for group_name in pairs(tweak_data.group_ai.enemy_spawn_groups) do
+		if group_name:match("shotgun") then
+			self:override(tweak_data.group_ai.enemy_spawn_groups, group_name, nil)
+		end
+	end
+
 	self:override(tweak_data.group_ai, "spawn_cooldown_mul", 0)
 
 	self:override(tweak_data.group_ai.besiege.assault, "force", { 14, 16, 18 })
 	self:override(tweak_data.group_ai.besiege.assault, "force_balance_mul", { 1.5, 3, 4.5, 6 })
 	self:override(tweak_data.group_ai.besiege.assault, "force_pool", { 150, 175, 225 })
 	self:override(tweak_data.group_ai.besiege.assault, "force_pool_balance_mul", { 1.5, 3, 4.5, 6 })
-
-	self:override(tweak_data.group_ai.enemy_spawn_groups, "tac_swat_shotgun_rush", nil)
-	self:override(tweak_data.group_ai.enemy_spawn_groups, "tac_swat_shotgun_rush_no_medic", nil)
-	self:override(tweak_data.group_ai.enemy_spawn_groups, "tac_swat_shotgun_flank", nil)
-	self:override(tweak_data.group_ai.enemy_spawn_groups, "tac_swat_shotgun_flank_no_medic", nil)
-	self:override(tweak_data.group_ai.enemy_spawn_groups, "tac_swat_rifle", nil)
-	self:override(tweak_data.group_ai.enemy_spawn_groups, "tac_swat_shotgun_rush", nil)
-	self:override(tweak_data.group_ai.enemy_spawn_groups, "tac_swat_rifle_no_medic", nil)
 end
 
 return ChaosModifierJulesify
