@@ -17,7 +17,7 @@
 	"ChaosModifierHeadshotsOnly": "瞄准头！",
 	"ChaosModifierItchyTriggerFinger": "手指发痒",
 	"ChaosModifierJamDrills": "为什么我们不用个勺子？",
-	"ChaosModifierJulesify": "老OD风格的敌人",
+	"ChaosModifierJulesify": "Jules风格的敌人",
 	"ChaosModifierLimitFps": "主机平台游戏体验",
 	"ChaosModifierMarshals": "Oops,全是神射手",
 	"ChaosModifierMoreModifiers": "更多因子",
