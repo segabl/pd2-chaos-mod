@@ -1,6 +1,7 @@
 if not ChaosMod then
 
 	ChaosMod = {}
+	ChaosMod.mod_instance = ModInstance
 	ChaosMod.mod_path = ModPath
 	ChaosMod.modifiers = {} ---@type table<string, ChaosModifier>
 	ChaosMod.active_modifiers = {} ---@type table<string, ChaosModifier>
