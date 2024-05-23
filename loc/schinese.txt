@@ -9,6 +9,7 @@
 	"ChaosModifierExplodingEnemies": "致命亡语",
 	"ChaosModifierExplosiveBullets": "重型军火",
 	"ChaosModifierFastEnemies": "Coca是一种可怕的毒品",
+	"ChaosModifierFireTrail" : "Hot Specials in your Area",
 	"ChaosModifierFlashBurst": "我不要你觉得，我要我觉得",
 	"ChaosModifierForceCrouch": "真正的斯拉夫人",
 	"ChaosModifierForceMove": "自动驾驶",
@@ -20,6 +21,7 @@
 	"ChaosModifierJulesify": "Jules风格的敌人",
 	"ChaosModifierLimitFps": "主机平台游戏体验",
 	"ChaosModifierMarshals": "Oops,全是神射手",
+	"ChaosModifierMedics": "Ibuprofen in the House",
 	"ChaosModifierMoreModifiers": "更多因子",
 	"ChaosModifierNinjaDodge": "敌人闪避",
 	"ChaosModifierNoHeadshots": "防弹头盔",
@@ -64,5 +66,6 @@
 	"ChaosModifierSpeedUp": "速通时间",
 	"ChaosModifierSubsOverDubs": "字幕 > 配音",
 	"ChaosModifierTase": "冲击",
+	"ChaosModifierTiltScreen" : "Seasick",
 	"ChaosModifierWinters": "PAYDAY GANG在那里!"
 }

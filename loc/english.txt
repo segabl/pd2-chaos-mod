@@ -9,6 +9,7 @@
 	"ChaosModifierExplodingEnemies": "Deadly Deaths",
 	"ChaosModifierExplosiveBullets": "Heavy Munitions",
 	"ChaosModifierFastEnemies": "Cocaine is a hell of a drug",
+	"ChaosModifierFireTrail" : "Hot Specials in your Area",
 	"ChaosModifierFlashBurst": "Your opinion, my choice",
 	"ChaosModifierForceCrouch": "True Slav",
 	"ChaosModifierForceMove": "Autopilot",
@@ -20,6 +21,7 @@
 	"ChaosModifierJulesify": "Jules-ify",
 	"ChaosModifierLimitFps": "Console Experience",
 	"ChaosModifierMarshals": "Oops, all Marshals",
+	"ChaosModifierMedics": "Ibuprofen in the House",
 	"ChaosModifierMoreModifiers": "More Modifiers",
 	"ChaosModifierNinjaDodge": "Seems Dodgy",
 	"ChaosModifierNoHeadshots": "Protective Headgear",
@@ -64,5 +66,6 @@
 	"ChaosModifierSpeedUp": "Speedrun",
 	"ChaosModifierSubsOverDubs": "Subs > Dubs",
 	"ChaosModifierTase": "Shocking",
+	"ChaosModifierTiltScreen" : "Seasick",
 	"ChaosModifierWinters": "THERE, THE PAYDAY GANG!"
 }
