@@ -1,4 +1,4 @@
 ChaosModifierShields = ChaosModifier.class("ChaosModifierShields", ChaosModifierGlassCannons)
-ChaosModifierShields.unit_category = "FBI_shield"
+ChaosModifierShields.unit_categories = { "CS_shield", "FBI_shield" }
 
 return ChaosModifierShields

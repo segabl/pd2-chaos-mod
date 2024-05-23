@@ -1,16 +1,27 @@
 ChaosModifierGlassCannons = ChaosModifier.class("ChaosModifierGlassCannons")
 ChaosModifierGlassCannons.register_name = "ChaosModifierUnitCategories"
 ChaosModifierGlassCannons.duration = 60
-ChaosModifierGlassCannons.unit_category = "CS_cop_stealth_MP5"
+ChaosModifierGlassCannons.unit_categories = { "CS_cop_stealth_MP5" }
 
 function ChaosModifierGlassCannons:can_trigger()
-	return tweak_data.group_ai.unit_categories[self.unit_category] and true
+	for _, unit_category in pairs(self.unit_categories) do
+		if not tweak_data.group_ai.unit_categories[unit_category] then
+			return false
+		end
+	end
+	return true
 end
 
 function ChaosModifierGlassCannons:start()
-	local unit_types = deep_clone(tweak_data.group_ai.unit_categories[self.unit_category].unit_types)
-	for _, category in pairs(tweak_data.group_ai.unit_categories) do
-		if not category.special_type then
+	local unit_types = setmetatable({}, {
+		__index = function(t, k)
+			return tweak_data.group_ai.unit_categories[table.random(self.unit_categories)].unit_types[k]
+		end
+	})
+
+	local skip = table.list_to_set(self.unit_categories)
+	for category_name, category in pairs(tweak_data.group_ai.unit_categories) do
+		if not category.special_type and not skip[category_name] then
 			self:override(category, "unit_types", unit_types)
 		end
 	end

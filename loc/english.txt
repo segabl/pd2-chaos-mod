@@ -16,6 +16,7 @@
 	"ChaosModifierGasGrenades": "Who farted?",
 	"ChaosModifierGlassCannons": "Glass Cannons",
 	"ChaosModifierHeadshotsOnly": "Aim for the Head",
+	"ChaosModifierHostageRescueTeam": "Bring the Hostage Rescue Team!",
 	"ChaosModifierItchyTriggerFinger": "Itchy Trigger Finger",
 	"ChaosModifierJamDrills": "Why don't we just use a spoon?",
 	"ChaosModifierJulesify": "Jules-ify",

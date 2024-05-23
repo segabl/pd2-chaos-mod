@@ -16,6 +16,7 @@
 	"ChaosModifierGasGrenades": "谁在放屁？",
 	"ChaosModifierGlassCannons": "玻璃大炮",
 	"ChaosModifierHeadshotsOnly": "瞄准头！",
+	"ChaosModifierHostageRescueTeam": "Bring the Hostage Rescue Team!",
 	"ChaosModifierItchyTriggerFinger": "手指发痒",
 	"ChaosModifierJamDrills": "为什么我们不用个勺子？",
 	"ChaosModifierJulesify": "Jules风格的敌人",
