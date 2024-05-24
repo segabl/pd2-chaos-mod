@@ -30,7 +30,7 @@ end
 function ChaosModifierRubberbanding:set_position()
 	local player_unit = managers.player:local_player()
 	if alive(player_unit) then
-		player_unit:movement():set_position(self._recorded_position)
+		player_unit:warp_to(player_unit:rotation(), self._recorded_position)
 	end
 end
 

@@ -98,3 +98,39 @@ end
 function ChaosModifier:expired(t)
 	return self._expired or t > self._activation_t + self.duration
 end
+
+function ChaosModifier:show_text(text, time, large)
+	local panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):panel({
+		layer = 100
+	})
+
+	local r = panel:rect({
+		color = Color.black:with_alpha(0.65)
+	})
+
+	local t = panel:text({
+		layer = 1,
+		text = text,
+		font = tweak_data.menu.pd2_large_font,
+		font_size = large and 48 or 32
+	})
+
+	t:set_shape(t:text_rect())
+	t:set_center(panel:w() * 0.5, panel:h() * 0.35)
+
+	if not large then
+		r:set_size(panel:w(), t:h() + 32)
+		r:set_center(t:center())
+	end
+
+	panel:animate(function(o)
+		over(0.25, function(p)
+			o:set_alpha(p)
+		end)
+		wait(time - 0.5)
+		over(0.25, function(p)
+			o:set_alpha(1 - p)
+		end)
+		o:parent():remove(o)
+	end)
+end

@@ -1,4 +1,5 @@
 {
+	"ChaosModifierBouncyProjectiles": "Spring-Loaded Trigger",
 	"ChaosModifierBulletHose": "Bullet Hose",
 	"ChaosModifierChargingCloakers": "Check your back",
 	"ChaosModifierCivilianMagnet": "Civilian Magnet",
@@ -9,7 +10,7 @@
 	"ChaosModifierExplodingEnemies": "Deadly Deaths",
 	"ChaosModifierExplosiveBullets": "Heavy Munitions",
 	"ChaosModifierFastEnemies": "Cocaine is a hell of a drug",
-	"ChaosModifierFireTrail" : "Hot Specials in your Area",
+	"ChaosModifierFireTrail": "Hot Specials in your Area",
 	"ChaosModifierFlashBurst": "Your opinion, my choice",
 	"ChaosModifierForceCrouch": "True Slav",
 	"ChaosModifierForceMove": "Autopilot",
@@ -29,11 +30,13 @@
 	"ChaosModifierNoJumping": "Never skip leg day",
 	"ChaosModifierNoMoving": "Stop right there criminal scum!",
 	"ChaosModifierNoSleep": "No Sleep",
+	"ChaosModifierPlayerDamageAura": "Social Distancing",
 	"ChaosModifierPortraitMode": "Portrait Mode",
 	"ChaosModifierPushUp": "Pogo Stick",
 	"ChaosModifierRandomCallouts": "Gaslighting",
 	"ChaosModifierRandomEnemyWeapons": "Diverse Armament",
 	"ChaosModifierRandomPush": "Pinball",
+	"ChaosModifierRandomTeleport": "Teleporter Mishap",
 	"ChaosModifierRandomVoices": "Voice Crack",
 	"ChaosModifierRefreshModifers": "Refresh Modifiers",
 	"ChaosModifierRubberbanding": "Cheap Internet",
@@ -67,6 +70,6 @@
 	"ChaosModifierSpeedUp": "Speedrun",
 	"ChaosModifierSubsOverDubs": "Subs > Dubs",
 	"ChaosModifierTase": "Shocking",
-	"ChaosModifierTiltScreen" : "Seasick",
+	"ChaosModifierTiltScreen": "Seasick",
 	"ChaosModifierWinters": "THERE, THE PAYDAY GANG!"
 }

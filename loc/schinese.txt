@@ -1,4 +1,5 @@
 {
+	"ChaosModifierBouncyProjectiles": "Spring-Loaded Trigger",
 	"ChaosModifierBulletHose": "子弹软管",
 	"ChaosModifierChargingCloakers": "小心你的背后",
 	"ChaosModifierCivilianMagnet": "平民磁铁",
@@ -9,7 +10,7 @@
 	"ChaosModifierExplodingEnemies": "致命亡语",
 	"ChaosModifierExplosiveBullets": "重型军火",
 	"ChaosModifierFastEnemies": "Coca是一种可怕的毒品",
-	"ChaosModifierFireTrail" : "Hot Specials in your Area",
+	"ChaosModifierFireTrail": "Hot Specials in your Area",
 	"ChaosModifierFlashBurst": "我不要你觉得，我要我觉得",
 	"ChaosModifierForceCrouch": "真正的斯拉夫人",
 	"ChaosModifierForceMove": "自动驾驶",
@@ -29,11 +30,13 @@
 	"ChaosModifierNoJumping": "不要错过了护腿日",
 	"ChaosModifierNoMoving": "站住！你这个人渣罪犯",
 	"ChaosModifierNoSleep": "昏昏欲睡",
+	"ChaosModifierPlayerDamageAura": "Social Distancing",
 	"ChaosModifierPortraitMode": "短视频模式",
 	"ChaosModifierPushUp": "弹跳杆",
 	"ChaosModifierRandomCallouts": "谎报军情",
 	"ChaosModifierRandomEnemyWeapons": "武器多样化",
 	"ChaosModifierRandomPush": "弹球",
+	"ChaosModifierRandomTeleport": "Teleporter Mishap",
 	"ChaosModifierRandomVoices": "语音错乱",
 	"ChaosModifierRefreshModifers": "刷新因子",
 	"ChaosModifierRubberbanding": "高ping战士",
@@ -67,6 +70,6 @@
 	"ChaosModifierSpeedUp": "速通时间",
 	"ChaosModifierSubsOverDubs": "字幕 > 配音",
 	"ChaosModifierTase": "冲击",
-	"ChaosModifierTiltScreen" : "Seasick",
+	"ChaosModifierTiltScreen": "Seasick",
 	"ChaosModifierWinters": "PAYDAY GANG在那里!"
 }
