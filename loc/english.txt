@@ -71,5 +71,8 @@
 	"ChaosModifierSubsOverDubs": "Subs > Dubs",
 	"ChaosModifierTase": "Shocking",
 	"ChaosModifierTiltScreen": "Seasick",
+	"ChaosModifierTimeOut": "Time Out",
+	"ChaosModifierTimeOutStart" : "Time Out Roulette",
+	"ChaosModifierTimeOutPicked" : "$PLAYER; takes a break!",
 	"ChaosModifierWinters": "THERE, THE PAYDAY GANG!"
 }

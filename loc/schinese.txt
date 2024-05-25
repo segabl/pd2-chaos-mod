@@ -71,5 +71,8 @@
 	"ChaosModifierSubsOverDubs": "字幕 > 配音",
 	"ChaosModifierTase": "冲击",
 	"ChaosModifierTiltScreen": "Seasick",
+	"ChaosModifierTimeOut": "Time Out",
+	"ChaosModifierTimeOutStart" : "Time Out Roulette",
+	"ChaosModifierTimeOutPicked" : "$PLAYER; takes a break!",
 	"ChaosModifierWinters": "PAYDAY GANG在那里!"
 }
