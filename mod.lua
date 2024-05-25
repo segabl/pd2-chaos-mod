@@ -3,6 +3,7 @@ if not ChaosMod then
 	ChaosMod = {}
 	ChaosMod.mod_instance = ModInstance
 	ChaosMod.mod_path = ModPath
+	ChaosMod.required = {}
 	ChaosMod.modifiers = {} ---@type table<string, ChaosModifier>
 	ChaosMod.active_modifiers = {} ---@type table<string, ChaosModifier>
 	ChaosMod.hud_modifiers = {} ---@type HUDChaosModifier[]
@@ -105,29 +106,14 @@ if not ChaosMod then
 		end
 	end
 
-	function ChaosMod:enable_mutator(mutator_class)
-		local mutator = managers.mutators:get_mutator(mutator_class)
-		if mutator and not managers.mutators:is_mutator_active(mutator_class) then
-			mutator:set_enabled(true)
-			table.insert(managers.mutators:active_mutators(), { mutator = mutator })
-		end
-		return mutator
-	end
-
-	function ChaosMod:disable_mutator(mutator_class)
-		for i, v in pairs(managers.mutators:active_mutators()) do
-			if v.mutator:id() == mutator_class._type then
-				v.mutator:set_enabled(false)
-				table.remove(managers.mutators:active_mutators(), i)
-				break
-			end
-		end
-	end
-
 	ChaosMod:load_modifiers()
 
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitChaosMod", function(loc)
-		HopLib:load_localization(ChaosMod.mod_path .. "loc/", loc)
+		if HopLib then
+			HopLib:load_localization(ChaosMod.mod_path .. "loc/", loc)
+		else
+			loc:load_localization_file(ChaosMod.mod_path .. "loc/english.txt")
+		end
 	end)
 
 	Hooks:Add("GameSetupUpdate", "GameSetupUpdateChaosMod", function(t, dt)
@@ -143,4 +129,13 @@ if not ChaosMod then
 	end
 end
 
-HopLib:run_required(ChaosMod.mod_path .. "lua/")
+if RequiredScript and not ChaosMod.required[RequiredScript] then
+
+	local fname = ChaosMod.mod_path .. RequiredScript:gsub(".+/(.+)", "lua/%1.lua")
+	if io.file_is_readable(fname) then
+		dofile(fname)
+	end
+
+	ChaosMod.required[RequiredScript] = true
+
+end
