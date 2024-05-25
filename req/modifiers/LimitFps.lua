@@ -1,9 +1,9 @@
 ChaosModifierLimitFps = ChaosModifier.class("ChaosModifierLimitFps")
 ChaosModifierLimitFps.run_as_client = true
-ChaosModifierLimitFps.duration = 30
+ChaosModifierLimitFps.duration = 25
 
 function ChaosModifierLimitFps:start()
-	setup:set_fps_cap(20)
+	setup:set_fps_cap(25)
 	setup._framerate_low = true
 end
 

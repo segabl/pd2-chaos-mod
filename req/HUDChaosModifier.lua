@@ -18,10 +18,11 @@ function HUDChaosModifier:init(modifier)
 		color = Color.black:with_alpha(0.5)
 	})
 
-	local duration = self._modifier.duration
+	local duration = modifier.duration
+	local color = modifier.color or duration < 0 and Color(0.75, 1, 0.75, 0.5) or duration == 0 and Color(0.75, 0.5, 1, 1) or Color(0.75, 1, 0.5, 1)
 	self._progress = self._panel:rect({
 		layer = 2,
-		color = duration < 0 and Color(0.75, 1, 0.75, 0.5) or duration == 0 and Color(0.75, 0.5, 1, 1) or Color(0.75, 1, 0.5, 1),
+		color = color,
 		x = 3,
 		y = 3,
 		w = self._panel:w() - 6,

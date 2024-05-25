@@ -24,12 +24,12 @@ function ChaosModifierRubberbanding:update(t, dt)
 
 	self._recorded_position = player_unit:position()
 
-	self:queue("set_position", math.rand(0.5, 1))
+	self:queue("set_position", math.rand(0.25, 1))
 end
 
 function ChaosModifierRubberbanding:set_position()
 	local player_unit = managers.player:local_player()
-	if alive(player_unit) then
+	if alive(player_unit) and not player_unit:movement():on_zipline() then
 		player_unit:warp_to(player_unit:rotation(), self._recorded_position)
 	end
 end

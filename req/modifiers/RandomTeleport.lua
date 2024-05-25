@@ -3,8 +3,8 @@ ChaosModifierRandomTeleport.run_as_client = true
 ChaosModifierRandomTeleport.duration = 18
 ChaosModifierRandomTeleport.interval = 3
 
-function ChaosModifierRandomTeleport:set_position(pos)
-	if pos and alive(self._player_unit) then
+function ChaosModifierRandomTeleport:set_position(pos, force)
+	if pos and alive(self._player_unit) and (force or not self._player_unit:movement():on_zipline()) then
 		self._player_unit:warp_to(self._player_unit:rotation(), pos)
 	end
 end
@@ -48,7 +48,7 @@ function ChaosModifierRandomTeleport:update(t, dt)
 end
 
 function ChaosModifierRandomTeleport:stop()
-	self:set_position(self._player_position)
+	self:set_position(self._player_position, true)
 end
 
 return ChaosModifierRandomTeleport

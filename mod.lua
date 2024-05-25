@@ -34,18 +34,24 @@ if not ChaosMod then
 				return
 			end
 		else
-			local available = {} ---@type ChaosModifier[]
+			local selector = WeightedSelector:new()
 			for _, modifier in pairs(self.modifiers) do
 				local register_name = modifier.register_name or modifier.class_name
 				if not self.active_modifiers[register_name] and (skip_trigger_check or modifier:can_trigger()) then
-					table.insert(available, modifier)
+					selector:add(modifier, modifier.weight)
 				end
 			end
 
-			modifier_class = table.random(available)
+			modifier_class = selector:select()
 			if not modifier_class then
 				log("No modifiers that can be triggered are available")
 				return
+			end
+
+			local new_weight = modifier_class.weight * 0.75
+			local to_add = (modifier_class.weight - new_weight) / (table.size(self.modifiers) - 1)
+			for _, modifier in pairs(self.modifiers) do
+				modifier.weight = modifier == modifier_class and new_weight or modifier.weight + to_add
 			end
 		end
 

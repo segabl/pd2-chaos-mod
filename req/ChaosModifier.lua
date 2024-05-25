@@ -11,6 +11,7 @@ ChaosModifier.nil_value = {}
 function ChaosModifier.class(name, super)
 	local c = class(super or ChaosModifier)
 	c.class_name = name
+	c.weight = 1
 	return c
 end
 
