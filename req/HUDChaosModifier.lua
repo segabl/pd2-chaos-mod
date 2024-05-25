@@ -1,6 +1,12 @@
 ---@class HUDChaosModifier
 ---@field new fun(self, modifier):HUDChaosModifier
 HUDChaosModifier = class()
+HUDChaosModifier.colors = {
+	default = Color(0.75, 1, 0.5, 1),
+	instant = Color(0.75, 0.5, 1, 1),
+	conditional = Color(0.75, 1, 0.75, 0.5),
+	enemy_change = Color(0.5, 0.75, 0.5)
+}
 
 ---@param modifier ChaosModifier
 function HUDChaosModifier:init(modifier)
@@ -18,11 +24,9 @@ function HUDChaosModifier:init(modifier)
 		color = Color.black:with_alpha(0.5)
 	})
 
-	local duration = modifier.duration
-	local color = modifier.color or duration < 0 and Color(0.75, 1, 0.75, 0.5) or duration == 0 and Color(0.75, 0.5, 1, 1) or Color(0.75, 1, 0.5, 1)
 	self._progress = self._panel:rect({
 		layer = 2,
-		color = color,
+		color = self.colors[modifier.color] or modifier.duration < 0 and self.colors.conditional or modifier.duration == 0 and self.colors.instant or self.colors.default,
 		x = 3,
 		y = 3,
 		w = self._panel:w() - 6,

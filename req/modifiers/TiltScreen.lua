@@ -12,4 +12,11 @@ function ChaosModifierTiltScreen:update(t, dt)
 	player_unit:camera():camera_unit():base():set_target_tilt((s < 0 and -10 or 10) * (math.abs(s) ^ 0.9))
 end
 
+function ChaosModifierTiltScreen:stop()
+	local player_unit = managers.player:local_player()
+	if alive(player_unit) then
+		player_unit:camera():camera_unit():base():set_target_tilt(0)
+	end
+end
+
 return ChaosModifierTiltScreen

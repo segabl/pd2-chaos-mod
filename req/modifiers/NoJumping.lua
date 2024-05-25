@@ -6,7 +6,6 @@ function ChaosModifierNoJumping:start()
 	self:post_hook(PlayerStandard, "_get_input", function()
 		local input = Hooks:GetReturn()
 		input.btn_jump_press = false
-		return input
 	end)
 end
 

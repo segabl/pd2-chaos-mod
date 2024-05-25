@@ -1,5 +1,5 @@
 ChaosModifierScreamingEnemies = ChaosModifier.class("ChaosModifierScreamingEnemies")
-ChaosModifierScreamingEnemies.duration = 60
+ChaosModifierScreamingEnemies.duration = 45
 
 function ChaosModifierScreamingEnemies:update(t, dt)
 	if self._next_t and self._next_t > t then
@@ -16,7 +16,7 @@ function ChaosModifierScreamingEnemies:update(t, dt)
 	local enemy = table.random(enemies)
 	if enemy then
 		enemy:sound():say("burndeath", true)
-		self._next_t = t + 0.1
+		self._next_t = t + 0.2
 	end
 end
 

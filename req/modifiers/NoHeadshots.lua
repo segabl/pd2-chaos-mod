@@ -1,6 +1,6 @@
 ChaosModifierNoHeadshots = ChaosModifier.class("ChaosModifierNoHeadshots")
 ChaosModifierNoHeadshots.run_as_client = true
-ChaosModifierNoHeadshots.duration = 30
+ChaosModifierNoHeadshots.duration = 25
 
 function ChaosModifierNoHeadshots:start()
 	for _, enemy_name in pairs(tweak_data.character._enemy_list) do

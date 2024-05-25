@@ -15,7 +15,7 @@ function ChaosModifierTimeOut:pick_player()
 	end
 
 	table.sort(units, function(a, b)
-		return a:base():nick_name() > b:base():nick_name()
+		return a:network():peer():id() > b:network():peer():id()
 	end)
 
 	math.randomseed(self._seed)
@@ -60,7 +60,7 @@ function ChaosModifierTimeOut:update(t, dt)
 end
 
 function ChaosModifierTimeOut:stop()
-	if alive(self._unit) then
+	if alive(self._unit) and self._unit:movement():current_state_name() == "civilian" then
 		managers.player:set_player_state("standard")
 	end
 end

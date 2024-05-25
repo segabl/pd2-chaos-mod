@@ -32,6 +32,10 @@ function ChaosModifierEnemyLasers:start()
 	self:pre_hook(CopInventory, "drop_weapon", function(inventory)
 		self:set_laser_enabled(inventory._unit, false)
 	end)
+
+	self:post_hook(CopActionShoot, "init", function(action)
+		self:set_laser_enabled(action._unit, true)
+	end)
 end
 
 function ChaosModifierEnemyLasers:stop()

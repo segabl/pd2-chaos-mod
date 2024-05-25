@@ -96,7 +96,7 @@ function ChaosModifierChargingCloakers:update(t, dt)
 	self._next_t = t + math.rand(5, 10)
 
 	local player_criminals = {}
-	for _, v in pairs(managers.groupai:state():all_char_criminals()) do
+	for _, v in pairs(managers.groupai:state():all_player_criminals()) do
 		if not v.status and alive(v.unit) then
 			table.insert(player_criminals, v.unit)
 		end

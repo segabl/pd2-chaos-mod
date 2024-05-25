@@ -7,8 +7,14 @@ function ChaosModifierForceCrouch:start()
 		local input = Hooks:GetReturn()
 		input.btn_duck_press = playerstate._setting_hold_to_duck or not playerstate._state_data.ducking
 		input.btn_duck_release = false
-		return input
 	end)
+end
+
+function ChaosModifierForceCrouch:stop()
+	local player_unit = managers.player:local_player()
+	if alive(player_unit) then
+		player_unit:movement():current_state():_interupt_action_ducking(TimerManager:game():time())
+	end
 end
 
 return ChaosModifierForceCrouch

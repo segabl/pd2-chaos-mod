@@ -1,4 +1,5 @@
 ChaosModifierRandomEnemyWeapons = ChaosModifier.class("ChaosModifierRandomEnemyWeapons")
+ChaosModifierRandomEnemyWeapons.color = "enemy_change"
 ChaosModifierRandomEnemyWeapons.duration = 90
 
 function ChaosModifierRandomEnemyWeapons:start()

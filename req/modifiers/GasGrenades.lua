@@ -1,5 +1,5 @@
 ChaosModifierGasGrenades = ChaosModifier.class("ChaosModifierGasGrenades")
-ChaosModifierGasGrenades.duration = 60
+ChaosModifierGasGrenades.duration = 45
 
 function ChaosModifierGasGrenades:update(t, dt)
 	if self._next_t and self._next_t > t then
@@ -17,7 +17,7 @@ function ChaosModifierGasGrenades:update(t, dt)
 
 	local pos = table.random(positions)
 	if pos then
-		managers.groupai:state():detonate_cs_grenade(pos, nil, 10)
+		managers.groupai:state():detonate_cs_grenade(pos, nil, 7)
 	end
 end
 
