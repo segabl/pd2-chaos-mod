@@ -1,4 +1,11 @@
 {
+	"menu_chaos_mod": "混乱因子",
+	"menu_chaos_mod_min_cooldown": "最小冷却时间",
+	"menu_chaos_mod_min_cooldown_desc": "触发新因子之前所需要的最短秒数",
+	"menu_chaos_mod_max_cooldown": "最大冷却时间",
+	"menu_chaos_mod_max_cooldown_desc": "触发新因子之前所需要的最长秒数",
+	"menu_chaos_mod_prevent_repeat": "Repetition prevention",
+	"menu_chaos_mod_prevent_repeat_desc": "How much the mod should try to prevent modifiers from repeating",
 	"ChaosModifierBagsHurt": "烫手山芋",
 	"ChaosModifierBouncyProjectiles": "弹簧扳机",
 	"ChaosModifierBulletHose": "弹幕地狱",

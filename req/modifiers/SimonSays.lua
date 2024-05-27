@@ -84,11 +84,11 @@ function ChaosModifierSimonSays:start()
 
 	math.randomseed(self._seed)
 
-	for _ = 1, self.num_activities do
+	for i = 1, self.num_activities do
 		table.insert(self._activities, {
 			table.random(self.activities),
 			math.random() < 0.5,
-			math.random() < 0.5
+			i == self.num_activities or math.random() < 0.5
 		})
 	end
 

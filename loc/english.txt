@@ -1,4 +1,11 @@
 {
+	"menu_chaos_mod": "Chaos Mod",
+	"menu_chaos_mod_min_cooldown": "Minimum cooldown",
+	"menu_chaos_mod_min_cooldown_desc": "The minimum amount of seconds to pass before a new modifier can trigger",
+	"menu_chaos_mod_max_cooldown": "Maximum cooldown",
+	"menu_chaos_mod_max_cooldown_desc": "The maximum amount of seconds to pass before a new modifier can trigger",
+	"menu_chaos_mod_prevent_repeat": "Repetition prevention",
+	"menu_chaos_mod_prevent_repeat_desc": "How much the mod should try to prevent modifiers from repeating",
 	"ChaosModifierBagsHurt": "Hot Potato",
 	"ChaosModifierBouncyProjectiles": "Spring-Loaded Trigger",
 	"ChaosModifierBulletHose": "Bullet Hose",
