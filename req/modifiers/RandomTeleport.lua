@@ -32,7 +32,7 @@ function ChaosModifierRandomTeleport:update(t, dt)
 
 	local positions = {}
 	for nav_seg_id, nav_seg in pairs(managers.navigation._nav_segments) do
-		if mvector3.distance_sq(nav_seg.pos, self._player_position) < 5000 ^ 2 then
+		if mvector3.distance_sq(nav_seg.pos, self._player_position) < 6000 ^ 2 then
 			local search_params = {
 				id = "ChaosModifierRandomTeleport",
 				from_seg = nav_seg_id,

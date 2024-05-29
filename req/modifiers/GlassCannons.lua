@@ -2,7 +2,6 @@ ChaosModifierGlassCannons = ChaosModifier.class("ChaosModifierGlassCannons")
 ChaosModifierGlassCannons.register_name = "ChaosModifierUnitCategories"
 ChaosModifierGlassCannons.color = "enemy_change"
 ChaosModifierGlassCannons.duration = 60
-
 ChaosModifierGlassCannons.unit_categories = { "CS_cop_stealth_MP5" }
 
 function ChaosModifierGlassCannons:can_trigger()

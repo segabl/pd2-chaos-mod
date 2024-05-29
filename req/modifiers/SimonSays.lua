@@ -67,14 +67,14 @@ ChaosModifierSimonSays.activities = {
 		name_id = "ChaosModifierSimonSaysLookUp",
 		inverted_name_id = "ChaosModifierSimonSaysLookUpInverted",
 		func = function(player)
-			return math.UP:dot(player:movement():detect_look_dir()) > 0.95
+			return math.UP:dot(player:movement():detect_look_dir()) > 0.9
 		end
 	},
 	{
 		name_id = "ChaosModifierSimonSaysLookDown",
 		inverted_name_id = "ChaosModifierSimonSaysLookDownInverted",
 		func = function(player)
-			return math.UP:dot(player:movement():detect_look_dir()) < -0.95
+			return math.UP:dot(player:movement():detect_look_dir()) < -0.9
 		end
 	}
 }
