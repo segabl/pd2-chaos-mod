@@ -86,7 +86,9 @@ if not ChaosMod then
 		local modifier = modifier_class:new(seed)
 		self.active_modifiers[register_name] = modifier
 
-		table.insert(self.hud_modifiers, HUDChaosModifier:new(modifier))
+		if managers.hud then
+			table.insert(self.hud_modifiers, HUDChaosModifier:new(modifier))
+		end
 
 		managers.hud:post_event("Play_star_hit")
 
@@ -156,21 +158,30 @@ if not ChaosMod then
 
 	Hooks:Add("MenuManagerBuildCustomMenus", "MenuManagerBuildCustomMenusChaosMod", function(_, nodes)
 
-		local slider_min_cooldown, slider_max_cooldowwn
+		local slider_min_cooldown, slider_max_cooldown
+		local modifier_toggles = {}
 
 		MenuHelper:NewMenu("chaos_mod")
 
 		function MenuCallbackHandler:chaos_mod_value(item)
 			ChaosMod.settings[item:name()] = item:value()
-			if item:name() == "min_cooldown" and item:value() > slider_max_cooldowwn:value() then
-				slider_max_cooldowwn:set_value(slider_min_cooldown:value())
+			if item:name() == "min_cooldown" and item:value() > slider_max_cooldown:value() then
+				slider_max_cooldown:set_value(slider_min_cooldown:value())
 			elseif item:name() == "max_cooldown" and item:value() < slider_min_cooldown:value() then
-				slider_min_cooldown:set_value(slider_max_cooldowwn:value())
+				slider_min_cooldown:set_value(slider_max_cooldown:value())
 			end
 		end
 
 		function MenuCallbackHandler:chaos_mod_modifier_toggle(item)
 			ChaosMod.settings.disabled_modifiers[item:name()] = item:value() == "off" or nil
+		end
+
+		function MenuCallbackHandler:chaos_mod_toggle_all(item)
+			local value = item:name() == "enable_all" and "on" or "off"
+			for _, toggle in pairs(modifier_toggles) do
+				toggle:set_value(value)
+				self:chaos_mod_modifier_toggle(toggle)
+			end
 		end
 
 		function MenuCallbackHandler:chaos_mod_save()
@@ -189,10 +200,10 @@ if not ChaosMod then
 			show_value = true,
 			display_precision = 0,
 			callback = "chaos_mod_value",
-			priority = 4
+			priority = 6
 		})
 
-		slider_max_cooldowwn = MenuHelper:AddSlider({
+		slider_max_cooldown = MenuHelper:AddSlider({
 			menu_id = "chaos_mod",
 			id = "max_cooldown",
 			title = "menu_chaos_mod_max_cooldown",
@@ -204,7 +215,7 @@ if not ChaosMod then
 			show_value = true,
 			display_precision = 0,
 			callback = "chaos_mod_value",
-			priority = 3
+			priority = 5
 		})
 
 		MenuHelper:AddSlider({
@@ -221,23 +232,41 @@ if not ChaosMod then
 			display_precision = 0,
 			display_scale = 100,
 			callback = "chaos_mod_value",
-			priority = 2
+			priority = 4
 		})
 
 		MenuHelper:AddDivider({
 			menu_id = "chaos_mod",
 			size = 16,
+			priority = 3
+		})
+
+		MenuHelper:AddButton({
+			menu_id = "chaos_mod",
+			id = "enable_all",
+			title = "menu_chaos_mod_enable_all",
+			desc = "menu_chaos_mod_enable_all_desc",
+			callback = "chaos_mod_toggle_all",
+			priority = 2
+		})
+
+		MenuHelper:AddButton({
+			menu_id = "chaos_mod",
+			id = "disable_all",
+			title = "menu_chaos_mod_disable_all",
+			desc = "menu_chaos_mod_disable_all_desc",
+			callback = "chaos_mod_toggle_all",
 			priority = 1
 		})
 
 		for modifier_name in pairs(ChaosMod.modifiers) do
-			MenuHelper:AddToggle({
+			table.insert(modifier_toggles, MenuHelper:AddToggle({
 				menu_id = "chaos_mod",
 				id = modifier_name,
 				title = modifier_name,
 				value = not ChaosMod.settings.disabled_modifiers[modifier_name],
 				callback = "chaos_mod_modifier_toggle"
-			})
+			}))
 		end
 
 		nodes.chaos_mod = MenuHelper:BuildMenu("chaos_mod", { back_callback = "chaos_mod_save" })
