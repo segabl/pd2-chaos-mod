@@ -9,6 +9,7 @@ if not ChaosMod then
 	ChaosMod.hud_modifiers = {} ---@type HUDChaosModifier[]
 	ChaosMod.next_modifier_t = 0
 	ChaosMod.max_active = 6
+	ChaosMod.cooldown_mul = 1
 	ChaosMod.settings = {
 		min_cooldown = 20,
 		max_cooldown = 30,
@@ -101,7 +102,7 @@ if not ChaosMod then
 				self.next_modifier_t = t + math.rand(5, 10)
 			elseif self.next_modifier_t < t then
 				if self:activate_modifier() then
-					self.next_modifier_t = t + math.rand(self.settings.min_cooldown, self.settings.max_cooldown)
+					self.next_modifier_t = t + math.rand(self.settings.min_cooldown, self.settings.max_cooldown) * self.cooldown_mul
 				else
 					self.next_modifier_t = t + 1
 				end
