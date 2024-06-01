@@ -2,6 +2,10 @@ ChaosModifierPlayerDamageAura = ChaosModifier.class("ChaosModifierPlayerDamageAu
 ChaosModifierPlayerDamageAura.run_as_client = true
 ChaosModifierPlayerDamageAura.duration = 45
 
+function ChaosModifierPlayerDamageAura:can_trigger()
+	return table.size(managers.groupai:state():all_char_criminals()) > 1
+end
+
 function ChaosModifierPlayerDamageAura:start()
 	self._effects = {}
 end

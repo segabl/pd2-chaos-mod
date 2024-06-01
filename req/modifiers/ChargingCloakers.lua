@@ -1,6 +1,10 @@
 ChaosModifierChargingCloakers = ChaosModifier.class("ChaosModifierChargingCloakers")
 ChaosModifierChargingCloakers.duration = 30
 
+function ChaosModifierChargingCloakers:can_trigger()
+	return table.size(managers.groupai:state():all_player_criminals()) > 1
+end
+
 function ChaosModifierChargingCloakers:charge(target_unit)
 	local movement = target_unit:movement()
 	local target_area = managers.groupai:state():get_area_from_nav_seg_id(movement:nav_tracker():nav_segment())

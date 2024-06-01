@@ -9,13 +9,17 @@ end
 function ChaosModifierFlashBurst:detonate()
 	self._num_calls = self._num_calls - 1
 
-	local nav_segs = {}
+	local check_pos = Vector3()
+	local check_tracker = managers.navigation:create_nav_tracker(check_pos)
 	for _, data in pairs(managers.groupai:state():all_player_criminals()) do
-		if not nav_segs[data.seg] then
-			nav_segs[data.seg] = true
-			managers.groupai:state():detonate_smoke_grenade(managers.navigation:find_random_position_in_segment(data.seg), nil, 1, true)
-		end
+		mvector3.set(check_pos, math.UP)
+		mvector3.random_orthogonal(check_pos)
+		mvector3.multiply(check_pos, math.random(600))
+		mvector3.add(check_pos, data.m_pos)
+		check_tracker:move(check_pos)
+		managers.groupai:state():detonate_smoke_grenade(check_tracker:field_position(), nil, 1, true)
 	end
+	managers.navigation:destroy_nav_tracker(check_tracker)
 
 	if self._num_calls > 0 then
 		self:queue("detonate", 0.5)

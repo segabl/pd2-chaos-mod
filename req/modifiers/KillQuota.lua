@@ -3,7 +3,8 @@ ChaosModifierKillQuota.run_as_client = true
 ChaosModifierKillQuota.duration = 20
 
 function ChaosModifierKillQuota:can_trigger()
-	return managers.groupai:state():get_assault_mode()
+	local gstate = managers.groupai:state()
+	return gstate._hunt_mode or gstate._task_data.assault.active and (gstate._task_data.assault.phase == "build" or gstate._task_data.assault.phase == "sustain")
 end
 
 function ChaosModifierKillQuota:start()

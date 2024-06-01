@@ -34,12 +34,6 @@ function ChaosModifier:init(seed)
 end
 
 function ChaosModifier:destroy()
-	self._expired = true
-
-	if Network:is_server() or self.run_as_client then
-		self:stop()
-	end
-
 	if self._pre_hooked then
 		Hooks:RemovePreHook(self.class_name)
 	end
@@ -48,17 +42,27 @@ function ChaosModifier:destroy()
 		Hooks:RemovePostHook(self.class_name)
 	end
 
-	for obj, data in pairs(self._overrides) do
-		for k, v in pairs(data) do
-			if v == ChaosModifier.nil_value then
-				obj[k] = nil
-			else
-				obj[k] = v
+	if self._overrides then
+		for obj, data in pairs(self._overrides) do
+			for k, v in pairs(data) do
+				if v == ChaosModifier.nil_value then
+					obj[k] = nil
+				else
+					obj[k] = v
+				end
 			end
 		end
 	end
 
+	self._pre_hooked = nil
+	self._post_hooked = nil
 	self._overrides = nil
+
+	self._expired = true
+
+	if Network:is_server() or self.run_as_client then
+		self:stop()
+	end
 end
 
 function ChaosModifier:start()

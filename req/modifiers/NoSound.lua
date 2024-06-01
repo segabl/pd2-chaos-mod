@@ -14,10 +14,13 @@ function ChaosModifierNoSound:update(t, dt)
 		vol = math.map_range(t, self._activation_t + self.duration - 0.5, self._activation_t + self.duration, 0, managers.user:get_setting("sfx_volume"))
 	end
 	SoundDevice:set_rtpc("option_sfx_volume", vol)
+	XAudio._base_gains.sfx = vol / 100
 end
 
 function ChaosModifierNoSound:stop()
-	SoundDevice:set_rtpc("option_sfx_volume", managers.user:get_setting("sfx_volume"))
+	local vol = managers.user:get_setting("sfx_volume")
+	SoundDevice:set_rtpc("option_sfx_volume", vol)
+	XAudio._base_gains.sfx = vol / 100
 end
 
 return ChaosModifierNoSound

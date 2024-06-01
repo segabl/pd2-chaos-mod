@@ -4,7 +4,7 @@ ChaosModifierEnemyLasers.duration = 60
 
 function ChaosModifierEnemyLasers:set_laser_enabled(unit, enabled)
 	local weapon = alive(unit) and unit:inventory():equipped_unit()
-	if not alive(weapon) or not weapon:base().set_laser_enabled then
+	if not alive(weapon) or not weapon:base().set_laser_enabled or not unit:base().char_tweak then
 		return
 	end
 
@@ -25,16 +25,16 @@ function ChaosModifierEnemyLasers:start()
 		weaponbase:set_laser_enabled(false)
 	end)
 
-	self:post_hook(PlayerInventory, "_place_selection", function(inventory, selection_index, is_equip)
-		self:set_laser_enabled(inventory._unit, is_equip)
-	end)
-
 	self:pre_hook(CopInventory, "drop_weapon", function(inventory)
 		self:set_laser_enabled(inventory._unit, false)
 	end)
 
 	self:post_hook(CopActionShoot, "init", function(action)
-		self:set_laser_enabled(action._unit, true)
+		self:set_laser_enabled(action._unit, Hooks:GetReturn())
+	end)
+
+	self:post_hook(CopActionShoot, "on_exit", function(action)
+		self:set_laser_enabled(action._unit, false)
 	end)
 end
 

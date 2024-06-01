@@ -3,7 +3,8 @@ ChaosModifierCivilianMagnet.duration = 30
 
 function ChaosModifierCivilianMagnet:is_valid_civilian(unit)
 	local char_tweak = unit:base():char_tweak()
-	return char_tweak.intimidateable and not char_tweak.is_escort
+	local damage = unit:character_damage()
+	return char_tweak.intimidateable and not char_tweak.is_escort and not damage._invulnerable and not damage._immortal
 end
 
 function ChaosModifierCivilianMagnet:can_trigger()

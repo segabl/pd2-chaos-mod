@@ -16,6 +16,10 @@ function ChaosModifierBagsHurt:can_trigger()
 	end
 end
 
+function ChaosModifierBagsHurt:start()
+	managers.player:force_drop_carry()
+end
+
 function ChaosModifierBagsHurt:update(t, dt)
 	if self._next_t and self._next_t > t then
 		return
