@@ -85,6 +85,11 @@ function ChaosModifierNinjaDodge:start()
 			self:override(enemy, "dodge", self.dodge_preset)
 		end
 	end
+
+	local chk_am_i_aimed_at_original = CopLogicBase.chk_am_i_aimed_at
+	self:override(CopLogicBase, "chk_am_i_aimed_at", function(data, attention_obj, max_dot)
+		return chk_am_i_aimed_at_original(data, attention_obj, max_dot * 0.5)
+	end)
 end
 
 return ChaosModifierNinjaDodge

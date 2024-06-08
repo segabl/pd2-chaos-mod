@@ -11,7 +11,7 @@ function ChaosModifierDallasMedicBag:start()
 	end
 
 	local say_original = PlayerSound.say
-	self:override(PlayerSound, "say", function(playersound, sound_name, ...)
+	self:override(PlayerSound, "say", function(playersound, _, ...)
 		return say_original(playersound, "g80x_plu", ...)
 	end)
 end

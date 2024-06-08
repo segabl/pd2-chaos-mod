@@ -17,10 +17,6 @@ function ChaosModifierEnemyLasers:set_laser_enabled(unit, enabled)
 end
 
 function ChaosModifierEnemyLasers:start()
-	for _, data in pairs(managers.enemy:all_enemies()) do
-		self:set_laser_enabled(data.unit, true)
-	end
-
 	self:pre_hook(NPCRaycastWeaponBase, "destroy", function(weaponbase)
 		weaponbase:set_laser_enabled(false)
 	end)

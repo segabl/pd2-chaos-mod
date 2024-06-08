@@ -1,6 +1,6 @@
 ChaosModifierInvisibleEnemies = ChaosModifier.class("ChaosModifierInvisibleEnemies")
 ChaosModifierInvisibleEnemies.run_as_client = true
-ChaosModifierInvisibleEnemies.duration = 5
+ChaosModifierInvisibleEnemies.duration = 10
 
 function ChaosModifierInvisibleEnemies:update(t, dt)
 	for _, data in pairs(managers.enemy:all_enemies()) do

@@ -12,7 +12,7 @@ ChaosModifierFireTrail.params = {
 	player_damage = 2,
 	sound_event_impact_duration = 0,
 	burn_tick_period = 0.25,
-	burn_duration = 1,
+	burn_duration = 2,
 	dot_data_name = "proj_molotov_groundfire",
 	effect_name = "effects/payday2/particles/explosions/molotov_grenade"
 }

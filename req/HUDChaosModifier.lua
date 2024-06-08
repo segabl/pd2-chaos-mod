@@ -10,7 +10,7 @@ HUDChaosModifier.colors = {
 
 ---@param modifier ChaosModifier
 function HUDChaosModifier:init(modifier)
-	self._activation_t = TimerManager:game():time()
+	self._activation_t = ChaosMod:time()
 
 	self._modifier = modifier
 
@@ -47,14 +47,14 @@ function HUDChaosModifier:init(modifier)
 end
 
 function HUDChaosModifier:_animate_fade_in(o)
-	over(1, function(p)
+	ChaosMod:anim_over(1, function(p)
 		o:set_alpha(math.map_range(math.cos(540 * p), -1, 1, 1, 0))
 	end)
 end
 
 function HUDChaosModifier:_animate_fade_out(o)
 	o:set_layer(o:layer() - 1)
-	over(1, function(p)
+	ChaosMod:anim_over(1, function(p)
 		o:set_alpha(1 - p)
 		o:set_x(math.lerp(o:x(), o:parent():w(), p))
 	end)
@@ -76,12 +76,12 @@ function HUDChaosModifier:update(t, dt, index)
 	self._panel:set_righttop(self._panel:parent():w() - 40, self._panel:parent():h() * 0.45 + self._index * self._panel:h())
 
 	if self._modifier.duration > 0 then
-		self._progress:set_w((self._panel:w() - 6) * math.map_range_clamped(t - self._modifier._activation_t, 0, self._modifier.duration, 1, 0))
+		self._progress:set_w((self._panel:w() - 6) * (1 - math.clamp(self._modifier:progress(t, dt), 0, 1)))
 	end
 end
 
-function HUDChaosModifier:expired(t)
-	return self._expired or self._modifier:expired(t) and (self._modifier.duration > 0 or self._activation_t + 5 < t)
+function HUDChaosModifier:expired(t, dt)
+	return self._expired or self._modifier:expired(t, dt) and (self._modifier.duration > 0 or self._activation_t + 5 < t)
 end
 
 function HUDChaosModifier:destroy()

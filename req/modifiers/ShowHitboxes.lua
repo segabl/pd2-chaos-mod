@@ -5,6 +5,10 @@ ChaosModifierShowHitboxes.duration = 40
 function ChaosModifierShowHitboxes:start()
 	self._hitbox_mask = managers.slot:get_mask("world_geometry", "persons", "pickups", "vehicles") - managers.slot:get_mask("players_only_local")
 	self._hitbox_pen = Draw:pen(Color(0, 1, 0))
+	self._blocked_names = {
+		[Idstring("body_plate"):key()] = true,
+		[Idstring("mover_blocker"):key()] = true
+	}
 end
 
 function ChaosModifierShowHitboxes:update(t, dt)
@@ -13,7 +17,9 @@ function ChaosModifierShowHitboxes:update(t, dt)
 		return
 	end
 	for _, body in ipairs(World:find_bodies("intersect", "sphere", cam:position(), 1000, self._hitbox_mask)) do
-		self._hitbox_pen:body(body)
+		if not self._blocked_names[body:name():key()] then
+			self._hitbox_pen:body(body)
+		end
 	end
 end
 

@@ -3,7 +3,7 @@ ChaosModifierAutoAim.run_as_client = true
 ChaosModifierAutoAim.duration = 30
 
 function ChaosModifierAutoAim:start()
-	self:pre_hook(NewRaycastWeaponBase, "_fire_raycast", function(weaponbase, user_unit, from_pos, direction)
+	self:pre_hook(NewRaycastWeaponBase, "_fire_raycast", function(_, user_unit, from_pos, direction)
 		if user_unit == managers.player:local_player() and alive(self._autoaim_enemy) then
 			local movement = self._autoaim_enemy:movement()
 			mvector3.lerp(direction, movement._obj_spine:position(), movement._obj_head:position(), math.rand(0.75, 1))
@@ -11,7 +11,7 @@ function ChaosModifierAutoAim:start()
 		end
 	end)
 
-	self:pre_hook(ShotgunBase, "_fire_raycast", function(weaponbase, user_unit, from_pos, direction)
+	self:pre_hook(ShotgunBase, "_fire_raycast", function(_, user_unit, from_pos, direction)
 		if user_unit == managers.player:local_player() and alive(self._autoaim_enemy) then
 			local movement = self._autoaim_enemy:movement()
 			mvector3.lerp(direction, movement._obj_spine:position(), movement._obj_head:position(), math.rand(0.75, 1))

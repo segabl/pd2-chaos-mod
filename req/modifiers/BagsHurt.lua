@@ -17,7 +17,7 @@ function ChaosModifierBagsHurt:can_trigger()
 end
 
 function ChaosModifierBagsHurt:start()
-	managers.player:force_drop_carry()
+	managers.player:drop_carry()
 end
 
 function ChaosModifierBagsHurt:update(t, dt)

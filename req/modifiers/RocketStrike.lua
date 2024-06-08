@@ -1,5 +1,5 @@
 ChaosModifierRocketStrike = ChaosModifier.class("ChaosModifierRocketStrike")
-ChaosModifierRocketStrike.duration = 30
+ChaosModifierRocketStrike.duration = 45
 
 function ChaosModifierRocketStrike:can_trigger()
 	local check_pos = Vector3()
@@ -28,7 +28,7 @@ function ChaosModifierRocketStrike:update(t, dt)
 
 	self._next_t = t + math.rand(0.75, 1)
 
-	local radius = 3000
+	local radius = 2000
 	local positions = {}
 	local check_pos = Vector3()
 	local slot_mask = managers.slot:get_mask("world_geometry")

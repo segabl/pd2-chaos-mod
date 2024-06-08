@@ -1,10 +1,7 @@
 ChaosModifierJulesify = ChaosModifier.class("ChaosModifierJulesify")
 ChaosModifierJulesify.duration = 120
+ChaosModifierJulesify.enabled = StreamHeist and true
 ChaosModifierJulesify.allowed_poses = { crouch = true }
-
-function ChaosModifierJulesify:can_trigger()
-	return StreamHeist and true
-end
 
 function ChaosModifierJulesify:start()
 	self:post_hook(CopLogicIdle, "_chk_relocate", function(data)

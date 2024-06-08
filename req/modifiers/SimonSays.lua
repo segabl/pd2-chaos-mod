@@ -58,9 +58,9 @@ ChaosModifierSimonSays.activities = {
 	{
 		name_id = "ChaosModifierSimonSaysShout",
 		inverted_name_id = "ChaosModifierSimonSaysShoutInverted",
-		func = function(player, t)
+		func = function(player)
 			local playerstate = player:movement():current_state()
-			return playerstate._intimidate_t and playerstate._intimidate_t >= t - tweak_data.player.movement_state.interaction_delay * 0.5
+			return playerstate._intimidate_t and playerstate._intimidate_t >= TimerManager:game():time() - tweak_data.player.movement_state.interaction_delay * 0.5
 		end
 	},
 	{
@@ -99,7 +99,7 @@ end
 
 function ChaosModifierSimonSays:start_activity()
 	self._activity, self._activity_inverted, self._activity_valid = unpack(table.remove(self._activities))
-	self._activity_start_t = TimerManager:game():time()
+	self._activity_start_t = ChaosMod:time()
 
 	local activity_text = managers.localization:to_upper_text(self._activity_inverted and self._activity.inverted_name_id or self._activity.name_id)
 	local text = self._activity_valid and managers.localization:to_upper_text("ChaosModifierSimonSaysActivity", { ACTIVITY = activity_text }) or activity_text
@@ -138,10 +138,10 @@ function ChaosModifierSimonSays:update(t, dt)
 		return
 	end
 
-	if self._activity.func(player_unit, t) then
+	if self._activity.func(player_unit) then
 		if self._activity_valid ~= self._activity_inverted then
 			self._activity = nil
-		elseif t > self._activity_start_t + 1 then
+		elseif t > self._activity_start_t + 0.75 then
 			self._activity = nil
 			self:queue("punish", 0.2)
 		end

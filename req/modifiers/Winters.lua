@@ -10,7 +10,7 @@ function ChaosModifierWinters:start()
 	managers.groupai:state():_spawn_phalanx()
 end
 
-function ChaosModifierWinters:expired(t)
+function ChaosModifierWinters:expired(t, dt)
 	local gstate = managers.groupai:state()
 	return self._expired or not gstate._phalanx_spawn_group and not gstate._hunt_mode
 end

@@ -3,10 +3,13 @@ if not ChaosMod then
 	ChaosMod = {}
 	ChaosMod.mod_instance = ModInstance
 	ChaosMod.mod_path = ModPath
+	ChaosMod.menu_id = "chaos_mod"
 	ChaosMod.required = {}
 	ChaosMod.modifiers = {} ---@type table<string, ChaosModifier>
 	ChaosMod.active_modifiers = {} ---@type table<string, ChaosModifier>
 	ChaosMod.hud_modifiers = {} ---@type HUDChaosModifier[]
+	ChaosMod.queued_calls = {}
+	ChaosMod.paused_t = 0
 	ChaosMod.next_modifier_t = 0
 	ChaosMod.max_active = 6
 	ChaosMod.cooldown_mul = 1
@@ -40,7 +43,9 @@ if not ChaosMod then
 		for _, file in pairs(file.GetFiles(path)) do
 			local modifier = blt.vm.dofile(path .. file) ---@type ChaosModifier
 			if type(modifier) == "table" then
-				self.modifiers[modifier.class_name] = modifier
+				if modifier.enabled then
+					self.modifiers[modifier.class_name] = modifier
+				end
 			else
 				log(path .. file .. " did not return a modifier")
 			end
@@ -60,7 +65,7 @@ if not ChaosMod then
 			for class_name, modifier in pairs(self.modifiers) do
 				local register_name = modifier.register_name or class_name
 				if not self.settings.disabled_modifiers[class_name] and not self.active_modifiers[register_name] and (skip_trigger_check or modifier:can_trigger()) then
-					selector:add(modifier, modifier.weight)
+					selector:add(modifier, modifier.weight * modifier.weight_mul)
 				end
 			end
 
@@ -89,14 +94,29 @@ if not ChaosMod then
 
 		if managers.hud then
 			table.insert(self.hud_modifiers, HUDChaosModifier:new(modifier))
+			managers.hud:post_event("Play_star_hit")
 		end
-
-		managers.hud:post_event("Play_star_hit")
 
 		return true
 	end
 
-	function ChaosMod:update_modifiers(t, dt)
+	function ChaosMod:time()
+		return TimerManager:main():time() - self.paused_t
+	end
+
+	function ChaosMod:delta_time()
+		return TimerManager:main():delta_time()
+	end
+
+	function ChaosMod:update()
+		if self._paused_t then
+			self.paused_t = self.paused_t + TimerManager:main():time() - self._paused_t
+			self._paused_t = nil
+		end
+
+		local t = self:time()
+		local dt = self:delta_time()
+
 		if Network:is_server() then
 			if not Utils:IsInHeist() or not managers.groupai:state():enemy_weapons_hot() then
 				self.next_modifier_t = t + math.rand(5, 10)
@@ -110,23 +130,34 @@ if not ChaosMod then
 		end
 
 		for k, modifier in pairs(self.active_modifiers) do
-			if modifier:expired(t) then
+			if modifier:expired(t, dt) then
 				modifier:destroy()
 				self.active_modifiers[k] = nil
 			elseif Network:is_server() or modifier.run_as_client then
 				modifier:update(t, dt)
 			end
 		end
-	end
 
-	function ChaosMod:update_modifiers_hud(t, dt)
 		for i, hud_modifier in table.reverse_ipairs(self.hud_modifiers) do
-			if hud_modifier:expired(t) then
+			if hud_modifier:expired(t, dt) then
 				hud_modifier:destroy()
 				table.remove(self.hud_modifiers, i)
 			else
 				hud_modifier:update(t, dt, i)
 			end
+		end
+
+		for k, v in pairs(self.queued_calls) do
+			if t >= v.t then
+				v.func()
+				self.queued_calls[k] = nil
+			end
+		end
+	end
+
+	function ChaosMod:paused_update()
+		if not self._paused_t then
+			self._paused_t = TimerManager:main():time()
 		end
 	end
 
@@ -135,6 +166,33 @@ if not ChaosMod then
 			modifier:destroy()
 			self.active_modifiers[k] = nil
 		end
+	end
+
+	function ChaosMod:queue(id, time, func)
+		self.queued_calls[id] = {
+			t = self:time() + time,
+			func = func
+		}
+	end
+
+	function ChaosMod:unqueue(id)
+		self.queued_calls[id] = nil
+	end
+
+	function ChaosMod:anim_over(duration, func)
+		func = func or function()end
+		func(0)
+		local start_t = self:time()
+		while true do
+			coroutine.yield()
+			local t = self:time()
+			if t >= start_t + duration then
+				break
+			else
+				func((t - start_t) / duration)
+			end
+		end
+		func(1)
 	end
 
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitChaosMod", function(loc)
@@ -146,8 +204,11 @@ if not ChaosMod then
 	end)
 
 	Hooks:Add("GameSetupUpdate", "GameSetupUpdateChaosMod", function(t, dt)
-		ChaosMod:update_modifiers(t, dt)
-		ChaosMod:update_modifiers_hud(t, dt)
+		ChaosMod:update()
+	end)
+
+	Hooks:Add("GameSetupPausedUpdate", "GameSetupPausedUpdateChaosMod", function(t, dt)
+		ChaosMod:paused_update()
 	end)
 
 	if Network:is_client() then
@@ -162,13 +223,14 @@ if not ChaosMod then
 		local slider_min_cooldown, slider_max_cooldown
 		local modifier_toggles = {}
 
-		MenuHelper:NewMenu("chaos_mod")
+		MenuHelper:NewMenu(ChaosMod.menu_id)
 
 		function MenuCallbackHandler:chaos_mod_value(item)
-			ChaosMod.settings[item:name()] = item:value()
-			if item:name() == "min_cooldown" and item:value() > slider_max_cooldown:value() then
+			local item_name, item_value = item:name(), item:value()
+			ChaosMod.settings[item_name] = item_value
+			if item_name == "min_cooldown" and item_value > slider_max_cooldown:value() then
 				slider_max_cooldown:set_value(slider_min_cooldown:value())
-			elseif item:name() == "max_cooldown" and item:value() < slider_min_cooldown:value() then
+			elseif item_name == "max_cooldown" and item_value < slider_min_cooldown:value() then
 				slider_min_cooldown:set_value(slider_max_cooldown:value())
 			end
 		end
@@ -190,7 +252,7 @@ if not ChaosMod then
 		end
 
 		slider_min_cooldown = MenuHelper:AddSlider({
-			menu_id = "chaos_mod",
+			menu_id = ChaosMod.menu_id,
 			id = "min_cooldown",
 			title = "menu_chaos_mod_min_cooldown",
 			desc = "menu_chaos_mod_min_cooldown_desc",
@@ -205,7 +267,7 @@ if not ChaosMod then
 		})
 
 		slider_max_cooldown = MenuHelper:AddSlider({
-			menu_id = "chaos_mod",
+			menu_id = ChaosMod.menu_id,
 			id = "max_cooldown",
 			title = "menu_chaos_mod_max_cooldown",
 			desc = "menu_chaos_mod_max_cooldown_desc",
@@ -220,7 +282,7 @@ if not ChaosMod then
 		})
 
 		MenuHelper:AddSlider({
-			menu_id = "chaos_mod",
+			menu_id = ChaosMod.menu_id,
 			id = "prevent_repeat",
 			title = "menu_chaos_mod_prevent_repeat",
 			desc = "menu_chaos_mod_prevent_repeat_desc",
@@ -237,13 +299,13 @@ if not ChaosMod then
 		})
 
 		MenuHelper:AddDivider({
-			menu_id = "chaos_mod",
+			menu_id = ChaosMod.menu_id,
 			size = 16,
 			priority = 3
 		})
 
 		MenuHelper:AddButton({
-			menu_id = "chaos_mod",
+			menu_id = ChaosMod.menu_id,
 			id = "enable_all",
 			title = "menu_chaos_mod_enable_all",
 			desc = "menu_chaos_mod_enable_all_desc",
@@ -252,7 +314,7 @@ if not ChaosMod then
 		})
 
 		MenuHelper:AddButton({
-			menu_id = "chaos_mod",
+			menu_id = ChaosMod.menu_id,
 			id = "disable_all",
 			title = "menu_chaos_mod_disable_all",
 			desc = "menu_chaos_mod_disable_all_desc",
@@ -262,7 +324,7 @@ if not ChaosMod then
 
 		for modifier_name in pairs(ChaosMod.modifiers) do
 			table.insert(modifier_toggles, MenuHelper:AddToggle({
-				menu_id = "chaos_mod",
+				menu_id = ChaosMod.menu_id,
 				id = modifier_name,
 				title = modifier_name,
 				value = not ChaosMod.settings.disabled_modifiers[modifier_name],
@@ -270,8 +332,8 @@ if not ChaosMod then
 			}))
 		end
 
-		nodes.chaos_mod = MenuHelper:BuildMenu("chaos_mod", { back_callback = "chaos_mod_save" })
-		MenuHelper:AddMenuItem(nodes.blt_options, "chaos_mod", "menu_chaos_mod")
+		nodes.chaos_mod = MenuHelper:BuildMenu(ChaosMod.menu_id, { back_callback = "chaos_mod_save" })
+		MenuHelper:AddMenuItem(nodes.blt_options, ChaosMod.menu_id, "menu_chaos_mod")
 	end)
 
 	ChaosMod:load_modifiers()

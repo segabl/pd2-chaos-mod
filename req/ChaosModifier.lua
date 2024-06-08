@@ -5,6 +5,8 @@ ChaosModifier.class_name = "ChaosModifier"
 ChaosModifier.register_name = nil
 ChaosModifier.run_as_client = false
 ChaosModifier.duration = 0
+ChaosModifier.weight_mul = 1
+ChaosModifier.enabled = true
 ChaosModifier.nil_value = {}
 
 ---@return ChaosModifier
@@ -20,7 +22,7 @@ function ChaosModifier:can_trigger()
 end
 
 function ChaosModifier:init(seed)
-	self._activation_t = TimerManager:game():time()
+	self._activation_t = ChaosMod:time()
 	self._seed = seed or math.random(1000000)
 	self._overrides = {}
 
@@ -74,6 +76,10 @@ end
 function ChaosModifier:update(t, dt)
 end
 
+function ChaosModifier:progress(t, dt)
+	return self.duration == 0 and 1 or self.duration > 0 and (t - self._activation_t) / self.duration or 0
+end
+
 function ChaosModifier:override(obj, k, v)
 	self._overrides[obj] = self._overrides[obj] or {}
 	if not self._overrides[obj][k] then
@@ -93,18 +99,22 @@ function ChaosModifier:post_hook(obj, func_name, func)
 end
 
 function ChaosModifier:queue(func_name, seconds)
-	DelayedCalls:Add(tostring(self) .. func_name, seconds, callback(self, self, func_name))
+	ChaosMod:queue(tostring(self) .. func_name, seconds, callback(self, self, func_name))
 end
 
 function ChaosModifier:unqueue(func_name)
-	DelayedCalls:Remove(tostring(self) .. func_name)
+	ChaosMod:unqueue(tostring(self) .. func_name)
 end
 
-function ChaosModifier:expired(t)
-	return self._expired or t > self._activation_t + self.duration
+function ChaosModifier:expired(t, dt)
+	return self._expired or self:progress(t, dt) >= 1
 end
 
 function ChaosModifier:show_text(text, time, large)
+	if not managers.hud then
+		return
+	end
+
 	local panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):panel({
 		layer = 100
 	})
@@ -117,7 +127,8 @@ function ChaosModifier:show_text(text, time, large)
 		layer = 1,
 		text = text,
 		font = tweak_data.menu.pd2_large_font,
-		font_size = large and 48 or 32
+		font_size = large and 48 or 32,
+		align = "center"
 	})
 
 	t:set_shape(t:text_rect())
@@ -129,11 +140,11 @@ function ChaosModifier:show_text(text, time, large)
 	end
 
 	panel:animate(function(o)
-		over(0.25, function(p)
+		ChaosMod:anim_over(0.25, function(p)
 			o:set_alpha(p)
 		end)
-		wait(time - 0.5)
-		over(0.25, function(p)
+		ChaosMod:anim_over(time - 0.5)
+		ChaosMod:anim_over(0.25, function(p)
 			o:set_alpha(1 - p)
 		end)
 		o:parent():remove(o)
