@@ -17,7 +17,7 @@ end
 function ChaosModifierGlassCannons:start()
 	local unit_types = setmetatable({}, {
 		__index = function(t, k)
-			return tweak_data.group_ai.unit_categories[table.random(self.unit_categories)].unit_types[k]
+			return rawget(tweak_data.group_ai.unit_categories[table.random(self.unit_categories)].unit_types, k)
 		end
 	})
 

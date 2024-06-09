@@ -184,10 +184,6 @@ function ChaosModifierKaraoke:load_song(song_path)
 end
 
 function ChaosModifier:create_lyrics_ball()
-	if not managers.hud then
-		return
-	end
-
 	return managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):bitmap({
 		layer = 99,
 		texture = "guis/textures/pd2/hud_progress_32px",
@@ -199,10 +195,6 @@ function ChaosModifier:create_lyrics_ball()
 end
 
 function ChaosModifier:create_lyrics_text(line, color)
-	if not managers.hud then
-		return
-	end
-
 	local panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):panel({
 		layer = 98,
 		alpha = 0

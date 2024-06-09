@@ -53,6 +53,10 @@ if not ChaosMod then
 	end
 
 	function ChaosMod:activate_modifier(name, seed, skip_trigger_check)
+		if not Utils:IsInHeist() then
+			return
+		end
+
 		local modifier_class
 		if name then
 			modifier_class = self.modifiers[name]
@@ -92,10 +96,9 @@ if not ChaosMod then
 		local modifier = modifier_class:new(seed)
 		self.active_modifiers[register_name] = modifier
 
-		if managers.hud then
-			table.insert(self.hud_modifiers, HUDChaosModifier:new(modifier))
-			managers.hud:post_event("Play_star_hit")
-		end
+		table.insert(self.hud_modifiers, HUDChaosModifier:new(modifier))
+
+		managers.hud:post_event("Play_star_hit")
 
 		return true
 	end

@@ -111,10 +111,6 @@ function ChaosModifier:expired(t, dt)
 end
 
 function ChaosModifier:show_text(text, time, large)
-	if not managers.hud then
-		return
-	end
-
 	local panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):panel({
 		layer = 100
 	})
