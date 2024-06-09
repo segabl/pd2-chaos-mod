@@ -1,5 +1,4 @@
 ChaosModifierLowGravity = ChaosModifier.class("ChaosModifierLowGravity")
-ChaosModifierLowGravity.run_as_client = true
 ChaosModifierLowGravity.duration = 40
 ChaosModifierLowGravity.gravity_mul = 0.25
 

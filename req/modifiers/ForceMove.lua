@@ -1,6 +1,5 @@
 ChaosModifierForceMove = ChaosModifier.class("ChaosModifierForceMove")
 ChaosModifierForceMove.register_name = "ChaosModifierPlayerMovement"
-ChaosModifierForceMove.run_as_client = true
 ChaosModifierForceMove.duration = 20
 
 function ChaosModifierForceMove:start()

@@ -1,5 +1,4 @@
 ChaosModifierRefreshModifers = ChaosModifier.class("ChaosModifierRefreshModifers")
-ChaosModifierRefreshModifers.run_as_client = true
 
 function ChaosModifierRefreshModifers:can_trigger()
 	return table.size(ChaosMod.active_modifiers) > 0

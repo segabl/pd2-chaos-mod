@@ -1,5 +1,4 @@
 ChaosModifierTiltScreen = ChaosModifier.class("ChaosModifierTiltScreen")
-ChaosModifierTiltScreen.run_as_client = true
 ChaosModifierTiltScreen.duration = 30
 
 function ChaosModifierTiltScreen:update(t, dt)

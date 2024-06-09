@@ -1,5 +1,4 @@
 ChaosModifierLimitFps = ChaosModifier.class("ChaosModifierLimitFps")
-ChaosModifierLimitFps.run_as_client = true
 ChaosModifierLimitFps.duration = 25
 
 function ChaosModifierLimitFps:start()

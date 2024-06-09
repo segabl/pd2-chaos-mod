@@ -1,6 +1,5 @@
 ChaosModifierSwapEquipment = ChaosModifier.class("ChaosModifierSwapEquipment")
 ChaosModifierSwapEquipment.weight_mul = 1.25
-ChaosModifierSwapEquipment.run_as_client = true
 
 function ChaosModifierSwapEquipment:is_valid_equipment(unit)
 	local interaction = unit:interaction()

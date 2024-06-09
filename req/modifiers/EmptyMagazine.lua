@@ -1,5 +1,4 @@
 ChaosModifierEmptyMagazine = ChaosModifier.class("ChaosModifierEmptyMagazine")
-ChaosModifierEmptyMagazine.run_as_client = true
 
 function ChaosModifierEmptyMagazine:start()
 	local player = managers.player:local_player()

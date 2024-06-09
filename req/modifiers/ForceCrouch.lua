@@ -1,5 +1,4 @@
 ChaosModifierForceCrouch = ChaosModifier.class("ChaosModifierForceCrouch")
-ChaosModifierForceCrouch.run_as_client = true
 ChaosModifierForceCrouch.duration = 20
 
 function ChaosModifierForceCrouch:start()

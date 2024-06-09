@@ -1,4 +1,5 @@
 ChaosModifierBreakVehicles = ChaosModifier.class("ChaosModifierBreakVehicles")
+ChaosModifierBreakVehicles.run_as_client = false
 
 function ChaosModifierBreakVehicles:can_trigger()
 	return #managers.vehicle:get_all_vehicles() > 0 and Global.game_settings.level_id ~= "deep"

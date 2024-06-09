@@ -1,5 +1,4 @@
 ChaosModifierHeadshotsOnly = ChaosModifier.class("ChaosModifierHeadshotsOnly")
-ChaosModifierHeadshotsOnly.run_as_client = true
 ChaosModifierHeadshotsOnly.duration = 60
 
 function ChaosModifierHeadshotsOnly:start()

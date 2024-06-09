@@ -1,5 +1,4 @@
 ChaosModifierSpinningEnemies = ChaosModifier.class("ChaosModifierSpinningEnemies")
-ChaosModifierSpinningEnemies.run_as_client = true
 ChaosModifierSpinningEnemies.duration = 30
 
 function ChaosModifierSpinningEnemies:start()

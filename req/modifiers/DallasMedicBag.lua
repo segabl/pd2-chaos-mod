@@ -1,6 +1,5 @@
 ChaosModifierDallasMedicBag = ChaosModifier.class("ChaosModifierDallasMedicBag")
 ChaosModifierDallasMedicBag.register_name = "ChaosModifierVoiceChange"
-ChaosModifierDallasMedicBag.run_as_client = true
 ChaosModifierDallasMedicBag.duration = 60
 
 function ChaosModifierDallasMedicBag:start()

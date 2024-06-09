@@ -1,5 +1,4 @@
 ChaosModifierSimonSays = ChaosModifier.class("ChaosModifierSimonSays")
-ChaosModifierSimonSays.run_as_client = true
 ChaosModifierSimonSays.activity_time = 3
 ChaosModifierSimonSays.pause_time = 2
 ChaosModifierSimonSays.num_activities = 6

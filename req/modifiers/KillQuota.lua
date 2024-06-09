@@ -1,5 +1,4 @@
 ChaosModifierKillQuota = ChaosModifier.class("ChaosModifierKillQuota")
-ChaosModifierKillQuota.run_as_client = true
 ChaosModifierKillQuota.duration = 20
 
 function ChaosModifierKillQuota:can_trigger()

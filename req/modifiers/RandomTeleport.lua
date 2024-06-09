@@ -1,5 +1,4 @@
 ChaosModifierRandomTeleport = ChaosModifier.class("ChaosModifierRandomTeleport")
-ChaosModifierRandomTeleport.run_as_client = true
 ChaosModifierRandomTeleport.duration = 18
 ChaosModifierRandomTeleport.interval = 3
 

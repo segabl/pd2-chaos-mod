@@ -1,5 +1,4 @@
 ChaosModifierPortraitMode = ChaosModifier.class("ChaosModifierPortraitMode")
-ChaosModifierPortraitMode.run_as_client = true
 ChaosModifierPortraitMode.duration = 45
 
 function ChaosModifierPortraitMode:start()

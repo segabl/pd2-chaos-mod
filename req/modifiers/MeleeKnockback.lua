@@ -1,5 +1,4 @@
 ChaosModifierMeleeKnockback = ChaosModifier.class("ChaosModifierMeleeKnockback")
-ChaosModifierMeleeKnockback.run_as_client = true
 ChaosModifierMeleeKnockback.duration = 60
 
 function ChaosModifierMeleeKnockback:start()

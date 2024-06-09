@@ -1,4 +1,5 @@
 ChaosModifierMoreModifiers = ChaosModifier.class("ChaosModifierMoreModifiers")
+ChaosModifierMoreModifiers.run_as_client = false
 ChaosModifierMoreModifiers.duration = 30
 
 function ChaosModifierMoreModifiers:start()

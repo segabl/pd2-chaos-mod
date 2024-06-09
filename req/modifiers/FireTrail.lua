@@ -1,5 +1,4 @@
 ChaosModifierFireTrail = ChaosModifier.class("ChaosModifierFireTrail")
-ChaosModifierFireTrail.run_as_client = true
 ChaosModifierFireTrail.duration = 60
 ChaosModifierFireTrail.params = {
 	sound_event = "no_sound",

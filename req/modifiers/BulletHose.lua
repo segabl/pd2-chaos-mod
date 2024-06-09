@@ -1,5 +1,4 @@
 ChaosModifierBulletHose = ChaosModifier.class("ChaosModifierBulletHose")
-ChaosModifierBulletHose.run_as_client = true
 ChaosModifierBulletHose.duration = 30
 
 function ChaosModifierBulletHose:start()

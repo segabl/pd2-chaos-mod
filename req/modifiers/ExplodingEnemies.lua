@@ -1,5 +1,4 @@
 ChaosModifierExplodingEnemies = ChaosModifier.class("ChaosModifierExplodingEnemies")
-ChaosModifierExplodingEnemies.run_as_client = true
 ChaosModifierExplodingEnemies.duration = 30
 
 function ChaosModifierExplodingEnemies:start()

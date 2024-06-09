@@ -1,5 +1,4 @@
 ChaosModifierAutoAim = ChaosModifier.class("ChaosModifierAutoAim")
-ChaosModifierAutoAim.run_as_client = true
 ChaosModifierAutoAim.duration = 30
 
 function ChaosModifierAutoAim:start()

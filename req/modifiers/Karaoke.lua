@@ -1,5 +1,4 @@
 ChaosModifierKaraoke = ChaosModifier.class("ChaosModifierKaraoke")
-ChaosModifierKaraoke.run_as_client = true
 ChaosModifierKaraoke.fixed_duration = true
 ChaosModifierKaraoke.duration = 1
 ChaosModifierKaraoke.weight_mul = 0.5
@@ -73,11 +72,11 @@ function ChaosModifierKaraoke:update(t, dt)
 
 	local line_change_t
 	if not current_line then
-		line_change_t = math.max(next_line.start - 5, 0)
+		line_change_t = math.max(next_line.start - 2, 0)
 	elseif not next_line then
-		line_change_t = math.min(current_line.stop + 5, self.song_duration)
+		line_change_t = math.min(current_line.stop + 4, self.song_duration)
 	else
-		line_change_t = math.max(math.lerp(current_line and current_line.stop or 0, next_line.start, 0.5), next_line.start - 4)
+		line_change_t = math.max(math.lerp(current_line and current_line.stop or 0, next_line.start, 0.5), next_line.start - 2)
 	end
 
 	if current_line and alive(current_line.panel) then
@@ -145,7 +144,7 @@ function ChaosModifierKaraoke:update(t, dt)
 			next_line.panel = self:create_lyrics_text(next_line)
 			next_line.panel:set_center_y(next_line.panel:parent():h() * 0.675 + next_line.panel:h())
 		else
-			local a = math.map_range_clamped(song_t, current_line and current_line.start or math.max(line_change_t - 4, 0), line_change_t, 0, 0.45)
+			local a = math.map_range_clamped(song_t, math.max(line_change_t - 4, current_line and current_line.start or 0), line_change_t, 0, 0.5)
 			next_line.panel:set_alpha(a)
 		end
 
@@ -154,9 +153,10 @@ function ChaosModifierKaraoke:update(t, dt)
 			next_line.panel:animate(function(o)
 				local a = o:alpha()
 				local y = o:center_y()
+				local y_target = next_line.panel:parent():h() * 0.675
 				ChaosMod:anim_over(0.2, function(p)
 					o:set_alpha(math.lerp(a, 1, p))
-					o:set_center_y(math.lerp(y, y - o:h(), p))
+					o:set_center_y(math.lerp(y, y_target, p))
 				end)
 			end)
 			self.current_line = self.current_line + 1

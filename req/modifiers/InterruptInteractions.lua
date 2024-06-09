@@ -1,5 +1,4 @@
 ChaosModifierInterruptInteractions = ChaosModifier.class("ChaosModifierInterruptInteractions")
-ChaosModifierInterruptInteractions.run_as_client = true
 ChaosModifierInterruptInteractions.duration = 30
 
 function ChaosModifierInterruptInteractions:start()

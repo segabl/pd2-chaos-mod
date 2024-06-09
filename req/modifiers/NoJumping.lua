@@ -1,5 +1,4 @@
 ChaosModifierNoJumping = ChaosModifier.class("ChaosModifierNoJumping")
-ChaosModifierNoJumping.run_as_client = true
 ChaosModifierNoJumping.duration = 40
 
 function ChaosModifierNoJumping:start()

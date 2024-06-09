@@ -1,6 +1,5 @@
 ChaosModifierAutoReload = ChaosModifier.class("ChaosModifierAutoReload")
 ChaosModifierAutoReload.register_name = "PlayerReload"
-ChaosModifierAutoReload.run_as_client = true
 ChaosModifierAutoReload.duration = 30
 
 function ChaosModifierAutoReload:start()

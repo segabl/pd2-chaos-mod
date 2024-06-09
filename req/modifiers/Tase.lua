@@ -1,5 +1,4 @@
 ChaosModifierTase = ChaosModifier.class("ChaosModifierTase")
-ChaosModifierTase.run_as_client = true
 
 function ChaosModifierTase:start()
 	local player = managers.player:local_player()

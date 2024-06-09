@@ -1,5 +1,4 @@
 ChaosModifierScreenSaver = ChaosModifier.class("ChaosModifierScreenSaver")
-ChaosModifierScreenSaver.run_as_client = true
 ChaosModifierScreenSaver.duration = 60
 
 function ChaosModifierScreenSaver:start()

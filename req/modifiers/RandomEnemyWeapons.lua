@@ -1,4 +1,5 @@
 ChaosModifierRandomEnemyWeapons = ChaosModifier.class("ChaosModifierRandomEnemyWeapons")
+ChaosModifierRandomEnemyWeapons.run_as_client = false
 ChaosModifierRandomEnemyWeapons.color = "enemy_change"
 ChaosModifierRandomEnemyWeapons.duration = 90
 

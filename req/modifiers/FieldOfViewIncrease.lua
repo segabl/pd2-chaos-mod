@@ -1,5 +1,4 @@
 ChaosModifierFieldOfViewIncrease = ChaosModifier.class("ChaosModifierFieldOfViewIncrease")
-ChaosModifierFieldOfViewIncrease.run_as_client = true
 ChaosModifierFieldOfViewIncrease.duration = 30
 
 function ChaosModifierFieldOfViewIncrease:update_fov()

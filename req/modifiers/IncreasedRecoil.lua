@@ -1,5 +1,4 @@
 ChaosModifierIncreasedRecoil = ChaosModifier.class("ChaosModifierIncreasedRecoil")
-ChaosModifierIncreasedRecoil.run_as_client = true
 ChaosModifierIncreasedRecoil.duration = 30
 
 function ChaosModifierIncreasedRecoil:start()

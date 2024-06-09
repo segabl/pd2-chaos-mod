@@ -1,5 +1,4 @@
 ChaosModifierPushUp = ChaosModifier.class("ChaosModifierPushUp")
-ChaosModifierPushUp.run_as_client = true
 ChaosModifierPushUp.duration = 20
 
 function ChaosModifierPushUp:start()

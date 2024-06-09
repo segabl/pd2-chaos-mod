@@ -1,5 +1,4 @@
 ChaosModifierItchyTriggerFinger = ChaosModifier.class("ChaosModifierItchyTriggerFinger")
-ChaosModifierItchyTriggerFinger.run_as_client = true
 ChaosModifierItchyTriggerFinger.duration = 40
 
 function ChaosModifierItchyTriggerFinger:start()

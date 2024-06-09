@@ -1,5 +1,4 @@
 ChaosModifierBouncyProjectiles = ChaosModifier.class("ChaosModifierBouncyProjectiles")
-ChaosModifierBouncyProjectiles.run_as_client = true
 ChaosModifierBouncyProjectiles.duration = 60
 
 function ChaosModifierBouncyProjectiles:has_grenade_launcher(peer)

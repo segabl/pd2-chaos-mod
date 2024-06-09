@@ -1,4 +1,5 @@
 ChaosModifierJamDrills = ChaosModifier.class("ChaosModifierJamDrills")
+ChaosModifierJamDrills.run_as_client = false
 
 function ChaosModifierJamDrills:can_trigger()
 	return table.size(TimerGui.active_units) > 0

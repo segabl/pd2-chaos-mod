@@ -1,6 +1,5 @@
 ChaosModifierNoMoving = ChaosModifier.class("ChaosModifierNoMoving")
 ChaosModifierNoMoving.register_name = "ChaosModifierPlayerMovement"
-ChaosModifierNoMoving.run_as_client = true
 ChaosModifierNoMoving.duration = 3
 
 function ChaosModifierNoMoving:start()

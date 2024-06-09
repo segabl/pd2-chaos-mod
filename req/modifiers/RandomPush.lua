@@ -1,5 +1,4 @@
 ChaosModifierRandomPush = ChaosModifier.class("ChaosModifierRandomPush")
-ChaosModifierRandomPush.run_as_client = true
 ChaosModifierRandomPush.duration = 30
 
 function ChaosModifierRandomPush:update(t, dt)

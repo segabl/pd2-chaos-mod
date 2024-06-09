@@ -1,5 +1,4 @@
 ChaosModifierWeaponSwitch = ChaosModifier.class("ChaosModifierWeaponSwitch")
-ChaosModifierWeaponSwitch.run_as_client = true
 ChaosModifierWeaponSwitch.duration = 30
 
 function ChaosModifierWeaponSwitch:start()

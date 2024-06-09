@@ -1,4 +1,5 @@
 ChaosModifierFlashBurst = ChaosModifier.class("ChaosModifierFlashBurst")
+ChaosModifierFlashBurst.run_as_client = false
 
 function ChaosModifierFlashBurst:start()
 	self._num_calls = 4

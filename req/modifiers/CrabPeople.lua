@@ -1,6 +1,5 @@
 ChaosModifierCrabPeople = ChaosModifier.class("ChaosModifierCrabPeople")
 ChaosModifierCrabPeople.register_name = "ChaosModifierPlayerMovement"
-ChaosModifierCrabPeople.run_as_client = true
 ChaosModifierCrabPeople.duration = 20
 
 function ChaosModifierCrabPeople:start()

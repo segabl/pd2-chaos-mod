@@ -1,5 +1,4 @@
 ChaosModifierTimeOut = ChaosModifier.class("ChaosModifierTimeOut")
-ChaosModifierTimeOut.run_as_client = true
 ChaosModifierTimeOut.duration = 25
 
 function ChaosModifierTimeOut:can_trigger()

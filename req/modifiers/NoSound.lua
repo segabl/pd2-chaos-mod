@@ -1,5 +1,4 @@
 ChaosModifierNoSound = ChaosModifier.class("ChaosModifierNoSound")
-ChaosModifierNoSound.run_as_client = true
 ChaosModifierNoSound.duration = 30
 
 function ChaosModifierNoSound:start()

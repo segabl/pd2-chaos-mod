@@ -1,4 +1,5 @@
 ChaosModifierScreamingEnemies = ChaosModifier.class("ChaosModifierScreamingEnemies")
+ChaosModifierScreamingEnemies.run_as_client = false
 ChaosModifierScreamingEnemies.duration = 45
 
 function ChaosModifierScreamingEnemies:update(t, dt)

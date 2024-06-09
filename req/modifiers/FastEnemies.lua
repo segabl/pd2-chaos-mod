@@ -1,5 +1,4 @@
 ChaosModifierFastEnemies = ChaosModifier.class("ChaosModifierFastEnemies")
-ChaosModifierFastEnemies.run_as_client = true
 ChaosModifierFastEnemies.duration = 45
 
 function ChaosModifierFastEnemies:start()

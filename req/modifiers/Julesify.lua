@@ -1,5 +1,7 @@
 ChaosModifierJulesify = ChaosModifier.class("ChaosModifierJulesify")
+ChaosModifierJulesify.run_as_client = false
 ChaosModifierJulesify.duration = 120
+ChaosModifierJulesify.weight_mul = 0.5
 ChaosModifierJulesify.enabled = StreamHeist and true
 ChaosModifierJulesify.allowed_poses = { crouch = true }
 

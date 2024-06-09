@@ -1,5 +1,4 @@
 ChaosModifierPlayerDamageAura = ChaosModifier.class("ChaosModifierPlayerDamageAura")
-ChaosModifierPlayerDamageAura.run_as_client = true
 ChaosModifierPlayerDamageAura.duration = 45
 
 function ChaosModifierPlayerDamageAura:can_trigger()

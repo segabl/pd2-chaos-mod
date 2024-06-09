@@ -1,5 +1,4 @@
 ChaosModifierShowHitboxes = ChaosModifier.class("ChaosModifierShowHitboxes")
-ChaosModifierShowHitboxes.run_as_client = true
 ChaosModifierShowHitboxes.duration = 40
 
 function ChaosModifierShowHitboxes:start()

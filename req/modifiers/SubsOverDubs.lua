@@ -1,6 +1,5 @@
 ChaosModifierSubsOverDubs = ChaosModifier.class("ChaosModifierSubsOverDubs")
 ChaosModifierSubsOverDubs.register_name = "ChaosModifierVoiceChange"
-ChaosModifierSubsOverDubs.run_as_client = true
 ChaosModifierSubsOverDubs.duration = 90
 
 function ChaosModifierSubsOverDubs:start()

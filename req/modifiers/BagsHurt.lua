@@ -1,5 +1,4 @@
 ChaosModifierBagsHurt = ChaosModifier.class("ChaosModifierBagsHurt")
-ChaosModifierBagsHurt.run_as_client = true
 ChaosModifierBagsHurt.duration = 30
 
 function ChaosModifierBagsHurt:can_trigger()

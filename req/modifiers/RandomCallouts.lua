@@ -1,5 +1,4 @@
 ChaosModifierRandomCallouts = ChaosModifier.class("ChaosModifierRandomCallouts")
-ChaosModifierRandomCallouts.run_as_client = true
 ChaosModifierRandomCallouts.duration = 60
 ChaosModifierRandomCallouts.event_names = {
 	"f30x_any", "f310x_any", "f32x_any", "f33x_any", "f35x_any", "f47x_any", "g80x_plu", "f11e_plu"

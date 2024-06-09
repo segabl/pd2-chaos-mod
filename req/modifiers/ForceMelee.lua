@@ -1,5 +1,4 @@
 ChaosModifierForceMelee = ChaosModifier.class("ChaosModifierForceMelee")
-ChaosModifierForceMelee.run_as_client = true
 ChaosModifierForceMelee.duration = 45
 
 function ChaosModifierForceMelee:start()

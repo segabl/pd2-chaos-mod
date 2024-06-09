@@ -1,5 +1,4 @@
 ChaosModifierNoSleep = ChaosModifier.class("ChaosModifierNoSleep")
-ChaosModifierNoSleep.run_as_client = true
 ChaosModifierNoSleep.duration = 40
 
 function ChaosModifierNoSleep:start()

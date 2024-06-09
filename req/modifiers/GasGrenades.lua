@@ -1,4 +1,5 @@
 ChaosModifierGasGrenades = ChaosModifier.class("ChaosModifierGasGrenades")
+ChaosModifierGasGrenades.run_as_client = false
 ChaosModifierGasGrenades.duration = 45
 
 function ChaosModifierGasGrenades:update(t, dt)

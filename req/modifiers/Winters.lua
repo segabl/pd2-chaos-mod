@@ -1,4 +1,5 @@
 ChaosModifierWinters = ChaosModifier.class("ChaosModifierWinters")
+ChaosModifierWinters.run_as_client = false
 ChaosModifierWinters.duration = -1
 
 function ChaosModifierWinters:can_trigger()

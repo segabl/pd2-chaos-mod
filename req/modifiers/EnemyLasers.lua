@@ -1,5 +1,4 @@
 ChaosModifierEnemyLasers = ChaosModifier.class("ChaosModifierEnemyLasers")
-ChaosModifierEnemyLasers.run_as_client = true
 ChaosModifierEnemyLasers.duration = 60
 
 function ChaosModifierEnemyLasers:set_laser_enabled(unit, enabled)

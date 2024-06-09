@@ -1,6 +1,5 @@
 ChaosModifierRandomVoices = ChaosModifier.class("ChaosModifierRandomVoices")
 ChaosModifierRandomVoices.register_name = "ChaosModifierVoiceChange"
-ChaosModifierRandomVoices.run_as_client = true
 ChaosModifierRandomVoices.duration = 90
 
 function ChaosModifierRandomVoices:start()

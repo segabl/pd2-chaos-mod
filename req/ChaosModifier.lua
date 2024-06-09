@@ -3,7 +3,7 @@
 ChaosModifier = class()
 ChaosModifier.class_name = "ChaosModifier"
 ChaosModifier.register_name = nil
-ChaosModifier.run_as_client = false
+ChaosModifier.run_as_client = true
 ChaosModifier.duration = 0
 ChaosModifier.weight_mul = 1
 ChaosModifier.enabled = true
