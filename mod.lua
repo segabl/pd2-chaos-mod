@@ -150,7 +150,9 @@ if not ChaosMod then
 		for k, v in pairs(self.queued_calls) do
 			if t >= v.t then
 				v.func()
-				self.queued_calls[k] = nil
+				if self.queued_calls[k] == v then
+					self.queued_calls[k] = nil
+				end
 			end
 		end
 	end
