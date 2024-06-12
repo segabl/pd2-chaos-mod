@@ -4,7 +4,7 @@ ChaosModifierRocketStrike.duration = 45
 
 function ChaosModifierRocketStrike:can_trigger()
 	local check_pos = Vector3()
-	local slot_mask = managers.slot:get_mask("world_geometry")
+	local slot_mask = managers.slot:get_mask("bullet_blank_impact_targets")
 	for _, data in pairs(managers.groupai:state():all_player_criminals()) do
 		mvector3.set(check_pos, data.m_det_pos)
 		mvector3.add_scaled(check_pos, math.UP, 5000)
@@ -32,7 +32,7 @@ function ChaosModifierRocketStrike:update(t, dt)
 	local radius = 2000
 	local positions = {}
 	local check_pos = Vector3()
-	local slot_mask = managers.slot:get_mask("world_geometry")
+	local slot_mask = managers.slot:get_mask("bullet_blank_impact_targets")
 	local check_tracker = managers.navigation:create_nav_tracker(check_pos)
 	for _, data in pairs(managers.groupai:state():all_player_criminals()) do
 		for _ = 1, 20 do
