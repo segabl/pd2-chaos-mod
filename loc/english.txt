@@ -18,6 +18,7 @@
 	"ChaosModifierBulletHose": "Bullet Hose",
 	"ChaosModifierChargingCloakers": "Check your back",
 	"ChaosModifierCivilianMagnet": "Civilian Magnet",
+	"ChaosModifierCombustJokers": "Spontaneous Combustion",
 	"ChaosModifierCrabPeople": "Crab People",
 	"ChaosModifierDallasMedicBag": "Peak Comedy",
 	"ChaosModifierEmptyMagazine": "No Lead",

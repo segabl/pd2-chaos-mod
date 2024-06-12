@@ -18,6 +18,7 @@
 	"ChaosModifierBulletHose": "弹幕地狱",
 	"ChaosModifierChargingCloakers": "小心你的背后",
 	"ChaosModifierCivilianMagnet": "平民磁铁",
+	"ChaosModifierCombustJokers": "Spontaneous Combustion",
 	"ChaosModifierCrabPeople": "“横行”霸道",
 	"ChaosModifierDallasMedicBag": "PD玩家最喜欢的笑话",
 	"ChaosModifierEmptyMagazine": "大子弹转移术",
