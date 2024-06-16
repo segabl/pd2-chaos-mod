@@ -7,7 +7,7 @@ ChaosModifier.run_as_client = true
 ChaosModifier.duration = 0
 ChaosModifier.weight_mul = 1
 ChaosModifier.enabled = true
-ChaosModifier.nil_value = {}
+ChaosModifier.overrides = {} ---@type table<table, table<string, { original: any, overrides: { modifier: ChaosModifier, value: any }[] }>>
 
 ---@return ChaosModifier
 function ChaosModifier.class(name, super)
@@ -24,7 +24,6 @@ end
 function ChaosModifier:init(seed)
 	self._activation_t = ChaosMod:time()
 	self._seed = seed or math.random(1000000)
-	self._overrides = {}
 
 	if Network:is_server() then
 		NetworkHelper:SendToPeers("ActivateChaosModifier", self.class_name .. "|" .. self._seed)
@@ -38,27 +37,38 @@ end
 function ChaosModifier:destroy()
 	if self._pre_hooked then
 		Hooks:RemovePreHook(self.class_name)
+		self._pre_hooked = nil
 	end
 
 	if self._post_hooked then
 		Hooks:RemovePostHook(self.class_name)
+		self._post_hooked = nil
 	end
 
 	if self._overrides then
-		for obj, data in pairs(self._overrides) do
-			for k, v in pairs(data) do
-				if v == ChaosModifier.nil_value then
-					obj[k] = nil
-				else
-					obj[k] = v
+		-- This monstrosity makes sure overriden values get restored properly,
+		-- either to the value another modifier set it to before or to the original value
+		for obj, value_data in pairs(ChaosModifier.overrides) do
+			for value_name, override_data in pairs(value_data) do
+				for i, override in table.reverse_ipairs(override_data.overrides) do
+					if override.modifier == self then
+						if i == #override_data.overrides then
+							if i > 1 then
+								obj[value_name] = override_data.overrides[i - 1].value
+							else
+								obj[value_name] = override_data.original
+							end
+						end
+						table.remove(override_data.overrides, i)
+					end
+				end
+				if #override_data.overrides == 0 then
+					value_data[value_name] = nil
 				end
 			end
 		end
+		self._overrides = nil
 	end
-
-	self._pre_hooked = nil
-	self._post_hooked = nil
-	self._overrides = nil
 
 	self._expired = true
 
@@ -81,10 +91,16 @@ function ChaosModifier:progress(t, dt)
 end
 
 function ChaosModifier:override(obj, k, v)
-	self._overrides[obj] = self._overrides[obj] or {}
-	if not self._overrides[obj][k] then
-		self._overrides[obj][k] = obj[k] == nil and ChaosModifier.nil_value or obj[k]
-	end
+	self._overrides = true
+	ChaosModifier.overrides[obj] = ChaosModifier.overrides[obj] or {}
+	ChaosModifier.overrides[obj][k] = ChaosModifier.overrides[obj][k] or {
+		original = obj[k],
+		overrides = {}
+	}
+	table.insert(ChaosModifier.overrides[obj][k].overrides, {
+		modifier = self,
+		value = v
+	})
 	obj[k] = v
 end
 
