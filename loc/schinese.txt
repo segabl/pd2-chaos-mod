@@ -36,6 +36,7 @@
 	"ChaosModifierGasGrenades": "谁在放屁？",
 	"ChaosModifierGlassCannons": "玻璃大炮",
 	"ChaosModifierHeadshotsOnly": "瞄准头部！",
+	"ChaosModifierHealthArmorLink": "Pain Split",
 	"ChaosModifierHostageRescueTeam": "让人质救援队过来！",
 	"ChaosModifierIncreasedRecoil": "肌无力劫匪",
 	"ChaosModifierInterruptInteractions": "笨手笨脚",
@@ -73,6 +74,7 @@
 	"ChaosModifierScreamingEnemies": "更吵的敌人",
 	"ChaosModifierScreenSaver": "屏保",
 	"ChaosModifierShields": "钢铁洪流",
+	"ChaosModifierShoutToKill": "Use the Force",
 	"ChaosModifierShowHitboxes": "突破第四面墙",
 	"ChaosModifierSimonSays": "Simon说",
 	"ChaosModifierSimonSaysStart": "Simon说...",
@@ -103,10 +105,12 @@
 	"ChaosModifierSubsOverDubs": "这下听得懂了",
 	"ChaosModifierSwapEquipment": "我大包呢？",
 	"ChaosModifierTase": "震颤爆发",
+	"ChaosModifierTasers": "Shock Therapy",
 	"ChaosModifierTiltScreen": "晕船",
 	"ChaosModifierTimeOut": "挂机",
 	"ChaosModifierTimeOutStart": "挂机轮盘",
 	"ChaosModifierTimeOutPicked": "$PLAYER; 请休息吧！",
+	"ChaosModifierTimeStop" : "Za Warudo",
 	"ChaosModifierWeaponSwitch": "选择困难症",
 	"ChaosModifierWinters": "在那里，PAYDAY帮！"
 }

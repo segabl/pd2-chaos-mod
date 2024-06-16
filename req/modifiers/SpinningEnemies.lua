@@ -11,7 +11,7 @@ function ChaosModifierSpinningEnemies:update(t, dt)
 		data.unit:anim_state_machine():force_modifier(self._modifier_name)
 		data.unit:anim_state_machine():get_modifier(self._modifier_name):set_target_y(math.UP)
 
-		mrotation.set_yaw(self._rotation, (t * 1000) % 360)
+		mrotation.set_yaw(self._rotation, (TimerManager:game_animation():time() * 1000) % 360)
 		data.unit:set_local_rotation(self._rotation)
 	end
 end
