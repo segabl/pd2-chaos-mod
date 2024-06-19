@@ -11,12 +11,12 @@ if not ChaosMod then
 	ChaosMod.queued_calls = {}
 	ChaosMod.paused_t = 0
 	ChaosMod.next_modifier_t = 0
-	ChaosMod.max_active = 6
 	ChaosMod.cooldown_mul = 1
 	ChaosMod.settings = {
 		min_cooldown = 20,
 		max_cooldown = 30,
 		prevent_repeat = 0.25,
+		max_active = 5,
 		disabled_modifiers = {}
 	}
 
@@ -64,7 +64,7 @@ if not ChaosMod then
 				log(modifier_class and "Modifier " .. name .. " can't trigger" or "Modifier " .. name .. " does not exist")
 				return
 			end
-		elseif table.size(self.active_modifiers) < self.max_active then
+		elseif table.size(self.active_modifiers) < math.round(self.settings.max_active) then
 			local selector = WeightedSelector:new()
 			for class_name, modifier in pairs(self.modifiers) do
 				local register_name = modifier.register_name or class_name
@@ -266,7 +266,7 @@ if not ChaosMod then
 			show_value = true,
 			display_precision = 0,
 			callback = "chaos_mod_value",
-			priority = 6
+			priority = 7
 		})
 
 		slider_max_cooldown = MenuHelper:AddSlider({
@@ -281,7 +281,7 @@ if not ChaosMod then
 			show_value = true,
 			display_precision = 0,
 			callback = "chaos_mod_value",
-			priority = 5
+			priority = 6
 		})
 
 		MenuHelper:AddSlider({
@@ -297,6 +297,21 @@ if not ChaosMod then
 			is_percentage = true,
 			display_precision = 0,
 			display_scale = 100,
+			callback = "chaos_mod_value",
+			priority = 5
+		})
+
+		MenuHelper:AddSlider({
+			menu_id = ChaosMod.menu_id,
+			id = "max_active",
+			title = "menu_chaos_mod_max_active",
+			desc = "menu_chaos_mod_max_active_desc",
+			value = ChaosMod.settings.max_active,
+			min = 1,
+			max = 10,
+			step = 1,
+			show_value = true,
+			display_precision = 0,
 			callback = "chaos_mod_value",
 			priority = 4
 		})
