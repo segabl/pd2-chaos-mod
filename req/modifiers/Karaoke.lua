@@ -95,7 +95,7 @@ function ChaosModifierKaraoke:update(t, dt)
 			current_line.panel = nil
 		else
 			local next, current
-			local current_color = (HUDChaosModifier.colors.default * HUDChaosModifier.colors.default.a):with_alpha(1)
+			local current_color = (HUDChaosModifier.colors.default * 0.75):with_alpha(1)
 			local prev_color = current_color * 2
 			for i, text in pairs(current_line.panel:children()) do
 				local note = current_line[i]
@@ -183,7 +183,7 @@ function ChaosModifierKaraoke:load_song(song_path)
 	return song
 end
 
-function ChaosModifier:create_lyrics_ball()
+function ChaosModifierKaraoke:create_lyrics_ball()
 	return managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):bitmap({
 		layer = 99,
 		texture = "guis/textures/pd2/hud_progress_32px",
@@ -194,7 +194,7 @@ function ChaosModifier:create_lyrics_ball()
 	})
 end
 
-function ChaosModifier:create_lyrics_text(line, color)
+function ChaosModifierKaraoke:create_lyrics_text(line, color)
 	local panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):panel({
 		layer = 98,
 		alpha = 0

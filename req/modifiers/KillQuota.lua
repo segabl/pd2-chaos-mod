@@ -1,4 +1,5 @@
 ChaosModifierKillQuota = ChaosModifier.class("ChaosModifierKillQuota")
+ChaosModifierKillQuota.color = "player_specific"
 ChaosModifierKillQuota.duration = 20
 
 function ChaosModifierKillQuota:can_trigger()
@@ -16,15 +17,16 @@ function ChaosModifierKillQuota:start()
 	self:show_text(text, 2, true)
 
 	managers.player:register_message(Message.OnEnemyKilled, "ChaosModifierKillQuota", function()
-		if self._kills >= self._target then
-			return
-		end
 		self._kills = self._kills + 1
 		text = managers.localization:to_upper_text("ChaosModifierKillQuotaProgress", {
 			AMOUNT = tostring(self._kills),
 			TOTAL = tostring(self._target)
 		})
 		managers.hud:show_hint({ text = text, time = 2 })
+		if self._kills >= self._target then
+			managers.player:unregister_message(Message.OnEnemyKilled, "ChaosModifierKillQuota")
+			self:complete()
+		end
 	end)
 end
 

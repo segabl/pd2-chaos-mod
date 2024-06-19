@@ -80,6 +80,11 @@ function ChaosModifierShoutToKill:start()
 		input.btn_primary_attack_release = false
 	end)
 
+	local PlayerStandard_add_unit_to_char_table = PlayerStandard._add_unit_to_char_table
+	self:override(PlayerStandard, "_add_unit_to_char_table", function(playerstate, char_table, unit, unit_type, interaction_dist, interaction_through_walls, tight_area, priority, my_head_pos, cam_fwd, ray_ignore_units, _, ...)
+		return PlayerStandard_add_unit_to_char_table(playerstate, char_table, unit, unit_type, interaction_dist, interaction_through_walls, tight_area, priority, my_head_pos, cam_fwd, ray_ignore_units, "ai_vision", ...)
+	end)
+
 	for _, enemy_name in pairs(tweak_data.character._enemy_list) do
 		local enemy = tweak_data.character[enemy_name]
 		self:override(enemy, "priority_shout", nil)

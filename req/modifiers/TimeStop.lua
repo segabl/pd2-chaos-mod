@@ -2,6 +2,7 @@ ChaosModifierTimeStop = ChaosModifier.class("ChaosModifierTimeStop")
 ChaosModifierTimeStop.register_name = "ChaosModifierTimeSpeed"
 ChaosModifierTimeStop.duration = 15
 ChaosModifierTimeStop.weight_mul = 0.75
+ChaosModifierTimeStop.activation_sound = "wp_sentrygun_destroy"
 
 function ChaosModifierTimeStop:start()
 	TimerManager:game():set_multiplier(0)
@@ -75,6 +76,15 @@ function ChaosModifierTimeStop:start()
 	self:override(ProjectileBase, "check_time_cheat", function() return true end)
 
 	self:override(tweak_data.network.camera, "network_sync_delta_t", 0)
+
+	managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):rect({
+		layer = 200,
+		color = HUDChaosModifier.colors.default
+	}):animate(function(o)
+		ChaosMod:anim_over(0.1, function(p) o:set_alpha(p * 0.25) end)
+		ChaosMod:anim_over(1.4, function(p) o:set_alpha((1 - p) * 0.25) end)
+		o:parent():remove(o)
+	end)
 end
 
 function ChaosModifierTimeStop:stop()

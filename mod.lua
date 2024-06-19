@@ -64,7 +64,7 @@ if not ChaosMod then
 				log(modifier_class and "Modifier " .. name .. " can't trigger" or "Modifier " .. name .. " does not exist")
 				return
 			end
-		elseif table.size(self.active_modifiers) < math.round(self.settings.max_active) then
+		elseif skip_trigger_check or table.size(self.active_modifiers) < math.round(self.settings.max_active) then
 			local selector = WeightedSelector:new()
 			for class_name, modifier in pairs(self.modifiers) do
 				local register_name = modifier.register_name or class_name
@@ -95,10 +95,17 @@ if not ChaosMod then
 
 		local modifier = modifier_class:new(seed)
 		self.active_modifiers[register_name] = modifier
-
-		table.insert(self.hud_modifiers, HUDChaosModifier:new(modifier))
+		table.insert(self.hud_modifiers, modifier._hud_modifier)
 
 		return true
+	end
+
+	function ChaosMod:complete_modifier(name, peer_id)
+		local modifier_class = self.modifiers[name]
+		local modifier = self.active_modifiers[modifier_class and modifier_class.register_name or name]
+		if modifier then
+			modifier:complete(peer_id)
+		end
 	end
 
 	function ChaosMod:time()
@@ -220,6 +227,10 @@ if not ChaosMod then
 			ChaosMod:activate_modifier(class_name, tonumber(seed), true)
 		end)
 	end
+
+	NetworkHelper:AddReceiveHook("CompleteChaosModifier", "CompleteChaosModifier", function(data, sender)
+		ChaosMod:complete_modifier(data, sender)
+	end)
 
 	Hooks:Add("MenuManagerBuildCustomMenus", "MenuManagerBuildCustomMenusChaosMod", function(_, nodes)
 

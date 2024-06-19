@@ -49,6 +49,10 @@ function ChaosModifierSwapEquipment:start()
 		end
 	end
 
+	if #units == 0 then
+		return
+	end
+
 	table.sort(units, function(a, b)
 		return a:id() > b:id()
 	end)

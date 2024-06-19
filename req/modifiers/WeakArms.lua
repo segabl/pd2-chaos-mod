@@ -1,7 +1,7 @@
-ChaosModifierIncreasedRecoil = ChaosModifier.class("ChaosModifierIncreasedRecoil")
-ChaosModifierIncreasedRecoil.duration = 30
+ChaosModifierWeakArms = ChaosModifier.class("ChaosModifierWeakArms")
+ChaosModifierWeakArms.duration = 30
 
-function ChaosModifierIncreasedRecoil:start()
+function ChaosModifierWeakArms:start()
 	self:post_hook(FPCameraPlayerBase, "stop_shooting", function(fpcamerabase)
 		fpcamerabase._recoil_kick.to_reduce = fpcamerabase._recoil_kick.last
 		fpcamerabase._recoil_kick.h.to_reduce = fpcamerabase._recoil_kick.h.last
@@ -62,6 +62,17 @@ function ChaosModifierIncreasedRecoil:start()
 
 		return r_value
 	end)
+
+	for _, data in pairs(tweak_data.carry.types) do
+		self:override(data, "throw_distance_multiplier", data.throw_distance_multiplier * 0.25)
+	end
+
+	for k, data in pairs(tweak_data.projectiles) do
+		local tweak = tweak_data.blackmarket.projectiles[k]
+		if tweak and tweak.throwable then
+			self:override(data, "launch_speed", (data.launch_speed or 250) * 0.25)
+		end
+	end
 end
 
-return ChaosModifierIncreasedRecoil
+return ChaosModifierWeakArms

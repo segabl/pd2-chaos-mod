@@ -1,4 +1,5 @@
 ChaosModifierTimeOut = ChaosModifier.class("ChaosModifierTimeOut")
+ChaosModifierTimeOut.color = "player_specific"
 ChaosModifierTimeOut.duration = 25
 
 function ChaosModifierTimeOut:can_trigger()
@@ -24,6 +25,8 @@ function ChaosModifierTimeOut:pick_player()
 
 	if unit == managers.player:local_player() then
 		self._unit = unit
+	else
+		self._completed = true
 	end
 end
 

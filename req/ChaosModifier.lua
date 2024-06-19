@@ -25,6 +25,7 @@ end
 function ChaosModifier:init(seed)
 	self._activation_t = ChaosMod:time()
 	self._seed = seed or math.random(1000000)
+	self._completed_peers = {}
 
 	if Network:is_server() then
 		NetworkHelper:SendToPeers("ActivateChaosModifier", self.class_name .. "|" .. self._seed)
@@ -37,6 +38,8 @@ function ChaosModifier:init(seed)
 	if self.activation_sound then
 		managers.hud:post_event(self.activation_sound)
 	end
+
+	self._hud_modifier = HUDChaosModifier:new(self)
 end
 
 function ChaosModifier:destroy()
@@ -91,6 +94,23 @@ end
 function ChaosModifier:update(t, dt)
 end
 
+function ChaosModifier:complete(peer_id)
+	if not peer_id then
+		self._completed = true
+		NetworkHelper:SendToPeers("CompleteChaosModifier", self.class_name)
+	else
+		self._completed_peers[peer_id] = true
+	end
+
+	if not self:completed() then
+		self._hud_modifier:complete(peer_id)
+	end
+end
+
+function ChaosModifier:completed()
+	return self._completed and table.size(self._completed_peers) >= table.size(managers.network:session():peers())
+end
+
 function ChaosModifier:progress(t, dt)
 	return self.duration == 0 and 1 or self.duration > 0 and (t - self._activation_t) / self.duration or 0
 end
@@ -128,7 +148,7 @@ function ChaosModifier:unqueue(func_name)
 end
 
 function ChaosModifier:expired(t, dt)
-	return self._expired or self:progress(t, dt) >= 1
+	return self._expired or self:progress(t, dt) >= 1 or self:completed()
 end
 
 function ChaosModifier:show_text(text, time, large)

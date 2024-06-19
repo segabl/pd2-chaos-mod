@@ -5,7 +5,7 @@ function ChaosModifierRefreshModifers:can_trigger()
 end
 
 function ChaosModifierRefreshModifers:start()
-	local t = TimerManager:game():time()
+	local t = ChaosMod:time()
 	for _, modifier in pairs(ChaosMod.active_modifiers) do
 		if modifier.duration > 0 and not modifier.fixed_duration then
 			modifier._activation_t = t
