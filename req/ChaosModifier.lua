@@ -6,6 +6,7 @@ ChaosModifier.register_name = nil
 ChaosModifier.run_as_client = true
 ChaosModifier.duration = 0
 ChaosModifier.weight_mul = 1
+ChaosModifier.activation_sound = "Play_star_hit"
 ChaosModifier.enabled = true
 ChaosModifier.overrides = {} ---@type table<table, table<string, { original: any, overrides: { modifier: ChaosModifier, value: any }[] }>>
 
@@ -31,6 +32,10 @@ function ChaosModifier:init(seed)
 
 	if Network:is_server() or self.run_as_client then
 		self:start()
+	end
+
+	if self.activation_sound then
+		managers.hud:post_event(self.activation_sound)
 	end
 end
 

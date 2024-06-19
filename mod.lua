@@ -98,8 +98,6 @@ if not ChaosMod then
 
 		table.insert(self.hud_modifiers, HUDChaosModifier:new(modifier))
 
-		managers.hud:post_event("Play_star_hit")
-
 		return true
 	end
 
