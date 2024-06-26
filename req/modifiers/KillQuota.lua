@@ -1,4 +1,5 @@
 ChaosModifierKillQuota = ChaosModifier.class("ChaosModifierKillQuota")
+ChaosModifierKillQuota.run_in_stealth = false
 ChaosModifierKillQuota.color = "player_specific"
 ChaosModifierKillQuota.duration = 20
 

@@ -4,6 +4,7 @@ ChaosModifier = class()
 ChaosModifier.class_name = "ChaosModifier"
 ChaosModifier.register_name = nil
 ChaosModifier.run_as_client = true
+ChaosModifier.run_in_stealth = true
 ChaosModifier.duration = 0
 ChaosModifier.weight_mul = 1
 ChaosModifier.activation_sound = "Play_star_hit"

@@ -1,4 +1,5 @@
 ChaosModifierExplodingEnemies = ChaosModifier.class("ChaosModifierExplodingEnemies")
+ChaosModifierExplodingEnemies.run_in_stealth = false
 ChaosModifierExplodingEnemies.duration = 30
 
 function ChaosModifierExplodingEnemies:start()

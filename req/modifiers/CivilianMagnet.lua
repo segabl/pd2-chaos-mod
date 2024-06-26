@@ -1,5 +1,6 @@
 ChaosModifierCivilianMagnet = ChaosModifier.class("ChaosModifierCivilianMagnet")
 ChaosModifierCivilianMagnet.run_as_client = false
+ChaosModifierCivilianMagnet.run_in_stealth = false
 ChaosModifierCivilianMagnet.duration = 30
 
 function ChaosModifierCivilianMagnet:is_valid_civilian(unit)

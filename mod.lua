@@ -17,6 +17,7 @@ if not ChaosMod then
 		max_cooldown = 30,
 		prevent_repeat = 0.25,
 		max_active = 5,
+		stealth_enabled = 1,
 		disabled_modifiers = {}
 	}
 
@@ -66,10 +67,13 @@ if not ChaosMod then
 			end
 		elseif skip_trigger_check or table.size(self.active_modifiers) < math.round(self.settings.max_active) then
 			local selector = WeightedSelector:new()
+			local stealth_enabled = self.settings.stealth_enabled
 			for class_name, modifier in pairs(self.modifiers) do
 				local register_name = modifier.register_name or class_name
 				if not self.settings.disabled_modifiers[class_name] and not self.active_modifiers[register_name] and (skip_trigger_check or modifier:can_trigger()) then
-					selector:add(modifier, modifier.weight * modifier.weight_mul)
+					if stealth_enabled == 3 or stealth_enabled == 2 and modifier.run_in_stealth or managers.groupai:state():enemy_weapons_hot() then
+						selector:add(modifier, modifier.weight * modifier.weight_mul)
+					end
 				end
 			end
 
@@ -126,7 +130,7 @@ if not ChaosMod then
 		local dt = self:delta_time()
 
 		if Network:is_server() then
-			if not Utils:IsInHeist() or not managers.groupai:state():enemy_weapons_hot() then
+			if not Utils:IsInHeist() or self.settings.stealth_enabled == 1 and not managers.groupai:state():enemy_weapons_hot() then
 				self.next_modifier_t = t + math.rand(5, 10)
 			elseif self.next_modifier_t < t then
 				if self:activate_modifier() then
@@ -327,10 +331,21 @@ if not ChaosMod then
 			priority = 4
 		})
 
+		MenuHelper:AddMultipleChoice({
+			menu_id = ChaosMod.menu_id,
+			id = "stealth_enabled",
+			title = "menu_chaos_mod_stealth_enabled",
+			desc = "menu_chaos_mod_stealth_enabled_desc",
+			value = ChaosMod.settings.stealth_enabled,
+			items = { "menu_chaos_mod_all_off", "menu_chaos_mod_stealth_on", "menu_chaos_mod_all_on" },
+			callback = "chaos_mod_value",
+			priority = 3
+		})
+
 		MenuHelper:AddDivider({
 			menu_id = ChaosMod.menu_id,
 			size = 16,
-			priority = 3
+			priority = 2
 		})
 
 		MenuHelper:AddButton({
@@ -339,7 +354,7 @@ if not ChaosMod then
 			title = "menu_chaos_mod_enable_all",
 			desc = "menu_chaos_mod_enable_all_desc",
 			callback = "chaos_mod_toggle_all",
-			priority = 2
+			priority = 1
 		})
 
 		MenuHelper:AddButton({
@@ -348,7 +363,7 @@ if not ChaosMod then
 			title = "menu_chaos_mod_disable_all",
 			desc = "menu_chaos_mod_disable_all_desc",
 			callback = "chaos_mod_toggle_all",
-			priority = 1
+			priority = 0
 		})
 
 		for modifier_name in pairs(ChaosMod.modifiers) do

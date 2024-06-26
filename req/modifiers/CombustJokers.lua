@@ -1,4 +1,5 @@
 ChaosModifierCombustJokers = ChaosModifier.class("ChaosModifierCombustJokers")
+ChaosModifierCombustJokers.run_in_stealth = false
 
 function ChaosModifierCombustJokers:can_trigger()
 	return table.size(managers.groupai:state()._converted_police) > 0

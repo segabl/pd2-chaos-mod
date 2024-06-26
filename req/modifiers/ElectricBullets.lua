@@ -1,5 +1,6 @@
 ChaosModifierElectricBullets = ChaosModifier.class("ChaosModifierElectricBullets")
 ChaosModifierElectricBullets.register_name = "ChaosModifierBulletChange"
+ChaosModifierElectricBullets.run_in_stealth = false
 ChaosModifierElectricBullets.duration = 30
 
 function ChaosModifierElectricBullets:start()

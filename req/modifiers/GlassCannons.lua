@@ -1,6 +1,7 @@
 ChaosModifierGlassCannons = ChaosModifier.class("ChaosModifierGlassCannons")
 ChaosModifierGlassCannons.register_name = "ChaosModifierUnitCategories"
 ChaosModifierGlassCannons.run_as_client = false
+ChaosModifierGlassCannons.run_in_stealth = false
 ChaosModifierGlassCannons.color = "enemy_change"
 ChaosModifierGlassCannons.duration = 60
 ChaosModifierGlassCannons.unit_categories = { "CS_cop_stealth_MP5" }

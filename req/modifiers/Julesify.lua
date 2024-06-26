@@ -1,5 +1,6 @@
 ChaosModifierJulesify = ChaosModifier.class("ChaosModifierJulesify")
 ChaosModifierJulesify.run_as_client = false
+ChaosModifierJulesify.run_in_stealth = false
 ChaosModifierJulesify.duration = 120
 ChaosModifierJulesify.weight_mul = 0.5
 ChaosModifierJulesify.enabled = StreamHeist and true
