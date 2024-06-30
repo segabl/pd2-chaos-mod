@@ -87,7 +87,7 @@
 	"ChaosModifierScreenSaver": "屏保",
 	"ChaosModifierScreenShake": "惊颤",
 	"ChaosModifierScreenShakeSteps": "举足轻重",
-	"ChaosModifierSecretCloaker": "隐秘Cloaker",
+	"ChaosModifierSecretCloaker": "便衣特工",
 	"ChaosModifierShields": "钢铁洪流",
 	"ChaosModifierShoutToKill": "原力爆发",
 	"ChaosModifierShowHitboxes": "突破第四面墙",
