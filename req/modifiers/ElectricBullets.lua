@@ -4,6 +4,8 @@ ChaosModifierElectricBullets.run_in_stealth = false
 ChaosModifierElectricBullets.duration = 30
 
 function ChaosModifierElectricBullets:start()
+	local ref_dmg = math.max(tweak_data.character.heavy_swat.weapon.is_rifle.FALLOFF[1].dmg_mul, tweak_data.character.swat.weapon.is_rifle.FALLOFF[1].dmg_mul) * tweak_data.weapon.m4_npc.DAMAGE
+
 	local ElectricBulletBase = class(InstantBulletBase)
 	function ElectricBulletBase:give_impact_damage(col_ray, weapon_unit, user_unit, damage, armor_piercing, ...)
 		if not col_ray.unit then
@@ -11,7 +13,9 @@ function ChaosModifierElectricBullets:start()
 		end
 
 		if col_ray.unit:character_damage().on_non_lethal_electrocution then
-			col_ray.unit:character_damage():on_non_lethal_electrocution(0.005)
+			if not PlayerDamage._chk_dmg_too_soon(col_ray.unit:character_damage(), damage) and math.random() < damage / ref_dmg then
+				col_ray.unit:character_damage():on_non_lethal_electrocution(math.min((damage / ref_dmg) * 0.005, 0.01))
+			end
 		elseif col_ray.unit:character_damage().damage_tase then
 			col_ray.unit:character_damage():damage_tase({
 				damage = 0,
