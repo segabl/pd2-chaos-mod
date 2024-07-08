@@ -14,7 +14,7 @@ function ChaosModifierScreenShakeSteps:start()
 
 		local feedback = managers.feedback:create("mission_triggered")
 		local dis = mvector3.distance(m_pos, player_unit:position())
-		local mul = math.map_range_clamped(dis, 0, 1000, 2, 0)
+		local mul = math.map_range_clamped(dis, 0, 1000, 1.5, 0)
 
 		feedback:set_unit(player_unit)
 		feedback:set_enabled("camera_shake", true)

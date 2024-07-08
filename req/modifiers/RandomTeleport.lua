@@ -1,4 +1,5 @@
 ChaosModifierRandomTeleport = ChaosModifier.class("ChaosModifierRandomTeleport")
+ChaosModifierRandomTeleport.register_name = "ChaosModifierTeleport"
 ChaosModifierRandomTeleport.run_in_stealth = false
 ChaosModifierRandomTeleport.duration = 18
 ChaosModifierRandomTeleport.interval = 3
