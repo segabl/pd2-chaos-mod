@@ -9,7 +9,7 @@ ChaosModifierSimonSays.activities = {
 		name_id = "ChaosModifierSimonSaysJump",
 		inverted_name_id = "ChaosModifierSimonSaysJumpInverted",
 		func = function(player)
-			return player:mover():velocity().z > 0
+			return player:mover() and player:mover():velocity().z > 0
 		end
 	},
 	{
