@@ -1,4 +1,5 @@
 ChaosModifierSimonSays = ChaosModifier.class("ChaosModifierSimonSays")
+ChaosModifierSimonSays.register_name = "ChaosModifierPlayerMovement"
 ChaosModifierSimonSays.activity_time = 3
 ChaosModifierSimonSays.pause_time = 2
 ChaosModifierSimonSays.num_activities = 6

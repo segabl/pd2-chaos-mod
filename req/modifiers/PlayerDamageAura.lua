@@ -1,4 +1,5 @@
 ChaosModifierPlayerDamageAura = ChaosModifier.class("ChaosModifierPlayerDamageAura")
+ChaosModifierPlayerDamageAura.register_name = "ChaosModifierPlayerDistance"
 ChaosModifierPlayerDamageAura.duration = 45
 
 function ChaosModifierPlayerDamageAura:can_trigger()
@@ -42,6 +43,7 @@ function ChaosModifierPlayerDamageAura:update(t, dt)
 				})
 				player_unit:character_damage():_hit_direction(data.unit:movement():m_pos(), data.unit:movement():m_pos() - player_unit:movement():m_pos())
 				self._next_t = t + 0.25
+				break
 			end
 		end
 	end

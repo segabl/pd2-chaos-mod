@@ -29,7 +29,7 @@ function ChaosModifierScreenSaver:update(t, dt)
 		mvector3.set_y(self._dir, -self._dir.y)
 	end
 
-	if (self._image:left() < 8 or self._image:right() > parent_w - 8) and (self._image:top() < 8 or self._image:bottom() > parent_h - 8) then
+	if (self._image:left() < 4 or self._image:right() > parent_w - 4) and (self._image:top() < 4 or self._image:bottom() > parent_h - 4) then
 		if not self._said_yes then
 			self._said_yes = true
 			managers.dialog:_stop_dialog()

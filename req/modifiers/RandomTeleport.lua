@@ -18,6 +18,10 @@ function ChaosModifierRandomTeleport:start()
 
 	self._player_position = mvector3.copy(self._player_unit:movement():m_pos())
 	self._player_nav_seg = self._player_unit:movement():nav_tracker():nav_segment()
+
+	self:pre_hook(PlayerDamage, "damage_fall", function(playerdamage, data)
+		data.height = 0
+	end)
 end
 
 function ChaosModifierRandomTeleport:update(t, dt)

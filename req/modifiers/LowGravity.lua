@@ -1,4 +1,5 @@
 ChaosModifierLowGravity = ChaosModifier.class("ChaosModifierLowGravity")
+ChaosModifierLowGravity.register_name = "ChaosModifierGravity"
 ChaosModifierLowGravity.duration = 40
 ChaosModifierLowGravity.gravity_mul = 0.25
 

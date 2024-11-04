@@ -42,13 +42,13 @@ if not ChaosMod then
 	function ChaosMod:load_modifiers(path)
 		path = path or self.mod_path .. "req/modifiers/"
 		for _, file in pairs(file.GetFiles(path)) do
-			local modifier = blt.vm.dofile(path .. file) ---@type ChaosModifier
+			local modifier = blt.vm.dofile(path .. file)
 			if type(modifier) == "table" then
 				if modifier.enabled then
 					self.modifiers[modifier.class_name] = modifier
 				end
 			else
-				log(path .. file .. " did not return a modifier")
+				log("[Chaos Mod] " .. path .. file .. " did not return a modifier")
 			end
 		end
 	end
@@ -62,7 +62,7 @@ if not ChaosMod then
 		if name then
 			modifier_class = self.modifiers[name]
 			if not modifier_class or not skip_trigger_check and not modifier_class:can_trigger() then
-				log(modifier_class and "Modifier " .. name .. " can't trigger" or "Modifier " .. name .. " does not exist")
+				log("[Chaos Mod] " .. (modifier_class and "Modifier " .. name .. " can't trigger" or "Modifier " .. name .. " does not exist"))
 				return
 			end
 		elseif skip_trigger_check or table.size(self.active_modifiers) < math.round(self.settings.max_active) then
