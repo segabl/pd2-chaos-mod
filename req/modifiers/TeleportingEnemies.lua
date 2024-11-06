@@ -1,6 +1,6 @@
 ChaosModifierTeleportingEnemies = ChaosModifier.class("ChaosModifierTeleportingEnemies")
 ChaosModifierTeleportingEnemies.stealth_safe = false
-ChaosModifierTeleportingEnemies.duration = 30
+ChaosModifierTeleportingEnemies.duration = 45
 
 function ChaosModifierTeleportingEnemies:start()
 	self:pre_hook(CopLogicTravel, "upd_advance", function(data)
