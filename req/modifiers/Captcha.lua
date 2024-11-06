@@ -57,6 +57,10 @@ function ChaosModifierCaptcha:stop()
 	if alive(self._panel) then
 		self._panel:parent():remove(self._panel)
 	end
+
+	if not self._completed and self._expired then
+		managers.player:set_player_state("incapacitated")
+	end
 end
 
 function ChaosModifierCaptcha:setup_gui()

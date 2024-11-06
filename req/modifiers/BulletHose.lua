@@ -1,4 +1,5 @@
 ChaosModifierBulletHose = ChaosModifier.class("ChaosModifierBulletHose")
+ChaosModifierBulletHose.register_name = "ChaosModifierPlayerReload"
 ChaosModifierBulletHose.duration = 30
 
 function ChaosModifierBulletHose:start()

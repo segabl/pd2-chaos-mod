@@ -1,5 +1,5 @@
 ChaosModifierEmptyReloadOnly = ChaosModifier.class("ChaosModifierEmptyReloadOnly")
-ChaosModifierEmptyReloadOnly.register_name = "PlayerReload"
+ChaosModifierEmptyReloadOnly.register_name = "ChaosModifierPlayerReload"
 ChaosModifierEmptyReloadOnly.duration = 30
 
 function ChaosModifierEmptyReloadOnly:start()
