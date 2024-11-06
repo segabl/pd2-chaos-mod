@@ -1,5 +1,5 @@
 ChaosModifierFlashBurst = ChaosModifier.class("ChaosModifierFlashBurst")
-ChaosModifierFlashBurst.run_in_stealth = false
+ChaosModifierFlashBurst.stealth_safe = false
 ChaosModifierFlashBurst.run_as_client = false
 
 function ChaosModifierFlashBurst:start()

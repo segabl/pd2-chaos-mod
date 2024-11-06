@@ -1,6 +1,6 @@
 ChaosModifierWinters = ChaosModifier.class("ChaosModifierWinters")
 ChaosModifierWinters.run_as_client = false
-ChaosModifierWinters.run_in_stealth = false
+ChaosModifierWinters.loud_only = false
 ChaosModifierWinters.duration = -1
 
 function ChaosModifierWinters:can_trigger()

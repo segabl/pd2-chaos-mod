@@ -1,6 +1,6 @@
 ChaosModifierRocketStrike = ChaosModifier.class("ChaosModifierRocketStrike")
 ChaosModifierRocketStrike.run_as_client = false
-ChaosModifierRocketStrike.run_in_stealth = false
+ChaosModifierRocketStrike.stealth_safe = false
 ChaosModifierRocketStrike.duration = 45
 
 function ChaosModifierRocketStrike:can_trigger()

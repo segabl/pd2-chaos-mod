@@ -1,5 +1,5 @@
 ChaosModifierTruce = ChaosModifier.class("ChaosModifierTruce")
-ChaosModifierTruce.run_in_stealth = false
+ChaosModifierTruce.loud_only = true
 ChaosModifierTruce.duration = 20
 
 function ChaosModifierTruce:start()

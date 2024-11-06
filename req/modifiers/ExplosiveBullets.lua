@@ -1,6 +1,6 @@
 ChaosModifierExplosiveBullets = ChaosModifier.class("ChaosModifierExplosiveBullets")
 ChaosModifierExplosiveBullets.register_name = "ChaosModifierBulletChange"
-ChaosModifierExplosiveBullets.run_in_stealth = false
+ChaosModifierExplosiveBullets.stealth_safe = false
 ChaosModifierExplosiveBullets.duration = 30
 
 function ChaosModifierExplosiveBullets:start()

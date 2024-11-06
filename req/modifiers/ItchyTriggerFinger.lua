@@ -1,4 +1,5 @@
 ChaosModifierItchyTriggerFinger = ChaosModifier.class("ChaosModifierItchyTriggerFinger")
+ChaosModifierItchyTriggerFinger.stealth_safe = false
 ChaosModifierItchyTriggerFinger.duration = 40
 
 function ChaosModifierItchyTriggerFinger:start()

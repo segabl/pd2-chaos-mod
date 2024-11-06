@@ -1,4 +1,5 @@
 ChaosModifierHealthArmorLink = ChaosModifier.class("ChaosModifierHealthArmorLink")
+ChaosModifierHealthArmorLink.loud_only = true
 ChaosModifierHealthArmorLink.duration = 90
 
 function ChaosModifierHealthArmorLink:can_trigger()

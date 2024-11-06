@@ -1,5 +1,5 @@
 ChaosModifierGasGrenades = ChaosModifier.class("ChaosModifierGasGrenades")
-ChaosModifierGasGrenades.run_in_stealth = false
+ChaosModifierGasGrenades.stealth_safe = false
 ChaosModifierGasGrenades.run_as_client = false
 ChaosModifierGasGrenades.duration = 45
 

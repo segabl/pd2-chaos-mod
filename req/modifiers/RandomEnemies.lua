@@ -1,7 +1,7 @@
 ChaosModifierRandomEnemies = ChaosModifier.class("ChaosModifierRandomEnemies")
 ChaosModifierRandomEnemies.register_name = "ChaosModifierUnitCategories"
 ChaosModifierRandomEnemies.run_as_client = false
-ChaosModifierRandomEnemies.run_in_stealth = false
+ChaosModifierRandomEnemies.loud_only = true
 ChaosModifierRandomEnemies.color = "enemy_change"
 ChaosModifierRandomEnemies.duration = 60
 

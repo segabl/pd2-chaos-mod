@@ -1,6 +1,6 @@
 ChaosModifierNinjaDodge = ChaosModifier.class("ChaosModifierNinjaDodge")
 ChaosModifierNinjaDodge.run_as_client = false
-ChaosModifierNinjaDodge.run_in_stealth = false
+ChaosModifierNinjaDodge.loud_only = true
 ChaosModifierNinjaDodge.duration = 120
 ChaosModifierNinjaDodge.dodge_preset = {
 	speed = 1.6,

@@ -1,4 +1,5 @@
 ChaosModifierTase = ChaosModifier.class("ChaosModifierTase")
+ChaosModifierTase.stealth_safe = false
 
 function ChaosModifierTase:start()
 	local player = managers.player:local_player()

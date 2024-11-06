@@ -1,5 +1,5 @@
 ChaosModifierTeleportingEnemies = ChaosModifier.class("ChaosModifierTeleportingEnemies")
-ChaosModifierTeleportingEnemies.run_in_stealth = false
+ChaosModifierTeleportingEnemies.stealth_safe = false
 ChaosModifierTeleportingEnemies.duration = 30
 
 function ChaosModifierTeleportingEnemies:start()

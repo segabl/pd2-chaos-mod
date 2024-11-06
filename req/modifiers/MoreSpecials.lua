@@ -1,7 +1,7 @@
 ChaosModifierMoreSpecials = ChaosModifier.class("ChaosModifierMoreSpecials")
 ChaosModifierMoreSpecials.register_name = "ChaosModifierUnitCategories"
 ChaosModifierMoreSpecials.run_as_client = false
-ChaosModifierMoreSpecials.run_in_stealth = false
+ChaosModifierMoreSpecials.loud_only = true
 ChaosModifierMoreSpecials.color = "enemy_change"
 ChaosModifierMoreSpecials.duration = 90
 

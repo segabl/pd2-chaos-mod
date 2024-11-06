@@ -1,6 +1,6 @@
 ChaosModifierChargingCloakers = ChaosModifier.class("ChaosModifierChargingCloakers")
 ChaosModifierChargingCloakers.run_as_client = false
-ChaosModifierChargingCloakers.run_in_stealth = false
+ChaosModifierChargingCloakers.stealth_safe = false
 ChaosModifierChargingCloakers.duration = 30
 
 function ChaosModifierChargingCloakers:can_trigger()

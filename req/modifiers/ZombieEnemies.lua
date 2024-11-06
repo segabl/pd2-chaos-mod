@@ -1,5 +1,6 @@
 ChaosModifierZombieEnemies = ChaosModifier.class("ChaosModifierZombieEnemies")
 ChaosModifierZombieEnemies.run_as_client = false
+ChaosModifierZombieEnemies.stealth_safe = false
 ChaosModifierZombieEnemies.duration = 45
 
 function ChaosModifierZombieEnemies:start()

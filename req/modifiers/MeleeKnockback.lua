@@ -1,5 +1,5 @@
 ChaosModifierMeleeKnockback = ChaosModifier.class("ChaosModifierMeleeKnockback")
-ChaosModifierMeleeKnockback.run_in_stealth = false
+ChaosModifierMeleeKnockback.loud_only = true
 ChaosModifierMeleeKnockback.duration = 60
 
 function ChaosModifierMeleeKnockback:start()

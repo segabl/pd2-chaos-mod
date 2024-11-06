@@ -1,5 +1,5 @@
 ChaosModifierVampireMode = ChaosModifier.class("ChaosModifierVampireMode")
-ChaosModifierVampireMode.run_in_stealth = false
+ChaosModifierVampireMode.stealth_safe = false
 ChaosModifierVampireMode.duration = 45
 
 function ChaosModifierVampireMode:can_trigger()
@@ -29,7 +29,8 @@ function ChaosModifierVampireMode:update(t, dt)
 	local player_unit = managers.player:local_player()
 	if alive(player_unit) then
 		local char_dmg = player_unit:character_damage()
-		char_dmg:change_health(-char_dmg:_max_health() * 0.025)
+		char_dmg:change_health(-char_dmg:_max_health() * char_dmg._max_health_reduction * 0.025)
+		char_dmg:_check_bleed_out()
 	end
 end
 

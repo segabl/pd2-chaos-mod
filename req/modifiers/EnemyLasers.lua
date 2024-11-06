@@ -1,5 +1,5 @@
 ChaosModifierEnemyLasers = ChaosModifier.class("ChaosModifierEnemyLasers")
-ChaosModifierEnemyLasers.run_in_stealth = false
+ChaosModifierEnemyLasers.loud_only = true
 ChaosModifierEnemyLasers.duration = 60
 
 function ChaosModifierEnemyLasers:set_laser_enabled(unit, enabled)

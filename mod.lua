@@ -53,6 +53,30 @@ if not ChaosMod then
 		end
 	end
 
+	function ChaosMod:can_modifier_trigger(modifier, skip_trigger_check)
+		if self.settings.disabled_modifiers[modifier.class_name] then
+			return false
+		end
+
+		if self.active_modifiers[modifier.register_name or modifier.class_name] then
+			return false
+		end
+
+		if not skip_trigger_check and not modifier:can_trigger() then
+			return false
+		end
+
+		if managers.groupai:state():enemy_weapons_hot() then
+			return true
+		end
+
+		if modifier.loud_only then
+			return false
+		end
+
+		return self.settings.stealth_enabled == 3 or self.settings.stealth_enabled == 2 and modifier.stealth_safe
+	end
+
 	function ChaosMod:activate_modifier(name, seed, skip_trigger_check)
 		if not Utils:IsInHeist() then
 			return
@@ -67,13 +91,9 @@ if not ChaosMod then
 			end
 		elseif skip_trigger_check or table.size(self.active_modifiers) < math.round(self.settings.max_active) then
 			local selector = WeightedSelector:new()
-			local stealth_enabled = self.settings.stealth_enabled
-			for class_name, modifier in pairs(self.modifiers) do
-				local register_name = modifier.register_name or class_name
-				if not self.settings.disabled_modifiers[class_name] and not self.active_modifiers[register_name] and (skip_trigger_check or modifier:can_trigger()) then
-					if stealth_enabled == 3 or stealth_enabled == 2 and modifier.run_in_stealth or managers.groupai:state():enemy_weapons_hot() then
-						selector:add(modifier, modifier.weight * modifier.weight_mul)
-					end
+			for _, modifier in pairs(self.modifiers) do
+				if self:can_modifier_trigger(modifier, skip_trigger_check) then
+					selector:add(modifier, modifier.weight * modifier.weight_mul)
 				end
 			end
 

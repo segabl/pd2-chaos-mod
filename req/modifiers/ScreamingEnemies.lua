@@ -1,5 +1,4 @@
 ChaosModifierScreamingEnemies = ChaosModifier.class("ChaosModifierScreamingEnemies")
-ChaosModifierScreamingEnemies.run_as_client = false
 ChaosModifierScreamingEnemies.duration = 45
 
 function ChaosModifierScreamingEnemies:update(t, dt)
@@ -16,7 +15,7 @@ function ChaosModifierScreamingEnemies:update(t, dt)
 
 	local enemy = table.random(enemies)
 	if enemy then
-		enemy:sound():say("burndeath", true)
+		enemy:sound():say("burndeath")
 		self._next_t = t + 0.2
 	end
 end

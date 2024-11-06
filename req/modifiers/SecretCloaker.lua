@@ -1,6 +1,6 @@
 ChaosModifierSecretCloaker = ChaosModifier.class("ChaosModifierSecretCloaker")
 ChaosModifierSecretCloaker.run_as_client = false
-ChaosModifierSecretCloaker.run_in_stealth = false
+ChaosModifierSecretCloaker.loud_only = true
 ChaosModifierSecretCloaker.color = "enemy_change"
 ChaosModifierSecretCloaker.duration = 90
 
