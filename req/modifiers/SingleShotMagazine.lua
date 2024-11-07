@@ -4,7 +4,10 @@ ChaosModifierSingleShotMagazine.duration = 20
 function ChaosModifierSingleShotMagazine:start()
 	local set_ammo_remaining_in_clip_original = NewRaycastWeaponBase.set_ammo_remaining_in_clip
 	self:override(NewRaycastWeaponBase, "set_ammo_remaining_in_clip", function(weaponbase, ammo_remaining_in_clip, ...)
-		set_ammo_remaining_in_clip_original(weaponbase, ammo_remaining_in_clip < weaponbase:get_ammo_remaining_in_clip() and 0 or ammo_remaining_in_clip, ...)
+		if not weaponbase:is_npc() and ammo_remaining_in_clip < (weaponbase:get_ammo_remaining_in_clip() or 0) then
+			ammo_remaining_in_clip = 0
+		end
+		return set_ammo_remaining_in_clip_original(weaponbase, ammo_remaining_in_clip, ...)
 	end)
 
 	local fire_original = NewRaycastWeaponBase.fire

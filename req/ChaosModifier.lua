@@ -7,6 +7,7 @@ ChaosModifier.run_as_client = true
 ChaosModifier.stealth_safe = true
 ChaosModifier.loud_only = false
 ChaosModifier.duration = 0
+ChaosModifier.fixed_duration = false
 ChaosModifier.weight_mul = 1
 ChaosModifier.activation_sound = "Play_star_hit"
 ChaosModifier.enabled = true
