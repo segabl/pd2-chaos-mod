@@ -15,9 +15,13 @@ function ChaosModifierPlayerGrouping:update(t, dt)
 	local player_unit = managers.player:local_player()
 
 	for u_key, light in pairs(self._lights) do
-		if not criminals[u_key] and alive(light) then
-			World:delete_light(light)
-			self._lights[u_key] = nil
+		if alive(light) then
+			if criminals[u_key] then
+				light:set_multiplier(25 + 10 * math.sin(t * 90))
+			else
+				World:delete_light(light)
+				self._lights[u_key] = nil
+			end
 		end
 	end
 
@@ -28,7 +32,6 @@ function ChaosModifierPlayerGrouping:update(t, dt)
 			light:set_near_range(195)
 			light:set_far_range(625)
 			light:set_color(Vector3(0, 1, 0))
-			light:set_multiplier(100)
 			light:link(data.unit:orientation_object())
 			light:set_local_position(Vector3(0, 0, 200))
 			self._lights[u_key] = light
