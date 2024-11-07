@@ -67,6 +67,7 @@
 	"ChaosModifierKillQuotaProgress": "$AMOUNT; / $TOTAL;",
 	"ChaosModifierLightMultiplier": "Overexposed",
 	"ChaosModifierLimitFps": "Console Experience",
+	"ChaosModifierLongerModifiers": "Longer Modifiers",
 	"ChaosModifierLowGravity": "Lunar Expedition",
 	"ChaosModifierMarshals": "Oops, all Marshals",
 	"ChaosModifierMedics": "Ibuprofen in the House",
