@@ -22,10 +22,27 @@ function ChaosModifierInterruptInteractions:start()
 			playerstate._ext_camera:play_redirect(playerstate:get_animation("stop_running"))
 
 			playerstate._unit:sound():say(math.random() < 0.5 and "g29" or "g60", true)
+		elseif playerstate._moving and math.random() < (playerstate:running() and 0.7 or 0.2) then
+			self._next_t = t + math.rand(4, 8)
+
+			self._saved_health = playerstate._unit:character_damage():get_real_health()
+			managers.player:set_player_state("incapacitated")
+
+			self:queue("revive", 1)
+
+			playerstate._unit:sound():say(math.random() < 0.5 and "g29" or "g60", true)
 		else
 			self._next_t = t + math.rand(2, 4)
 		end
 	end)
+end
+
+function ChaosModifierInterruptInteractions:revive()
+	local player_unit = managers.player:local_player()
+	if alive(player_unit) then
+		managers.player:set_player_state("standard")
+		player_unit:character_damage():set_health(self._saved_health)
+	end
 end
 
 return ChaosModifierInterruptInteractions
