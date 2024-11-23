@@ -50,9 +50,24 @@ function ChaosModifierTruce:start()
 		input.btn_primary_attack_state = false
 		input.btn_primary_attack_release = false
 	end)
+
+	self:override(GroupAIStateBesiege, "_chk_group_use_flash_grenade", function()end)
+	self:override(GroupAIStateBesiege, "_chk_group_use_smoke_grenade", function()end)
+	self:override(GroupAIStateBesiege, "_chk_group_use_grenade", function()end)
+
+	SoundDevice:set_rtpc("option_music_volume", managers.user:get_setting("music_volume"))
 end
 
 function ChaosModifierTruce:update(t, dt)
+	local vol = 0
+	if t < self._activation_t + 0.5 then
+		vol = math.map_range(t, self._activation_t, self._activation_t + 0.5, managers.user:get_setting("music_volume"), 0)
+	elseif t > self._activation_t + self.duration - 0.5 then
+		vol = math.map_range(t, self._activation_t + self.duration - 0.5, self._activation_t + self.duration, 0, managers.user:get_setting("music_volume"))
+	end
+	SoundDevice:set_rtpc("option_music_volume", vol)
+	XAudio._base_gains.music = vol / 100
+
 	if self._next_t and self._next_t > t then
 		return
 	end
@@ -69,6 +84,12 @@ function ChaosModifierTruce:update(t, dt)
 		enemy:sound():say("a06")
 		self._next_t = t + 1 / math.ceil(#enemies * 0.1)
 	end
+end
+
+function ChaosModifierTruce:stop()
+	local vol = managers.user:get_setting("music_volume")
+	SoundDevice:set_rtpc("option_music_volume", vol)
+	XAudio._base_gains.music = vol / 100
 end
 
 return ChaosModifierTruce
