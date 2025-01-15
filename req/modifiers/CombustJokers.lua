@@ -7,10 +7,12 @@ end
 
 function ChaosModifierCombustJokers:start()
 	for _, unit in pairs(managers.groupai:state()._converted_police) do
-		managers.explosion:play_sound_and_effects(unit:position(), math.UP, 300, {
-			effect = "effects/payday2/particles/explosions/grenade_incendiary_explosion",
-			sound_event = "white_explosion"
-		})
+		if alive(unit) then
+			managers.explosion:play_sound_and_effects(unit:position(), math.UP, 300, {
+				effect = "effects/payday2/particles/explosions/grenade_incendiary_explosion",
+				sound_event = "white_explosion"
+			})
+		end
 	end
 
 	if Network:is_server() then
