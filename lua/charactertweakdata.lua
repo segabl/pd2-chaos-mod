@@ -1,4 +1,4 @@
-Hooks:PostHook(CharacterTweakData, "init", "init_chaos_mod", function(self)
+local function assign_metatables(self)
 	local char_mt = {
 		__index = function(t, k)
 			if k == "spooc_attack_timeout" or k == "spooc_attack_beating_time" or k == "spooc_sound_events" then
@@ -9,7 +9,7 @@ Hooks:PostHook(CharacterTweakData, "init", "init_chaos_mod", function(self)
 		end
 	}
 	local weapon_mt = {
-		__index = function(t, k) return rawget(t, "is_rifle") end
+		__index = function(t, k) return rawget(self.russian.weapon, k) or rawget(t, "is_rifle") end
 	}
 	local preset_mt = {
 		__index = function(t, k)
@@ -18,12 +18,22 @@ Hooks:PostHook(CharacterTweakData, "init", "init_chaos_mod", function(self)
 			end
 		end
 	}
-	for _, enemy_name in pairs(self._enemy_list) do
-		local enemy = self[enemy_name]
-		setmetatable(enemy, char_mt)
-		setmetatable(enemy.weapon, weapon_mt)
-		for _, preset in pairs(enemy.weapon) do
-			setmetatable(preset, preset_mt)
+	for _, v in pairs(self) do
+		if type(v) == "table" and type(v.weapon) == "table" and type(v.damage) == "table" then
+			setmetatable(v, char_mt)
+			setmetatable(v.weapon, weapon_mt)
+			for _, preset in pairs(v.weapon) do
+				setmetatable(preset, preset_mt)
+			end
 		end
 	end
-end)
+end
+
+Hooks:PostHook(CharacterTweakData, "_set_easy", "_set_easy_chaos_mod", assign_metatables)
+Hooks:PostHook(CharacterTweakData, "_set_normal", "_set_normal_chaos_mod", assign_metatables)
+Hooks:PostHook(CharacterTweakData, "_set_hard", "_set_hard_chaos_mod", assign_metatables)
+Hooks:PostHook(CharacterTweakData, "_set_overkill", "_set_overkill_chaos_mod", assign_metatables)
+Hooks:PostHook(CharacterTweakData, "_set_overkill_145", "_set_overkill_145_chaos_mod", assign_metatables)
+Hooks:PostHook(CharacterTweakData, "_set_easy_wish", "_set_easy_wish_chaos_mod", assign_metatables)
+Hooks:PostHook(CharacterTweakData, "_set_overkill_290", "_set_overkill_290_chaos_mod", assign_metatables)
+Hooks:PostHook(CharacterTweakData, "_set_sm_wish", "_set_sm_wish_chaos_mod", assign_metatables)
