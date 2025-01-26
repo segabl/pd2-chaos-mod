@@ -33,6 +33,7 @@
 	"ChaosModifierColorGrading": "Color Correction",
 	"ChaosModifierCombustJokers": "为美好的小弟献上祝福！",
 	"ChaosModifierConcussionBullets": "震荡打击",
+	"ChaosModifierCopyPlayerWeapons": "Taste your own Medicine",
 	"ChaosModifierCrabPeople": "“横行”霸道",
 	"ChaosModifierDallasMedicBag": "PD玩家最喜欢的笑话",
 	"ChaosModifierElectricBullets": "电能激荡",

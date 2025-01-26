@@ -33,6 +33,7 @@
 	"ChaosModifierColorGrading": "Color Correction",
 	"ChaosModifierCombustJokers": "Spontaneous Combustion",
 	"ChaosModifierConcussionBullets": "Concussive Trauma",
+	"ChaosModifierCopyPlayerWeapons": "Taste your own Medicine",
 	"ChaosModifierCrabPeople": "Crab People",
 	"ChaosModifierDallasMedicBag": "Peak Comedy",
 	"ChaosModifierElectricBullets": "Charged Shots",
