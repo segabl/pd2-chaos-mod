@@ -13,7 +13,7 @@ local function assign_metatables(self)
 	}
 	local preset_mt = {
 		__index = function(t, k)
-			if k == "tase_sphere_cast_radius" or k == "tase_distance" then
+			if k == "tase_sphere_cast_radius" or k == "tase_distance" or k == "aim_delay_tase" then
 				return rawget(self.taser.weapon.is_rifle, k)
 			end
 		end

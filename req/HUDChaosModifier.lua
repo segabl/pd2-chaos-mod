@@ -6,7 +6,8 @@ HUDChaosModifier.colors = {
 	instant = Color(0.5, 1, 1),
 	conditional = Color(1, 0.75, 0.5),
 	enemy_change = Color(0.75, 1, 0.75),
-	player_specific = Color(0.5, 0.75, 1)
+	player_specific = Color(0.5, 0.75, 1),
+	completed = Color(0.5, 0.5, 0.5)
 }
 
 ---@param modifier ChaosModifier
@@ -96,7 +97,7 @@ end
 function HUDChaosModifier:complete(peer_id)
 	if not peer_id then
 		peer_id = managers.network:session():local_peer():id()
-		self._progress:set_color(Color(0.5, 0.5, 0.5))
+		self._progress:set_color(self.colors.completed)
 	end
 
 	if self._completed_panel:child("peer" .. peer_id) then

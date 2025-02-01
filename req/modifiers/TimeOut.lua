@@ -20,13 +20,16 @@ function ChaosModifierTimeOut:pick_player()
 
 	math.randomseed(self._seed)
 	local unit = table.random(units)
+	if not unit then
+		return
+	end
 
 	self:show_text(managers.localization:to_upper_text("ChaosModifierTimeOutPicked", { PLAYER = unit:base():nick_name() }), 3)
 
 	if unit == managers.player:local_player() then
 		self._unit = unit
 	else
-		self._completed = true
+		self._hud_modifier._progress:set_color(HUDChaosModifier.colors.completed)
 	end
 end
 
