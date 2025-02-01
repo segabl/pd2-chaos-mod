@@ -4,17 +4,28 @@ ChaosModifierRubberBullets.duration = 30
 
 function ChaosModifierRubberBullets:start()
 	local hurt_severity = setmetatable({}, {
-		__index = function()
-			return {
-				health_reference = "full",
-				zones = {
-					{
-						moderate = 0.8,
-						heavy = 0.15,
-						explode = 0.05
+		__index = function(t, k)
+			if k == "fire" or k == "poison" then
+				return {
+					health_reference = "full",
+					zones = {
+						{
+							none = 1
+						}
 					}
 				}
-			}
+			else
+				return {
+					health_reference = "full",
+					zones = {
+						{
+							moderate = 0.8,
+							heavy = 0.15,
+							explode = 0.05
+						}
+					}
+				}
+			end
 		end
 	})
 
