@@ -90,6 +90,7 @@
 	"ChaosModifierPortraitMode": "Portrait Mode",
 	"ChaosModifierPulsingFov": "Nausea",
 	"ChaosModifierPushUp": "Pogo Stick",
+	"ChaosModifierQuickTimeEvent": "Quick Time Event",
 	"ChaosModifierRandomCallouts": "Gaslighting",
 	"ChaosModifierRandomEnemies": "Wildcard",
 	"ChaosModifierRandomEnemyWeapons": "Diverse Armament",

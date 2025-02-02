@@ -1,6 +1,6 @@
 ChaosModifierFocusPlayer = ChaosModifier.class("ChaosModifierFocusPlayer")
 ChaosModifierFocusPlayer.color = "player_specific"
-ChaosModifierFocusPlayer.duration = 45
+ChaosModifierFocusPlayer.duration = 60
 
 function ChaosModifierFocusPlayer:can_trigger()
 	return table.size(managers.groupai:state():all_char_criminals()) + table.size(managers.groupai:state():all_converted_enemies()) > 1

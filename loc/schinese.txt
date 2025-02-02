@@ -90,6 +90,7 @@
 	"ChaosModifierPortraitMode": "短视频模式",
 	"ChaosModifierPulsingFov": "Nausea",
 	"ChaosModifierPushUp": "弹跳杆",
+	"ChaosModifierQuickTimeEvent": "Quick Time Event",
 	"ChaosModifierRandomCallouts": "谎报军情",
 	"ChaosModifierRandomEnemies": "Wildcard",
 	"ChaosModifierRandomEnemyWeapons": "武器多样化",
