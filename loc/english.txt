@@ -77,6 +77,7 @@
 	"ChaosModifierMarshals": "Oops, all Marshals",
 	"ChaosModifierMaxModifiers": "Modifier Overload",
 	"ChaosModifierMedics": "Ibuprofen in the House",
+	"ChaosModifierMeleeCuffs": "Restraining Order",
 	"ChaosModifierMeleeKnockback": "Falcon Punch",
 	"ChaosModifierMoreModifiers": "More Modifiers",
 	"ChaosModifierMoreSpecials": "Special Operation",
