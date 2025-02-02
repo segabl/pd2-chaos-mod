@@ -6,6 +6,7 @@ ChaosModifierRandomTeleport.interval = 3
 
 function ChaosModifierRandomTeleport:set_position(pos, force)
 	if pos and alive(self._player_unit) and (force or not self._player_unit:movement():on_zipline()) then
+		managers.player:drop_carry()
 		self._player_unit:warp_to(self._player_unit:rotation(), pos)
 	end
 end
