@@ -75,6 +75,7 @@
 	"ChaosModifierLongerModifiers": "Efeitos Com Duração Maior",
 	"ChaosModifierLowGravity": "Expedição Lunar",
 	"ChaosModifierMarshals": "Oops, todo mundo virou Marshal",
+	"ChaosModifierMaxModifiers": "Sobrecarga de Efeito",
 	"ChaosModifierMedics": "Para-maceta-mol",
 	"ChaosModifierMeleeKnockback": "Falcon Punch",
 	"ChaosModifierMoreModifiers": "Mais Efeitos",

@@ -75,6 +75,7 @@
 	"ChaosModifierLongerModifiers": "Longer Modifiers",
 	"ChaosModifierLowGravity": "月球行走",
 	"ChaosModifierMarshals": "孩子们，我联邦回来恶心你们了",
+	"ChaosModifierMaxModifiers": "Modifier Overload",
 	"ChaosModifierMedics": "布洛芬狂潮",
 	"ChaosModifierMeleeKnockback": "大力水手",
 	"ChaosModifierMoreModifiers": "更多因子",

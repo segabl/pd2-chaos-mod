@@ -75,6 +75,7 @@
 	"ChaosModifierLongerModifiers": "Longer Modifiers",
 	"ChaosModifierLowGravity": "Lunar Expedition",
 	"ChaosModifierMarshals": "Oops, all Marshals",
+	"ChaosModifierMaxModifiers": "Modifier Overload",
 	"ChaosModifierMedics": "Ibuprofen in the House",
 	"ChaosModifierMeleeKnockback": "Falcon Punch",
 	"ChaosModifierMoreModifiers": "More Modifiers",
