@@ -13,6 +13,10 @@ function ChaosModifierSlowAndTanky:start()
 	self:post_hook(PlayerDamage, "_max_health", function()
 		return Hooks:GetReturn() * 2
 	end)
+
+	self:override(PlayerMovement, "on_SPOOCed", function()
+		return "countered"
+	end)
 end
 
 return ChaosModifierSlowAndTanky
