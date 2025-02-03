@@ -155,6 +155,7 @@
 	"ChaosModifierVampireMode": "Vampire Mode",
 	"ChaosModifierWeakArms": "Weak Arms",
 	"ChaosModifierWeaponSwitch": "I can't decide",
+	"ChaosModifierWeaponTrade": "Loadout Mix-Up",
 	"ChaosModifierWinters": "THERE, THE PAYDAY GANG!",
 	"ChaosModifierZombieEnemies": "Vengeful Spirits"
 }

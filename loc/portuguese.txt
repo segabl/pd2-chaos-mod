@@ -155,6 +155,7 @@
 	"ChaosModifierVampireMode": "Modo Vampiro",
 	"ChaosModifierWeakArms": "Braços Fracos",
 	"ChaosModifierWeaponSwitch": "Não Consigo Decidir",
+	"ChaosModifierWeaponTrade": "Loadout Mix-Up",
 	"ChaosModifierWinters": "LÁ, A GANGUE PAYDAY!",
 	"ChaosModifierZombieEnemies": "Espiríto Vingativo"
 }

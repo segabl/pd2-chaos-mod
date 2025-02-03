@@ -155,6 +155,7 @@
 	"ChaosModifierVampireMode": "Vampire Mode",
 	"ChaosModifierWeakArms": "肌无力劫匪",
 	"ChaosModifierWeaponSwitch": "选择困难症",
+	"ChaosModifierWeaponTrade": "Loadout Mix-Up",
 	"ChaosModifierWinters": "在那里，PAYDAY帮！",
 	"ChaosModifierZombieEnemies": "Vengeful Spirits"
 }
