@@ -6,11 +6,27 @@ ChaosModifierRocketStrike.duration = 45
 function ChaosModifierRocketStrike:can_trigger()
 	local check_pos = Vector3()
 	local slot_mask = managers.slot:get_mask("bullet_blank_impact_targets")
+	local checked_areas = {}
 	for _, data in pairs(managers.groupai:state():all_player_criminals()) do
-		mvector3.set(check_pos, data.m_det_pos)
-		mvector3.add_scaled(check_pos, math.UP, 5000)
-		if not World:raycast("ray", data.m_det_pos, check_pos, "slot_mask", slot_mask, "report") then
-			return true
+		local positions = {
+			data.m_det_pos
+		}
+		if not checked_areas[data.area] then
+			checked_areas[data.area] = true
+			table.insert(positions, data.area.pos)
+		end
+		for _, n_area in pairs(data.area.neighbours) do
+			if not checked_areas[n_area] then
+				checked_areas[n_area] = true
+				table.insert(positions, n_area.pos)
+			end
+		end
+		for _, pos in pairs(positions) do
+			mvector3.set(check_pos, pos)
+			mvector3.add_scaled(check_pos, math.UP, 5000)
+			if not World:raycast("ray", pos, check_pos, "slot_mask", slot_mask, "report") then
+				return true
+			end
 		end
 	end
 end
@@ -54,11 +70,9 @@ function ChaosModifierRocketStrike:update(t, dt)
 	managers.navigation:destroy_nav_tracker(check_tracker)
 
 	local pos = table.random(positions)
-	if not pos then
-		return
+	if pos then
+		ProjectileBase.throw_projectile_npc("rocket_frag", pos, math.DOWN)
 	end
-
-	ProjectileBase.throw_projectile_npc("rocket_frag", pos, math.DOWN)
 end
 
 return ChaosModifierRocketStrike
