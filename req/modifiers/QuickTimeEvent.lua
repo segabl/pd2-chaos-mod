@@ -94,12 +94,13 @@ function ChaosModifierQuickTimeEvent:get_sequence_groups(num_events)
 	return group_sizes
 end
 
-function ChaosModifierQuickTimeEvent:start_sequence(playerstate, num_events)
+function ChaosModifierQuickTimeEvent:start_sequence(playerstate)
 	self._sequence = {}
 	self._index = 1
 
 	mvector3.set(self._last_stick_move, playerstate._stick_move)
 
+	local num_events = math.max(2, math.ceil(playerstate._interact_expire_t * 1.5))
 	local offset = self._panel:h() * 0.5 + self._fade_distance
 	local group_sizes = self:get_sequence_groups(num_events)
 	for _ = 1, num_events do
@@ -130,9 +131,10 @@ end
 
 function ChaosModifierQuickTimeEvent:update_sequence(playerstate, t)
 	if not self._sequence then
-		self:start_sequence(playerstate, math.max(3, math.ceil(playerstate._interact_params.timer * 1.5)))
+		self:start_sequence(playerstate)
 	end
 
+	playerstate._interact_expire_t = math.map_range(self._index - 1, 0, #self._sequence, playerstate._interact_params.timer, 0)
 	managers.hud:set_interaction_bar_width(self._index - 1, #self._sequence)
 
 	local current_button = self._sequence[self._index]
