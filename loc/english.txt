@@ -89,6 +89,7 @@
 	"ChaosModifierNoSound": "Silent Movie",
 	"ChaosModifierPlayerDamageAura": "Social Distancing",
 	"ChaosModifierPlayerGrouping": "Co-dependence",
+	"ChaosModifierPlayerSmoke": "Smoke Screen",
 	"ChaosModifierPortraitMode": "Portrait Mode",
 	"ChaosModifierPulsingFov": "Nausea",
 	"ChaosModifierPushUp": "Pogo Stick",

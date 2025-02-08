@@ -89,6 +89,7 @@
 	"ChaosModifierNoSound": "默剧",
 	"ChaosModifierPlayerDamageAura": "社交距离",
 	"ChaosModifierPlayerGrouping": "Co-dependence",
+	"ChaosModifierPlayerSmoke": "Smoke Screen",
 	"ChaosModifierPortraitMode": "短视频模式",
 	"ChaosModifierPulsingFov": "Nausea",
 	"ChaosModifierPushUp": "弹跳杆",

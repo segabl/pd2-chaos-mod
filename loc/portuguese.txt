@@ -89,6 +89,7 @@
 	"ChaosModifierNoSound": "Filme mudo",
 	"ChaosModifierPlayerDamageAura": "Fobia Social",
 	"ChaosModifierPlayerGrouping": "Dependência",
+	"ChaosModifierPlayerSmoke": "Smoke Screen",
 	"ChaosModifierPortraitMode": "Modo Retrato",
 	"ChaosModifierPulsingFov": "Tontura",
 	"ChaosModifierPushUp": "Pula, pu-pula, filha da pula!",
