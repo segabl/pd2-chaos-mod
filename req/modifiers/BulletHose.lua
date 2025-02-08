@@ -4,7 +4,7 @@ ChaosModifierBulletHose.duration = 30
 
 function ChaosModifierBulletHose:start()
 	for i, spread in pairs(tweak_data.weapon.stats.spread) do
-		self:override(tweak_data.weapon.stats.spread, i, 2 + spread * 4)
+		self:override(tweak_data.weapon.stats.spread, i, 2 + spread * 2)
 	end
 
 	self:post_hook(NewRaycastWeaponBase, "weapon_fire_rate", function(weaponbase)
