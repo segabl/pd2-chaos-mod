@@ -85,6 +85,7 @@
 	"ChaosModifierNoHeadshots": "Protective Headgear",
 	"ChaosModifierNoJumping": "Never skip leg day",
 	"ChaosModifierNoMoving": "Stop right there criminal scum!",
+	"ChaosModifierNormalVisualization": "Everything is normal",
 	"ChaosModifierNoSleep": "Sleep Deprived",
 	"ChaosModifierNoSound": "Silent Movie",
 	"ChaosModifierPlayerDamageAura": "Social Distancing",

@@ -85,6 +85,7 @@
 	"ChaosModifierNoHeadshots": "Capacete de Segurança",
 	"ChaosModifierNoJumping": "Nunca falte no dia da perna",
 	"ChaosModifierNoMoving": "PARE!",
+	"ChaosModifierNormalVisualization": "Everything is normal",
 	"ChaosModifierNoSleep": "Horário de Sono Todo Quebrado",
 	"ChaosModifierNoSound": "Filme mudo",
 	"ChaosModifierPlayerDamageAura": "Fobia Social",

@@ -85,6 +85,7 @@
 	"ChaosModifierNoHeadshots": "防弹头盔",
 	"ChaosModifierNoJumping": "断腿日",
 	"ChaosModifierNoMoving": "不准动！",
+	"ChaosModifierNormalVisualization": "Everything is normal",
 	"ChaosModifierNoSleep": "你这个年纪怎么睡得着的？",
 	"ChaosModifierNoSound": "默剧",
 	"ChaosModifierPlayerDamageAura": "社交距离",
