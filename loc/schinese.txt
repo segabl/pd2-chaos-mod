@@ -81,6 +81,7 @@
 	"ChaosModifierMeleeKnockback": "大力水手",
 	"ChaosModifierMoreModifiers": "更多因子",
 	"ChaosModifierMoreSpecials": "Special Operation",
+	"ChaosModifierMoveHud": "UI Drift",
 	"ChaosModifierNinjaDodge": "对面全是浪人",
 	"ChaosModifierNoHeadshots": "防弹头盔",
 	"ChaosModifierNoJumping": "断腿日",

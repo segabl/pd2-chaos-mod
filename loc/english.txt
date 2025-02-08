@@ -81,6 +81,7 @@
 	"ChaosModifierMeleeKnockback": "Falcon Punch",
 	"ChaosModifierMoreModifiers": "More Modifiers",
 	"ChaosModifierMoreSpecials": "Special Operation",
+	"ChaosModifierMoveHud": "UI Drift",
 	"ChaosModifierNinjaDodge": "Seems Dodgy",
 	"ChaosModifierNoHeadshots": "Protective Headgear",
 	"ChaosModifierNoJumping": "Never skip leg day",

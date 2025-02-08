@@ -81,6 +81,7 @@
 	"ChaosModifierMeleeKnockback": "Falcon Punch",
 	"ChaosModifierMoreModifiers": "Mais Efeitos",
 	"ChaosModifierMoreSpecials": "Operação Especial",
+	"ChaosModifierMoveHud": "UI Drift",
 	"ChaosModifierNinjaDodge": "Esquiva, esquivo",
 	"ChaosModifierNoHeadshots": "Capacete de Segurança",
 	"ChaosModifierNoJumping": "Nunca falte no dia da perna",
