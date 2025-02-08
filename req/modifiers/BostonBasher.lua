@@ -22,6 +22,8 @@ function ChaosModifierBostonBasher:start()
 			weaponbase._setup.user_unit:character_damage():delay_damage(scaled_damage, 4)
 		end
 	end)
+
+	self:show_text(managers.localization:to_upper_text("ChaosModifierBostonBasher"), 2, true)
 end
 
 return ChaosModifierBostonBasher
