@@ -3,7 +3,7 @@ ChaosModifierJulesify.run_as_client = false
 ChaosModifierJulesify.loud_only = true
 ChaosModifierJulesify.duration = 120
 ChaosModifierJulesify.weight_mul = 0.5
-ChaosModifierJulesify.enabled = (StreamHeist or SuperSeriousShooter or Eclipse or restoration or deathvox) and true
+ChaosModifierJulesify.enabled = (StreamHeist or SuperSeriousShooter or Eclipse or restoration or deathvox) and true or false
 ChaosModifierJulesify.allowed_poses = { crouch = true }
 
 function ChaosModifierJulesify:start()
