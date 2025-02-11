@@ -29,6 +29,7 @@ function ChaosModifier:init(seed)
 	self._activation_t = ChaosMod:time()
 	self._seed = seed or math.random(1000000)
 	self._completed_peers = {}
+	self._hud_modifier = HUDChaosModifier:new(self)
 
 	if Network:is_server() then
 		NetworkHelper:SendToPeers("ActivateChaosModifier", self.class_name .. "|" .. self._seed)
@@ -41,8 +42,6 @@ function ChaosModifier:init(seed)
 	if self.activation_sound then
 		managers.hud:post_event(self.activation_sound)
 	end
-
-	self._hud_modifier = HUDChaosModifier:new(self)
 end
 
 function ChaosModifier:destroy()
