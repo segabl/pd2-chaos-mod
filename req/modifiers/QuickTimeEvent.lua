@@ -41,12 +41,9 @@ function ChaosModifierQuickTimeEvent:start()
 		y = self._panel_bg:h() * 0.5 - self._size * 0.55
 	})
 
-	local _chk_tap_to_interact_enable = PlayerStandard._chk_tap_to_interact_enable
-	self:override(PlayerStandard, "_chk_tap_to_interact_enable", function(playerstate, ...)
-		if playerstate._interact_expire_t then
-			playerstate:_check_tap_to_interact_tap(...)
-		else
-			_chk_tap_to_interact_enable(playerstate, ...)
+	self:pre_hook(PlayerStandard, "_chk_tap_to_interact_enable", function(playerstate, t, timer, interact_object)
+		if interact_object then
+			self:set_player_state_settings(playerstate, true)
 		end
 	end)
 
@@ -60,6 +57,7 @@ function ChaosModifierQuickTimeEvent:start()
 		if playerstate._interact_expire_t then
 			self:stop_sequence(playerstate, complete)
 		end
+		self:set_player_state_settings(playerstate, false)
 	end)
 
 	self:override(PlayerStandard, "_update_interaction_timers", function(playerstate, t)
@@ -234,9 +232,20 @@ function ChaosModifierQuickTimeEvent:animate_fail(o)
 	o:parent():remove(o)
 end
 
+function ChaosModifierQuickTimeEvent:set_player_state_settings(playerstate, enable)
+	playerstate._setting_tap_to_interact = enable and "toggle_hold" or managers.user:get_setting("tap_to_interact")
+	playerstate._setting_tap_to_interact_time = enable and 0 or managers.user:get_setting("tap_to_interact_time")
+	playerstate._setting_tap_to_interact_show_text = not enable and managers.user:get_setting("tap_to_interact_show_text") or nil
+end
+
 function ChaosModifierQuickTimeEvent:stop()
 	if alive(self._panel) then
 		self._panel:parent():remove(self._panel)
+	end
+
+	local player_unit = managers.player:local_player()
+	if alive(player_unit) then
+		self:set_player_state_settings(player_unit:movement():current_state(), false)
 	end
 end
 
