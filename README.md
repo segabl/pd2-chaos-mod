@@ -1,14 +1,18 @@
 # Chaos Mod
 
-Enables random modifiers during gameplay
+Ever wished your heists were more chaotic and/or painful? Then this is the mod for you!
+While having Chaos Mod active, random modifiers will activate during gameplay which can range from being a slight inconvenience to completely game-changing.
+With over 100 different modifiers you are sure to have plenty of exciting combinations and interesting moments.
 
-## Modifiers
+**NOTE:** This mod locks your matchmaking and you will only be able to play with other people that are also using it. All modifiers will be synced to and affect other players in your lobby.
 
-**A Deeper Insight**
+## List of Modifiers
+
+**A Deeper Insight**  
 Draws hitboxes of objects in a certain radius around the player
 
 **Aim for the Head**  
-Players can only deal damage with headshots
+Enemies only take damage from headshots
 
 **Asset Redistribution**  
 Switches positions of assets like ammo bags and medic bags
@@ -35,13 +39,13 @@ Gives players auto aim onto a randomly chosen enemy
 Slows down game time
 
 **Captcha**  
-Players need to solve a captcha to continue playing, failing to do so downs them
+Players need to solve a captcha in time to continue playing, failing to do so downs them
 
 **Charged Shots**  
-All weapon shots will shock enemies and players for a short duration
+All weapon shots electrocute enemies and players for a short duration
 
 **Cheap Internet**  
-Resets player positions back occasionally
+Resets player positions back a short distance occasionally
 
 **Check your back**  
 Spawns charging Cloakers that target random players
@@ -50,7 +54,7 @@ Spawns charging Cloakers that target random players
 Makes civilians follow random players
 
 **Clumsy**  
-Randomly interrupts interactions and temporarily downs players
+Randomly interrupts interactions and trips players
 
 **Co-dependence**  
 Players need to stay within a certain radius of each other or they receive damage
@@ -59,10 +63,10 @@ Players need to stay within a certain radius of each other or they receive damag
 Increases enemy movement speed
 
 **Color Correction**  
-Applies random color filters
+Applies random color grading
 
 **Concussive Trauma**  
-All weapon shots will concuss enemies and players for a short duration
+All weapon shots have a chance to concuss enemies and players
 
 **Console Experience**  
 Caps frame rate at 25fps
@@ -85,7 +89,7 @@ Players can only reload their weapon when it's compeltely empty
 **ENHANCE!**  
 Increases aim down sight zoom
 
-**Everything is normal**  
+**Everything is Normal**  
 Changes the render mode to render normals
 
 **Falcon Punch**  
@@ -98,19 +102,19 @@ Plays random enemy voicelines, sound effects and player downed lines
 Changes gravity randomly in different map segments
 
 **Hack and Slash**  
-Players can only attack with melee
+Players take reduced damage while only being able to attack with melee
 
 **Healers never die!**  
-Makes Medics invulnerable but never attack
+Makes Medics invulnerable but passive
 
 **Heavy Munitions**  
 Changes all weapon shots to explosive rounds
 
 **Heavyweights**  
-All moving characters shake the screen and play heavy footstep noises
+All moving characters play heavy footstep noises and shake the screen when close to the player
 
 **Hot Potato**  
-Hurts players that carry bags
+Periodically deals damage to players while they carry bags
 
 **Hot Specials in your Area**  
 Spawns pools of fire around every special enemy
@@ -131,7 +135,7 @@ Changes spawngroups, enemy amounts and behavior to represent the state of the ga
 Activates Sniper lasers on all enemies
 
 **Leaky Pockets**  
-Drains ammo from players weapons over time
+Drains ammo from player weapons over time
 
 **Loadout Mix-Up**  
 Switches weapons between players randomly
@@ -152,7 +156,7 @@ Every shot will empty the entire magazine and deal damage according to the amoun
 Breaks all vehicles
 
 **Meet your Quota**  
-Players need to kill a certain amount of enemies, failing to do so downs them
+Players need to kill a certain amount of enemies in time, failing to do so downs them
 
 **Modifier Overload**  
 Instantly activates the maximum amount of allowed modifiers
@@ -161,13 +165,13 @@ Instantly activates the maximum amount of allowed modifiers
 Decreases the cooldown between modifiers
 
 **Nausea**  
-Warps the screen in and out
+Warps the screen
 
 **Never skip leg day**  
 Players can't jump
 
 **No Lead**  
-Empties the players magazine
+Empties the player's magazine
 
 **Oops, all Marshals**  
 Replaces all non-special enemy spawns with Marshals
@@ -176,16 +180,16 @@ Replaces all non-special enemy spawns with Marshals
 Increases the intensity of all light sources
 
 **Pain Split**  
-Health and armor are linked between all players
+Health and armor percentages are shared between all players
 
 **PAYDAY Pro**  
 Increases the field of view
 
 **Peak Comedy**  
-Replaces all heisters voices and voicelines with Dallas' medic bag lines
+Replaces all heister voices and voicelines with Dallas' medic bag lines
 
 **Pinball**  
-Randomly pushes players
+Pushes players in random directions
 
 **Pitch Perfect**  
 Changes the pitch of all sounds
@@ -224,7 +228,7 @@ Replaces all non-special enemy spawns with Shields
 All weapon shots deal minimal damage but flinch players and enemies
 
 **Screensaver**  
-Places a moving logo on screen
+Places a moving logo on screen, will it ever hit the corner?
 
 **Seasick**  
 Tilts the view left and right
@@ -236,19 +240,19 @@ Randomly selects enemies to spawn with cloaker logic
 Makes enemies dodge more often
 
 **Shell Shock**  
-Spawns rocket strikes
+Spawns rocket airstrikes
 
 **Shock Therapy**  
 Replaces all non-special enemy spawns with Tasers
 
 **Shocking**  
-Shocks all heisters for a short duration
+Electrocutes all heisters for a short duration
 
 **Silent Movie**  
 Turns sound effect volume to zero
 
 **Simon Says**  
-Starts a game of Simon Says, players failing to follow instructions will be shocked
+Starts a game of Simon Says, players failing to follow instructions will be electrocuted
 
 **Sing Along**  
 Starts a song and displays lyrics to sing along
@@ -266,7 +270,7 @@ Getting close to other heisters deals damage to players
 Increases the amount of special enemies
 
 **Special Upgrade**  
-Changes all special enemies to Bulldozers while keeping their original special ability
+Changes all special enemies to Bulldozers while keeping their original behaviour
 
 **Speedrun**  
 Speeds up game time
