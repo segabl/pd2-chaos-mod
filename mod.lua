@@ -55,26 +55,26 @@ if not ChaosMod then
 
 	function ChaosMod:can_modifier_trigger(modifier, skip_trigger_check)
 		if self.settings.disabled_modifiers[modifier.class_name] then
-			return false
+			return false, false
 		end
 
 		if self.active_modifiers[modifier.register_name or modifier.class_name] then
-			return false
+			return false, false
 		end
 
 		if not skip_trigger_check and not modifier:can_trigger() then
-			return false
+			return false, true
 		end
 
 		if managers.groupai:state():enemy_weapons_hot() then
-			return true
+			return true, true
 		end
 
 		if modifier.loud_only then
-			return false
+			return false, true
 		end
 
-		return self.settings.stealth_enabled == 3 or self.settings.stealth_enabled == 2 and modifier.stealth_safe
+		return self.settings.stealth_enabled == 3 or self.settings.stealth_enabled == 2 and modifier.stealth_safe, true
 	end
 
 	function ChaosMod:activate_modifier(name, seed, skip_trigger_check)
@@ -91,9 +91,14 @@ if not ChaosMod then
 			end
 		elseif skip_trigger_check or table.size(self.active_modifiers) < math.round(self.settings.max_active) then
 			local selector = WeightedSelector:new()
+			local update_weight_modifiers = {}
 			for _, modifier in pairs(self.modifiers) do
-				if self:can_modifier_trigger(modifier, skip_trigger_check) then
+				local can_trigger, update_weight = self:can_modifier_trigger(modifier, skip_trigger_check)
+				if can_trigger then
 					selector:add(modifier, modifier.weight * modifier.weight_mul)
+				end
+				if update_weight then
+					table.insert(update_weight_modifiers, modifier)
 				end
 			end
 
@@ -103,8 +108,8 @@ if not ChaosMod then
 			end
 
 			local new_weight = modifier_class.weight * math.map_range_clamped(self.settings.prevent_repeat, 0, 1, 1, 0)
-			local to_add = (modifier_class.weight - new_weight) / (table.size(self.modifiers) - 1)
-			for _, modifier in pairs(self.modifiers) do
+			local to_add = (modifier_class.weight - new_weight) / (#update_weight_modifiers - 1)
+			for _, modifier in pairs(update_weight_modifiers) do
 				modifier.weight = modifier == modifier_class and new_weight or modifier.weight + to_add
 			end
 		else
