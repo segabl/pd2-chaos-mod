@@ -40,6 +40,14 @@ function ChaosModifierInvincibleMedics:start()
 		return
 	end
 
+	local allowed_poses = { stand = true }
+	for _, enemy_name in pairs(tweak_data.character._enemy_list) do
+		local enemy = tweak_data.character[enemy_name]
+		if enemy.tags and table.contains(enemy.tags, "medic") then
+			self:override(enemy, "allowed_poses", allowed_poses)
+		end
+	end
+
 	self:post_hook(CopBase, "post_init", function(base)
 		self:check_medic_state(base._unit, true)
 	end)
@@ -64,25 +72,55 @@ function ChaosModifierInvincibleMedics:start()
 		return set_stance_by_code(movement, movement._ext_base:has_tag("medic") and 1 or new_stance_code, ...)
 	end)
 
-	self:post_hook(GroupAIStateBesiege, "_upd_groups", function(gstate)
+	self:pre_hook(CopMovement, "action_request", function(movement, action_desc)
+		if not movement._ext_base:has_tag("medic") then
+			return
+		end
+
+		if action_desc.type == "walk" then
+			action_desc.pose = "stand"
+			action_desc.end_pose = "stand"
+		elseif action_desc.type == "crouch" then
+			action_desc.type = "stand"
+		end
+	end)
+
+	self:pre_hook(GroupAIStateBesiege, "_upd_groups", function(gstate)
 		local lonely_medics = {}
 		local potential_groups = {}
-		for _, group in pairs(gstate._groups) do
-			if group.has_spawned then
-				local only_medics = true
-				local has_medics = false
-				for _, u_data in pairs(group.units) do
-					if u_data.unit:base():has_tag("medic") then
-						has_medics = true
-					else
-						only_medics = false
+
+		for _, e_data in pairs(managers.enemy:all_enemies()) do
+			if alive(e_data.unit) and e_data.unit:base():has_tag("medic") then
+				local logic_data = e_data.unit:brain()._logic_data
+				if not logic_data.group then
+					table.insert(lonely_medics, e_data.unit)
+				else
+					local valid_group = true
+					for _, u_data in pairs(logic_data.group.units) do
+						if alive(u_data.unit) and not u_data.unit:base():has_tag("medic") then
+							valid_group = false
+							break
+						end
+					end
+					if valid_group then
+						gstate:unit_leave_group(e_data.unit, false)
+						e_data.unit:brain():set_objective(nil)
+						table.insert(lonely_medics, e_data.unit)
 					end
 				end
-				if only_medics then
-					for _, u_data in pairs(group.units) do
-						table.insert(lonely_medics, u_data.unit)
+			end
+		end
+
+		for _, group in pairs(gstate._groups) do
+			if group.has_spawned then
+				local valid_group = true
+				for _, u_data in pairs(group.units) do
+					if alive(u_data.unit) and u_data.unit:base():has_tag("medic") then
+						valid_group = false
+						break
 					end
-				elseif not has_medics then
+				end
+				if valid_group then
 					table.insert(potential_groups, group)
 				end
 			end
@@ -101,8 +139,12 @@ function ChaosModifierInvincibleMedics:start()
 				end
 			end
 			local group = table.remove(potential_groups, best_group_index)
-			gstate:unit_leave_group(medic, false)
 			gstate:assign_enemy_to_existing_group(medic, group)
+			local logic_data = medic:brain()._logic_data
+			logic_data.rank = logic_data.rank or 0
+			logic_data.tactics = logic_data.tactics or {}
+			logic_data.tactics.shield_cover = true
+			logic_data.tactics.unit_cover = true
 		end
 	end)
 end
