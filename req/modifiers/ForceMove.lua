@@ -3,7 +3,7 @@ ChaosModifierForceMove.register_name = "ChaosModifierPlayerMovement"
 ChaosModifierForceMove.duration = 20
 
 function ChaosModifierForceMove:start()
-	self:post_hook(PlayerStandard, "_determine_move_direction", function(playerstate)
+	self:pre_hook(PlayerStandard, "_update_movement", function(playerstate)
 		mvector3.set_y(playerstate._stick_move, 1)
 		mvector3.normalize(playerstate._stick_move)
 

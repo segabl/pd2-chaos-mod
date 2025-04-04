@@ -49,6 +49,8 @@
 	"ChaosModifierFlashBurst": "Your opinion, my choice",
 	"ChaosModifierFocusPlayer": "Public Enemy No. 1",
 	"ChaosModifierFocusPlayerPicked": "$PLAYER; is the Public Enemy No. 1!",
+	"ChaosModifierFollowPlayer": "Follow me!",
+	"ChaosModifierFollowPlayerPicked": "Everyone, follow $PLAYER;!",
 	"ChaosModifierForceCrouch": "True Slav",
 	"ChaosModifierForceMelee": "Hack and Slash",
 	"ChaosModifierForceMove": "Autopilot",

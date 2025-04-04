@@ -1,4 +1,5 @@
 ChaosModifierFocusPlayer = ChaosModifier.class("ChaosModifierFocusPlayer")
+ChaosModifierFocusPlayer.loud_only = true
 ChaosModifierFocusPlayer.color = "player_specific"
 ChaosModifierFocusPlayer.duration = 60
 

@@ -95,6 +95,9 @@ Changes the render mode to render normals
 **Falcon Punch**  
 Increases enemy melee knockback
 
+**Follow Me!**  
+Chooses a random player (or bot) and forces others to follow them
+
 **Gaslighting**  
 Plays random enemy voicelines, sound effects and player downed lines
 

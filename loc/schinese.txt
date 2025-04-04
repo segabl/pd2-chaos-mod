@@ -49,6 +49,8 @@
 	"ChaosModifierFlashBurst": "我不要你觉得，我要我觉得",
 	"ChaosModifierFocusPlayer": "Public Enemy No. 1",
 	"ChaosModifierFocusPlayerPicked": "$PLAYER; is the Public Enemy No. 1!",
+	"ChaosModifierFollowPlayer": "Follow me!",
+	"ChaosModifierFollowPlayerPicked": "Everyone, follow $PLAYER;!",
 	"ChaosModifierForceCrouch": "真正的斯拉夫人",
 	"ChaosModifierForceMelee": "不骑马但砍杀",
 	"ChaosModifierForceMove": "自动驾驶",

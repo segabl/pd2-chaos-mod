@@ -3,7 +3,7 @@ ChaosModifierCrabPeople.register_name = "ChaosModifierPlayerMovement"
 ChaosModifierCrabPeople.duration = 20
 
 function ChaosModifierCrabPeople:start()
-	self:post_hook(PlayerStandard, "_determine_move_direction", function(playerstate)
+	self:pre_hook(PlayerStandard, "_update_movement", function(playerstate)
 		if not playerstate._move_dir then
 			return
 		end

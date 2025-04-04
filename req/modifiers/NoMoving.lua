@@ -3,7 +3,7 @@ ChaosModifierNoMoving.register_name = "ChaosModifierPlayerMovement"
 ChaosModifierNoMoving.duration = 3
 
 function ChaosModifierNoMoving:start()
-	self:post_hook(PlayerStandard, "_determine_move_direction", function(playerstate)
+	self:pre_hook(PlayerStandard, "_update_movement", function(playerstate)
 		playerstate._move_dir = nil
 		playerstate._normal_move_dir = nil
 	end)
