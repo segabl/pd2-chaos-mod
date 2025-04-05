@@ -85,6 +85,10 @@ function ChaosModifier:destroy()
 	if Network:is_server() or self.run_as_client then
 		self:stop()
 	end
+
+	if Network:is_server() and self.duration < 0 then
+		NetworkHelper:SendToPeers("StopChaosModifier", self.class_name)
+	end
 end
 
 function ChaosModifier:start()

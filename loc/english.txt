@@ -93,6 +93,7 @@
 	"ChaosModifierNoSound": "Silent Movie",
 	"ChaosModifierPlayerDamageAura": "Social Distancing",
 	"ChaosModifierPlayerGrouping": "Co-dependence",
+	"ChaosModifierPlayerShields": "Shield Buddies",
 	"ChaosModifierPlayerSmoke": "Smoke Screen",
 	"ChaosModifierPortraitMode": "Portrait Mode",
 	"ChaosModifierPulsingFov": "Nausea",

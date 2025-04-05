@@ -245,6 +245,9 @@ Makes enemies dodge more often
 **Shell Shock**  
 Spawns rocket airstrikes
 
+**Shield Buddies**  
+Gives every player a Shield unit that follows them around
+
 **Shock Therapy**  
 Replaces all non-special enemy spawns with Tasers
 

@@ -93,6 +93,7 @@
 	"ChaosModifierNoSound": "Filme mudo",
 	"ChaosModifierPlayerDamageAura": "Fobia Social",
 	"ChaosModifierPlayerGrouping": "Dependência",
+	"ChaosModifierPlayerShields": "Shield Buddies",
 	"ChaosModifierPlayerSmoke": "Smoke Screen",
 	"ChaosModifierPortraitMode": "Modo Retrato",
 	"ChaosModifierPulsingFov": "Tontura",

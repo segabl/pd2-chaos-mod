@@ -149,6 +149,7 @@ function ChaosModifierFollowPlayer:update(t, dt)
 			end
 		elseif self._stuck_t > 0.5 or mvector3.distance_sq(self._path[#self._path], to_pos) > 600 ^ 2 then
 			self._path = nil
+			self._stuck_t = 0
 		end
 	elseif not World:raycast("ray", player_unit:movement():m_com(), self._unit:movement():m_com(), "slot_mask", managers.slot:get_mask("world_geometry"), "sphere_cast_radius", 50, "report") then
 		self._path = { mvector3.copy(self._unit:movement():m_pos()) }

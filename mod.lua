@@ -130,10 +130,18 @@ if not ChaosMod then
 	end
 
 	function ChaosMod:complete_modifier(name, peer_id)
-		local modifier_class = self.modifiers[name]
-		local modifier = self.active_modifiers[modifier_class and modifier_class.register_name or name]
-		if modifier then
-			modifier:complete(peer_id)
+		for _, modifier in pairs(self.active_modifiers) do
+			if modifier.class_name == name then
+				modifier:complete(peer_id)
+			end
+		end
+	end
+
+	function ChaosMod:stop_modifier(name)
+		for _, modifier in pairs(self.active_modifiers) do
+			if modifier.class_name == name then
+				modifier._expired = true
+			end
 		end
 	end
 
@@ -251,9 +259,17 @@ if not ChaosMod then
 	end)
 
 	if Network:is_client() then
-		NetworkHelper:AddReceiveHook("ActivateChaosModifier", "ActivateChaosModifier", function(data)
-			local class_name, seed = unpack(data:split("|"))
-			ChaosMod:activate_modifier(class_name, tonumber(seed), true)
+		NetworkHelper:AddReceiveHook("ActivateChaosModifier", "ActivateChaosModifier", function(data, sender)
+			if sender == 1 then
+				local class_name, seed = unpack(data:split("|"))
+				ChaosMod:activate_modifier(class_name, tonumber(seed), true)
+			end
+		end)
+
+		NetworkHelper:AddReceiveHook("StopChaosModifier", "StopChaosModifier", function(data, sender)
+			if sender == 1 then
+				ChaosMod:stop_modifier(data)
+			end
 		end)
 	end
 
