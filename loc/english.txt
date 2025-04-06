@@ -80,6 +80,8 @@
 	"ChaosModifierMaxModifiers": "Modifier Overload",
 	"ChaosModifierMedics": "Ibuprofen in the House",
 	"ChaosModifierMeleeCuffs": "Restraining Order",
+	"ChaosModifierMeleeKillConverts" : "Clean Slate",
+	"ChaosModifierMeleeKillConvertsStart" : "Clean Slate: Melee kills spawn a friendly clone",
 	"ChaosModifierMeleeKnockback": "Falcon Punch",
 	"ChaosModifierMoreModifiers": "More Modifiers",
 	"ChaosModifierMoreSpecials": "Special Operation",

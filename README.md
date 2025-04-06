@@ -53,6 +53,9 @@ Spawns charging Cloakers that target random players
 **Civilian Magnet**  
 Makes civilians follow random players
 
+**Clean Slate**  
+Spawns a friendly clone on melee kill
+
 **Clumsy**  
 Randomly interrupts interactions and trips players
 
