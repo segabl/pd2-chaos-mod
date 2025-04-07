@@ -8,6 +8,9 @@ With over 100 different modifiers you are sure to have plenty of exciting combin
 
 ## List of Modifiers
 
+**Acid Trip**  
+Adds a rainbow overlay to the screen
+
 **A Deeper Insight**  
 Draws hitboxes of objects in a certain radius around the player
 

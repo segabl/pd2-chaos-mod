@@ -101,6 +101,7 @@
 	"ChaosModifierPulsingFov": "Nausea",
 	"ChaosModifierPushUp": "弹跳杆",
 	"ChaosModifierQuickTimeEvent": "Quick Time Event",
+	"ChaosModifierRainbowOverlay": "Acid Trip",
 	"ChaosModifierRandomCallouts": "谎报军情",
 	"ChaosModifierRandomEnemies": "Wildcard",
 	"ChaosModifierRandomEnemyWeapons": "武器多样化",

@@ -101,6 +101,7 @@
 	"ChaosModifierPulsingFov": "Nausea",
 	"ChaosModifierPushUp": "Pogo Stick",
 	"ChaosModifierQuickTimeEvent": "Quick Time Event",
+	"ChaosModifierRainbowOverlay": "Acid Trip",
 	"ChaosModifierRandomCallouts": "Gaslighting",
 	"ChaosModifierRandomEnemies": "Wildcard",
 	"ChaosModifierRandomEnemyWeapons": "Diverse Armament",
