@@ -110,6 +110,7 @@
 	"ChaosModifierRedGreenLight": "Red Light, Green Light",
 	"ChaosModifierRefreshModifers": "Refresh Modifiers",
 	"ChaosModifierRocketStrike": "Shell Shock",
+	"ChaosModifierRogueBots": "Rogue AI",
 	"ChaosModifierRubberbanding": "Cheap Internet",
 	"ChaosModifierRubberBullets": "Rubber Bullets",
 	"ChaosModifierScreamingEnemies": "Louder Enemies",

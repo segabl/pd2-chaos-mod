@@ -230,6 +230,9 @@ Enemy melee attacks will cuff players
 **Riot Police**  
 Replaces all non-special enemy spawns with Shields
 
+**Rogue AI**  
+Makes bots ignore orders and move around randomly
+
 **Rubber Bullets**  
 All weapon shots deal minimal damage but flinch players and enemies
 

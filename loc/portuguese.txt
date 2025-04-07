@@ -110,6 +110,7 @@
 	"ChaosModifierRedGreenLight": "Luz Vermelha, Luz Verde",
 	"ChaosModifierRefreshModifers": "Mudando Efeitos",
 	"ChaosModifierRocketStrike": "Em Shock",
+	"ChaosModifierRogueBots": "Rogue AI",
 	"ChaosModifierRubberbanding": "Internet Barata",
 	"ChaosModifierRubberBullets": "Balas de Borracha",
 	"ChaosModifierScreamingEnemies": "Inimigos Barulhentos",
