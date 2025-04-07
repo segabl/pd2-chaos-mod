@@ -70,7 +70,7 @@ function ChaosModifierCaptcha:setup_gui()
 	local row = 0
 	local y = padding
 
-	self._panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):panel({
+	self._panel = ChaosMod:panel():panel({
 		layer = 200,
 		w = padding + (size + padding) * 3
 	})

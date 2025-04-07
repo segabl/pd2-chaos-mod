@@ -3,7 +3,7 @@ ChaosModifierRainbowOverlay.register_name = "ChaosModifierScreenEffect"
 ChaosModifierRainbowOverlay.duration = 45
 
 function ChaosModifierRainbowOverlay:start()
-	self._gradient = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):gradient({
+	self._gradient = ChaosMod:panel():gradient({
 		layer = -1000000,
 		orientation = "vertical",
 		blend_mode = "mulx2"

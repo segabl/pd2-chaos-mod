@@ -2,7 +2,7 @@ ChaosModifierScreenSaver = ChaosModifier.class("ChaosModifierScreenSaver")
 ChaosModifierScreenSaver.duration = 60
 
 function ChaosModifierScreenSaver:start()
-	local panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
+	local panel = ChaosMod:panel()
 
 	self._image = panel:bitmap({
 		texture = "guis/textures/bink_df",

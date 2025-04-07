@@ -2,9 +2,7 @@ ChaosModifierNoSleep = ChaosModifier.class("ChaosModifierNoSleep")
 ChaosModifierNoSleep.duration = 40
 
 function ChaosModifierNoSleep:start()
-	local panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
-
-	self._top = panel:gradient({
+	self._top = ChaosMod:panel():gradient({
 		layer = 100,
 		orientation = "vertical",
 		gradient_points = {
@@ -14,7 +12,7 @@ function ChaosModifierNoSleep:start()
 		h = 0
 	})
 
-	self._bottom = panel:gradient({
+	self._bottom = ChaosMod:panel():gradient({
 		layer = 100,
 		color = Color.black,
 		orientation = "vertical",

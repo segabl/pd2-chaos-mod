@@ -77,7 +77,7 @@ function ChaosModifierTimeStop:start()
 
 	self:override(tweak_data.network.camera, "network_sync_delta_t", 0)
 
-	managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):rect({
+	ChaosMod:panel():rect({
 		layer = 200,
 		color = HUDChaosModifier.colors.default
 	}):animate(function(o)

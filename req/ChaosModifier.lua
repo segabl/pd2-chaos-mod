@@ -158,7 +158,7 @@ function ChaosModifier:expired(t, dt)
 end
 
 function ChaosModifier:show_text(text, time, large)
-	local panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):panel({
+	local panel = ChaosMod:panel():panel({
 		layer = 100
 	})
 

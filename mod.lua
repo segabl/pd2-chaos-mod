@@ -242,6 +242,13 @@ if not ChaosMod then
 		func(1)
 	end
 
+	function ChaosMod:panel()
+		if not self._ws then
+			self._ws = managers.gui_data:create_fullscreen_workspace()
+		end
+		return self._ws:panel()
+	end
+
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitChaosMod", function(loc)
 		if HopLib then
 			HopLib:load_localization(ChaosMod.mod_path .. "loc/", loc)

@@ -14,7 +14,7 @@ HUDChaosModifier.colors = {
 function HUDChaosModifier:init(modifier)
 	self._modifier = modifier
 
-	self._panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):panel({
+	self._panel = ChaosMod:panel():panel({
 		w = 240,
 		h = 24
 	})
@@ -44,7 +44,7 @@ function HUDChaosModifier:init(modifier)
 		vertical = "center"
 	})
 
-	self._completed_panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):panel({
+	self._completed_panel = ChaosMod:panel():panel({
 		w = 0,
 		h = self._panel:h()
 	})

@@ -2,7 +2,7 @@ ChaosModifierPortraitMode = ChaosModifier.class("ChaosModifierPortraitMode")
 ChaosModifierPortraitMode.duration = 45
 
 function ChaosModifierPortraitMode:start()
-	local panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2)
+	local panel = ChaosMod:panel()
 	local w = 0.5 * (panel:w() - panel:h() * panel:h() / panel:w())
 
 	self._left = panel:rect({

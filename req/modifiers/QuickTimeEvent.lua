@@ -15,7 +15,7 @@ function ChaosModifierQuickTimeEvent:start()
 		[180] = Vector3(0, -1)
 	}
 
-	self._panel = managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):panel({
+	self._panel = ChaosMod:panel():panel({
 		layer = 100
 	})
 
