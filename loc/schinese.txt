@@ -47,6 +47,7 @@
 	"ChaosModifierFieldOfViewIncrease": "还是Quake大佬",
 	"ChaosModifierFireTrail": "太烧啦",
 	"ChaosModifierFlashBurst": "我不要你觉得，我要我觉得",
+	"ChaosModifierFloorsHurt": "The Floor is Lava!",
 	"ChaosModifierFocusPlayer": "Public Enemy No. 1",
 	"ChaosModifierFocusPlayerPicked": "$PLAYER; is the Public Enemy No. 1!",
 	"ChaosModifierFollowPlayer": "Follow me!",

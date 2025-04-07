@@ -311,6 +311,9 @@ Enemies receive random weapons currently used by a heister upon spawning
 **Teleporter Mishap**  
 Teleports players randomly periodically
 
+**The Floor is Lava!**  
+Damages players standing on the floor (AI walkable area)
+
 **The Invisible Man**  
 Turns all enemies invisible
 

@@ -47,6 +47,7 @@
 	"ChaosModifierFieldOfViewIncrease": "PAYDAY Pro",
 	"ChaosModifierFireTrail": "Mães Solteiras Na Sua Área",
 	"ChaosModifierFlashBurst": "Sua opinião, minha escolha",
+	"ChaosModifierFloorsHurt": "The Floor is Lava!",
 	"ChaosModifierFocusPlayer": "Inimigo Público Número 1",
 	"ChaosModifierFocusPlayerPicked": "$PLAYER; é o Inimigo Público Número 1",
 	"ChaosModifierFollowPlayer": "Follow me!",

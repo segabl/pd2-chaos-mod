@@ -47,6 +47,7 @@
 	"ChaosModifierFieldOfViewIncrease": "PAYDAY Pro",
 	"ChaosModifierFireTrail": "Hot Specials in your Area",
 	"ChaosModifierFlashBurst": "Your opinion, my choice",
+	"ChaosModifierFloorsHurt": "The Floor is Lava!",
 	"ChaosModifierFocusPlayer": "Public Enemy No. 1",
 	"ChaosModifierFocusPlayerPicked": "$PLAYER; is the Public Enemy No. 1!",
 	"ChaosModifierFollowPlayer": "Follow me!",
