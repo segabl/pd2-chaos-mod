@@ -48,7 +48,7 @@ function ChaosModifierFocusPlayer:pick_player()
 			if settings then
 				attention_objects[u_key] = CopLogicBase._create_detected_attention_object_data(data.t, data.unit, u_key, attention_info, settings)
 			end
-		elseif attention_data.verified then
+		elseif attention_data.verified or attention_data.nearly_visible or attention_data.verified_t and data.t - attention_data.verified_t < 1 then
 			return attention_data, 0, AIAttentionObject.REACT_MAX
 		end
 	end)
@@ -67,6 +67,13 @@ function ChaosModifierFocusPlayer:pick_player()
 			handler = attention_data.handler,
 			reaction = attention_data.reaction
 		})
+	end)
+
+	self:pre_hook(GroupAIStateBesiege, "_upd_assault_task", function(gstate)
+		local record = gstate:criminal_record(u_key)
+		if record and gstate._task_data.assault.target_areas then
+			gstate._task_data.assault.target_areas[1] = record.area
+		end
 	end)
 end
 
