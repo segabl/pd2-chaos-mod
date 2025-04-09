@@ -1,17 +1,22 @@
 ChaosModifierMeleeKillConverts = ChaosModifier.class("ChaosModifierMeleeKillConverts")
 ChaosModifierMeleeKillConverts.run_as_client = false
 ChaosModifierMeleeKillConverts.loud_only = true
-ChaosModifierMeleeKillConverts.duration = 45
+ChaosModifierMeleeKillConverts.duration = 60
 
 function ChaosModifierMeleeKillConverts:start()
 	self._units = {}
 
 	self:post_hook(CopDamage, "die", function(copdamage, attack_data)
-		if attack_data.variant == "melee" and alive(attack_data.attacker_unit) and managers.groupai:state():all_criminals()[attack_data.attacker_unit:key()] then
-			DelayedCalls:Add(tostring(copdamage._unit:key()) .. "spawn", 0.25, function()
-				self:spawn(copdamage._unit:name(), copdamage._unit:position(), copdamage._unit:rotation(), attack_data.attacker_unit)
-			end)
+		if attack_data.variant ~= "melee" or not alive(attack_data.attacker_unit) or not managers.groupai:state():all_criminals()[attack_data.attacker_unit:key()] then
+			return
 		end
+
+		local unit_name = copdamage._unit:name()
+		local position = copdamage._unit:movement():m_pos()
+		local rotation = copdamage._unit:movement():m_rot()
+		DelayedCalls:Add(tostring(copdamage._unit:key()) .. "spawn", 0.25, function()
+			self:spawn(unit_name, position, rotation, attack_data.attacker_unit)
+		end)
 	end)
 
 	self:post_hook(GroupAIStateBase, "_determine_objective_for_criminal_AI", function(gstate, unit)
@@ -73,28 +78,26 @@ function ChaosModifierMeleeKillConverts:spawn(unit_name, pos, rot, player_unit)
 		}
 	})
 
+	local attention = PlayerMovement._create_attention_setting_from_descriptor(unit:brain(), tweak_data.attention.settings.team_enemy_cbt, "team_enemy_cbt")
+	unit:brain()._attention_handler:override_attention("enemy_team_cbt", attention)
+	unit:brain()._slotmask_enemies = managers.slot:get_mask("enemies")
+	unit:brain()._logic_data.enemy_slotmask = unit:brain()._slotmask_enemies
+	unit:brain()._logic_data.objective_complete_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_complete")
+	unit:brain()._logic_data.objective_failed_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_failed")
+
+	local u_key = unit:key()
+	local listener_key = self.class_name .. tostring(u_key)
+	unit:contour():add("highlight_character", true)
+
 	unit:character_damage():set_invulnerable(true)
 	unit:network():send("set_unit_invulnerable", true, false)
-	DelayedCalls:Add(tostring(unit:key()) .. "invulnerable", 3, function()
+
+	DelayedCalls:Add(tostring(u_key) .. "invulnerable", 4, function()
 		if alive(unit) then
 			unit:character_damage():set_invulnerable(false)
 			unit:network():send("set_unit_invulnerable", false, false)
 		end
 	end)
-
-	local brain = unit:brain()
-	local attention = PlayerMovement._create_attention_setting_from_descriptor(brain, tweak_data.attention.settings.team_enemy_cbt, "team_enemy_cbt")
-	brain._attention_handler:override_attention("enemy_team_cbt", attention)
-	brain._slotmask_enemies = managers.slot:get_mask("enemies")
-	brain._logic_data.enemy_slotmask = brain._slotmask_enemies
-
-	brain._logic_data.objective_complete_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_complete")
-	brain._logic_data.objective_failed_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_failed")
-	managers.groupai:state():on_criminal_jobless(unit)
-
-	local u_key = unit:key()
-	local listener_key = self.class_name .. tostring(u_key)
-	unit:contour():add("highlight_character", true)
 
 	unit:character_damage():add_listener(listener_key, { "death" }, function()
 		unit:contour():remove("highlight_character", true)
@@ -109,6 +112,8 @@ function ChaosModifierMeleeKillConverts:spawn(unit_name, pos, rot, player_unit)
 		unit = unit,
 		player_unit = player_unit
 	}
+
+	managers.groupai:state():on_criminal_jobless(unit)
 end
 
 return ChaosModifierMeleeKillConverts
