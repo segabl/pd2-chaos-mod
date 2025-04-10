@@ -12,16 +12,9 @@ function ChaosModifierPlayerShields:start()
 
 	self:post_hook(GroupAIStateBase, "_determine_objective_for_criminal_AI", function(gstate, unit)
 		local data = self._units[unit:key()]
-		if not data or not alive(data.player_unit) or not data.player_unit:movement():nav_tracker() then
-			return
+		if data and alive(data.player_unit) and data.player_unit:movement():nav_tracker() then
+			return self:get_follow_objective(data.player_unit)
 		end
-
-		return {
-			type = "follow",
-			scan = true,
-			follow_unit = data.player_unit,
-			distance = 400
-		}
 	end)
 
 	self:post_hook(GroupAIStateBase, "on_criminal_jobless", function(gstate, unit)
@@ -53,6 +46,15 @@ function ChaosModifierPlayerShields:stop()
 	end
 end
 
+function ChaosModifierPlayerShields:get_follow_objective(player_unit)
+	return {
+		type = "follow",
+		scan = true,
+		follow_unit = player_unit,
+		distance = 500
+	}
+end
+
 function ChaosModifierPlayerShields:spawn_unit(player_unit)
 	local player_pos = player_unit:movement():m_pos()
 	local player_fwd_flat = player_unit:movement():detect_look_dir():with_z(0):normalized()
@@ -77,7 +79,7 @@ function ChaosModifierPlayerShields:spawn_unit(player_unit)
 	brain._logic_data.objective_complete_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_complete")
 	brain._logic_data.objective_failed_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_failed")
 
-	unit:contour():add("highlight_character", true)
+	unit:contour():add("generic_interactable_selected", true)
 
 	local u_key = unit:key()
 	local listener_key = self.class_name .. tostring(u_key)
@@ -93,7 +95,7 @@ function ChaosModifierPlayerShields:spawn_unit(player_unit)
 	end)
 
 	unit:character_damage():add_listener(listener_key, { "death" }, function()
-		unit:contour():remove("highlight_character", true)
+		unit:contour():remove("generic_interactable_selected", true)
 		self._units[u_key] = nil
 	end)
 

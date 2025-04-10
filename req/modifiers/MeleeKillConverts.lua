@@ -78,7 +78,7 @@ function ChaosModifierMeleeKillConverts:spawn(unit_name, pos, rot, player_unit)
 	unit:brain()._logic_data.objective_complete_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_complete")
 	unit:brain()._logic_data.objective_failed_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_failed")
 
-	unit:contour():add("highlight_character", true)
+	unit:contour():add("generic_interactable_selected", true)
 
 	local u_key = unit:key()
 	local listener_key = self.class_name .. tostring(u_key)
@@ -94,7 +94,7 @@ function ChaosModifierMeleeKillConverts:spawn(unit_name, pos, rot, player_unit)
 	end)
 
 	unit:character_damage():add_listener(listener_key, { "death" }, function()
-		unit:contour():remove("highlight_character", true)
+		unit:contour():remove("generic_interactable_selected", true)
 		self._units[u_key] = nil
 	end)
 

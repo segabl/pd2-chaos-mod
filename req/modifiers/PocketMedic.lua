@@ -61,6 +61,15 @@ function ChaosModifierPocketMedic:stop()
 	end
 end
 
+function ChaosModifierPocketMedic:get_follow_objective(player_unit)
+	return {
+		type = "follow",
+		scan = true,
+		follow_unit = player_unit,
+		distance = 300
+	}
+end
+
 function ChaosModifierPocketMedic:spawn_unit(player_unit)
 	local unit = World:spawn_unit(table.random(self._medic_unit_names), player_unit:movement():m_pos(), Rotation())
 
@@ -74,14 +83,14 @@ function ChaosModifierPocketMedic:spawn_unit(player_unit)
 	brain._logic_data.objective_complete_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_complete")
 	brain._logic_data.objective_failed_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_failed")
 
-	unit:contour():add("highlight_character", true)
+	unit:contour():add("generic_interactable_selected", true)
 
 	local u_key = unit:key()
 	local listener_key = self.class_name .. tostring(u_key)
 
 	unit:character_damage()._damage_reduction_multiplier = 0.35
 	unit:character_damage():add_listener(listener_key, { "death" }, function()
-		unit:contour():remove("highlight_character", true)
+		unit:contour():remove("generic_interactable_selected", true)
 		self._units[u_key] = nil
 	end)
 
