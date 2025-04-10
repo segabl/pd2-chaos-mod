@@ -13,6 +13,8 @@
 	"menu_chaos_mod_all_off": "Disable all",
 	"menu_chaos_mod_stealth_on": "Enable safe",
 	"menu_chaos_mod_all_on": "Enable all",
+	"menu_chaos_mod_modifiers": "Modifiers",
+	"menu_chaos_mod_modifiers_desc": "Toggle individual modifiers",
 	"menu_chaos_mod_enable_all": "Enable all",
 	"menu_chaos_mod_enable_all_desc": "Enables all available modifiers",
 	"menu_chaos_mod_disable_all": "Disable all",

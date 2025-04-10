@@ -13,6 +13,8 @@
 	"menu_chaos_mod_all_off": "Desativar tudo",
 	"menu_chaos_mod_stealth_on": "Ativar alguns",
 	"menu_chaos_mod_all_on": "Ativar tudo",
+	"menu_chaos_mod_modifiers": "Modifiers",
+	"menu_chaos_mod_modifiers_desc": "Toggle individual modifiers",
 	"menu_chaos_mod_enable_all": "Ativar tudo",
 	"menu_chaos_mod_enable_all_desc": "Ativa todos os efeitos disponíveis",
 	"menu_chaos_mod_disable_all": "Desativar tudo",

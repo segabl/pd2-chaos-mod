@@ -13,6 +13,8 @@
 	"menu_chaos_mod_all_off": "禁用全部",
 	"menu_chaos_mod_stealth_on": "启用安全的",
 	"menu_chaos_mod_all_on": "启用全部",
+	"menu_chaos_mod_modifiers": "Modifiers",
+	"menu_chaos_mod_modifiers_desc": "Toggle individual modifiers",
 	"menu_chaos_mod_enable_all": "启用全部",
 	"menu_chaos_mod_enable_all_desc": "启用全部可用的因子",
 	"menu_chaos_mod_disable_all": "禁用全部",

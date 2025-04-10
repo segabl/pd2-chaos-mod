@@ -3,7 +3,6 @@ if not ChaosMod then
 	ChaosMod = {}
 	ChaosMod.mod_instance = ModInstance
 	ChaosMod.mod_path = ModPath
-	ChaosMod.menu_id = "chaos_mod"
 	ChaosMod.required = {}
 	ChaosMod.modifiers = {} ---@type table<string, ChaosModifier>
 	ChaosMod.active_modifiers = {} ---@type table<string, ChaosModifier>
@@ -288,8 +287,11 @@ if not ChaosMod then
 
 		local slider_min_cooldown, slider_max_cooldown
 		local modifier_toggles = {}
+		local menu_id = "chaos_mod"
+		local modifiers_menu_id = "chaos_mod_modifiers"
 
-		MenuHelper:NewMenu(ChaosMod.menu_id)
+		MenuHelper:NewMenu(menu_id)
+		MenuHelper:NewMenu(modifiers_menu_id)
 
 		function MenuCallbackHandler:chaos_mod_value(item)
 			local item_name, item_value = item:name(), item:value()
@@ -318,7 +320,7 @@ if not ChaosMod then
 		end
 
 		slider_min_cooldown = MenuHelper:AddSlider({
-			menu_id = ChaosMod.menu_id,
+			menu_id = menu_id,
 			id = "min_cooldown",
 			title = "menu_chaos_mod_min_cooldown",
 			desc = "menu_chaos_mod_min_cooldown_desc",
@@ -333,7 +335,7 @@ if not ChaosMod then
 		})
 
 		slider_max_cooldown = MenuHelper:AddSlider({
-			menu_id = ChaosMod.menu_id,
+			menu_id = menu_id,
 			id = "max_cooldown",
 			title = "menu_chaos_mod_max_cooldown",
 			desc = "menu_chaos_mod_max_cooldown_desc",
@@ -348,7 +350,7 @@ if not ChaosMod then
 		})
 
 		MenuHelper:AddSlider({
-			menu_id = ChaosMod.menu_id,
+			menu_id = menu_id,
 			id = "prevent_repeat",
 			title = "menu_chaos_mod_prevent_repeat",
 			desc = "menu_chaos_mod_prevent_repeat_desc",
@@ -365,7 +367,7 @@ if not ChaosMod then
 		})
 
 		MenuHelper:AddSlider({
-			menu_id = ChaosMod.menu_id,
+			menu_id = menu_id,
 			id = "max_active",
 			title = "menu_chaos_mod_max_active",
 			desc = "menu_chaos_mod_max_active_desc",
@@ -380,7 +382,7 @@ if not ChaosMod then
 		})
 
 		MenuHelper:AddMultipleChoice({
-			menu_id = ChaosMod.menu_id,
+			menu_id = menu_id,
 			id = "stealth_enabled",
 			title = "menu_chaos_mod_stealth_enabled",
 			desc = "menu_chaos_mod_stealth_enabled_desc",
@@ -391,32 +393,47 @@ if not ChaosMod then
 		})
 
 		MenuHelper:AddDivider({
-			menu_id = ChaosMod.menu_id,
-			size = 16,
+			menu_id = menu_id,
+			size = 8,
 			priority = 2
 		})
 
 		MenuHelper:AddButton({
-			menu_id = ChaosMod.menu_id,
-			id = "enable_all",
-			title = "menu_chaos_mod_enable_all",
-			desc = "menu_chaos_mod_enable_all_desc",
-			callback = "chaos_mod_toggle_all",
+			menu_id = menu_id,
+			id = "modifiers",
+			title = "menu_chaos_mod_modifiers",
+			desc = "menu_chaos_mod_modifiers_desc",
+			next_node = modifiers_menu_id,
 			priority = 1
 		})
 
 		MenuHelper:AddButton({
-			menu_id = ChaosMod.menu_id,
+			menu_id = modifiers_menu_id,
+			id = "enable_all",
+			title = "menu_chaos_mod_enable_all",
+			desc = "menu_chaos_mod_enable_all_desc",
+			callback = "chaos_mod_toggle_all",
+			priority = 2
+		})
+
+		MenuHelper:AddButton({
+			menu_id = modifiers_menu_id,
 			id = "disable_all",
 			title = "menu_chaos_mod_disable_all",
 			desc = "menu_chaos_mod_disable_all_desc",
 			callback = "chaos_mod_toggle_all",
+			priority = 1
+		})
+
+		MenuHelper:AddDivider({
+			menu_id = modifiers_menu_id,
+			size = 8,
 			priority = 0
 		})
 
 		for modifier_name in pairs(ChaosMod.modifiers) do
 			table.insert(modifier_toggles, MenuHelper:AddToggle({
-				menu_id = ChaosMod.menu_id,
+				menu_id = modifiers_menu_id,
 				id = modifier_name,
 				title = modifier_name,
 				value = not ChaosMod.settings.disabled_modifiers[modifier_name],
@@ -424,8 +441,9 @@ if not ChaosMod then
 			}))
 		end
 
-		nodes.chaos_mod = MenuHelper:BuildMenu(ChaosMod.menu_id, { back_callback = "chaos_mod_save" })
-		MenuHelper:AddMenuItem(nodes.blt_options, ChaosMod.menu_id, "menu_chaos_mod")
+		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "chaos_mod_save" })
+		nodes[modifiers_menu_id] = MenuHelper:BuildMenu(modifiers_menu_id, { back_callback = "chaos_mod_save" })
+		MenuHelper:AddMenuItem(nodes.blt_options, menu_id, "menu_chaos_mod")
 	end)
 
 	ChaosMod:load_modifiers()
