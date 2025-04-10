@@ -203,6 +203,9 @@ Pushes players in random directions
 **Pitch Perfect**  
 Changes the pitch of all sounds
 
+**Pocket Medic**  
+Gives every player a Medic unit that follows them around providing healing over time and revives
+
 **Pogo Stick**  
 Makes players bounce continuously
 
