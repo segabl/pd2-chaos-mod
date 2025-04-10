@@ -98,6 +98,8 @@
 	"ChaosModifierPlayerGrouping": "Co-dependence",
 	"ChaosModifierPlayerShields": "Shield Buddies",
 	"ChaosModifierPlayerSmoke": "Smoke Screen",
+	"ChaosModifierPocketMedic": "Pocket Medic",
+	"ChaosModifierPocketMedicHelperName": "a Medic",
 	"ChaosModifierPortraitMode": "Portrait Mode",
 	"ChaosModifierPulsingFov": "Nausea",
 	"ChaosModifierPushUp": "Pogo Stick",

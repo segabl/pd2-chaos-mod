@@ -21,23 +21,16 @@ function ChaosModifierMeleeKillConverts:start()
 
 	self:post_hook(GroupAIStateBase, "_determine_objective_for_criminal_AI", function(gstate, unit)
 		local data = self._units[unit:key()]
-		if not data then
+		if not data or not alive(data.player_unit) or not data.player_unit:movement():nav_tracker() then
 			return
 		end
 
-		if not alive(data.player_unit) or not data.player_unit:movement():nav_tracker() then
-			return {
-				type = "free",
-				scan = true
-			}
-		else
-			return {
-				type = "follow",
-				scan = true,
-				follow_unit = data.player_unit,
-				distance = 400
-			}
-		end
+		return {
+			type = "follow",
+			scan = true,
+			follow_unit = data.player_unit,
+			distance = 400
+		}
 	end)
 
 	self:show_text(managers.localization:to_upper_text("ChaosModifierMeleeKillConvertsStart"), 4)
@@ -45,7 +38,7 @@ end
 
 function ChaosModifierMeleeKillConverts:stop()
 	for _, data in pairs(self._units) do
-		if alive(data.unit) then
+		if alive(data.unit) and not data.unit:character_damage():dead() then
 			data.unit:character_damage():set_invulnerable(false)
 			data.unit:character_damage():damage_mission({})
 		end
@@ -85,9 +78,10 @@ function ChaosModifierMeleeKillConverts:spawn(unit_name, pos, rot, player_unit)
 	unit:brain()._logic_data.objective_complete_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_complete")
 	unit:brain()._logic_data.objective_failed_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_failed")
 
+	unit:contour():add("highlight_character", true)
+
 	local u_key = unit:key()
 	local listener_key = self.class_name .. tostring(u_key)
-	unit:contour():add("highlight_character", true)
 
 	unit:character_damage():set_invulnerable(true)
 	unit:network():send("set_unit_invulnerable", true, false)

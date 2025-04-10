@@ -98,6 +98,8 @@
 	"ChaosModifierPlayerGrouping": "Dependência",
 	"ChaosModifierPlayerShields": "Shield Buddies",
 	"ChaosModifierPlayerSmoke": "Smoke Screen",
+	"ChaosModifierPocketMedic": "Pocket Medic",
+	"ChaosModifierPocketMedicHelperName": "a Medic",
 	"ChaosModifierPortraitMode": "Modo Retrato",
 	"ChaosModifierPulsingFov": "Tontura",
 	"ChaosModifierPushUp": "Pula, pu-pula, filha da pula!",
