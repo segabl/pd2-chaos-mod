@@ -241,6 +241,7 @@ if not ChaosMod then
 		func(1)
 	end
 
+	---@return Panel
 	function ChaosMod:panel()
 		if not self._ws then
 			self._ws = managers.gui_data:create_fullscreen_workspace()

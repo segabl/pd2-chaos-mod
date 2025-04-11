@@ -74,7 +74,6 @@
 	"ChaosModifierKaraoke": "Canta Comigo!",
 	"ChaosModifierKillQuota": "Bate a Meta",
 	"ChaosModifierKillQuotaStart": "Mate $AMOUNT; inimigos!",
-	"ChaosModifierKillQuotaProgress": "$AMOUNT; / $TOTAL;",
 	"ChaosModifierLightMultiplier": "Exposto até demais",
 	"ChaosModifierLimitFps": "Experiência no Console be like",
 	"ChaosModifierLongerModifiers": "Efeitos Com Duração Maior",

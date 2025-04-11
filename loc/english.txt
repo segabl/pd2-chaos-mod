@@ -74,7 +74,6 @@
 	"ChaosModifierKaraoke": "Sing Along",
 	"ChaosModifierKillQuota": "Meet your Quota",
 	"ChaosModifierKillQuotaStart": "Kill $AMOUNT; enemies!",
-	"ChaosModifierKillQuotaProgress": "$AMOUNT; / $TOTAL;",
 	"ChaosModifierLightMultiplier": "Overexposed",
 	"ChaosModifierLimitFps": "Console Experience",
 	"ChaosModifierLongerModifiers": "Longer Modifiers",

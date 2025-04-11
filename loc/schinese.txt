@@ -74,7 +74,6 @@
 	"ChaosModifierKaraoke": "卡拉OK",
 	"ChaosModifierKillQuota": "达到指标",
 	"ChaosModifierKillQuotaStart": "击杀 $AMOUNT; 名敌人！",
-	"ChaosModifierKillQuotaProgress": "$AMOUNT; / $TOTAL;",
 	"ChaosModifierLightMultiplier": "Overexposed",
 	"ChaosModifierLimitFps": "主机平台的游戏体验",
 	"ChaosModifierLongerModifiers": "Longer Modifiers",
