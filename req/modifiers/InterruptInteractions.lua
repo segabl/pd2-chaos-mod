@@ -26,8 +26,6 @@ function ChaosModifierInterruptInteractions:start()
 		elseif playerstate._moving and math.random() < (playerstate:running() and 0.7 or 0.2) then
 			self._next_t = t + math.rand(4, 8)
 
-			self._saved_health = playerstate._unit:character_damage():get_real_health()
-			self._saved_armor = playerstate._unit:character_damage():get_real_armor()
 			managers.player:set_player_state("incapacitated")
 
 			self:queue("revive", 1)
@@ -46,14 +44,9 @@ function ChaosModifierInterruptInteractions:revive()
 	end
 
 	local char_dmg = player_unit:character_damage()
-	managers.player:set_player_state("standard")
-	char_dmg._bleed_out = false
-	char_dmg._incapacitated = nil
-	char_dmg._downed_timer = nil
-	char_dmg._downed_start_time = nil
-	char_dmg:regenerate_armor(true)
-	char_dmg:set_armor(self._saved_armor)
-	char_dmg:set_health(self._saved_health)
+	char_dmg._arrested = true
+	char_dmg:revive(true)
+	char_dmg._arrested = nil
 end
 
 return ChaosModifierInterruptInteractions
