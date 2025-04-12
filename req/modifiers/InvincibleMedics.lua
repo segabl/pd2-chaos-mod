@@ -93,7 +93,9 @@ function ChaosModifierInvincibleMedics:start()
 			if alive(e_data.unit) and e_data.unit:base():has_tag("medic") then
 				local logic_data = e_data.unit:brain()._logic_data
 				if not logic_data.group then
-					table.insert(lonely_medics, e_data.unit)
+					if logic_data.team and logic_data.team.foes.criminal1 then
+						table.insert(lonely_medics, e_data.unit)
+					end
 				else
 					local valid_group = true
 					for _, u_data in pairs(logic_data.group.units) do
