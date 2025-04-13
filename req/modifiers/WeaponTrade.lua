@@ -25,6 +25,10 @@ function ChaosModifierWeaponTrade:start()
 	local player_state = player_unit:movement():current_state()
 	player_state:_check_stop_shooting()
 	player_state:set_stance_switch_delay(0.5)
+	if player_unit:movement():current_state_name() == "bipod" then
+		player_state:_unmount_bipod()
+		player_state = player_unit:movement():current_state()
+	end
 
 	for i, selection in pairs({ "primary", "secondary" }) do
 		math.randomseed(self._seed * i)
@@ -57,6 +61,10 @@ function ChaosModifierWeaponTrade:stop()
 	local player_state = player_unit:movement():current_state()
 	player_state:_check_stop_shooting()
 	player_state:set_stance_switch_delay(0.5)
+	if player_unit:movement():current_state_name() == "bipod" then
+		player_state:_unmount_bipod()
+		player_state = player_unit:movement():current_state()
+	end
 
 	local primary = managers.blackmarket:equipped_primary()
 	if primary then
