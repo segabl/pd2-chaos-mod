@@ -21,33 +21,21 @@ function ChaosModifierMeleeKillConverts:start()
 
 	self:post_hook(GroupAIStateBase, "_determine_objective_for_criminal_AI", function(gstate, unit)
 		local data = self._units[unit:key()]
-		if not data or not alive(data.player_unit) or not data.player_unit:movement():nav_tracker() then
-			return
+		if data and alive(data.player_unit) and data.player_unit:movement():nav_tracker() then
+			return ChaosModifierPlayerShields.get_follow_objective(self, data.player_unit)
 		end
-
-		return {
-			type = "follow",
-			scan = true,
-			follow_unit = data.player_unit,
-			distance = 400
-		}
 	end)
 
 	self:show_text(managers.localization:to_upper_text("ChaosModifierMeleeKillConvertsStart"), 4)
 end
 
 function ChaosModifierMeleeKillConverts:stop()
-	for _, data in pairs(self._units) do
-		if alive(data.unit) and not data.unit:character_damage():dead() then
-			data.unit:character_damage():set_invulnerable(false)
-			data.unit:character_damage():damage_mission({})
-		end
-	end
+	ChaosModifierPlayerShields.stop(self)
 end
 
 function ChaosModifierMeleeKillConverts:spawn(unit_name, pos, rot, player_unit)
 	local unit = World:spawn_unit(unit_name, pos, rot)
-	unit:movement():set_team(managers.groupai:state():team_data("criminal1"))
+
 	unit:brain():set_spawn_ai({
 		init_state = "idle",
 		stance = "cbt",
@@ -71,12 +59,7 @@ function ChaosModifierMeleeKillConverts:spawn(unit_name, pos, rot, player_unit)
 		}
 	})
 
-	local attention = PlayerMovement._create_attention_setting_from_descriptor(unit:brain(), tweak_data.attention.settings.team_enemy_cbt, "team_enemy_cbt")
-	unit:brain()._attention_handler:override_attention("enemy_team_cbt", attention)
-	unit:brain()._slotmask_enemies = managers.slot:get_mask("enemies")
-	unit:brain()._logic_data.enemy_slotmask = unit:brain()._slotmask_enemies
-	unit:brain()._logic_data.objective_complete_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_complete")
-	unit:brain()._logic_data.objective_failed_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_failed")
+	ChaosModifierPlayerShields.set_player_team(self, unit)
 
 	unit:contour():add("generic_interactable_selected", true)
 

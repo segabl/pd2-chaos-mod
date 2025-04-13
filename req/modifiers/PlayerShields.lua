@@ -55,6 +55,38 @@ function ChaosModifierPlayerShields:get_follow_objective(player_unit)
 	}
 end
 
+function ChaosModifierPlayerShields:set_player_team(unit)
+	local brain = unit:brain()
+
+	local settings = tweak_data.attention.settings.team_enemy_cbt
+	local attention_preset = PlayerMovement._create_attention_setting_from_descriptor(brain, settings, "team_enemy_cbt")
+
+	brain._attention_handler:override_attention("enemy_team_cbt", attention_preset)
+
+	brain._logic_data.attention_obj = nil
+
+	CopLogicBase._destroy_all_detected_attention_object_data(brain._logic_data)
+
+	brain._SO_access = managers.navigation:convert_access_flag(tweak_data.character.russian.access)
+	brain._logic_data.SO_access = brain._SO_access
+	brain._logic_data.SO_access_str = tweak_data.character.russian.access
+	brain._slotmask_enemies = managers.slot:get_mask("enemies")
+	brain._logic_data.enemy_slotmask = brain._slotmask_enemies
+
+	brain:set_objective(nil)
+	brain:set_logic("idle", nil)
+
+	brain._logic_data.objective_complete_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_complete")
+	brain._logic_data.objective_failed_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_failed")
+
+	brain._unit:base():set_slot(brain._unit, 16)
+	brain._unit:movement():set_stance("hos")
+
+	managers.groupai:state()._police[unit:key()].so_access = brain._SO_access
+
+	unit:movement():set_team(managers.groupai:state():team_data("criminal1"))
+end
+
 function ChaosModifierPlayerShields:spawn_unit(player_unit)
 	local player_pos = player_unit:movement():m_pos()
 	local player_fwd_flat = player_unit:movement():detect_look_dir():with_z(0):normalized()
@@ -69,15 +101,7 @@ function ChaosModifierPlayerShields:spawn_unit(player_unit)
 	local unit_name = tweak_data.group_ai.unit_categories.FBI_shield.unit_types[tweak_data.levels:get_ai_group_type()][1]
 	local unit = World:spawn_unit(unit_name, params.trace[1], Rotation(player_fwd_flat, math.UP))
 
-	unit:movement():set_team(managers.groupai:state():team_data("criminal1"))
-
-	local brain = unit:brain()
-	local attention = PlayerMovement._create_attention_setting_from_descriptor(brain, tweak_data.attention.settings.team_enemy_cbt, "team_enemy_cbt")
-	brain._attention_handler:override_attention("enemy_team_cbt", attention)
-	brain._slotmask_enemies = managers.slot:get_mask("enemies")
-	brain._logic_data.enemy_slotmask = brain._slotmask_enemies
-	brain._logic_data.objective_complete_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_complete")
-	brain._logic_data.objective_failed_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_failed")
+	self:set_player_team(unit)
 
 	unit:contour():add("generic_interactable_selected", true)
 
@@ -94,6 +118,7 @@ function ChaosModifierPlayerShields:spawn_unit(player_unit)
 		end
 	end)
 
+	unit:character_damage()._damage_reduction_multiplier = 0.85
 	unit:character_damage():add_listener(listener_key, { "death" }, function()
 		unit:contour():remove("generic_interactable_selected", true)
 		self._units[u_key] = nil

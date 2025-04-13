@@ -1,5 +1,6 @@
 ChaosModifierPocketMedic = ChaosModifier.class("ChaosModifierPocketMedic", ChaosModifierPlayerShields)
 ChaosModifierPocketMedic.loud_only = true
+ChaosModifierPocketMedic.run_as_client = true
 ChaosModifierPocketMedic.duration = -1
 
 function ChaosModifierPocketMedic:start()
@@ -19,7 +20,7 @@ function ChaosModifierPocketMedic:start()
 			if not playerdamage._chaos_medic_heal_t or t >= playerdamage._chaos_medic_heal_t then
 				playerdamage._chaos_medic_heal_t = t + 1
 				if next(managers.enemy:find_nearby_affiliated_medics(unit)) then
-					playerdamage:restore_health(0.01, false, true)
+					playerdamage:restore_health(0.015, false, true)
 				end
 			end
 			return
@@ -73,15 +74,7 @@ end
 function ChaosModifierPocketMedic:spawn_unit(player_unit)
 	local unit = World:spawn_unit(table.random(self._medic_unit_names), player_unit:movement():m_pos(), Rotation())
 
-	unit:movement():set_team(managers.groupai:state():team_data("criminal1"))
-
-	local brain = unit:brain()
-	local attention = PlayerMovement._create_attention_setting_from_descriptor(brain, tweak_data.attention.settings.team_enemy_cbt, "team_enemy_cbt")
-	brain._attention_handler:override_attention("enemy_team_cbt", attention)
-	brain._slotmask_enemies = managers.slot:get_mask("enemies")
-	brain._logic_data.enemy_slotmask = brain._slotmask_enemies
-	brain._logic_data.objective_complete_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_complete")
-	brain._logic_data.objective_failed_clbk = callback(managers.groupai:state(), managers.groupai:state(), "on_criminal_objective_failed")
+	self:set_player_team(unit)
 
 	unit:contour():add("generic_interactable_selected", true)
 
