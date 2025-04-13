@@ -25,7 +25,7 @@ function ChaosModifierFireTrail:update(t, dt)
 	self._next_t = t + self.params.burn_duration
 
 	for _, data in pairs(managers.enemy:all_enemies()) do
-		if managers.groupai:state():is_enemy_special(data.unit) then
+		if managers.groupai:state():is_enemy_special(data.unit) and data.unit:movement():team().foes.criminal1 then
 			EnvironmentFire.spawn(data.unit:movement():m_com(), data.unit:rotation(), self.params, math.UP, data.unit, nil, 0, 1)
 		end
 	end
