@@ -39,6 +39,7 @@
 	"ChaosModifierCrabPeople": "“横行”霸道",
 	"ChaosModifierDallasMedicBag": "PD玩家最喜欢的笑话",
 	"ChaosModifierDozerSpecials": "Special Upgrade",
+	"ChaosModifierDrawEnemyBodies": "Optimized Graphics",
 	"ChaosModifierElectricBullets": "电能激荡",
 	"ChaosModifierEmptyMagazine": "大子弹转移术",
 	"ChaosModifierEmptyReloadOnly": "换弹癌暴毙",

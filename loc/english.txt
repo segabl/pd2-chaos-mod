@@ -39,6 +39,7 @@
 	"ChaosModifierCrabPeople": "Crab People",
 	"ChaosModifierDallasMedicBag": "Peak Comedy",
 	"ChaosModifierDozerSpecials": "Special Upgrade",
+	"ChaosModifierDrawEnemyBodies": "Optimized Graphics",
 	"ChaosModifierElectricBullets": "Charged Shots",
 	"ChaosModifierEmptyMagazine": "No Lead",
 	"ChaosModifierEmptyReloadOnly": "Don't waste a Bullet",

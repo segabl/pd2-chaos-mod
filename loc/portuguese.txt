@@ -39,6 +39,7 @@
 	"ChaosModifierCrabPeople": "Somos os Caranguejos!",
 	"ChaosModifierDallasMedicBag": "Tá Tão Engraçadinho Hoje",
 	"ChaosModifierDozerSpecials": "Uma Melhoria Especial",
+	"ChaosModifierDrawEnemyBodies": "Optimized Graphics",
 	"ChaosModifierElectricBullets": "Botando um Choque Neles",
 	"ChaosModifierEmptyMagazine": "Carregador Vazio",
 	"ChaosModifierEmptyReloadOnly": "Só Recarregue Se Estiver Vazio",

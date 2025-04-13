@@ -185,6 +185,9 @@ Empties the player's magazine
 **Oops, all Marshals**  
 Replaces all non-special enemy spawns with Marshals
 
+**Optimized Graphics**  
+Displays NPCs as their hitboxes only
+
 **Overexposed**  
 Increases the intensity of all light sources
 
