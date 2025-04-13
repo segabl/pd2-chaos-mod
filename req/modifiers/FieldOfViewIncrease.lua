@@ -10,11 +10,11 @@ end
 
 function ChaosModifierFieldOfViewIncrease:start()
 	self:post_hook(PlayerDriving, "get_zoom_fov", function()
-		return math.max(Hooks:GetReturn(), math.min(Hooks:GetReturn() * 2.5, 160))
+		return math.max(Hooks:GetReturn(), math.min(Hooks:GetReturn() * 2.5, 150))
 	end)
 
 	self:post_hook(PlayerStandard, "get_zoom_fov", function()
-		return math.max(Hooks:GetReturn(), math.min(Hooks:GetReturn() * 2.5, 160))
+		return math.max(Hooks:GetReturn(), math.min(Hooks:GetReturn() * 2.5, 150))
 	end)
 
 	self:update_fov()
