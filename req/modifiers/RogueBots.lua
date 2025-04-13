@@ -1,4 +1,5 @@
 ChaosModifierRogueBots = ChaosModifier.class("ChaosModifierRogueBots")
+ChaosModifierRogueBots.run_as_client = false
 ChaosModifierRogueBots.stealth_safe = false
 ChaosModifierRogueBots.duration = 90
 
