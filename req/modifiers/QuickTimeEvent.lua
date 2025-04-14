@@ -15,7 +15,7 @@ function ChaosModifierQuickTimeEvent:start()
 		[180] = Vector3(0, -1)
 	}
 
-	self._panel = ChaosMod:panel():panel({
+	self._panel = ChaosMod:panel(true):panel({
 		layer = 100
 	})
 

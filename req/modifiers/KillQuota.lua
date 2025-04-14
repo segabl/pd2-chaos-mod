@@ -30,7 +30,7 @@ function ChaosModifierKillQuota:start()
 end
 
 function ChaosModifierKillQuota:create_panel()
-	self._panel = ChaosMod:panel():panel({
+	self._panel = ChaosMod:panel(true):panel({
 		alpha = 0
 	})
 

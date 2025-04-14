@@ -158,7 +158,7 @@ function ChaosModifier:expired(t, dt)
 end
 
 function ChaosModifier:show_text(text, time, large)
-	local panel = ChaosMod:panel():panel({
+	local panel = ChaosMod:panel(true):panel({
 		layer = 100
 	})
 

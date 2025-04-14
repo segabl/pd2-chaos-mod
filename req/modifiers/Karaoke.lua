@@ -184,7 +184,7 @@ function ChaosModifierKaraoke:load_song(song_path)
 end
 
 function ChaosModifierKaraoke:create_lyrics_ball()
-	return ChaosMod:panel():bitmap({
+	return ChaosMod:panel(true):bitmap({
 		layer = 99,
 		texture = "guis/textures/pd2/hud_progress_32px",
 		alpha = 0,
@@ -195,7 +195,7 @@ function ChaosModifierKaraoke:create_lyrics_ball()
 end
 
 function ChaosModifierKaraoke:create_lyrics_text(line, color)
-	local panel = ChaosMod:panel():panel({
+	local panel = ChaosMod:panel(true):panel({
 		layer = 98,
 		alpha = 0
 	})

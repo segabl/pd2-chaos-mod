@@ -70,7 +70,7 @@ function ChaosModifierCaptcha:setup_gui()
 	local row = 0
 	local y = padding
 
-	self._panel = ChaosMod:panel():panel({
+	self._panel = ChaosMod:panel(true):panel({
 		layer = 200,
 		w = padding + (size + padding) * 3
 	})
