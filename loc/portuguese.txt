@@ -72,6 +72,7 @@
 	"ChaosModifierItchyTriggerFinger": "Dedo Coçando",
 	"ChaosModifierJamDrills": "Por que não usamos a colher?",
 	"ChaosModifierJulesify": "Jules meteu a mão aqui?",
+	"ChaosModifierJumpingBags": "Haunted Bags",
 	"ChaosModifierKaraoke": "Canta Comigo!",
 	"ChaosModifierKillQuota": "Bate a Meta",
 	"ChaosModifierKillQuotaStart": "Mate $AMOUNT; inimigos!",

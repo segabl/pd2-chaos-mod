@@ -72,6 +72,7 @@
 	"ChaosModifierItchyTriggerFinger": "手指发痒",
 	"ChaosModifierJamDrills": "要不用勺子钻金库？",
 	"ChaosModifierJulesify": "OVK式难度提升",
+	"ChaosModifierJumpingBags": "Haunted Bags",
 	"ChaosModifierKaraoke": "卡拉OK",
 	"ChaosModifierKillQuota": "达到指标",
 	"ChaosModifierKillQuotaStart": "击杀 $AMOUNT; 名敌人！",

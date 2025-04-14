@@ -113,6 +113,9 @@ Changes gravity randomly in different map segments
 **Hack and Slash**  
 Players take reduced damage while only being able to attack with melee
 
+**Haunted Bags**  
+Makes bags jump and bounce around randomly
+
 **Healers never die!**  
 Makes Medics invulnerable but passive
 

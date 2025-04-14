@@ -72,6 +72,7 @@
 	"ChaosModifierItchyTriggerFinger": "Itchy Trigger Finger",
 	"ChaosModifierJamDrills": "Why don't we just use a spoon?",
 	"ChaosModifierJulesify": "Jules-ify",
+	"ChaosModifierJumpingBags": "Haunted Bags",
 	"ChaosModifierKaraoke": "Sing Along",
 	"ChaosModifierKillQuota": "Meet your Quota",
 	"ChaosModifierKillQuotaStart": "Kill $AMOUNT; enemies!",
