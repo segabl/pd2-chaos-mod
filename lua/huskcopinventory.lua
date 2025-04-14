@@ -32,7 +32,7 @@ function HuskCopInventory:add_unit_by_factory_blueprint(factory_name, equip, ins
 		user_unit = self._unit,
 		ignore_units = ignore_units,
 		expend_ammo = false,
-		hit_slotmask = managers.slot:get_mask("bullet_impact_targets_no_AI"),
+		hit_slotmask = managers.slot:get_mask("bullet_impact_targets"),
 		hit_player = true,
 		user_sound_variant = "1"
 	}
