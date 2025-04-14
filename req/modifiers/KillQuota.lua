@@ -24,7 +24,9 @@ function ChaosModifierKillQuota:start()
 		self:update_panel()
 
 		if self._kills >= self._target then
+			managers.player:unregister_message(Message.OnEnemyKilled, "ChaosModifierKillQuota")
 			self:complete()
+			self:remove_panel(0.5)
 		end
 	end)
 end
@@ -89,12 +91,13 @@ function ChaosModifierKillQuota:update_panel()
 	end)
 end
 
-function ChaosModifierKillQuota:remove_panel()
+function ChaosModifierKillQuota:remove_panel(delay)
 	if not alive(self._panel) then
 		return
 	end
 
 	self._panel:animate(function(o)
+		ChaosMod:anim_over(delay or 0)
 		ChaosMod:anim_over(0.5, function(p)
 			o:set_alpha(1 - p)
 		end)
@@ -104,18 +107,10 @@ function ChaosModifierKillQuota:remove_panel()
 	self._panel = nil
 end
 
-function ChaosModifierKillQuota:complete(...)
-	ChaosModifierKillQuota.super.complete(self, ...)
-
-	managers.player:unregister_message(Message.OnEnemyKilled, "ChaosModifierKillQuota")
-
-	self:remove_panel()
-end
-
 function ChaosModifierKillQuota:stop()
 	managers.player:unregister_message(Message.OnEnemyKilled, "ChaosModifierKillQuota")
 
-	if self._kills < self._target then
+	if not self._completed then
 		managers.player:set_player_state("incapacitated")
 	end
 
