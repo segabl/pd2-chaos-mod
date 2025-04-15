@@ -1,9 +1,14 @@
 ChaosModifierMeleeKillConverts = ChaosModifier.class("ChaosModifierMeleeKillConverts")
-ChaosModifierMeleeKillConverts.run_as_client = false
 ChaosModifierMeleeKillConverts.loud_only = true
 ChaosModifierMeleeKillConverts.duration = 60
 
 function ChaosModifierMeleeKillConverts:start()
+	self:show_text(managers.localization:to_upper_text("ChaosModifierMeleeKillConvertsStart"), 4)
+
+	if not Network:is_server() then
+		return
+	end
+
 	self._units = {}
 
 	self:post_hook(CopDamage, "die", function(copdamage, attack_data)
@@ -25,12 +30,12 @@ function ChaosModifierMeleeKillConverts:start()
 			return ChaosModifierPlayerShields.get_follow_objective(self, data.player_unit)
 		end
 	end)
-
-	self:show_text(managers.localization:to_upper_text("ChaosModifierMeleeKillConvertsStart"), 4)
 end
 
 function ChaosModifierMeleeKillConverts:stop()
-	ChaosModifierPlayerShields.stop(self)
+	if Network:is_server() then
+		ChaosModifierPlayerShields.stop(self)
+	end
 end
 
 function ChaosModifierMeleeKillConverts:spawn(unit_name, pos, rot, player_unit)
@@ -69,7 +74,7 @@ function ChaosModifierMeleeKillConverts:spawn(unit_name, pos, rot, player_unit)
 	unit:character_damage():set_invulnerable(true)
 	unit:network():send("set_unit_invulnerable", true, false)
 
-	DelayedCalls:Add(tostring(u_key) .. "invulnerable", 4, function()
+	DelayedCalls:Add(tostring(u_key) .. "invulnerable", 5, function()
 		if alive(unit) then
 			unit:character_damage():set_invulnerable(false)
 			unit:network():send("set_unit_invulnerable", false, false)
