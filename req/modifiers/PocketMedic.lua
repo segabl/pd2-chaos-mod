@@ -81,7 +81,17 @@ function ChaosModifierPocketMedic:spawn_unit(player_unit)
 	local u_key = unit:key()
 	local listener_key = self.class_name .. tostring(u_key)
 
-	unit:character_damage()._damage_reduction_multiplier = 0.35
+	unit:character_damage():set_invulnerable(true)
+	unit:network():send("set_unit_invulnerable", true, false)
+
+	DelayedCalls:Add(tostring(u_key) .. "invulnerable", 20, function()
+		if alive(unit) then
+			unit:character_damage():set_invulnerable(false)
+			unit:network():send("set_unit_invulnerable", false, false)
+		end
+	end)
+
+	unit:character_damage()._damage_reduction_multiplier = 0.5
 	unit:character_damage():add_listener(listener_key, { "death" }, function()
 		unit:contour():remove("generic_interactable_selected", true)
 		self._units[u_key] = nil
