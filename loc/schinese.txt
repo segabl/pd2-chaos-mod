@@ -58,6 +58,7 @@
 	"ChaosModifierForceCrouch": "真正的斯拉夫人",
 	"ChaosModifierForceMelee": "不骑马但砍杀",
 	"ChaosModifierForceMove": "自动驾驶",
+	"ChaosModifierGangstaGrip": "Gangsta Grip",
 	"ChaosModifierGasGrenades": "谁在放屁？",
 	"ChaosModifierGlassCannons": "便衣男孩",
 	"ChaosModifierGravityZones": "Gravity Fluctuations",

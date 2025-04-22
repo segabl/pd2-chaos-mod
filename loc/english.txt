@@ -58,6 +58,7 @@
 	"ChaosModifierForceCrouch": "True Slav",
 	"ChaosModifierForceMelee": "Hack and Slash",
 	"ChaosModifierForceMove": "Autopilot",
+	"ChaosModifierGangstaGrip": "Gangsta Grip",
 	"ChaosModifierGasGrenades": "Who farted?",
 	"ChaosModifierGlassCannons": "Boys in Blue",
 	"ChaosModifierGravityZones": "Gravity Fluctuations",

@@ -58,6 +58,7 @@
 	"ChaosModifierForceCrouch": "Agachamento Slav",
 	"ChaosModifierForceMelee": "Hack n Slash",
 	"ChaosModifierForceMove": "Piloto Automático",
+	"ChaosModifierGangstaGrip": "Gangsta Grip",
 	"ChaosModifierGasGrenades": "Quem peidou?",
 	"ChaosModifierGlassCannons": "Canhão de Vidro",
 	"ChaosModifierGravityZones": "Zonas de Gravidade",

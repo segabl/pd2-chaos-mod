@@ -104,6 +104,9 @@ Increases enemy melee knockback
 **Follow Me!**  
 Chooses a random player (or bot) and forces others to follow them
 
+**Gangsta Grip**  
+Turns the weapon viewmodel sideways and makes players more threatening
+
 **Gaslighting**  
 Plays random enemy voicelines, sound effects and player downed lines
 
