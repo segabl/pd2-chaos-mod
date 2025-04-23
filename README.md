@@ -23,6 +23,9 @@ Switches positions of assets like ammo bags and medic bags
 **Autopilot**  
 Forces players to move forward
 
+**Bad Meme**  
+Shrinks the screen and muffles sound
+
 **Boys in Blue**  
 Replaces all non-special enemy spawns with Bronco cops
 

@@ -89,6 +89,8 @@
 	"ChaosModifierMeleeKillConverts" : "Clean Slate",
 	"ChaosModifierMeleeKillConvertsStart" : "Clean Slate: Melee kills spawn a friendly clone",
 	"ChaosModifierMeleeKnockback": "大力水手",
+	"ChaosModifierMeme": "Bad Meme",
+	"ChaosModifierMemeText": "Payday from far away",
 	"ChaosModifierMoreModifiers": "更多因子",
 	"ChaosModifierMoreSpecials": "Special Operation",
 	"ChaosModifierMoveHud": "UI Drift",
