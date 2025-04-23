@@ -23,6 +23,7 @@
 	"ChaosModifierAutoAim": "战术目镜",
 	"ChaosModifierAutoReload": "超级战术的换弹",
 	"ChaosModifierBagsHurt": "烫手山芋",
+	"ChaosModifierBlurryVision": "Out of Focus",
 	"ChaosModifierBostonBasher": "Don't miss!",
 	"ChaosModifierBouncyProjectiles": "弹簧扳机",
 	"ChaosModifierBreakVehicles": "叫那个技师过来！",

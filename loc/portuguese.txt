@@ -23,6 +23,7 @@
 	"ChaosModifierAutoAim": "Tá Xitado",
 	"ChaosModifierAutoReload": "Mania de Recarregar",
 	"ChaosModifierBagsHurt": "Batata Quente",
+	"ChaosModifierBlurryVision": "Out of Focus",
 	"ChaosModifierBostonBasher": "Não erre!",
 	"ChaosModifierBouncyProjectiles": "Projéteis Quicando",
 	"ChaosModifierBreakVehicles": "Tem Carburador?",

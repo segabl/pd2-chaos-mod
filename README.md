@@ -194,6 +194,9 @@ Replaces all non-special enemy spawns with Marshals
 **Optimized Graphics**  
 Displays NPCs as their hitboxes only
 
+**Out of Focus**  
+Blurs the player's vision
+
 **Overexposed**  
 Increases the intensity of all light sources
 

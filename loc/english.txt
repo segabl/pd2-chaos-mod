@@ -23,6 +23,7 @@
 	"ChaosModifierAutoAim": "Bullet Magnets",
 	"ChaosModifierAutoReload": "Tactical Reload",
 	"ChaosModifierBagsHurt": "Hot Potato",
+	"ChaosModifierBlurryVision": "Out of Focus",
 	"ChaosModifierBostonBasher": "Don't miss!",
 	"ChaosModifierBouncyProjectiles": "Spring-Loaded Trigger",
 	"ChaosModifierBreakVehicles": "Mechanic Needed",
