@@ -2,6 +2,11 @@ ChaosModifierBostonBasher = ChaosModifier.class("ChaosModifierBostonBasher")
 ChaosModifierBostonBasher.duration = 30
 
 function ChaosModifierBostonBasher:start()
+	self:show_text(managers.localization:to_upper_text("ChaosModifierBostonBasher"), 2, true)
+	self:queue("setup", 2)
+end
+
+function ChaosModifierBostonBasher:setup()
 	self:post_hook(RaycastWeaponBase, "fire", function(weaponbase, from_pos, direction, dmg_mul)
 		if weaponbase._setup.user_unit ~= managers.player:player_unit() then
 			return
@@ -22,8 +27,6 @@ function ChaosModifierBostonBasher:start()
 			weaponbase._setup.user_unit:character_damage():delay_damage(scaled_damage, 4)
 		end
 	end)
-
-	self:show_text(managers.localization:to_upper_text("ChaosModifierBostonBasher"), 2, true)
 end
 
 return ChaosModifierBostonBasher

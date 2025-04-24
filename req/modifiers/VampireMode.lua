@@ -14,7 +14,7 @@ function ChaosModifierVampireMode:start()
 		local player_unit = managers.player:local_player()
 		if alive(player_unit) then
 			local char_dmg = player_unit:character_damage()
-			char_dmg:change_health(char_dmg:_max_health() * 0.05)
+			char_dmg:change_health(char_dmg:_max_health() * char_dmg._max_health_reduction * 0.06)
 		end
 	end)
 end
@@ -30,7 +30,7 @@ function ChaosModifierVampireMode:update(t, dt)
 	if alive(player_unit) then
 		local char_dmg = player_unit:character_damage()
 		if not char_dmg:is_downed() then
-			char_dmg:change_health(-char_dmg:_max_health() * char_dmg._max_health_reduction * 0.025)
+			char_dmg:change_health(-char_dmg:_max_health() * char_dmg._max_health_reduction * 0.02)
 			char_dmg:_check_bleed_out()
 		end
 	end
