@@ -14,9 +14,11 @@ if not ChaosMod then
 	ChaosMod.settings = {
 		min_cooldown = 20,
 		max_cooldown = 30,
-		prevent_repeat = 0.25,
+		prevent_repeat = 0.5,
 		max_active = 5,
 		stealth_enabled = 1,
+		panel_x = 1,
+		panel_y = 0.45,
 		disabled_modifiers = {}
 	}
 
@@ -290,9 +292,11 @@ if not ChaosMod then
 		local modifier_toggles = {}
 		local menu_id = "chaos_mod"
 		local modifiers_menu_id = "chaos_mod_modifiers"
+		local panel_menu_id = "chaos_mod_panel"
 
 		MenuHelper:NewMenu(menu_id)
 		MenuHelper:NewMenu(modifiers_menu_id)
+		MenuHelper:NewMenu(panel_menu_id)
 
 		function MenuCallbackHandler:chaos_mod_value(item)
 			local item_name, item_value = item:name(), item:value()
@@ -332,7 +336,7 @@ if not ChaosMod then
 			show_value = true,
 			display_precision = 0,
 			callback = "chaos_mod_value",
-			priority = 7
+			priority = 90
 		})
 
 		slider_max_cooldown = MenuHelper:AddSlider({
@@ -347,7 +351,7 @@ if not ChaosMod then
 			show_value = true,
 			display_precision = 0,
 			callback = "chaos_mod_value",
-			priority = 6
+			priority = 80
 		})
 
 		MenuHelper:AddSlider({
@@ -364,7 +368,7 @@ if not ChaosMod then
 			display_precision = 0,
 			display_scale = 100,
 			callback = "chaos_mod_value",
-			priority = 5
+			priority = 70
 		})
 
 		MenuHelper:AddSlider({
@@ -379,7 +383,7 @@ if not ChaosMod then
 			show_value = true,
 			display_precision = 0,
 			callback = "chaos_mod_value",
-			priority = 4
+			priority = 60
 		})
 
 		MenuHelper:AddMultipleChoice({
@@ -390,13 +394,62 @@ if not ChaosMod then
 			value = ChaosMod.settings.stealth_enabled,
 			items = { "menu_chaos_mod_all_off", "menu_chaos_mod_stealth_on", "menu_chaos_mod_all_on" },
 			callback = "chaos_mod_value",
-			priority = 3
+			priority = 50
 		})
 
 		MenuHelper:AddDivider({
 			menu_id = menu_id,
 			size = 8,
-			priority = 2
+			priority = 40
+		})
+
+		MenuHelper:AddButton({
+			menu_id = menu_id,
+			id = "panel",
+			title = "menu_chaos_mod_panel",
+			desc = "menu_chaos_mod_panel_desc",
+			next_node = panel_menu_id,
+			priority = 30
+		})
+
+		MenuHelper:AddSlider({
+			menu_id = panel_menu_id,
+			id = "panel_x",
+			title = "menu_chaos_mod_panel_x",
+			desc = "menu_chaos_mod_panel_x_desc",
+			value = ChaosMod.settings.panel_x,
+			min = 0,
+			max = 1,
+			step = 0.05,
+			show_value = true,
+			is_percentage = true,
+			display_precision = 0,
+			display_scale = 100,
+			callback = "chaos_mod_value",
+			priority = 90
+		})
+
+		MenuHelper:AddSlider({
+			menu_id = panel_menu_id,
+			id = "panel_y",
+			title = "menu_chaos_mod_panel_y",
+			desc = "menu_chaos_mod_panel_y_desc",
+			value = ChaosMod.settings.panel_y,
+			min = 0,
+			max = 1,
+			step = 0.05,
+			show_value = true,
+			is_percentage = true,
+			display_precision = 0,
+			display_scale = 100,
+			callback = "chaos_mod_value",
+			priority = 80
+		})
+
+		MenuHelper:AddDivider({
+			menu_id = menu_id,
+			size = 8,
+			priority = 20
 		})
 
 		MenuHelper:AddButton({
@@ -405,7 +458,7 @@ if not ChaosMod then
 			title = "menu_chaos_mod_modifiers",
 			desc = "menu_chaos_mod_modifiers_desc",
 			next_node = modifiers_menu_id,
-			priority = 1
+			priority = 10
 		})
 
 		MenuHelper:AddButton({
@@ -414,7 +467,7 @@ if not ChaosMod then
 			title = "menu_chaos_mod_enable_all",
 			desc = "menu_chaos_mod_enable_all_desc",
 			callback = "chaos_mod_toggle_all",
-			priority = 2
+			priority = 90
 		})
 
 		MenuHelper:AddButton({
@@ -423,13 +476,13 @@ if not ChaosMod then
 			title = "menu_chaos_mod_disable_all",
 			desc = "menu_chaos_mod_disable_all_desc",
 			callback = "chaos_mod_toggle_all",
-			priority = 1
+			priority = 80
 		})
 
 		MenuHelper:AddDivider({
 			menu_id = modifiers_menu_id,
 			size = 8,
-			priority = 0
+			priority = 70
 		})
 
 		for modifier_name in pairs(ChaosMod.modifiers) do
@@ -444,6 +497,7 @@ if not ChaosMod then
 
 		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "chaos_mod_save" })
 		nodes[modifiers_menu_id] = MenuHelper:BuildMenu(modifiers_menu_id, { back_callback = "chaos_mod_save" })
+		nodes[panel_menu_id] = MenuHelper:BuildMenu(panel_menu_id, { back_callback = "chaos_mod_save" })
 		MenuHelper:AddMenuItem(nodes.blt_options, menu_id, "menu_chaos_mod")
 	end)
 

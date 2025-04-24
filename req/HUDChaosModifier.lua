@@ -55,7 +55,16 @@ function HUDChaosModifier:init(modifier)
 		halign = "grow"
 	})
 
+	self._glow = ChaosMod:panel(true):bitmap({
+		layer = 1,
+		texture = "guis/textures/pd2/crimenet_marker_glow",
+		w = self._panel:w(),
+		h = self._panel:h(),
+		color = self._progress:color()
+	})
+
 	self._panel:animate(callback(self, self, "_animate_fade_in"))
+	self._glow:animate(callback(self, self, "_animate_glow"))
 end
 
 function HUDChaosModifier:_animate_fade_in(o)
@@ -68,7 +77,23 @@ function HUDChaosModifier:_animate_fade_out(o)
 	o:set_layer(o:layer() - 1)
 	ChaosMod:anim_over(1, function(p)
 		o:set_alpha(1 - p)
-		o:set_x(math.lerp(o:x(), o:parent():w(), p))
+		if ChaosMod.settings.panel_x > 0.5 then
+			o:set_left(math.lerp(o:left(), o:parent():w(), p))
+		else
+			o:set_right(math.lerp(o:right(), 0, p))
+		end
+	end)
+	o:parent():remove(o)
+end
+
+function HUDChaosModifier:_animate_glow(o)
+	local target_w, target_h = self._panel:w() * 4, self._panel:h() * 4
+	ChaosMod:anim_over(0.5, function(p)
+		o:set_alpha(math.lerp(1, 0, p))
+		o:set_size(math.lerp(o:w(), target_w, p), math.lerp(o:h(), target_h, p))
+		if alive(self._panel) then
+			o:set_center(self._panel:center())
+		end
 	end)
 	o:parent():remove(o)
 end
@@ -85,9 +110,16 @@ function HUDChaosModifier:update(t, dt, index)
 		self._index = math.lerp(self._index, self._target_index, dt * 10)
 	end
 
-	self._panel:set_righttop(self._panel:parent():w() - 40, self._panel:parent():h() * 0.45 + self._index * self._panel:h())
+	local x_pos, y_pos = ChaosMod.settings.panel_x, ChaosMod.settings.panel_y
+	local panel_w, panel_h = self._panel:parent():size()
+	local safe_w, safe_h = panel_w - 80 - self._panel:w(), panel_h - 80
+	self._panel:set_position(40 + safe_w * x_pos, 40 + safe_h * y_pos + self._index * self._panel:h() * (y_pos > 0.5 and -1 or 1))
 
-	self._completed_panel:set_righttop(self._panel:lefttop())
+	if x_pos > 0.5 then
+		self._completed_panel:set_righttop(self._panel:lefttop())
+	else
+		self._completed_panel:set_lefttop(self._panel:righttop())
+	end
 
 	if self._modifier.duration > 0 then
 		self._progress:set_w((self._panel:w() - 6) * (1 - math.clamp(self._modifier:progress(t, dt), 0, 1)))
