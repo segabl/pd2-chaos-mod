@@ -113,6 +113,9 @@ Turns the weapon viewmodel sideways and makes players more threatening
 **Gaslighting**  
 Plays random enemy voicelines, sound effects and player downed lines
 
+**Glitch in the Matrix**  
+Randomly moves around objects by a small amount
+
 **Gravity Fluctuations**  
 Changes gravity randomly in different map segments
 
@@ -316,6 +319,9 @@ Stops projectiles from exploding on impact
 
 **Stop right there criminal scum!**  
 Briefly stops all players from moving
+
+**Stopmotion**  
+Lowers the framerate of animations
 
 **Subs > Dubs**  
 Changes all heister voices to Jiro
