@@ -20,11 +20,6 @@ function ChaosModifierRandomEnemies:start()
 				local unit_name = Idstring(category_data.path .. entry .. "/" .. entry)
 				if PackageManager:has(unit_ids, unit_name) then
 					table.insert(self.available_enemies, unit_name)
-					if not entry:match("dozer") then
-						table.insert(self.available_enemies, unit_name)
-						table.insert(self.available_enemies, unit_name)
-						table.insert(self.available_enemies, unit_name)
-					end
 				end
 			end
 		end
@@ -39,6 +34,13 @@ function ChaosModifierRandomEnemies:start()
 	for _, category_data in pairs(tweak_data.group_ai.unit_categories) do
 		self:override(category_data, "unit_types", unit_types)
 	end
+
+	self:post_hook(ElementSpawnEnemyDummy, "produce", function()
+		local unit = Hooks:GetReturn()
+		if unit and unit:character_damage()._HEALTH_INIT > tweak_data.character.tank_mini.HEALTH_INIT then
+			table.delete(self.available_enemies, unit:name())
+		end
+	end)
 end
 
 return ChaosModifierRandomEnemies
