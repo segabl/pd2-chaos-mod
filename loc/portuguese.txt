@@ -133,6 +133,7 @@
 	"ChaosModifierRubberbanding": "Internet Barata",
 	"ChaosModifierRubberBullets": "Balas de Borracha",
 	"ChaosModifierScreamingEnemies": "Inimigos Barulhentos",
+	"ChaosModifierScreenNoise": "Film Grain",
 	"ChaosModifierScreenSaver": "Tela de Espera",
 	"ChaosModifierScreenShake": "Tremores",
 	"ChaosModifierScreenShakeSteps": "Peso Pesado",

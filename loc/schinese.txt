@@ -133,6 +133,7 @@
 	"ChaosModifierRubberbanding": "高PING战士",
 	"ChaosModifierRubberBullets": "Rubber Bullets",
 	"ChaosModifierScreamingEnemies": "更吵的敌人",
+	"ChaosModifierScreenNoise": "Film Grain",
 	"ChaosModifierScreenSaver": "屏保",
 	"ChaosModifierScreenShake": "惊颤",
 	"ChaosModifierScreenShakeSteps": "举足轻重",

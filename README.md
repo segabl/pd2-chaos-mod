@@ -104,6 +104,9 @@ Changes the render mode to render normals
 **Falcon Punch**  
 Increases enemy melee knockback
 
+**Film Grain**  
+Adds a noise overlay to the screen
+
 **Follow Me!**  
 Chooses a random player (or bot) and forces others to follow them
 

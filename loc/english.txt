@@ -133,6 +133,7 @@
 	"ChaosModifierRubberbanding": "Cheap Internet",
 	"ChaosModifierRubberBullets": "Rubber Bullets",
 	"ChaosModifierScreamingEnemies": "Louder Enemies",
+	"ChaosModifierScreenNoise": "Film Grain",
 	"ChaosModifierScreenSaver": "Screensaver",
 	"ChaosModifierScreenShake": "Tremors",
 	"ChaosModifierScreenShakeSteps": "Heavyweights",
