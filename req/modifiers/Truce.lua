@@ -1,4 +1,5 @@
 ChaosModifierTruce = ChaosModifier.class("ChaosModifierTruce")
+ChaosModifierTruce.register_name = "ChaosModifierAttackRestriction"
 ChaosModifierTruce.loud_only = true
 ChaosModifierTruce.duration = 20
 
@@ -8,9 +9,9 @@ function ChaosModifierTruce:start()
 		if attention_data.verified then
 			if data.internal_data.advancing then
 				reaction = AIAttentionObject.REACT_IDLE
-			elseif attention_data.dis < 400 and attention_data.settings.relation == "foe" then
+			elseif attention_data.dis < 300 and attention_data.settings.relation == "foe" then
 				reaction = AIAttentionObject.REACT_AIM
-			elseif attention_data.dis < 8000 then
+			elseif attention_data.dis < 4000 then
 				reaction = AIAttentionObject.REACT_CHECK
 			end
 		end
@@ -54,6 +55,13 @@ function ChaosModifierTruce:start()
 	self:override(GroupAIStateBesiege, "_chk_group_use_flash_grenade", function()end)
 	self:override(GroupAIStateBesiege, "_chk_group_use_smoke_grenade", function()end)
 	self:override(GroupAIStateBesiege, "_chk_group_use_grenade", function()end)
+
+	self:override(SentryGunBrain, "_select_focus_attention", function(brain)
+		if brain._attention_obj then
+			brain._ext_movement:set_attention()
+			brain._attention_obj = nil
+		end
+	end)
 
 	SoundDevice:set_rtpc("option_music_volume", managers.user:get_setting("music_volume"))
 end
