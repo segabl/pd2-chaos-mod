@@ -35,24 +35,38 @@ function ChaosModifierCopyPlayerWeapons:get_weapon()
 end
 
 function ChaosModifierCopyPlayerWeapons:start()
-	self:override(CopMovement, "add_weapons", function(movement)
-		if not movement._ext_base:default_weapon_name("primary") and not movement._ext_base:default_weapon_name("secondary") then
-			return
-		end
-
-		local factory_id, blueprint, cosmetics = self:get_weapon()
-		local inventory = movement._unit:inventory()
-
+	local function add_weapon(inventory, factory_id, blueprint, cosmetics)
 		HuskCopInventory.add_unit_by_factory_blueprint(inventory, factory_id, true, true, blueprint, cosmetics)
 
-		local _fire_raycast = inventory:equipped_unit():base()._fire_raycast
-		inventory:equipped_unit():base()._fire_raycast = function(weaponbase, user_unit, from_pos, direction, ...)
+		local stats = managers.weapon_factory:get_stats(factory_id, blueprint)
+		local weapon_base = inventory:equipped_unit():base()
+		weapon_base:set_ammo_max_per_clip(weapon_base:get_ammo_max_per_clip() + (stats.extra_ammo or 0))
+		weapon_base:set_ammo_remaining_in_clip(weapon_base:get_ammo_max_per_clip())
+
+		local _fire_raycast = weapon_base._fire_raycast
+		weapon_base._fire_raycast = function(weaponbase, user_unit, from_pos, direction, ...)
 			local weapon_tweak = tweak_data.weapon[weaponbase._name_id:gsub("_crew$", "")]
 			if not weapon_tweak or not weapon_tweak.projectile_type then
 				return _fire_raycast(weaponbase, user_unit, from_pos, direction, ...)
 			end
 			ProjectileBase.throw_projectile_npc(weapon_tweak.projectile_type, from_pos, direction, user_unit)
 			return {}
+		end
+	end
+
+	self:override(CopMovement, "add_weapons", function(movement)
+		if not movement._ext_base:default_weapon_name("primary") and not movement._ext_base:default_weapon_name("secondary") then
+			return
+		end
+
+		local factory_id, blueprint, cosmetics = self:get_weapon()
+
+		add_weapon(movement._ext_inventory, factory_id, blueprint, cosmetics)
+
+		local convert_to_criminal = movement._ext_brain.convert_to_criminal
+		movement._ext_brain.convert_to_criminal = function(brain, ...)
+			convert_to_criminal(brain, ...)
+			add_weapon(brain._unit:inventory(), factory_id, blueprint, cosmetics)
 		end
 	end)
 end
