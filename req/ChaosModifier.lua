@@ -11,7 +11,8 @@ ChaosModifier.fixed_duration = false
 ChaosModifier.weight_mul = 1
 ChaosModifier.activation_sound = "Play_star_hit"
 ChaosModifier.enabled = true
-ChaosModifier.overrides = {} ---@type table<table, table<string, { original: any, overrides: { modifier: ChaosModifier, value: any }[] }>>
+ChaosModifier._overrides = {} ---@type table<table, table<string, { original: any, overrides: { modifier: ChaosModifier, value: any }[] }>>
+ChaosModifier._show_text_queue = {}
 
 ---@return ChaosModifier
 function ChaosModifier.class(name, super)
@@ -58,7 +59,7 @@ function ChaosModifier:destroy()
 	if self._overrides then
 		-- This monstrosity makes sure overriden values get restored properly,
 		-- either to the value another modifier set it to before or to the original value
-		for obj, value_data in pairs(ChaosModifier.overrides) do
+		for obj, value_data in pairs(ChaosModifier._overrides) do
 			for value_name, override_data in pairs(value_data) do
 				for i, override in table.reverse_ipairs(override_data.overrides) do
 					if override.modifier == self then
@@ -123,12 +124,12 @@ end
 
 function ChaosModifier:override(obj, k, v)
 	self._overrides = true
-	ChaosModifier.overrides[obj] = ChaosModifier.overrides[obj] or {}
-	ChaosModifier.overrides[obj][k] = ChaosModifier.overrides[obj][k] or {
+	ChaosModifier._overrides[obj] = ChaosModifier._overrides[obj] or {}
+	ChaosModifier._overrides[obj][k] = ChaosModifier._overrides[obj][k] or {
 		original = obj[k],
 		overrides = {}
 	}
-	table.insert(ChaosModifier.overrides[obj][k].overrides, {
+	table.insert(ChaosModifier._overrides[obj][k].overrides, {
 		modifier = self,
 		value = v
 	})
@@ -158,6 +159,11 @@ function ChaosModifier:expired(t, dt)
 end
 
 function ChaosModifier:show_text(text, time, large)
+	if alive(ChaosModifier._show_text_panel) then
+		table.insert(ChaosModifier._show_text_queue, { self, text, time, large })
+		return
+	end
+
 	local panel = ChaosMod:panel(true):panel({
 		layer = 100
 	})
@@ -186,10 +192,24 @@ function ChaosModifier:show_text(text, time, large)
 		ChaosMod:anim_over(0.25, function(p)
 			o:set_alpha(p)
 		end)
-		ChaosMod:anim_over(time - 0.5)
+
+		local t = 0
+		while t < (#ChaosModifier._show_text_queue > 0 and math.min(0.5, time - 0.5) or time - 0.5) do
+			coroutine.yield()
+			t = t + ChaosMod:delta_time()
+		end
+
 		ChaosMod:anim_over(0.25, function(p)
 			o:set_alpha(1 - p)
 		end)
+
 		o:parent():remove(o)
+
+		if #ChaosModifier._show_text_queue > 0 then
+			local data = table.remove(ChaosModifier._show_text_queue, 1)
+			data[1]:show_text(data[2], data[3], data[4])
+		end
 	end)
+
+	ChaosModifier._show_text_panel = panel
 end
