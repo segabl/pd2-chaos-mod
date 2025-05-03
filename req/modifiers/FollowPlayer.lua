@@ -31,16 +31,19 @@ function ChaosModifierFollowPlayer:start()
 	end
 
 	if Network:is_server() and managers.groupai:state():is_unit_team_AI(self._unit) then
-		self:post_hook(TeamAIBrain, "set_objective", function(brain, objective)
+		self:pre_hook(TeamAIBrain, "set_objective", function(brain, objective)
 			if brain._unit ~= self._unit or not objective or objective.type == "act" or objective.type == "revive" then
 				return
 			end
 
-			local all_areas = managers.groupai:state()._area_data
-			local area = all_areas[table.random_key(all_areas)]
+			local selector = WeightedSelector:new()
+			for _, area in pairs(managers.groupai:state()._area_data) do
+				selector:add(area, area.spawn_groups and 1 or next(area.criminal.units) and 2000 or 1000)
+			end
+
 			objective.type = "free"
-			objective.area = area
-			objective.nav_seg = area.pos_nav_seg
+			objective.area = selector:select()
+			objective.nav_seg = objective.area.pos_nav_seg
 			objective.in_place = nil
 			objective.pos = nil
 			objective.path_data = nil
@@ -125,7 +128,7 @@ function ChaosModifierFollowPlayer:update(t, dt)
 
 	local from_pos = player_unit:movement():m_pos()
 	local to_pos = self._unit:movement():m_pos()
-	if mvector3.distance_sq(from_pos, to_pos) < (self._path and 200 or 600) ^ 2 and math.abs(to_pos.z - from_pos.z) < 150 then
+	if mvector3.distance_sq(from_pos, to_pos) < (self._path and 300 or 700) ^ 2 and math.abs(to_pos.z - from_pos.z) < 150 then
 		self._path = nil
 		return
 	end
@@ -172,6 +175,12 @@ end
 
 function ChaosModifierFollowPlayer:expired(t, dt)
 	return not alive(self._unit) or self.super.expired(self, t, dt)
+end
+
+function ChaosModifierFollowPlayer:stop()
+	if Network:is_server() and alive(self._unit) and managers.groupai:state():is_unit_team_AI(self._unit) then
+		self._unit:brain():set_objective(nil)
+	end
 end
 
 return ChaosModifierFollowPlayer
