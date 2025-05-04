@@ -46,18 +46,18 @@ function ChaosModifierShoutToKill:start()
 
 	local CopBrain_on_intimidated_original = CopBrain.on_intimidated
 	self:override(CopBrain, "on_intimidated", function(copbrain, amount, aggressor_unit, ...)
-		if getmetatable(copbrain) ~= CopBrain then
-			return CopBrain_on_intimidated_original(copbrain, amount, aggressor_unit, ...)
+		if copbrain._unit:movement():team().foes.criminal1 then
+			return kill_func(copbrain._unit, aggressor_unit)
 		end
-		return kill_func(copbrain._unit, aggressor_unit)
+		return CopBrain_on_intimidated_original(copbrain, amount, aggressor_unit, ...)
 	end)
 
 	local HuskCopBrain_on_intimidated_original = CopBrain.on_intimidated
 	self:override(HuskCopBrain, "on_intimidated", function(copbrain, amount, aggressor_unit, ...)
-		if getmetatable(copbrain) ~= HuskCopBrain then
-			return HuskCopBrain_on_intimidated_original(copbrain, amount, aggressor_unit, ...)
+		if copbrain._unit:movement():team().foes.criminal1 then
+			return kill_func(copbrain._unit, aggressor_unit)
 		end
-		return kill_func(copbrain._unit, aggressor_unit)
+		return HuskCopBrain_on_intimidated_original(copbrain, amount, aggressor_unit, ...)
 	end)
 
 	local PlayerSound_say = PlayerSound.say
