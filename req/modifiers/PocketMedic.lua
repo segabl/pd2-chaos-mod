@@ -1,47 +1,9 @@
 ChaosModifierPocketMedic = ChaosModifier.class("ChaosModifierPocketMedic", ChaosModifierPlayerShields)
 ChaosModifierPocketMedic.loud_only = true
-ChaosModifierPocketMedic.run_as_client = true
+ChaosModifierPocketMedic.run_as_client = false
 ChaosModifierPocketMedic.duration = -1
 
 function ChaosModifierPocketMedic:start()
-	self:override(PlayerBase, "char_tweak", function() return {} end)
-
-	self:override(PlayerDamage, "do_medic_heal", function(playerdamage)
-		playerdamage:revive(true)
-		managers.hint:show_hint("you_were_helpedup", nil, false, {
-			TEAMMATE = playerdamage._unit:base():nick_name(),
-			HELPER = managers.localization:text("ChaosModifierPocketMedicHelperName")
-		})
-	end)
-
-	self:post_hook(PlayerDamage, "update", function(playerdamage, unit, t)
-		if not playerdamage:need_revive() then
-			playerdamage._chaos_medic_revive_check_t = nil
-			if not playerdamage._chaos_medic_heal_t or t >= playerdamage._chaos_medic_heal_t then
-				playerdamage._chaos_medic_heal_t = t + 1
-				if next(managers.enemy:find_nearby_affiliated_medics(unit)) then
-					playerdamage:restore_health(0.015, false, true)
-				end
-			end
-			return
-		elseif not playerdamage._chaos_medic_revive_check_t then
-			playerdamage._chaos_medic_revive_check_t = t + 0.5
-			return
-		elseif playerdamage._chaos_medic_revive_check_t > t then
-			return
-		end
-
-		playerdamage._chaos_medic_revive_check_t = t + 0.5
-		local medic = managers.enemy:get_nearby_medic(unit)
-		if medic then
-			medic:character_damage():heal_unit(unit)
-		end
-	end)
-
-	if not Network:is_server() then
-		return
-	end
-
 	self._medic_unit_names = {}
 	for _, v in pairs(tweak_data.group_ai.unit_categories) do
 		if v.special_type == "medic" then
@@ -54,12 +16,6 @@ function ChaosModifierPocketMedic:start()
 	end
 
 	ChaosModifierPocketMedic.super.start(self)
-end
-
-function ChaosModifierPocketMedic:stop()
-	if Network:is_server() then
-		ChaosModifierPocketMedic.super.stop(self)
-	end
 end
 
 function ChaosModifierPocketMedic:get_follow_objective(player_unit)
