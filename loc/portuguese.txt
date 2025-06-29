@@ -138,6 +138,7 @@
 	"ChaosModifierScreenShake": "Tremores",
 	"ChaosModifierScreenShakeSteps": "Peso Pesado",
 	"ChaosModifierSecretCloaker": "Cloaker Secreto",
+	"ChaosModifierShieldEquips": "Aegis",
 	"ChaosModifierShields": "Escudeiros Escudo",
 	"ChaosModifierShoutToKill": "Use a Força, Luke",
 	"ChaosModifierShowHitboxes": "Uma Visão Mais Clara",

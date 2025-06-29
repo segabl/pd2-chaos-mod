@@ -138,6 +138,7 @@
 	"ChaosModifierScreenShake": "Tremors",
 	"ChaosModifierScreenShakeSteps": "Heavyweights",
 	"ChaosModifierSecretCloaker": "Secret Cloaker",
+	"ChaosModifierShieldEquips": "Aegis",
 	"ChaosModifierShields": "Riot Police",
 	"ChaosModifierShoutToKill": "Use the Force",
 	"ChaosModifierShowHitboxes": "A Deeper Insight",

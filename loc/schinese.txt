@@ -138,6 +138,7 @@
 	"ChaosModifierScreenShake": "惊颤",
 	"ChaosModifierScreenShakeSteps": "举足轻重",
 	"ChaosModifierSecretCloaker": "便衣特工",
+	"ChaosModifierShieldEquips": "Aegis",
 	"ChaosModifierShields": "钢铁洪流",
 	"ChaosModifierShoutToKill": "原力爆发",
 	"ChaosModifierShowHitboxes": "突破第四面墙",
