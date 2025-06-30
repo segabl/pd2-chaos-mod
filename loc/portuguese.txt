@@ -19,7 +19,7 @@
 	"menu_chaos_mod_panel_x_desc": "Relative position of the modifier list as percentage of screen width\n0 = left, 100 = right",
 	"menu_chaos_mod_panel_y": "Vertical position",
 	"menu_chaos_mod_panel_y_desc": "Relative position of the modifier list as percentage of screen height\n0 = top, 100 = bottom",
-	"menu_chaos_mod_modifiers": "Modifiers",
+	"menu_chaos_mod_modifiers": "Modifiers $FROM;-$TO;",
 	"menu_chaos_mod_modifiers_desc": "Toggle individual modifiers",
 	"menu_chaos_mod_enable_all": "Ativar tudo",
 	"menu_chaos_mod_enable_all_desc": "Ativa todos os efeitos disponíveis",

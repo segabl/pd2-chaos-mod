@@ -228,7 +228,7 @@ if not ChaosMod then
 	end
 
 	function ChaosMod:anim_over(duration, func)
-		func = func or function()end
+		func = func or function() end
 		func(0)
 		local start_t = self:time()
 		while true do
@@ -291,11 +291,10 @@ if not ChaosMod then
 		local slider_min_cooldown, slider_max_cooldown
 		local modifier_toggles = {}
 		local menu_id = "chaos_mod"
-		local modifiers_menu_id = "chaos_mod_modifiers"
 		local panel_menu_id = "chaos_mod_panel"
+		local modifiers_menu_ids = {}
 
 		MenuHelper:NewMenu(menu_id)
-		MenuHelper:NewMenu(modifiers_menu_id)
 		MenuHelper:NewMenu(panel_menu_id)
 
 		function MenuCallbackHandler:chaos_mod_value(item)
@@ -452,52 +451,84 @@ if not ChaosMod then
 			priority = 20
 		})
 
-		MenuHelper:AddButton({
+		local modifiers_per_menu = 23
+		local letter_modifiers = {}
+		for modifier_name in pairs(ChaosMod.modifiers) do
+			local name = managers.localization:text(modifier_name):lower():gsub("%p", "")
+			local letter = utf8.sub(name, 1, 1)
+			letter_modifiers[letter] = letter_modifiers[letter] or {}
+			table.insert(letter_modifiers[letter], modifier_name)
+		end
+
+		local page_num = 1
+		local sorted_letters = table.map_keys(letter_modifiers, function(a, b) return a < b end)
+		while #sorted_letters > 0 do
+			local modifiers_menu_id = "chaos_mod_modifiers_" .. page_num
+			local num_modifiers = 0
+			local from_letter = sorted_letters[1]
+			local to_letter = from_letter
+
+			MenuHelper:NewMenu(modifiers_menu_id)
+			table.insert(modifiers_menu_ids, modifiers_menu_id)
+
+			repeat
+				to_letter = table.remove(sorted_letters, 1)
+				num_modifiers = num_modifiers + #letter_modifiers[to_letter]
+
+				for _, modifier_name in pairs(letter_modifiers[to_letter]) do
+					table.insert(modifier_toggles, MenuHelper:AddToggle({
+						menu_id = modifiers_menu_id,
+						id = modifier_name,
+						title = modifier_name,
+						value = not ChaosMod.settings.disabled_modifiers[modifier_name],
+						callback = "chaos_mod_modifier_toggle"
+					}))
+				end
+			until not sorted_letters[1] or num_modifiers + #letter_modifiers[sorted_letters[1]] > modifiers_per_menu
+
+			MenuHelper:AddButton({
+				menu_id = menu_id,
+				id = "modifiers_" .. page_num,
+				title = managers.localization:text("menu_chaos_mod_modifiers", { FROM = from_letter:upper(), TO = to_letter:upper() }),
+				desc = managers.localization:text("menu_chaos_mod_modifiers_desc"),
+				localized = false,
+				next_node = modifiers_menu_id,
+				priority = -page_num
+			})
+
+			page_num = page_num + 1
+		end
+
+		MenuHelper:AddDivider({
 			menu_id = menu_id,
-			id = "modifiers",
-			title = "menu_chaos_mod_modifiers",
-			desc = "menu_chaos_mod_modifiers_desc",
-			next_node = modifiers_menu_id,
-			priority = 10
+			size = 8,
+			priority = -100
 		})
 
 		MenuHelper:AddButton({
-			menu_id = modifiers_menu_id,
+			menu_id = menu_id,
 			id = "enable_all",
 			title = "menu_chaos_mod_enable_all",
 			desc = "menu_chaos_mod_enable_all_desc",
 			callback = "chaos_mod_toggle_all",
-			priority = 90
+			priority = -110
 		})
 
 		MenuHelper:AddButton({
-			menu_id = modifiers_menu_id,
+			menu_id = menu_id,
 			id = "disable_all",
 			title = "menu_chaos_mod_disable_all",
 			desc = "menu_chaos_mod_disable_all_desc",
 			callback = "chaos_mod_toggle_all",
-			priority = 80
+			priority = -120
 		})
-
-		MenuHelper:AddDivider({
-			menu_id = modifiers_menu_id,
-			size = 8,
-			priority = 70
-		})
-
-		for modifier_name in pairs(ChaosMod.modifiers) do
-			table.insert(modifier_toggles, MenuHelper:AddToggle({
-				menu_id = modifiers_menu_id,
-				id = modifier_name,
-				title = modifier_name,
-				value = not ChaosMod.settings.disabled_modifiers[modifier_name],
-				callback = "chaos_mod_modifier_toggle"
-			}))
-		end
 
 		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "chaos_mod_save" })
-		nodes[modifiers_menu_id] = MenuHelper:BuildMenu(modifiers_menu_id, { back_callback = "chaos_mod_save" })
 		nodes[panel_menu_id] = MenuHelper:BuildMenu(panel_menu_id, { back_callback = "chaos_mod_save" })
+		for _, modifiers_menu_id in pairs(modifiers_menu_ids) do
+			nodes[modifiers_menu_id] = MenuHelper:BuildMenu(modifiers_menu_id, { back_callback = "chaos_mod_save" })
+		end
+
 		MenuHelper:AddMenuItem(nodes.blt_options, menu_id, "menu_chaos_mod")
 	end)
 
