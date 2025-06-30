@@ -26,6 +26,7 @@ function ChaosModifierForceMelee:start()
 		self:override(melee_weapon, "melee_charge_shaker", "player_melee_charge_wing")
 		self:override(melee_weapon.stats, "min_damage", melee_weapon.stats.min_damage * 10)
 		self:override(melee_weapon.stats, "max_damage", melee_weapon.stats.max_damage * 10)
+		self:override(melee_weapon.stats, "charge_time", melee_weapon.stats.charge_time * 0.5)
 	end
 
 	self:pre_hook(PlayerDamage, "damage_bullet", function(damage, attack_data)
