@@ -25,6 +25,18 @@ function ChaosModifierGangstaGrip:start()
 		return "breech"
 	end)
 
+	self:post_hook(PlayerStandard, "_get_input", function(playerstate)
+		if not playerstate._chaos_reload_unequip then
+			return
+		end
+
+		local input = Hooks:GetReturn()
+		input.btn_throw_grenade_press = false
+		input.btn_projectile_press = false
+		input.btn_projectile_release = false
+		input.btn_projectile_state = false
+	end)
+
 	self:post_hook(PlayerInventory, "_align_place", function(inventory)
 		if inventory._unit == managers.player:local_player() and Hooks:GetReturn() == inventory._align_places.left_hand then
 			return inventory._align_places.right_hand
