@@ -130,6 +130,7 @@
 	"ChaosModifierRefreshModifers": "刷新因子",
 	"ChaosModifierRocketStrike": "X16大火箭",
 	"ChaosModifierRogueBots": "Rogue AI",
+	"ChaosModifierRpgSnipers": "Mayhem Marksmen",
 	"ChaosModifierRubberbanding": "高PING战士",
 	"ChaosModifierRubberBullets": "Rubber Bullets",
 	"ChaosModifierScreamingEnemies": "更吵的敌人",

@@ -130,6 +130,7 @@
 	"ChaosModifierRefreshModifers": "Refresh Modifiers",
 	"ChaosModifierRocketStrike": "Shell Shock",
 	"ChaosModifierRogueBots": "Rogue AI",
+	"ChaosModifierRpgSnipers": "Mayhem Marksmen",
 	"ChaosModifierRubberbanding": "Cheap Internet",
 	"ChaosModifierRubberBullets": "Rubber Bullets",
 	"ChaosModifierScreamingEnemies": "Louder Enemies",

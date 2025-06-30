@@ -11,6 +11,9 @@ With over 100 different modifiers you are sure to have plenty of exciting combin
 **Acid Trip**  
 Adds a rainbow overlay to the screen
 
+**Aegis**  
+Gives players usable shields
+
 **A Deeper Insight**  
 Draws hitboxes of objects in a certain radius around the player
 
@@ -175,6 +178,9 @@ Lowers gravity
 
 **Magdump**  
 Every shot will empty the entire magazine and deal damage according to the amount of bullets used
+
+**Mayhem Marksmen**  
+Makes Snipers shoot RPG reockets
 
 **Mechanic Needed**  
 Breaks all vehicles

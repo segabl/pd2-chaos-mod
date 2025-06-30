@@ -130,6 +130,7 @@
 	"ChaosModifierRefreshModifers": "Mudando Efeitos",
 	"ChaosModifierRocketStrike": "Em Shock",
 	"ChaosModifierRogueBots": "Rogue AI",
+	"ChaosModifierRpgSnipers": "Mayhem Marksmen",
 	"ChaosModifierRubberbanding": "Internet Barata",
 	"ChaosModifierRubberBullets": "Balas de Borracha",
 	"ChaosModifierScreamingEnemies": "Inimigos Barulhentos",

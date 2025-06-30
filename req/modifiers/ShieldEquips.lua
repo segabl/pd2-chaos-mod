@@ -60,6 +60,16 @@ function ChaosModifierShieldEquips:start()
 			input.btn_primary_attack_state = false
 			input.btn_primary_attack_release = false
 		end
+		if playerstate._chaos_reload_unequip then
+			input.btn_throw_grenade_press = false
+			input.btn_projectile_press = false
+			input.btn_projectile_release = false
+			input.btn_projectile_state = false
+		end
+	end)
+
+	self:post_hook(PlayerStandard, "inventory_clbk_listener", function()
+		self:update_ignore_unit()
 	end)
 
 	self:post_hook(NewRaycastWeaponBase, "recoil", function()
@@ -84,10 +94,29 @@ function ChaosModifierShieldEquips:update_stance()
 	end
 end
 
+function ChaosModifierShieldEquips:update_ignore_unit()
+	local player_unit = managers.player:local_player()
+	if not alive(player_unit) then
+		return
+	end
+
+	local weapon_unit = player_unit:inventory():equipped_unit()
+	if not alive(weapon_unit) then
+		return
+	end
+
+	local shield_unit = self._shield_units[player_unit:key()]
+	if alive(shield_unit) then
+		weapon_unit:base():add_ignore_unit(shield_unit)
+	elseif shield_unit then
+		weapon_unit:base():remove_ignore_unit(shield_unit)
+	end
+end
+
 function ChaosModifierShieldEquips:update(t, dt)
-	local player = managers.player:local_player()
+	local player_unit = managers.player:local_player()
 	for u_key, data in pairs(managers.groupai:state():all_char_criminals()) do
-		local is_local_player = data.unit == player
+		local is_local_player = data.unit == player_unit
 
 		if not alive(data.unit) then
 		elseif not alive(self._shield_units[u_key]) then
@@ -96,12 +125,15 @@ function ChaosModifierShieldEquips:update(t, dt)
 
 			self._shield_units[u_key] = World:spawn_unit(self._shield_ids, link_obj:position(), link_obj:rotation())
 
+			self._shield_units[u_key]:set_slot(35)
 			self._shield_units[u_key]:damage():run_sequence_simple("enable_body")
 			self._shield_units[u_key]:body("dropped_body"):set_keyframed()
 
 			link_unit:link(link_obj:name(), self._shield_units[u_key], self._shield_units[u_key]:orientation_object():name())
 
-			if not is_local_player then
+			if is_local_player then
+				self:update_ignore_unit()
+			else
 				self._shield_units[u_key]:set_local_position(Vector3(-5, 50, 125))
 				self._shield_units[u_key]:set_local_rotation(Rotation(30, 0, 0))
 			end
@@ -113,9 +145,12 @@ function ChaosModifierShieldEquips:update(t, dt)
 				end
 			end)
 		elseif is_local_player then
-			local steelsight = player:movement():current_state():in_steelsight()
 			local target_pos, target_rot
-			if steelsight then
+			local current_state = player_unit:movement():current_state()
+			if current_state:_is_throwing_projectile() then
+				target_pos = Vector3(-100, 0, 0)
+				target_rot = Rotation(90, 0, 0)
+			elseif current_state:in_steelsight() then
 				target_pos = Vector3(-4, 30, 0)
 				target_rot = Rotation(0, 0, 0)
 			else
@@ -144,6 +179,8 @@ function ChaosModifierShieldEquips:stop()
 			World:delete_unit(shield_unit)
 		end
 	end
+
+	self:update_ignore_unit()
 end
 
 return ChaosModifierShieldEquips
