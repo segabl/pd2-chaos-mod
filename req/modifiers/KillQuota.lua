@@ -2,31 +2,38 @@ ChaosModifierKillQuota = ChaosModifier.class("ChaosModifierKillQuota")
 ChaosModifierKillQuota.loud_only = true
 ChaosModifierKillQuota.color = "player_specific"
 ChaosModifierKillQuota.duration = 20
+ChaosModifierKillQuota.target = 5
 
 function ChaosModifierKillQuota:can_trigger()
 	local gstate = managers.groupai:state()
-	return gstate._hunt_mode or gstate._task_data.assault.active and (gstate._task_data.assault.phase == "build" or gstate._task_data.assault.phase == "sustain")
+	if not gstate._hunt_mode or not gstate._task_data.assault.active then
+		return
+	end
+	if gstate._task_data.assault.phase == "build" or gstate._task_data.assault.phase == "sustain" then
+		return gstate:_count_police_force("assault") > self.target * 2
+	end
 end
 
 function ChaosModifierKillQuota:start()
 	self._kills = 0
-	self._target = 5
 
 	self:create_panel()
 
 	local text = managers.localization:to_upper_text("ChaosModifierKillQuotaStart", {
-		AMOUNT = tostring(self._target)
+		AMOUNT = tostring(self.target)
 	})
 	self:show_text(text, 2, true)
 
 	managers.player:register_message(Message.OnEnemyKilled, "ChaosModifierKillQuota", function()
 		self._kills = self._kills + 1
 		self:update_panel()
+		managers.hud:post_event("item_buy")
 
-		if self._kills >= self._target then
+		if self._kills >= self.target then
 			managers.player:unregister_message(Message.OnEnemyKilled, "ChaosModifierKillQuota")
 			self:complete()
-			self:remove_panel(0.5)
+			self:remove_panel(true)
+			managers.hud:post_event("slot_machine_win")
 		end
 	end)
 end
@@ -37,7 +44,7 @@ function ChaosModifierKillQuota:create_panel()
 	})
 
 	local size = 48
-	for i = 1, self._target do
+	for i = 1, self.target do
 		self._panel:bitmap({
 			texture = "guis/textures/pd2/risklevel_blackscreen",
 			w = size,
@@ -49,7 +56,7 @@ function ChaosModifierKillQuota:create_panel()
 		})
 	end
 
-	self._panel:set_size(size + self._target * size, size * 2)
+	self._panel:set_size(size + self.target * size, size * 2)
 	self._panel:set_center(self._panel:parent():w() * 0.5, self._panel:parent():h() * 0.145)
 
 	self._panel:animate(function(o)
@@ -69,35 +76,32 @@ function ChaosModifierKillQuota:update_panel()
 		return
 	end
 
-	bitmap:set_alpha(1)
-
-	self._panel:bitmap({
-		texture = "guis/textures/pd2/risklevel_blackscreen",
-		w = bitmap:w(),
-		h = bitmap:h(),
-		x = bitmap:x(),
-		y = bitmap:y(),
-		color = Color.white,
-		alpha = 1
-	}):animate(function(o)
+	bitmap:animate(function(o)
+		local a = bitmap:alpha()
+		local x, y = bitmap:center()
+		local w = bitmap:w()
 		ChaosMod:anim_over(0.25, function(p)
-			local size = math.lerp(bitmap:w(), bitmap:w() * 2, p)
-			local alpha = math.lerp(1, 0, p)
+			local size = math.lerp(w * 2, w, p)
+			local alpha = math.lerp(a, 1, p)
 			o:set_size(size, size)
-			o:set_center(bitmap:center())
+			o:set_center(x, y)
 			o:set_alpha(alpha)
+			o:set_color(Color(1, 1, p ^ 3))
 		end)
-		o:parent():remove(o)
 	end)
 end
 
-function ChaosModifierKillQuota:remove_panel(delay)
+function ChaosModifierKillQuota:remove_panel(completed)
 	if not alive(self._panel) then
 		return
 	end
 
 	self._panel:animate(function(o)
-		ChaosMod:anim_over(delay or 0)
+		if completed then
+			ChaosMod:anim_over(1, function(p)
+				o:set_alpha(math.map_range(math.sin(p * 360 * 4), -1, 1, 0, 1))
+			end)
+		end
 		ChaosMod:anim_over(0.5, function(p)
 			o:set_alpha(1 - p)
 		end)
