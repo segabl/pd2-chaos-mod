@@ -25,6 +25,7 @@
 	"menu_chaos_mod_enable_all_desc": "启用全部可用的因子",
 	"menu_chaos_mod_disable_all": "禁用全部",
 	"menu_chaos_mod_disable_all_desc": "禁用全部可用的因子",
+	"ChaosModifierAmmoCharge": "Passive Reload",
 	"ChaosModifierAmmoLeak": "Leaky Pockets",
 	"ChaosModifierAutoAim": "战术目镜",
 	"ChaosModifierAutoReload": "超级战术的换弹",

@@ -218,6 +218,9 @@ Increases the intensity of all light sources
 **Pain Split**  
 Health and armor percentages are shared between all players
 
+**Passive Reload**  
+Players can't reload but will gain ammo over time when not shooting
+
 **PAYDAY Pro**  
 Increases the field of view
 

@@ -25,6 +25,7 @@
 	"menu_chaos_mod_enable_all_desc": "Ativa todos os efeitos disponíveis",
 	"menu_chaos_mod_disable_all": "Desativar tudo",
 	"menu_chaos_mod_disable_all_desc": "Desativa todos os efeitos disponíveis",
+	"ChaosModifierAmmoCharge": "Passive Reload",
 	"ChaosModifierAmmoLeak": "Bolso Furado",
 	"ChaosModifierAutoAim": "Tá Xitado",
 	"ChaosModifierAutoReload": "Mania de Recarregar",
