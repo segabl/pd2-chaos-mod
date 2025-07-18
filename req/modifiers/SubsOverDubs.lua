@@ -1,5 +1,5 @@
 ChaosModifierSubsOverDubs = ChaosModifier.class("ChaosModifierSubsOverDubs")
-ChaosModifierSubsOverDubs.register_name = "ChaosModifierVoiceChange"
+ChaosModifierSubsOverDubs.conflict_tags = { "VoiceChange" }
 ChaosModifierSubsOverDubs.duration = 90
 
 function ChaosModifierSubsOverDubs:start()

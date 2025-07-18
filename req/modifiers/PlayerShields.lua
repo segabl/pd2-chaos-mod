@@ -118,7 +118,7 @@ function ChaosModifierPlayerShields:spawn_unit(player_unit)
 		end
 	end)
 
-	unit:character_damage()._damage_reduction_multiplier = 0.8
+	unit:character_damage()._damage_reduction_multiplier = 0.5
 	unit:character_damage():add_listener(listener_key, { "death" }, function()
 		unit:contour():remove("generic_interactable_selected", true)
 		self._units[u_key] = nil

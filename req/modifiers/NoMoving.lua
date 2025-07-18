@@ -1,5 +1,5 @@
 ChaosModifierNoMoving = ChaosModifier.class("ChaosModifierNoMoving")
-ChaosModifierNoMoving.register_name = "ChaosModifierPlayerMovement"
+ChaosModifierNoMoving.conflict_tags = { "PlayerMovement" }
 ChaosModifierNoMoving.duration = 3
 
 function ChaosModifierNoMoving:start()

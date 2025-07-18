@@ -1,5 +1,5 @@
 ChaosModifierGravityZones = ChaosModifier.class("ChaosModifierGravityZones")
-ChaosModifierGravityZones.register_name = "ChaosModifierGravity"
+ChaosModifierGravityZones.conflict_tags = { "Gravity" }
 ChaosModifierGravityZones.duration = 40
 
 function ChaosModifierGravityZones:start()

@@ -1,4 +1,5 @@
 ChaosModifierEmptyMagazine = ChaosModifier.class("ChaosModifierEmptyMagazine")
+ChaosModifierEmptyMagazine.conflict_tags = { "InfiniteAmmo" }
 
 function ChaosModifierEmptyMagazine:start()
 	local player = managers.player:local_player()

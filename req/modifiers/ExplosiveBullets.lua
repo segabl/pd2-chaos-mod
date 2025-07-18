@@ -1,5 +1,5 @@
 ChaosModifierExplosiveBullets = ChaosModifier.class("ChaosModifierExplosiveBullets")
-ChaosModifierExplosiveBullets.register_name = "ChaosModifierBulletChange"
+ChaosModifierExplosiveBullets.conflict_tags = { "BulletChange" }
 ChaosModifierExplosiveBullets.stealth_safe = false
 ChaosModifierExplosiveBullets.duration = 30
 

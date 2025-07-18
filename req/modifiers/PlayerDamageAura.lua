@@ -1,5 +1,5 @@
 ChaosModifierPlayerDamageAura = ChaosModifier.class("ChaosModifierPlayerDamageAura")
-ChaosModifierPlayerDamageAura.register_name = "ChaosModifierPlayerDistance"
+ChaosModifierPlayerDamageAura.conflict_tags = { "PlayerDistance" }
 ChaosModifierPlayerDamageAura.duration = 45
 
 function ChaosModifierPlayerDamageAura:can_trigger()

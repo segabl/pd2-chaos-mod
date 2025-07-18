@@ -1,5 +1,5 @@
 ChaosModifierPlayerGrouping = ChaosModifier.class("ChaosModifierPlayerGrouping")
-ChaosModifierPlayerGrouping.register_name = "ChaosModifierPlayerDistance"
+ChaosModifierPlayerGrouping.conflict_tags = { "PlayerDistance" }
 ChaosModifierPlayerGrouping.duration = 45
 
 function ChaosModifierPlayerGrouping:can_trigger()

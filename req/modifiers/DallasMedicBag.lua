@@ -1,5 +1,5 @@
 ChaosModifierDallasMedicBag = ChaosModifier.class("ChaosModifierDallasMedicBag")
-ChaosModifierDallasMedicBag.register_name = "ChaosModifierVoiceChange"
+ChaosModifierDallasMedicBag.conflict_tags = { "VoiceChange" }
 ChaosModifierDallasMedicBag.duration = 60
 
 function ChaosModifierDallasMedicBag:start()

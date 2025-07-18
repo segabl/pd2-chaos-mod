@@ -1,4 +1,5 @@
 ChaosModifierDrawEnemyBodies = ChaosModifier.class("ChaosModifierDrawEnemyBodies")
+ChaosModifierDrawEnemyBodies.conflict_tags = { "DrawBrush" }
 ChaosModifierDrawEnemyBodies.duration = 45
 
 function ChaosModifierDrawEnemyBodies:start()

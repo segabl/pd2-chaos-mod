@@ -1,5 +1,5 @@
 ChaosModifierCaptcha = ChaosModifier.class("ChaosModifierCaptcha")
-ChaosModifierCaptcha.register_name = "ChaosModifierUserInterface"
+ChaosModifierCaptcha.conflict_tags = { "UserInterface" }
 ChaosModifierCaptcha.color = "player_specific"
 ChaosModifierCaptcha.duration = 60
 

@@ -1,5 +1,5 @@
 ChaosModifierDozerSpecials = ChaosModifier.class("ChaosModifierDozerSpecials")
-ChaosModifierDozerSpecials.register_name = "ChaosModifierUnitCategories"
+ChaosModifierDozerSpecials.conflict_tags = { "UnitCategories" }
 ChaosModifierDozerSpecials.loud_only = true
 ChaosModifierDozerSpecials.color = "enemy_change"
 ChaosModifierDozerSpecials.duration = 60

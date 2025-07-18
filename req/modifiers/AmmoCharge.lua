@@ -1,4 +1,5 @@
 ChaosModifierAmmoCharge = ChaosModifier.class("ChaosModifierAmmoCharge")
+ChaosModifierAmmoCharge.conflict_tags = { "PlayerReloadRestriction", "InfiniteAmmo" }
 ChaosModifierAmmoCharge.loud_only = true
 ChaosModifierAmmoCharge.duration = 60
 

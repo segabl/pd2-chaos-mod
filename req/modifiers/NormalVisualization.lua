@@ -1,5 +1,5 @@
 ChaosModifierNormalVisualization = ChaosModifier.class("ChaosModifierNormalVisualization")
-ChaosModifierNormalVisualization.register_name = "ChaosModifierScreenEffect"
+ChaosModifierNormalVisualization.conflict_tags = { "ScreenEffect" }
 ChaosModifierNormalVisualization.duration = 40
 
 function ChaosModifierNormalVisualization:start()

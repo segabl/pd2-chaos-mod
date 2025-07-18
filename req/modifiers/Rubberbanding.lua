@@ -1,5 +1,5 @@
 ChaosModifierRubberbanding = ChaosModifier.class("ChaosModifierRubberbanding")
-ChaosModifierRubberbanding.register_name = "ChaosModifierTeleport"
+ChaosModifierRubberbanding.conflict_tags = { "Teleport" }
 ChaosModifierRubberbanding.duration = 30
 
 function ChaosModifierRubberbanding:start()

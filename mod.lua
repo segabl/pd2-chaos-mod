@@ -59,8 +59,10 @@ if not ChaosMod then
 			return false, false
 		end
 
-		if self.active_modifiers[modifier.register_name or modifier.class_name] then
-			return false, false
+		for _, active_modifier in pairs(self.active_modifiers) do
+			if active_modifier:conflicts_with(modifier) then
+				return false, false
+			end
 		end
 
 		if not skip_trigger_check and not modifier:can_trigger() then
@@ -117,14 +119,14 @@ if not ChaosMod then
 			return
 		end
 
-		local register_name = modifier_class.register_name or modifier_class.class_name
-		local existing_modifier = self.active_modifiers[register_name]
-		if existing_modifier then
-			existing_modifier:destroy()
+		for _, active_modifier in pairs(self.active_modifiers) do
+			if active_modifier:conflicts_with(modifier_class) then
+				active_modifier:destroy()
+			end
 		end
 
 		local modifier = modifier_class:new(seed)
-		self.active_modifiers[register_name] = modifier
+		self.active_modifiers[modifier_class.class_name] = modifier
 		table.insert(self.hud_modifiers, modifier._hud_modifier)
 
 		return true

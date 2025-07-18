@@ -1,5 +1,5 @@
 ChaosModifierElectricBullets = ChaosModifier.class("ChaosModifierElectricBullets")
-ChaosModifierElectricBullets.register_name = "ChaosModifierBulletChange"
+ChaosModifierElectricBullets.conflict_tags = { "BulletChange" }
 ChaosModifierElectricBullets.stealth_safe = false
 ChaosModifierElectricBullets.duration = 30
 

@@ -1,5 +1,5 @@
 ChaosModifierRainbowOverlay = ChaosModifier.class("ChaosModifierRainbowOverlay")
-ChaosModifierRainbowOverlay.register_name = "ChaosModifierScreenEffect"
+ChaosModifierRainbowOverlay.conflict_tags = { "ScreenEffect" }
 ChaosModifierRainbowOverlay.duration = 45
 
 function ChaosModifierRainbowOverlay:start()

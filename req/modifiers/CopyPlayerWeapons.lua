@@ -1,5 +1,5 @@
 ChaosModifierCopyPlayerWeapons = ChaosModifier.class("ChaosModifierCopyPlayerWeapons")
-ChaosModifierCopyPlayerWeapons.register_name = "ChaosModifierEnemyWeapons"
+ChaosModifierCopyPlayerWeapons.conflict_tags = { "EnemyWeapons" }
 ChaosModifierCopyPlayerWeapons.run_as_client = false
 ChaosModifierCopyPlayerWeapons.loud_only = true
 ChaosModifierCopyPlayerWeapons.color = "enemy_change"

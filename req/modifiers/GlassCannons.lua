@@ -1,5 +1,5 @@
 ChaosModifierGlassCannons = ChaosModifier.class("ChaosModifierGlassCannons")
-ChaosModifierGlassCannons.register_name = "ChaosModifierUnitCategories"
+ChaosModifierGlassCannons.conflict_tags = { "UnitCategories" }
 ChaosModifierGlassCannons.run_as_client = false
 ChaosModifierGlassCannons.loud_only = true
 ChaosModifierGlassCannons.color = "enemy_change"

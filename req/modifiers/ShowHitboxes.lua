@@ -1,4 +1,5 @@
 ChaosModifierShowHitboxes = ChaosModifier.class("ChaosModifierShowHitboxes")
+ChaosModifierShowHitboxes.conflict_tags = { "DrawBrush" }
 ChaosModifierShowHitboxes.duration = 40
 
 function ChaosModifierShowHitboxes:start()

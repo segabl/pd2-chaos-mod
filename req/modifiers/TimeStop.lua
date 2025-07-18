@@ -1,5 +1,5 @@
 ChaosModifierTimeStop = ChaosModifier.class("ChaosModifierTimeStop")
-ChaosModifierTimeStop.register_name = "ChaosModifierTimeSpeed"
+ChaosModifierTimeStop.conflict_tags = { "TimeSpeed" }
 ChaosModifierTimeStop.duration = 15
 ChaosModifierTimeStop.weight_mul = 0.75
 ChaosModifierTimeStop.activation_sound = "wp_sentrygun_destroy"

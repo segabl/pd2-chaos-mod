@@ -1,5 +1,5 @@
 ChaosModifierShoutToKill = ChaosModifier.class("ChaosModifierShoutToKill")
-ChaosModifierShoutToKill.register_name = "ChaosModifierAttackRestriction"
+ChaosModifierShoutToKill.conflict_tags = { "NoGunsUsable" }
 ChaosModifierShoutToKill.duration = 45
 
 function ChaosModifierShoutToKill:start()

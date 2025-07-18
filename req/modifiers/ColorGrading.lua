@@ -1,5 +1,5 @@
 ChaosModifierColorGrading = ChaosModifier.class("ChaosModifierColorGrading")
-ChaosModifierColorGrading.register_name = "ChaosModifierScreenEffect"
+ChaosModifierColorGrading.conflict_tags = { "ScreenEffect" }
 ChaosModifierColorGrading.duration = 60
 
 function ChaosModifierColorGrading:start()

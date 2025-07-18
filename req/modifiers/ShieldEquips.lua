@@ -1,5 +1,5 @@
 ChaosModifierShieldEquips = ChaosModifier.class("ChaosModifierShieldEquips")
-ChaosModifierShieldEquips.register_name = "ChaosModifierAttackRestriction"
+ChaosModifierShieldEquips.conflict_tags = { "NoGunsUsable" }
 ChaosModifierShieldEquips.loud_only = true
 ChaosModifierShieldEquips.duration = 90
 
@@ -73,7 +73,7 @@ function ChaosModifierShieldEquips:start()
 	end)
 
 	self:post_hook(NewRaycastWeaponBase, "recoil", function()
-		return 2 + Hooks:GetReturn() * 2
+		return 1 + Hooks:GetReturn() * 2
 	end)
 
 	self:update_stance()

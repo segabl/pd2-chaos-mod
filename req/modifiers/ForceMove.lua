@@ -1,5 +1,5 @@
 ChaosModifierForceMove = ChaosModifier.class("ChaosModifierForceMove")
-ChaosModifierForceMove.register_name = "ChaosModifierPlayerMovement"
+ChaosModifierForceMove.conflict_tags = { "PlayerMovement" }
 ChaosModifierForceMove.duration = 20
 
 function ChaosModifierForceMove:start()

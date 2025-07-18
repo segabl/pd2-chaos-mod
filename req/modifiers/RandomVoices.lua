@@ -1,5 +1,5 @@
 ChaosModifierRandomVoices = ChaosModifier.class("ChaosModifierRandomVoices")
-ChaosModifierRandomVoices.register_name = "ChaosModifierVoiceChange"
+ChaosModifierRandomVoices.conflict_tags = { "VoiceChange" }
 ChaosModifierRandomVoices.duration = 90
 
 function ChaosModifierRandomVoices:start()

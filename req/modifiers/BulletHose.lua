@@ -1,5 +1,5 @@
 ChaosModifierBulletHose = ChaosModifier.class("ChaosModifierBulletHose")
-ChaosModifierBulletHose.register_name = "ChaosModifierPlayerReload"
+ChaosModifierBulletHose.conflict_tags = { "PlayerReloadRestriction", "InfiniteAmmo" }
 ChaosModifierBulletHose.duration = 30
 
 function ChaosModifierBulletHose:start()

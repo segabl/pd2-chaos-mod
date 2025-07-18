@@ -10,9 +10,13 @@ function ChaosModifierCivilianMagnet:is_valid_civilian(unit)
 end
 
 function ChaosModifierCivilianMagnet:can_trigger()
+	local num = 0
 	for _, data in pairs(managers.enemy:all_civilians()) do
 		if self:is_valid_civilian(data.unit) then
-			return true
+			num = num + 1
+			if num > 2 then
+				return true
+			end
 		end
 	end
 end

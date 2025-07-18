@@ -1,5 +1,5 @@
 ChaosModifierInterruptInteractions = ChaosModifier.class("ChaosModifierInterruptInteractions")
-ChaosModifierInterruptInteractions.register_name = "ChaosModifierPlayerInteraction"
+ChaosModifierInterruptInteractions.conflict_tags = { "PlayerInteraction" }
 ChaosModifierInterruptInteractions.duration = 30
 
 function ChaosModifierInterruptInteractions:start()

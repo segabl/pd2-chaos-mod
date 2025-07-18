@@ -1,5 +1,5 @@
 ChaosModifierConcussionBullets = ChaosModifier.class("ChaosModifierConcussionBullets")
-ChaosModifierConcussionBullets.register_name = "ChaosModifierBulletChange"
+ChaosModifierConcussionBullets.conflict_tags = { "BulletChange" }
 ChaosModifierConcussionBullets.duration = 30
 
 function ChaosModifierConcussionBullets:start()

@@ -2,7 +2,7 @@
 ---@field new fun(self, seed):ChaosModifier
 ChaosModifier = class()
 ChaosModifier.class_name = "ChaosModifier"
-ChaosModifier.register_name = nil
+ChaosModifier.conflict_tags = {}
 ChaosModifier.run_as_client = true
 ChaosModifier.stealth_safe = true
 ChaosModifier.loud_only = false
@@ -20,6 +20,12 @@ function ChaosModifier.class(name, super)
 	c.class_name = name
 	c.weight = 1
 	return c
+end
+
+---@param other ChaosModifier
+---@return boolean
+function ChaosModifier:conflicts_with(other)
+	return self.class_name == other.class_name or table.contains_any(self.conflict_tags, other.conflict_tags)
 end
 
 function ChaosModifier:can_trigger()

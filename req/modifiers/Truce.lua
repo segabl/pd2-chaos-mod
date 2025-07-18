@@ -1,5 +1,5 @@
 ChaosModifierTruce = ChaosModifier.class("ChaosModifierTruce")
-ChaosModifierTruce.register_name = "ChaosModifierAttackRestriction"
+ChaosModifierTruce.conflict_tags = { "NoGunsUsable" }
 ChaosModifierTruce.loud_only = true
 ChaosModifierTruce.duration = 20
 
