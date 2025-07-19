@@ -319,6 +319,13 @@ if not ChaosMod then
 				toggle:set_value(value)
 				self:chaos_mod_modifier_toggle(toggle)
 			end
+			managers.system_menu:show({
+				title = managers.localization:text("dialog_information_title"),
+				text = managers.localization:text(value == "on" and "menu_chaos_mod_enable_all_dialog" or "menu_chaos_mod_disable_all_dialog"),
+				button_list = {
+					{ text = managers.localization:text("dialog_ok") }
+				}
+			})
 		end
 
 		function MenuCallbackHandler:chaos_mod_save()
