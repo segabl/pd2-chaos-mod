@@ -64,7 +64,8 @@ function ChaosModifierDrawEnemyBodies:update(t, dt)
 	end)
 
 	for _, unit in pairs(units) do
-		local color = self._colors[unit:movement() and unit:movement().team and unit:movement():team().id] or self._colors.neutral1
+		local team = unit:movement() and unit:movement().team and unit:movement():team()
+		local color = self._colors[team and team.id] or self._colors.neutral1
 		local mul = (unit:base().has_tag and unit:base():has_tag("special") and 0.5 or 1)
 		mul = mul * math.map_range_clamped(distances[unit:key()] or mvector3.distance(unit:position(), cam:position()), 0, 5000, 1, 0)
 		self._brush:set_color(Color(color.r * mul, color.g * mul, color.b * mul))
