@@ -461,51 +461,58 @@ if not ChaosMod then
 		})
 
 		local modifiers_per_menu = 23
-		local letter_modifiers = {}
-		for modifier_name in pairs(ChaosMod.modifiers) do
-			local name = managers.localization:text(modifier_name):lower():gsub("%p", "")
-			local letter = utf8.sub(name, 1, 1)
-			letter_modifiers[letter] = letter_modifiers[letter] or {}
-			table.insert(letter_modifiers[letter], modifier_name)
-		end
+		local sorted_modifiers = table.map_keys(ChaosMod.modifiers, function(a, b)
+			local loc_a = managers.localization:text(a):gsub("%p", "")
+			local loc_b = managers.localization:text(b):gsub("%p", "")
+			return loc_a:lower() > loc_b:lower()
+		end)
+		local num_pages = math.ceil(#sorted_modifiers / modifiers_per_menu)
+		modifiers_per_menu = math.ceil(#sorted_modifiers / num_pages)
 
+		local num_modifiers = 0
 		local page_num = 1
-		local sorted_letters = table.map_keys(letter_modifiers, function(a, b) return a < b end)
-		while #sorted_letters > 0 do
+		local from_letter, to_letter
+		while #sorted_modifiers > 0 do
 			local modifiers_menu_id = "chaos_mod_modifiers_" .. page_num
-			local num_modifiers = 0
-			local from_letter = sorted_letters[1]
-			local to_letter = from_letter
 
-			MenuHelper:NewMenu(modifiers_menu_id)
-			table.insert(modifiers_menu_ids, modifiers_menu_id)
+			if num_modifiers == 0 then
+				MenuHelper:NewMenu(modifiers_menu_id)
+				table.insert(modifiers_menu_ids, modifiers_menu_id)
+			end
 
-			repeat
-				to_letter = table.remove(sorted_letters, 1)
-				num_modifiers = num_modifiers + #letter_modifiers[to_letter]
+			if num_modifiers < modifiers_per_menu then
+				local modifier = table.remove(sorted_modifiers)
 
-				for _, modifier_name in pairs(letter_modifiers[to_letter]) do
-					table.insert(modifier_toggles, MenuHelper:AddToggle({
-						menu_id = modifiers_menu_id,
-						id = modifier_name,
-						title = modifier_name,
-						value = not ChaosMod.settings.disabled_modifiers[modifier_name],
-						callback = "chaos_mod_modifier_toggle"
-					}))
+				if num_modifiers == 0 then
+					from_letter = utf8.sub(managers.localization:text(modifier):gsub("%p", ""), 1, 1)
 				end
-			until not sorted_letters[1] or num_modifiers + #letter_modifiers[sorted_letters[1]] > modifiers_per_menu
+				to_letter = utf8.sub(managers.localization:text(modifier):gsub("%p", ""), 1, 1)
 
-			MenuHelper:AddButton({
-				menu_id = menu_id,
-				id = "modifiers_" .. page_num,
-				title = managers.localization:text("menu_chaos_mod_modifiers", { FROM = from_letter:upper(), TO = to_letter:upper() }),
-				desc = managers.localization:text("menu_chaos_mod_modifiers_desc"),
-				localized = false,
-				next_node = modifiers_menu_id,
-				priority = -page_num
-			})
+				table.insert(modifier_toggles, MenuHelper:AddToggle({
+					menu_id = modifiers_menu_id,
+					id = modifier,
+					title = modifier,
+					value = not ChaosMod.settings.disabled_modifiers[modifier],
+					callback = "chaos_mod_modifier_toggle",
+					priority = -num_modifiers
+				}))
 
-			page_num = page_num + 1
+				num_modifiers = num_modifiers + 1
+			end
+
+			if num_modifiers >= modifiers_per_menu or #sorted_modifiers == 0 then
+				MenuHelper:AddButton({
+					menu_id = menu_id,
+					id = "modifiers_" .. page_num,
+					title = managers.localization:text("menu_chaos_mod_modifiers", { FROM = from_letter:upper(), TO = to_letter:upper() }),
+					desc = managers.localization:text("menu_chaos_mod_modifiers_desc"),
+					localized = false,
+					next_node = modifiers_menu_id,
+					priority = -page_num
+				})
+				num_modifiers = 0
+				page_num = page_num + 1
+			end
 		end
 
 		MenuHelper:AddDivider({
