@@ -170,6 +170,7 @@
 	"ChaosModifierSimonSaysLookDown": "向下看",
 	"ChaosModifierSimonSaysLookDownInverted": "不要向下看",
 	"ChaosModifierSingleShotMagazine": "Magdump",
+	"ChaosModifierSlippery": "Caution, Wet Floor",
 	"ChaosModifierSlowAndTanky": "Turtle Master",
 	"ChaosModifierSlowDrills": "Time Sink",
 	"ChaosModifierSlowMotion": "子弹时间",

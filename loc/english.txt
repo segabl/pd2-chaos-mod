@@ -170,6 +170,7 @@
 	"ChaosModifierSimonSaysLookDown": "Look Down",
 	"ChaosModifierSimonSaysLookDownInverted": "Don't Look Down",
 	"ChaosModifierSingleShotMagazine": "Magdump",
+	"ChaosModifierSlippery": "Caution, Wet Floor",
 	"ChaosModifierSlowAndTanky": "Turtle Master",
 	"ChaosModifierSlowDrills": "Time Sink",
 	"ChaosModifierSlowMotion": "Bullet Time",

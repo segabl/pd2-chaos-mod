@@ -50,6 +50,9 @@ Slows down game time
 **Captcha**  
 Players need to solve a captcha in time to continue playing, failing to do so downs them
 
+**Caution, Wet Floor**  
+Makes player movement slippery
+
 **Charged Shots**  
 All weapon shots electrocute enemies and players for a short duration
 
@@ -359,7 +362,7 @@ Forces Captain Winters to spawn
 **Time Out**  
 Randomly selects a player to get put into civilian mode for a short time
 
-**Time Sink**
+**Time Sink**  
 Increases the remaining time on active drills, saws and hacks
 
 **Tremors**  
