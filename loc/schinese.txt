@@ -171,6 +171,7 @@
 	"ChaosModifierSimonSaysLookDownInverted": "不要向下看",
 	"ChaosModifierSingleShotMagazine": "Magdump",
 	"ChaosModifierSlowAndTanky": "Turtle Master",
+	"ChaosModifierSlowDrills": "Time Sink",
 	"ChaosModifierSlowMotion": "子弹时间",
 	"ChaosModifierSoundPitch": "Pitch Perfect",
 	"ChaosModifierSpeedUp": "速通时间",

@@ -171,6 +171,7 @@
 	"ChaosModifierSimonSaysLookDownInverted": "Don't Look Down",
 	"ChaosModifierSingleShotMagazine": "Magdump",
 	"ChaosModifierSlowAndTanky": "Turtle Master",
+	"ChaosModifierSlowDrills": "Time Sink",
 	"ChaosModifierSlowMotion": "Bullet Time",
 	"ChaosModifierSoundPitch": "Pitch Perfect",
 	"ChaosModifierSpeedUp": "Speedrun",

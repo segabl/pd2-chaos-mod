@@ -171,6 +171,7 @@
 	"ChaosModifierSimonSaysLookDownInverted": "Não Olhar para baixo",
 	"ChaosModifierSingleShotMagazine": "Atire tudo de uma vez",
 	"ChaosModifierSlowAndTanky": "Lerdeza",
+	"ChaosModifierSlowDrills": "Time Sink",
 	"ChaosModifierSlowMotion": "Tempo da bala",
 	"ChaosModifierSoundPitch": "No Tom certo",
 	"ChaosModifierSpeedUp": "Speedrun",

@@ -359,6 +359,9 @@ Forces Captain Winters to spawn
 **Time Out**  
 Randomly selects a player to get put into civilian mode for a short time
 
+**Time Sink**
+Increases the remaining time on active drills, saws and hacks
+
 **Tremors**  
 Shakes the screen periodically
 
