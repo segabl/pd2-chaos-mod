@@ -30,6 +30,63 @@ function ChaosModifierPlayerShields:start()
 		end
 	end)
 
+	local _upd_enemy_detection = ShieldLogicAttack._upd_enemy_detection
+	self:override(ShieldLogicAttack, "_upd_enemy_detection", function(data, ...)
+		if not self._units[data.key] or not data.objective or not alive(data.objective.follow_unit) then
+			return _upd_enemy_detection(data, ...)
+		end
+
+		CopLogicBase._upd_attention_obj_detection(data, min_reaction, nil)
+
+		local my_data = data.internal_data
+		local new_attention, _, new_reaction = CopLogicIdle._get_priority_attention(data, data.detected_attention_objects, nil)
+		CopLogicBase._set_attention_obj(data, new_attention, new_reaction)
+		CopLogicAttack._chk_exit_attack_logic(data, data.attention_obj and data.attention_obj.reaction)
+
+		if my_data ~= data.internal_data then
+			return
+		end
+
+		ShieldLogicAttack._upd_aim(data, my_data)
+
+		if not new_attention then
+			return
+		end
+
+		local target_pos = Vector3()
+		local follow_pos = data.objective.follow_unit:movement():nav_tracker():field_position()
+
+		mvector3.direction(target_pos, follow_pos, new_attention.m_pos)
+		mvector3.multiply(target_pos, 300)
+		mvector3.add(target_pos, follow_pos)
+
+		local params = {
+			trace = true,
+			pos_from = follow_pos,
+			pos_to = target_pos
+		}
+		local blocked = managers.navigation:raycast(params)
+
+		local distance = mvector3.distance(params.trace[1], my_data.going_to_optimal_pos or data.m_pos)
+		if distance < 100 or mvector3.distance(params.trace[1], follow_pos) < 100 then
+			return
+		elseif distance > 1000 then
+			ShieldLogicAttack._cancel_optimal_attempt(data, my_data)
+		end
+
+		my_data.going_to_optimal_pos = params.trace[1]
+		if blocked then
+			my_data.pathing_to_optimal_pos = true
+			my_data.optimal_path_search_id = tostring(data.key) .. "optimal"
+			data.brain:search_for_path(my_data.optimal_path_search_id, my_data.going_to_optimal_pos)
+		else
+			my_data.optimal_path = {
+				mvector3.copy(data.m_pos),
+				my_data.going_to_optimal_pos
+			}
+		end
+	end)
+
 	for _, data in pairs(managers.groupai:state():all_player_criminals()) do
 		if alive(data.unit) then
 			self:spawn_unit(data.unit)
