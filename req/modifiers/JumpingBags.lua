@@ -21,12 +21,12 @@ function ChaosModifierJumpingBags:update(t, dt)
 
 	local bags = {}
 	for _, v in pairs(World:find_units_quick("all", World:make_slot_mask(14))) do
-		if v:carry_data() and not v:is_linked_to_unit() and v:velocity():length() < 1 then
+		if v:carry_data() and not v:is_linked_to_unit() and v:velocity():length() < 10 then
 			table.insert(bags, v)
 		end
 	end
 
-	self._next_t = t + 1 / #bags
+	self._next_t = t + 1 / math.max(1, #bags)
 
 	local bag = table.random(bags)
 	if not bag then
