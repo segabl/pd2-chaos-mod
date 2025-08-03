@@ -129,6 +129,12 @@ function ChaosModifier:progress(t, dt)
 end
 
 function ChaosModifier:override(obj, k, v)
+	local obj_type = type(obj)
+	if obj_type ~= "table" and obj_type ~= "userdata" then
+		log("[Chaos Mod] Can't override " .. tostring(k) .. " on a " .. obj_type .. " value")
+		return
+	end
+
 	self._overrides = true
 	ChaosModifier._overrides[obj] = ChaosModifier._overrides[obj] or {}
 	ChaosModifier._overrides[obj][k] = ChaosModifier._overrides[obj][k] or {
