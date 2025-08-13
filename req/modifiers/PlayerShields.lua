@@ -63,26 +63,32 @@ function ChaosModifierPlayerShields:start()
 		local params = {
 			trace = true,
 			pos_from = follow_pos,
-			pos_to = target_pos
+			pos_to = target_pos,
+			allow_entry = true
 		}
 		local blocked = managers.navigation:raycast(params)
+		local optimal_pos = params.trace[1]
 
-		local distance = mvector3.distance(params.trace[1], my_data.going_to_optimal_pos or data.m_pos)
-		if distance < 100 or mvector3.distance(params.trace[1], follow_pos) < 100 then
+		local current_pos = my_data.going_to_optimal_pos or data.m_pos
+		local dis = mvector3.distance(optimal_pos, current_pos)
+		local dis_mul = math.max(1, math.abs(current_pos.z - optimal_pos.z) / 100)
+		if dis < 50 or mvector3.distance(optimal_pos, follow_pos) < 100 then
 			return
-		elseif distance > 1000 then
+		elseif dis * dis_mul > 1000 or dis > 300 and mvector3.distance(data.m_pos, follow_pos) < dis then
 			ShieldLogicAttack._cancel_optimal_attempt(data, my_data)
+		elseif my_data.walking_to_optimal_pos then
+			return
 		end
 
-		my_data.going_to_optimal_pos = params.trace[1]
-		if blocked then
+		my_data.going_to_optimal_pos = optimal_pos
+		if blocked or math.abs(optimal_pos.z - data.m_pos.z) > 100 then
 			my_data.pathing_to_optimal_pos = true
 			my_data.optimal_path_search_id = tostring(data.key) .. "optimal"
-			data.brain:search_for_path(my_data.optimal_path_search_id, my_data.going_to_optimal_pos)
+			data.brain:search_for_path(my_data.optimal_path_search_id, optimal_pos)
 		else
 			my_data.optimal_path = {
 				mvector3.copy(data.m_pos),
-				my_data.going_to_optimal_pos
+				optimal_pos
 			}
 		end
 	end)
