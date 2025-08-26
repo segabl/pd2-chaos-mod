@@ -52,7 +52,7 @@ function ChaosModifierShoutToKill:start()
 		return CopBrain_on_intimidated_original(copbrain, amount, aggressor_unit, ...)
 	end)
 
-	local HuskCopBrain_on_intimidated_original = CopBrain.on_intimidated
+	local HuskCopBrain_on_intimidated_original = HuskCopBrain.on_intimidated
 	self:override(HuskCopBrain, "on_intimidated", function(copbrain, amount, aggressor_unit, ...)
 		if copbrain._unit:movement():team().foes.criminal1 then
 			return kill_func(copbrain._unit, aggressor_unit)
