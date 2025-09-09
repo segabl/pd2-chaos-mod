@@ -53,11 +53,10 @@ function ChaosModifierFocusPlayer:pick_player()
 		end
 	end)
 
-	local _select_focus_attention = SentryGunBrain._select_focus_attention
 	self:override(SentryGunBrain, "_select_focus_attention", function(brain, ...)
 		local attention_data = brain._detected_attention_objects[unit:key()]
 		if not attention_data or not attention_data.verified or attention_data.settings.relation ~= "foe" or brain._attention_obj == attention_data then
-			return _select_focus_attention(brain, ...)
+			return self:get_override(SentryGunBrain, "_select_focus_attention")(brain, ...)
 		end
 
 		brain._attention_obj = attention_data

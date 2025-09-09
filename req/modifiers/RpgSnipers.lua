@@ -11,10 +11,9 @@ function ChaosModifierRpgSnipers:can_trigger()
 end
 
 function ChaosModifierRpgSnipers:start()
-	local _fire_raycast = NPCRaycastWeaponBase._fire_raycast
 	self:override(NPCRaycastWeaponBase, "_fire_raycast", function(weaponbase, user_unit, from_pos, direction, ...)
 		if not alive(user_unit) or not user_unit:base().has_tag or not user_unit:base():has_tag("sniper") then
-			return _fire_raycast(weaponbase, user_unit, from_pos, direction, ...)
+			return self:get_override(NPCRaycastWeaponBase, "_fire_raycast")(weaponbase, user_unit, from_pos, direction, ...)
 		end
 
 		if Network:is_server() then

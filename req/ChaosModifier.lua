@@ -128,6 +128,9 @@ function ChaosModifier:progress(t, dt)
 	return self.duration == 0 and 1 or self.duration > 0 and (t - self._activation_t) / self.duration or 0
 end
 
+---@param obj table|userdata
+---@param k string
+---@param v unknown
 function ChaosModifier:override(obj, k, v)
 	local obj_type = type(obj)
 	if obj_type ~= "table" and obj_type ~= "userdata" then
@@ -146,6 +149,28 @@ function ChaosModifier:override(obj, k, v)
 		value = v
 	})
 	obj[k] = v
+end
+
+---@param obj table|userdata
+---@param k string
+---@return unknown
+function ChaosModifier:get_override(obj, k)
+	local override_data = ChaosModifier._overrides[obj] and ChaosModifier._overrides[obj][k]
+	if not override_data then
+		return obj[k]
+	end
+
+	for i, override in ipairs(override_data.overrides) do
+		if override.modifier == self then
+			if i == 1 then
+				return override_data.original
+			else
+				return override_data.overrides[i - 1].value
+			end
+		end
+	end
+
+	return override_data.overrides[#override_data.overrides].value
 end
 
 function ChaosModifier:pre_hook(obj, func_name, func)

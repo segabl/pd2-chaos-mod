@@ -30,10 +30,9 @@ function ChaosModifierPlayerShields:start()
 		end
 	end)
 
-	local _upd_enemy_detection = ShieldLogicAttack._upd_enemy_detection
 	self:override(ShieldLogicAttack, "_upd_enemy_detection", function(data, ...)
 		if not self._units[data.key] or not data.objective or not alive(data.objective.follow_unit) then
-			return _upd_enemy_detection(data, ...)
+			return self:get_override(ShieldLogicAttack, "_upd_enemy_detection")(data, ...)
 		end
 
 		CopLogicBase._upd_attention_obj_detection(data, min_reaction, nil)

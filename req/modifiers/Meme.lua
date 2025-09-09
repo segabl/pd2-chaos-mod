@@ -4,10 +4,9 @@ ChaosModifierMeme.duration = 30
 function ChaosModifierMeme:start()
 	SoundDevice:set_rtpc("downed_state_progression", 80)
 
-	local set_rtpc = SoundDevice.set_rtpc
 	self:override(getmetatable(SoundDevice), "set_rtpc", function(device, param, ...)
 		if param ~= "downed_state_progression" then
-			return set_rtpc(device, param, ...)
+			return self:get_override(getmetatable(SoundDevice), "set_rtpc")(device, param, ...)
 		end
 	end)
 

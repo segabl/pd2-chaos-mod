@@ -67,9 +67,8 @@ function ChaosModifierInvincibleMedics:start()
 	self:post_hook(CopLogicIdle, "_chk_reaction_to_attention_object", react_func)
 	self:post_hook(CopLogicSniper, "_chk_reaction_to_attention_object", react_func)
 
-	local set_stance_by_code = CopMovement.set_stance_by_code
 	self:override(CopMovement, "set_stance_by_code", function(movement, new_stance_code, ...)
-		return set_stance_by_code(movement, movement._ext_base:has_tag("medic") and 1 or new_stance_code, ...)
+		return self:get_override(CopMovement, "set_stance_by_code")(movement, movement._ext_base:has_tag("medic") and 1 or new_stance_code, ...)
 	end)
 
 	self:pre_hook(CopMovement, "action_request", function(movement, action_desc)

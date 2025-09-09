@@ -4,137 +4,123 @@ ChaosModifierMoveHud.duration = 60
 function ChaosModifierMoveHud:start()
 	self._modified_elements = {}
 
-	self._panel_functions = {}
-
-	self._panel_functions.move = Panel.move
 	self:override(Panel, "move", function(o, x, y, ...)
 		local element_data = self._modified_elements[o:key()]
 		if element_data then
 			element_data.start_pos[1] = element_data.start_pos[1] + x
 			element_data.start_pos[2] = element_data.start_pos[2] + y
 		else
-			return self._panel_functions.move(o, x, y, ...)
+			return self:get_override(Panel, "move")(o, x, y, ...)
 		end
 	end)
 
-	self._panel_functions.set_position = Panel.set_position
 	self:override(Panel, "set_position", function(o, x, y, ...)
 		local element_data = self._modified_elements[o:key()]
 		if element_data then
 			element_data.start_pos[1] = x
 			element_data.start_pos[2] = y
 		else
-			return self._panel_functions.set_position(o, x, y, ...)
+			return self:get_override(Panel, "set_position")(o, x, y, ...)
 		end
 	end)
 
-	self._panel_functions.set_center = Panel.set_center
 	self:override(Panel, "set_center", function(o, x, y, ...)
 		local element_data = self._modified_elements[o:key()]
 		if element_data then
 			element_data.start_pos[1] = x - o:w() * 0.5
 			element_data.start_pos[2] = y - o:h() * 0.5
 		else
-			return self._panel_functions.set_center(o, x, y, ...)
+			return self:get_override(Panel, "set_center")(o, x, y, ...)
 		end
 	end)
 
-	self._panel_functions.set_x = Panel.set_x
 	self:override(Panel, "set_x", function(o, x, ...)
 		local element_data = self._modified_elements[o:key()]
 		if element_data then
 			element_data.start_pos[1] = x
 		else
-			return self._panel_functions.set_x(o, x, ...)
+			return self:get_override(Panel, "set_x")(o, x, ...)
 		end
 	end)
 
 	self:override(Panel, "set_left", Panel.set_x)
 
-	self._panel_functions.set_center_x = Panel.set_center_x
 	self:override(Panel, "set_center_x", function(o, x, ...)
 		local element_data = self._modified_elements[o:key()]
 		if element_data then
 			element_data.start_pos[1] = x - o:w() * 0.5
 		else
-			return self._panel_functions.set_center_x(o, x, ...)
+			return self:get_override(Panel, "set_center_x")(o, x, ...)
 		end
 	end)
 
-	self._panel_functions.set_right = Panel.set_right
 	self:override(Panel, "set_right", function(o, x, ...)
 		local element_data = self._modified_elements[o:key()]
 		if element_data then
 			element_data.start_pos[1] = x - o:w()
 		else
-			return self._panel_functions.set_right(o, x, ...)
+			return self:get_override(Panel, "set_right")(o, x, ...)
 		end
 	end)
 
-	self._panel_functions.set_y = Panel.set_y
 	self:override(Panel, "set_y", function(o, y, ...)
 		local element_data = self._modified_elements[o:key()]
 		if element_data then
 			element_data.start_pos[2] = y
 		else
-			return self._panel_functions.set_y(o, y, ...)
+			return self:get_override(Panel, "set_y")(o, y, ...)
 		end
 	end)
 
 	self:override(Panel, "set_top", Panel.set_y)
 
-	self._panel_functions.set_center_y = Panel.set_center_y
 	self:override(Panel, "set_center_y", function(o, y, ...)
 		local element_data = self._modified_elements[o:key()]
 		if element_data then
 			element_data.start_pos[2] = y - o:h() * 0.5
 		else
-			return self._panel_functions.set_center_y(o, y, ...)
+			return self:get_override(Panel, "set_center_y")(o, y, ...)
 		end
 	end)
 
-	self._panel_functions.set_bottom = Panel.set_bottom
 	self:override(Panel, "set_bottom", function(o, y, ...)
 		local element_data = self._modified_elements[o:key()]
 		if element_data then
 			element_data.start_pos[2] = y - o:h()
 		else
-			return self._panel_functions.set_bottom(o, y, ...)
+			return self:get_override(Panel, "set_bottom")(o, y, ...)
 		end
 	end)
 
-	self._panel_functions.set_righttop = Panel.set_righttop
 	self:override(Panel, "set_righttop", function(o, x, y, ...)
 		local element_data = self._modified_elements[o:key()]
 		if element_data then
 			element_data.start_pos[1] = x - o:w()
 			element_data.start_pos[2] = y
 		else
-			return self._panel_functions.set_righttop(o, x, y, ...)
+			return self:get_override(Panel, "set_righttop")(o, x, y, ...)
 		end
 	end)
 
-	self._panel_functions.set_rightbottom = Panel.set_rightbottom
 	self:override(Panel, "set_rightbottom", function(o, x, y, ...)
 		local element_data = self._modified_elements[o:key()]
 		if element_data then
 			element_data.start_pos[1] = x - o:w()
 			element_data.start_pos[2] = y - o:h()
 		else
-			return self._panel_functions.set_rightbottom(o, x, y, ...)
+			return self:get_override(Panel, "set_rightbottom")(o, x, y, ...)
 		end
 	end)
 
 	self:override(Panel, "set_lefttop", Panel.set_position)
 
-	self._panel_functions.set_leftbottom = Panel.set_leftbottom
 	self:override(Panel, "set_leftbottom", function(o, x, y, ...)
 		local element_data = self._modified_elements[o:key()]
 		if element_data then
 			element_data.start_pos[1] = x
 			element_data.start_pos[2] = y - o:h()
 		else
-			return self._panel_functions.set_leftbottom(o, x, y, ...)
+			return self:get_override(Panel, "set_leftbottom")(o, x, y, ...)
 		end
 	end)
 end
@@ -173,7 +159,7 @@ function ChaosModifierMoveHud:update(t, dt)
 			self._modified_elements[element:key()] = element_data
 		end
 
-		self._panel_functions.move(element, element_data.velocity.x * dt, element_data.velocity.y * dt)
+		self:get_override(Panel, "move")(element, element_data.velocity.x * dt, element_data.velocity.y * dt)
 
 		if element:top() <= 0 and element_data.velocity.y < 0 or element:bottom() >= element:parent():h() and element_data.velocity.y > 0 then
 			mvector3.set_y(element_data.velocity, -element_data.velocity.y)

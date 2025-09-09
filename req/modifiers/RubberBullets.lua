@@ -40,13 +40,12 @@ function ChaosModifierRubberBullets:start()
 	self:pre_hook(TeamAIDamage, "_apply_damage", function(_, attack_data) attack_data.damage = attack_data.damage * 0.001 end)
 	self:pre_hook(PlayerDamage, "_calc_armor_damage", function(_, attack_data) attack_data.damage = attack_data.damage * 0.001 end)
 
-	local play_shaker = PlayerCamera.play_shaker
 	self:override(PlayerCamera, "play_shaker", function(cam, effect, amplitude, ...)
 		if effect == "player_bullet_damage" then
 			effect = table.random({ "melee_hit", "melee_hit_var2" })
 			amplitude = amplitude * 0.35
 		end
-		return play_shaker(cam, effect, amplitude, ...)
+		return self:get_override(PlayerCamera, "play_shaker")(cam, effect, amplitude, ...)
 	end)
 end
 

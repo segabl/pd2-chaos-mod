@@ -15,20 +15,18 @@ function ChaosModifierHealthArmorLink:start()
 		NetworkHelper:SendToPeers(self.class_name, data)
 	end
 
-	local set_health_original = PlayerDamage.set_health
 	self:override(PlayerDamage, "set_health", function(playerdamage, health, ...)
 		local prev_ratio = playerdamage:health_ratio()
-		local result = set_health_original(playerdamage, health, ...)
+		local result = self:get_override(PlayerDamage, "set_health")(playerdamage, health, ...)
 		if prev_ratio ~= playerdamage:health_ratio() then
 			send_data(playerdamage)
 		end
 		return result
 	end)
 
-	local set_armor_original = PlayerDamage.set_armor
 	self:override(PlayerDamage, "set_armor", function(playerdamage, armor, ...)
 		local prev_ratio = playerdamage:armor_ratio()
-		local result = set_armor_original(playerdamage, armor, ...)
+		local result = self:get_override(PlayerDamage, "set_armor")(playerdamage, armor, ...)
 		if prev_ratio ~= playerdamage:armor_ratio() then
 			send_data(playerdamage)
 		end

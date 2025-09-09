@@ -24,9 +24,8 @@ function ChaosModifierTruce:start()
 	self:override(CopLogicSniper, "_chk_reaction_to_attention_object", react_func)
 	self:override(TeamAILogicBase, "_chk_reaction_to_attention_object", react_func)
 
-	local aim_allow_fire_original = CopLogicAttack.aim_allow_fire
 	self:override(CopLogicAttack, "aim_allow_fire", function(shoot, ...)
-		return aim_allow_fire_original(false, ...)
+		return self:get_override(CopLogicAttack, "aim_allow_fire")(false, ...)
 	end)
 
 	for _, data in pairs(tweak_data.group_ai.enemy_chatter) do

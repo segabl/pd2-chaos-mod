@@ -4,9 +4,8 @@ ChaosModifierLowGravity.duration = 40
 ChaosModifierLowGravity.gravity_mul = 0.25
 
 function ChaosModifierLowGravity:start()
-	local set_gravity_original = DefaultPhysXMover.set_gravity
 	self:override(DefaultPhysXMover, "set_gravity", function(mover, vec, ...)
-		return set_gravity_original(mover, vec * self.gravity_mul, ...)
+		return self:get_override(DefaultPhysXMover, "set_gravity")(mover, vec * self.gravity_mul, ...)
 	end)
 
 	local player_unit = managers.player:local_player()

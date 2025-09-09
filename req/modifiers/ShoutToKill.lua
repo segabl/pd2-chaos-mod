@@ -44,28 +44,25 @@ function ChaosModifierShoutToKill:start()
 		aggressor_unit:camera():play_shaker("player_exit_zipline", 2)
 	end
 
-	local CopBrain_on_intimidated_original = CopBrain.on_intimidated
 	self:override(CopBrain, "on_intimidated", function(copbrain, amount, aggressor_unit, ...)
 		if copbrain._unit:movement():team().foes.criminal1 then
 			return kill_func(copbrain._unit, aggressor_unit)
 		end
-		return CopBrain_on_intimidated_original(copbrain, amount, aggressor_unit, ...)
+		return self:get_override(CopBrain, "on_intimidated")(copbrain, amount, aggressor_unit, ...)
 	end)
 
-	local HuskCopBrain_on_intimidated_original = HuskCopBrain.on_intimidated
 	self:override(HuskCopBrain, "on_intimidated", function(copbrain, amount, aggressor_unit, ...)
 		if copbrain._unit:movement():team().foes.criminal1 then
 			return kill_func(copbrain._unit, aggressor_unit)
 		end
-		return HuskCopBrain_on_intimidated_original(copbrain, amount, aggressor_unit, ...)
+		return self:get_override(HuskCopBrain, "on_intimidated")(copbrain, amount, aggressor_unit, ...)
 	end)
 
-	local PlayerSound_say = PlayerSound.say
 	self:override(PlayerSound, "say", function(playersound, sound_name, ...)
 		if type(sound_name) == "string" and sound_name:match("^l0[1-3]x") then
 			playersound:play("concussion_explosion")
 		else
-			return PlayerSound_say(playersound, sound_name, ...)
+			return self:get_override(PlayerSound, "say")(playersound, sound_name, ...)
 		end
 	end)
 
@@ -80,9 +77,8 @@ function ChaosModifierShoutToKill:start()
 		input.btn_primary_attack_release = false
 	end)
 
-	local PlayerStandard_add_unit_to_char_table = PlayerStandard._add_unit_to_char_table
 	self:override(PlayerStandard, "_add_unit_to_char_table", function(playerstate, char_table, unit, unit_type, interaction_dist, interaction_through_walls, tight_area, priority, my_head_pos, cam_fwd, ray_ignore_units, _, ...)
-		return PlayerStandard_add_unit_to_char_table(playerstate, char_table, unit, unit_type, interaction_dist, interaction_through_walls, tight_area, priority, my_head_pos, cam_fwd, ray_ignore_units, "ai_vision", ...)
+		return self:get_override(PlayerStandard, "_add_unit_to_char_table")(playerstate, char_table, unit, unit_type, interaction_dist, interaction_through_walls, tight_area, priority, my_head_pos, cam_fwd, ray_ignore_units, "ai_vision", ...)
 	end)
 
 	for _, enemy_name in pairs(tweak_data.character._enemy_list) do

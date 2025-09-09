@@ -5,23 +5,21 @@ ChaosModifierLowAnimationFps.delta = 1 / 5
 function ChaosModifierLowAnimationFps:start()
 	self._units = {}
 
-	self.set_animation_lod = Unit.set_animation_lod
 	self:override(Unit, "set_animation_lod", function(unit, ...)
 		self._units[unit:key()] = {
 			unit = unit,
 			lods = { ... }
 		}
-		return self.set_animation_lod(unit, math.ceil(self.delta / TimerManager:game():delta_time()), 0, 0, 0)
+		return self:get_override(Unit, "set_animation_lod")(unit, math.ceil(self.delta / TimerManager:game():delta_time()), 0, 0, 0)
 	end)
 
 	self:override(CopMovement, "anim_clbk_force_ragdoll", function() end)
 
-	local _update_stance = FPCameraPlayerBase._update_stance
 	local dt_sum = 0
 	self:override(FPCameraPlayerBase, "_update_stance", function(cambase, t, dt, ...)
 		dt_sum = dt_sum + dt
 		if dt_sum >= self.delta then
-			_update_stance(cambase, t, dt, ...)
+			self:get_override(FPCameraPlayerBase, "_update_stance")(cambase, t, dt, ...)
 			dt_sum = 0
 		end
 
@@ -51,7 +49,7 @@ function ChaosModifierLowAnimationFps:check_units()
 			if not self._units[unit:key()] then
 				unit:set_animation_lod(1, 100000, 100000, 100000)
 			else
-				self.set_animation_lod(unit, math.ceil(self.delta / TimerManager:game():delta_time()), 0, 0, 0)
+				self:get_override(Unit, "set_animation_lod")(unit, math.ceil(self.delta / TimerManager:game():delta_time()), 0, 0, 0)
 			end
 		end
 	end
