@@ -161,6 +161,9 @@ Makes players randomly shoot their guns
 **Jules-ify** (selected overhauls only)  
 Changes spawngroups, enemy amounts and behavior to represent the state of the game during and after Jules era
 
+**Kinetic Impact**  
+Slows players down temporarily whenever they take damage
+
 **Laser Party**  
 Activates Sniper lasers on all enemies
 
