@@ -19,8 +19,22 @@ function ChaosModifierLowAnimationFps:start()
 	self:override(FPCameraPlayerBase, "_update_stance", function(cambase, t, dt, ...)
 		dt_sum = dt_sum + dt
 		if dt_sum >= self.delta then
-			self:get_override(FPCameraPlayerBase, "_update_stance")(cambase, t, dt, ...)
 			dt_sum = 0
+			return self:get_override(FPCameraPlayerBase, "_update_stance")(cambase, t, dt, ...)
+		end
+
+		if cambase._head_stance.transition then
+			local trans_data = cambase._head_stance.transition
+			local elapsed_t = t - trans_data.start_t
+
+			if trans_data.duration < elapsed_t then
+				mvector3.set(cambase._head_stance.translation, trans_data.end_translation)
+				cambase._head_stance.transition = nil
+			else
+				local progress = elapsed_t / trans_data.duration
+				local progress_smooth = math.bezier({ 0, 0, 1, 1 }, progress)
+				mvector3.lerp(cambase._head_stance.translation, trans_data.start_translation, trans_data.end_translation, progress_smooth)
+			end
 		end
 
 		if cambase._fov.transition then
