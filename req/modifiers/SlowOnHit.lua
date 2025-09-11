@@ -7,10 +7,10 @@ function ChaosModifierSlowOnHit:start()
 	local dmg_ref = tweak_data.character.fbi_swat.weapon.is_rifle.FALLOFF[1].dmg_mul * tweak_data.weapon.m4_npc.DAMAGE
 
 	self:post_hook(PlayerDamage, "_calc_armor_damage", function(playerdamage, attack_data)
-		local strength = attack_data.damage ^ 0.35
+		local strength = (1 + attack_data.damage / dmg_ref) ^ 0.35 - 1
 		table.insert(slows, 1, {
 			start_t = managers.player:player_timer():time(),
-			expire_t = managers.player:player_timer():time() + math.map_range_clamped(strength, 0, dmg_ref * 4, 0, 0.5)
+			expire_t = managers.player:player_timer():time() + math.map_range_clamped(strength, 0, 1, 0, 0.75)
 		})
 	end)
 

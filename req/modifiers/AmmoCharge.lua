@@ -34,11 +34,10 @@ function ChaosModifierAmmoCharge:update(t, dt)
 	for selection_index, data in pairs(player_unit:inventory():available_selections() or {}) do
 		if alive(data.unit) and time >= (self._next_ammo_gain[selection_index] or 0) then
 			local weapon_base = data.unit:base()
-			local ammo_base = weapon_base:ammo_base()
-			local clip_max, clip_current, total_current = ammo_base:get_ammo_max_per_clip(), ammo_base:get_ammo_remaining_in_clip(), ammo_base:get_ammo_total()
+			local clip_max, clip_current, total_current, total_max = weapon_base:ammo_info()
 			if clip_max > clip_current and total_current > clip_current then
-				ammo_base:set_ammo_remaining_in_clip(clip_current + 1)
-				managers.hud:set_ammo_amount(selection_index, clip_max, clip_current + 1, total_current)
+				weapon_base:ammo_base():set_ammo_remaining_in_clip(clip_current + 1)
+				managers.hud:set_ammo_amount(selection_index, clip_max, clip_current + 1, total_current, total_max)
 			end
 			self._next_ammo_gain[selection_index] = time + managers.blackmarket:get_reload_time(weapon_base._name_id) / weapon_base:reload_speed_multiplier() * weapon_base:weapon_fire_rate()
 		end
