@@ -1,6 +1,6 @@
 ChaosModifierMeleeKillConverts = ChaosModifier.class("ChaosModifierMeleeKillConverts")
 ChaosModifierMeleeKillConverts.loud_only = true
-ChaosModifierMeleeKillConverts.duration = 60
+ChaosModifierMeleeKillConverts.duration = 30
 
 function ChaosModifierMeleeKillConverts:start()
 	self:show_text(managers.localization:to_upper_text("ChaosModifierMeleeKillConvertsStart"), 4)
@@ -30,12 +30,6 @@ function ChaosModifierMeleeKillConverts:start()
 			return ChaosModifierPlayerShields.get_follow_objective(self, data.player_unit)
 		end
 	end)
-end
-
-function ChaosModifierMeleeKillConverts:stop()
-	if Network:is_server() then
-		ChaosModifierPlayerShields.stop(self)
-	end
 end
 
 function ChaosModifierMeleeKillConverts:spawn(unit_name, pos, rot, player_unit)
