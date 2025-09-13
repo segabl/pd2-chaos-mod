@@ -1,4 +1,5 @@
 ChaosModifierBouncyProjectiles = ChaosModifier.class("ChaosModifierBouncyProjectiles")
+ChaosModifierBouncyProjectiles.conflict_tags = { "ProjectileFuse" }
 ChaosModifierBouncyProjectiles.duration = 60
 
 function ChaosModifierBouncyProjectiles:has_grenade_launcher(peer)
@@ -25,8 +26,23 @@ function ChaosModifierBouncyProjectiles:can_trigger()
 end
 
 function ChaosModifierBouncyProjectiles:start()
-	self:override(FragGrenade, "clbk_impact", function()end)
-	self:override(FragGrenade, "_on_collision", function()end)
+	local function impact(base)
+		base._chaos_impacted = true
+	end
+	self:override(FragGrenade, "clbk_impact", impact)
+	self:override(FragGrenade, "_on_collision", impact)
+	self:post_hook(ProjectileBase, "update", function(base, unit, t)
+		if base._detonated or not base._chaos_impacted then
+			return
+		elseif not base._chaos_explode_t then
+			base._chaos_explode_t = t + 2
+		elseif base._chaos_explode_t < t then
+			if type(base._detonate) == "function" then
+				base:_detonate()
+			end
+			base._detonated = true
+		end
+	end)
 end
 
 return ChaosModifierBouncyProjectiles
