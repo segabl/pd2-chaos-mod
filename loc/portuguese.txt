@@ -145,6 +145,7 @@
 	"ChaosModifierSecretCloaker": "Cloaker Secreto",
 	"ChaosModifierShieldEquips": "Aegis",
 	"ChaosModifierShields": "Escudeiros Escudo",
+	"ChaosModifierShortFuse": "Short Fuse",
 	"ChaosModifierShoutToKill": "Use a Força, Luke",
 	"ChaosModifierShowHitboxes": "Uma Visão Mais Clara",
 	"ChaosModifierSimonSays": "Simon Mandou",

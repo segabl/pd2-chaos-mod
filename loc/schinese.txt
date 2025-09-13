@@ -145,6 +145,7 @@
 	"ChaosModifierSecretCloaker": "便衣特工",
 	"ChaosModifierShieldEquips": "Aegis",
 	"ChaosModifierShields": "钢铁洪流",
+	"ChaosModifierShortFuse": "Short Fuse",
 	"ChaosModifierShoutToKill": "原力爆发",
 	"ChaosModifierShowHitboxes": "突破第四面墙",
 	"ChaosModifierSimonSays": "Simon说",

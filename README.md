@@ -305,6 +305,9 @@ Replaces all non-special enemy spawns with Tasers
 **Shocking**  
 Electrocutes all heisters for a short duration
 
+**Short Fuse**  
+Makes explosive projectiles blow up almost instantly
+
 **Silent Movie**  
 Turns sound effect volume to zero
 

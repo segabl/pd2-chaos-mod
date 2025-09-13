@@ -145,6 +145,7 @@
 	"ChaosModifierSecretCloaker": "Secret Cloaker",
 	"ChaosModifierShieldEquips": "Aegis",
 	"ChaosModifierShields": "Riot Police",
+	"ChaosModifierShortFuse": "Short Fuse",
 	"ChaosModifierShoutToKill": "Use the Force",
 	"ChaosModifierShowHitboxes": "A Deeper Insight",
 	"ChaosModifierSimonSays": "Simon Says",
