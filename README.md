@@ -17,6 +17,9 @@ Gives players usable shields
 **A Deeper Insight**  
 Draws hitboxes of objects in a certain radius around the player
 
+**A Throwaway Joke**  
+Reloading throws the gun away like a grenade, dealing damage based on the amount of ammo left in the magazine
+
 **Aim for the Head**  
 Enemies only take damage from headshots
 

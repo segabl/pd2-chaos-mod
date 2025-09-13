@@ -131,6 +131,7 @@
 	"ChaosModifierRandomVoices": "语音错乱",
 	"ChaosModifierRedGreenLight": "Red Light, Green Light",
 	"ChaosModifierRefreshModifers": "刷新因子",
+	"ChaosModifierReloadThrow": "A Throwaway Joke",
 	"ChaosModifierRocketStrike": "X16大火箭",
 	"ChaosModifierRogueBots": "Rogue AI",
 	"ChaosModifierRpgSnipers": "Mayhem Marksmen",

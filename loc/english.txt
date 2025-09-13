@@ -131,6 +131,7 @@
 	"ChaosModifierRandomVoices": "Voice Crack",
 	"ChaosModifierRedGreenLight": "Red Light, Green Light",
 	"ChaosModifierRefreshModifers": "Refresh Modifiers",
+	"ChaosModifierReloadThrow": "A Throwaway Joke",
 	"ChaosModifierRocketStrike": "Shell Shock",
 	"ChaosModifierRogueBots": "Rogue AI",
 	"ChaosModifierRpgSnipers": "Mayhem Marksmen",
