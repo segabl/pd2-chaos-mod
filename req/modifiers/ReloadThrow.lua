@@ -9,19 +9,21 @@ function ChaosModifierReloadThrow:start()
 	local unit_ids = Idstring("unit")
 	local dyn_resources_package = managers.dyn_resource.DYN_RESOURCES_PACKAGE
 	local tweak_entry = tweak_data.blackmarket.projectiles.sticky_grenade
-	if not managers.dyn_resource:has_resource(unit_ids, Idstring(tweak_entry.local_unit), dyn_resources_package) then
+	if not PackageManager:has(unit_ids, Idstring(tweak_entry.local_unit)) then
 		managers.dyn_resource:load(unit_ids, Idstring(tweak_entry.local_unit), dyn_resources_package)
 	end
 
-	if not managers.dyn_resource:has_resource(unit_ids, Idstring(tweak_entry.sprint_unit), dyn_resources_package) then
+	if not PackageManager:has(unit_ids, Idstring(tweak_entry.sprint_unit)) then
 		managers.dyn_resource:load(unit_ids, Idstring(tweak_entry.sprint_unit), dyn_resources_package)
 	end
 
-	self:override(PlayerStandard, "_start_action_reload", function(playerstate, t, ...)
-		playerstate:_interupt_action_reload(t)
-		playerstate:_check_stop_shooting()
+	self:post_hook(PlayerStandard, "_is_reloading", function()
+		return is_reload_throw or Hooks:GetReturn()
+	end)
 
-		if is_reload_throw or playerstate._state_data.throw_grenade_expire_t then
+	self:override(PlayerStandard, "_start_action_reload_enter", function(playerstate, t, ...)
+		local weapon_base = alive(playerstate._equipped_unit) and playerstate._equipped_unit:base()
+		if is_reload_throw or not weapon_base or not weapon_base:can_reload() then
 			return
 		end
 
@@ -30,14 +32,12 @@ function ChaosModifierReloadThrow:start()
 		if playerstate._projectile_global_value then
 			playerstate._camera_unit:anim_state_machine():set_global(playerstate._projectile_global_value, 0)
 		end
-
-		playerstate._state_data.throw_grenade_expire_t = t + 1.15
-
-		managers.network:session():send_to_peers_synched("play_distance_interact_redirect", playerstate._unit, "throw_grenade")
-		playerstate._camera_unit:anim_state_machine():set_global("projectile_frag", 1)
+		playerstate._projectile_global_value = "projectile_target"
+		playerstate._camera_unit:anim_state_machine():set_global(playerstate._projectile_global_value, 1)
 		playerstate._ext_camera:play_redirect(Idstring("throw_projectile"))
 
-		local weapon_base = playerstate._equipped_unit:base()
+		managers.network:session():send_to_peers_synched("play_distance_interact_redirect", playerstate._unit, "throw_grenade")
+
 		local ammo_base = weapon_base:ammo_base()
 		ammo_usage = ammo_base:get_ammo_remaining_in_clip()
 		grenade_damage = math.map_range(ammo_usage / ammo_base:get_ammo_max_per_clip(), 0, 1, 50, 200)
@@ -45,7 +45,8 @@ function ChaosModifierReloadThrow:start()
 		weapon_base:use_ammo(ammo_base, ammo_usage)
 		managers.hud:set_ammo_amount(weapon_base:selection_index(), weapon_base:ammo_info())
 
-		DelayedCalls:Add(self.class_name, 0.85, function()
+		DelayedCalls:Add(self.class_name, 1, function()
+			is_reload_throw = false
 			if not alive(weapon_base._unit) then
 				return
 			end
@@ -58,8 +59,6 @@ function ChaosModifierReloadThrow:start()
 		if not is_reload_throw then
 			return self:get_override(PlayerEquipment, "throw_projectile")(equipment, ...)
 		end
-
-		is_reload_throw = false
 
 		local from = equipment._unit:movement():m_head_pos()
 		local pos = from + equipment._unit:movement():m_head_rot():y() * 30 + Vector3(0, 0, 0)
@@ -93,9 +92,9 @@ function ChaosModifierReloadThrow:start()
 		})
 
 		local player_unit = managers.player:local_player()
-		local weapon_unit = player_unit:inventory():equipped_unit()
-		local weapon_base = alive(weapon_unit) and player_unit:inventory():equipped_unit():base()
-		if not alive(player_unit) or not weapon_base then
+		local weapon_unit = alive(player_unit) and player_unit:inventory():equipped_unit()
+		local weapon_base = alive(weapon_unit) and weapon_unit:base()
+		if not weapon_base then
 			return
 		end
 
@@ -131,6 +130,12 @@ function ChaosModifierReloadThrow:start()
 				weapon_unit:set_slot(0)
 			end
 		end)
+	end)
+
+	self:override(FPCameraPlayerBase, "spawn_grenade", function(...)
+		if not is_reload_throw then
+			return self:get_override(FPCameraPlayerBase, "spawn_grenade")(...)
+		end
 	end)
 end
 
