@@ -49,5 +49,13 @@ function HuskCopInventory:add_unit_by_factory_blueprint(factory_name, equip, ins
 		new_unit:base():create_second_gun(nil, second and second.obj3d_name or first.obj3d_name)
 	end
 
+	local weap_tweak = new_unit:base():weapon_tweak_data()
+	if weap_tweak and weap_tweak.reload == "looped" then
+		local hold = weap_tweak.usage == "is_shotgun_pump" and "shotgun" or weap_tweak.hold or "rifle"
+		if not HuskPlayerMovement.reload_times[hold] then
+			HuskPlayerMovement.reload_times[hold] = HuskPlayerMovement.reload_times.default
+		end
+	end
+
 	self:add_unit(new_unit, equip, instant)
 end
