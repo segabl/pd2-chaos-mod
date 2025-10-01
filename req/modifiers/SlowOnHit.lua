@@ -10,7 +10,7 @@ function ChaosModifierSlowOnHit:start()
 		local strength = (1 + attack_data.damage / dmg_ref) ^ 0.35 - 1
 		table.insert(slows, 1, {
 			start_t = managers.player:player_timer():time(),
-			expire_t = managers.player:player_timer():time() + math.map_range_clamped(strength, 0, 1, 0, 0.75)
+			expire_t = managers.player:player_timer():time() + math.clamp(strength, 0, 1)
 		})
 	end)
 
