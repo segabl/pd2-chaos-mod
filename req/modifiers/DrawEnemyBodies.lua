@@ -4,7 +4,7 @@ ChaosModifierDrawEnemyBodies.duration = 45
 
 function ChaosModifierDrawEnemyBodies:start()
 	self._update_rate = 0.05
-	self._slotmask = managers.slot:get_mask("persons", "corpses") - managers.slot:get_mask("players_only_local")
+	self._slotmask = managers.slot:get_mask("civilians", "enemies", "corpses", "hostages")
 	self._brush = Draw:brush(self._update_rate + 0.001)
 	self._allowed_names = {
 		[Idstring("rag_Head"):key()] = true,
@@ -20,13 +20,17 @@ function ChaosModifierDrawEnemyBodies:start()
 		[Idstring("rag_LeftLeg"):key()] = true
 	}
 	self._colors = {
-		law1 = Color(1, 0, 0),
-		criminal1 = Color(0, 1, 1),
-		neutral1 = Color(0.75, 0.75, 0.75)
+		{ "tank", Color.red },
+		{ "taser", Color.yellow },
+		{ "spooc", Color(0.1, 0.1, 0.1) },
+		{ "sniper", Color(1, 0.5, 0) },
+		{ "marksman", Color(1, 0.5, 0) },
+		{ "shield", Color(0.3, 0.3, 0.3) },
+		{ "medic", Color.green },
+		{ "special", Color.white },
+		{ "civilian", Color.cyan }
 	}
-	self._colors.converted_enemy = self._colors.criminal1
-	self._colors.hacked_turret = self._colors.criminal1
-	self._colors.mobster1 = self._colors.law1
+	self._default_color = Color.blue
 end
 
 function ChaosModifierDrawEnemyBodies:draw_unit_bodies(unit, allowed_names)
@@ -64,10 +68,17 @@ function ChaosModifierDrawEnemyBodies:update(t, dt)
 	end)
 
 	for _, unit in pairs(units) do
-		local team = unit:movement() and unit:movement().team and unit:movement():team()
-		local color = self._colors[team and team.id] or self._colors.neutral1
-		local mul = (unit:base().has_tag and unit:base():has_tag("special") and 0.5 or 1)
-		mul = mul * math.map_range_clamped(distances[unit:key()] or mvector3.distance(unit:position(), cam:position()), 0, 5000, 1, 0)
+		local color = self._default_color
+		for _, data in pairs(self._colors) do
+			if unit:base().has_tag and unit:base():has_tag(data[1]) then
+				color = data[2]
+				break
+			end
+		end
+		local mul = math.map_range_clamped(distances[unit:key()] or mvector3.distance(unit:position(), cam:position()), 0, 10000, 1, 0)
+		if unit:character_damage() and unit:character_damage()._dead then
+			mul = mul * 0.25
+		end
 		self._brush:set_color(Color(color.r * mul, color.g * mul, color.b * mul))
 		if self:draw_unit_bodies(unit, self._allowed_names) then
 			unit:set_visible(false)

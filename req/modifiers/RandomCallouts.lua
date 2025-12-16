@@ -10,7 +10,8 @@ function ChaosModifierRandomCallouts:start()
 	self._ss = SoundDevice:create_source("ChaosModifierRandomCallouts")
 
 	self._sound_events = {
-		cloaker_detect_mono = true
+		cloaker_detect_mono = true,
+		taser_charge = true
 	}
 	for _, enemy_name in pairs(tweak_data.character._enemy_list) do
 		local enemy = tweak_data.character[enemy_name]

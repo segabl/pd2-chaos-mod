@@ -8,14 +8,16 @@ function ChaosModifierBagsHurt:can_trigger()
 		end
 	end
 
-	for _, v in pairs(World:find_units_quick("all", World:make_slot_mask(14))) do
-		if v:carry_data() then
+	for _, unit in pairs(World:find_units_quick("all", World:make_slot_mask(14))) do
+		if unit:carry_data() then
 			return true
 		end
 	end
 end
 
 function ChaosModifierBagsHurt:start()
+	self._effects = {}
+
 	managers.player:drop_carry()
 end
 
@@ -26,6 +28,25 @@ function ChaosModifierBagsHurt:update(t, dt)
 
 	self._next_t = t + 0.25
 
+	for u_key, data in pairs(self._effects) do
+		if not alive(data.unit) then
+			World:effect_manager():fade_kill(data.effect)
+			self._effects[u_key] = nil
+		end
+	end
+
+	for _, unit in pairs(World:find_units_quick("all", World:make_slot_mask(14))) do
+		if unit:carry_data() and not self._effects[unit:key()] then
+			self._effects[unit:key()] = {
+				unit = unit,
+				effect = World:effect_manager():spawn({
+					effect = Idstring("effects/particles/fire/small_light_fire"),
+					parent = unit:orientation_object()
+				})
+			}
+		end
+	end
+
 	local player_unit = managers.player:local_player()
 	if not alive(player_unit) or player_unit:movement():current_state_name() ~= "carry" then
 		return
@@ -35,6 +56,12 @@ function ChaosModifierBagsHurt:update(t, dt)
 		variant = "bullet",
 		damage = 1
 	})
+end
+
+function ChaosModifierBagsHurt:stop()
+	for _, data in pairs(self._effects) do
+		World:effect_manager():fade_kill(data.effect)
+	end
 end
 
 return ChaosModifierBagsHurt

@@ -253,6 +253,14 @@ if not ChaosMod then
 		return can_be_hidden and managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2) or self._ws:panel()
 	end
 
+	---@return Gui
+	function ChaosMod:world_gui()
+		if not self._world_gui then
+			self._world_gui = World:newgui()
+		end
+		return self._world_gui
+	end
+
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitChaosMod", function(loc)
 		if HopLib then
 			HopLib:load_localization(ChaosMod.mod_path .. "loc/", loc)

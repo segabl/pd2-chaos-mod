@@ -3,7 +3,7 @@ ChaosModifierTiltScreen.duration = 30
 
 function ChaosModifierTiltScreen:update(t, dt)
 	local player_unit = managers.player:local_player()
-	if not alive(player_unit) then
+	if not alive(player_unit) or player_unit:character_damage():is_downed() then
 		return
 	end
 
@@ -13,7 +13,7 @@ end
 
 function ChaosModifierTiltScreen:stop()
 	local player_unit = managers.player:local_player()
-	if alive(player_unit) then
+	if alive(player_unit) and not player_unit:character_damage():is_downed() then
 		player_unit:camera():camera_unit():base():set_target_tilt(0)
 	end
 end

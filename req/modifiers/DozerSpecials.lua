@@ -2,7 +2,7 @@ ChaosModifierDozerSpecials = ChaosModifier.class("ChaosModifierDozerSpecials")
 ChaosModifierDozerSpecials.conflict_tags = { "UnitCategories" }
 ChaosModifierDozerSpecials.loud_only = true
 ChaosModifierDozerSpecials.color = "enemy_change"
-ChaosModifierDozerSpecials.duration = 60
+ChaosModifierDozerSpecials.duration = 45
 
 function ChaosModifierDozerSpecials:start()
 	for _, enemy_name in pairs(tweak_data.character._enemy_list) do

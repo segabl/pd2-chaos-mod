@@ -14,7 +14,10 @@ function ChaosModifierSingleShotMagazine:start()
 	end)
 
 	self:post_hook(NewRaycastWeaponBase, "reload_speed_multiplier", function(weaponbase)
-		return Hooks:GetReturn() * (1 + (weaponbase:get_ammo_max_per_clip() - 1) * 0.05)
+		local mag_total = weaponbase:get_ammo_max_per_clip()
+		if mag_total > 1 then
+			return Hooks:GetReturn() * (mag_total ^ 0.2) * 2
+		end
 	end)
 end
 

@@ -81,12 +81,16 @@ function ChaosModifierShoutToKill:start()
 		return self:get_override(PlayerStandard, "_add_unit_to_char_table")(playerstate, char_table, unit, unit_type, interaction_dist, interaction_through_walls, tight_area, priority, my_head_pos, cam_fwd, ray_ignore_units, "ai_vision", ...)
 	end)
 
+	local surrender = {
+		base_chance = 0,
+		significant_chance = 0,
+		reasons = {},
+		factors = {}
+	}
 	for _, enemy_name in pairs(tweak_data.character._enemy_list) do
 		local enemy = tweak_data.character[enemy_name]
 		self:override(enemy, "priority_shout", nil)
-		if not enemy.surrender then
-			self:override(enemy, "surrender", tweak_data.character.presets.surrender.special)
-		end
+		self:override(enemy, "surrender", surrender)
 	end
 end
 

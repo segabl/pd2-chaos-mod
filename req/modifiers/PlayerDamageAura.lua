@@ -8,6 +8,7 @@ end
 
 function ChaosModifierPlayerDamageAura:start()
 	self._effects = {}
+	self._brush = Draw:brush(Color(0.015, 0.4, 1, 0.5))
 end
 
 function ChaosModifierPlayerDamageAura:update(t, dt)
@@ -22,11 +23,16 @@ function ChaosModifierPlayerDamageAura:update(t, dt)
 	end
 
 	for u_key, data in pairs(criminals) do
-		if not self._effects[u_key] and alive(data.unit) and data.unit ~= player_unit then
-			self._effects[u_key] = World:effect_manager():spawn({
-				effect = Idstring("effects/particles/explosions/poison_gas"),
-				parent = data.unit:orientation_object()
-			})
+		if alive(data.unit) and data.unit ~= player_unit then
+			for i = 0, 2 do
+				self._brush:sphere(data.unit:movement():m_pos(), 300 - i * 3, 4)
+			end
+			if not self._effects[u_key] then
+				self._effects[u_key] = World:effect_manager():spawn({
+					effect = Idstring("effects/particles/explosions/poison_gas"),
+					parent = data.unit:orientation_object()
+				})
+			end
 		end
 	end
 
