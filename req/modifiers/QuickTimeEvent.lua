@@ -72,6 +72,12 @@ function ChaosModifierQuickTimeEvent:start()
 
 		self:update_sequence(playerstate, t)
 	end)
+
+	for _, interaction in pairs(tweak_data.interaction) do
+		if type(interaction) == "table" and not interaction.timer then
+			self:override(interaction, "timer", 1)
+		end
+	end
 end
 
 function ChaosModifierQuickTimeEvent:get_sequence_groups(num_events)
