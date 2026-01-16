@@ -7,7 +7,7 @@ ChaosModifierKillQuota.target = 5
 
 function ChaosModifierKillQuota:can_trigger()
 	local gstate = managers.groupai:state()
-	if not gstate._hunt_mode or not gstate._task_data.assault.active then
+	if not gstate._hunt_mode and not gstate._task_data.assault.active then
 		return
 	end
 	if gstate._task_data.assault.phase == "build" or gstate._task_data.assault.phase == "sustain" then
