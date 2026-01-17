@@ -229,6 +229,8 @@ if not ChaosMod then
 		self.queued_calls[id] = nil
 	end
 
+	---@param duration number
+	---@param func? fun(p?: number)
 	function ChaosMod:anim_over(duration, func)
 		func = func or function() end
 		func(0)

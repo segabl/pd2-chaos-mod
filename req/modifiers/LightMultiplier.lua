@@ -1,4 +1,5 @@
 ChaosModifierLightMultiplier = ChaosModifier.class("ChaosModifierLightMultiplier")
+ChaosModifierLightMultiplier.conflict_tags = { "NoLights" }
 ChaosModifierLightMultiplier.duration = 60
 
 function ChaosModifierLightMultiplier:start()
