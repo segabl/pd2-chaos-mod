@@ -1,4 +1,5 @@
 ChaosModifierPortraitMode = ChaosModifier.class("ChaosModifierPortraitMode")
+ChaosModifierPortraitMode.conflict_tags = { "ScreenRestriction" }
 ChaosModifierPortraitMode.duration = 45
 
 function ChaosModifierPortraitMode:start()

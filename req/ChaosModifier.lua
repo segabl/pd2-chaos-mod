@@ -125,7 +125,12 @@ function ChaosModifier:completed()
 end
 
 function ChaosModifier:progress(t, dt)
-	return self.duration == 0 and 1 or self.duration > 0 and (t - self._activation_t) / self.duration or 0
+	if self.duration == 0 then
+		return 1
+	elseif self.duration < 0 or ChaosMod.settings.infinite_duration then
+		return 0
+	end
+	return (t - self._activation_t) / self.duration
 end
 
 ---@param obj table|userdata

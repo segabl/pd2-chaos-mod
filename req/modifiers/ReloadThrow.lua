@@ -40,7 +40,7 @@ function ChaosModifierReloadThrow:start()
 
 		local ammo_base = weapon_base:ammo_base()
 		ammo_usage = ammo_base:get_ammo_remaining_in_clip()
-		grenade_damage = math.map_range(ammo_usage / ammo_base:get_ammo_max_per_clip(), 0, 1, 50, 200)
+		grenade_damage = weapon_base._damage * (1 + ammo_usage)
 		ammo_base:set_ammo_remaining_in_clip(0)
 		weapon_base:use_ammo(ammo_base, ammo_usage)
 		managers.hud:set_ammo_amount(weapon_base:selection_index(), weapon_base:ammo_info())

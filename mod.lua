@@ -19,6 +19,7 @@ if not ChaosMod then
 		stealth_enabled = 1,
 		panel_x = 1,
 		panel_y = 0.45,
+		infinite_duration = false,
 		disabled_modifiers = {}
 	}
 

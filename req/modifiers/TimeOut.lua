@@ -65,6 +65,8 @@ function ChaosModifierTimeOut:update(t, dt)
 end
 
 function ChaosModifierTimeOut:stop()
+	self:unqueue("pick_player")
+
 	if alive(self._unit) and self._unit:movement():current_state_name() == "civilian" then
 		managers.player:set_player_state("standard")
 	end

@@ -81,4 +81,8 @@ function ChaosModifierFocusPlayer:start()
 	self:queue("pick_player", 2)
 end
 
+function ChaosModifierFocusPlayer:stop()
+	self:unqueue("pick_player")
+end
+
 return ChaosModifierFocusPlayer
