@@ -11,8 +11,13 @@ function ChaosModifierRainbowOverlay:start()
 end
 
 function ChaosModifierRainbowOverlay:update(t, dt)
-	local p = t - self._activation_t
-	local a = math.map_range_clamped(p, 0, 2, 0, 1) * math.map_range_clamped(p, self.duration - 2, self.duration, 1, 0)
+	local a = 1
+	local time_elapsed, time_left = self:time_elapsed(t), self:time_left(t)
+	if time_elapsed < 2 then
+		a = math.map_range_clamped(time_elapsed, 0, 2, 0, 1)
+	elseif time_left < 2 then
+		a = math.map_range_clamped(time_left, 2, 0, 1, 0)
+	end
 	local points = {}
 	for i = 0, 360, 30 do
 		table.insert(points, i / 360)

@@ -179,7 +179,7 @@ if not ChaosMod then
 		end
 
 		for k, modifier in pairs(self.active_modifiers) do
-			if modifier:expired(t, dt) then
+			if modifier:expired(t) then
 				modifier:destroy()
 				self.active_modifiers[k] = nil
 			elseif Network:is_server() or modifier.run_as_client then
@@ -188,7 +188,7 @@ if not ChaosMod then
 		end
 
 		for i, hud_modifier in table.reverse_ipairs(self.hud_modifiers) do
-			if hud_modifier:expired(t, dt) then
+			if hud_modifier:expired(t) then
 				hud_modifier:destroy()
 				table.remove(self.hud_modifiers, i)
 			else

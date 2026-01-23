@@ -164,7 +164,7 @@ function ChaosModifierKaraoke:update(t, dt)
 	end
 end
 
-function ChaosModifierKaraoke:progress(t, dt)
+function ChaosModifierKaraoke:progress(t)
 	return self.start_t > t and 0 or (t - self.start_t) / self.song_duration
 end
 

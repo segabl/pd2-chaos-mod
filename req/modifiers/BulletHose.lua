@@ -17,7 +17,7 @@ end
 
 function ChaosModifierBulletHose:update(t, dt)
 	if not managers.player:has_active_temporary_property("bullet_storm") then
-		managers.player:add_to_temporary_property("bullet_storm", self._activation_t + self.duration - t, 1)
+		managers.player:add_to_temporary_property("bullet_storm", self:time_left(t), 1)
 	end
 end
 

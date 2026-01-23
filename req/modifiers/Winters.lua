@@ -12,8 +12,8 @@ function ChaosModifierWinters:start()
 	managers.groupai:state():_spawn_phalanx()
 end
 
-function ChaosModifierWinters:expired(t, dt)
-	return self.super.expired(self, t, dt) or Network:is_server() and t > self._activation_t + 5 and not managers.groupai:state()._hunt_mode
+function ChaosModifierWinters:expired(t)
+	return self.super.expired(self, t) or Network:is_server() and t > self._activation_t + 5 and not managers.groupai:state()._hunt_mode
 end
 
 return ChaosModifierWinters

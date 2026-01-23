@@ -124,13 +124,21 @@ function ChaosModifier:completed()
 	return self._completed and table.size(self._completed_peers) >= table.size(managers.network:session():peers())
 end
 
-function ChaosModifier:progress(t, dt)
+function ChaosModifier:progress(t)
 	if self.duration == 0 then
 		return 1
 	elseif self.duration < 0 or ChaosMod.settings.infinite_duration then
 		return 0
 	end
 	return (t - self._activation_t) / self.duration
+end
+
+function ChaosModifier:time_elapsed(t)
+	return t - self._activation_t
+end
+
+function ChaosModifier:time_left(t)
+	return (1 - self:progress(t)) * self.duration
 end
 
 ---@param obj table|userdata
@@ -196,8 +204,8 @@ function ChaosModifier:unqueue(func_name)
 	ChaosMod:unqueue(tostring(self) .. func_name)
 end
 
-function ChaosModifier:expired(t, dt)
-	return self._expired or self:progress(t, dt) >= 1 or self:completed()
+function ChaosModifier:expired(t)
+	return self._expired or self:progress(t) >= 1 or self:completed()
 end
 
 function ChaosModifier:show_text(text, time, large)

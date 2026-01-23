@@ -11,7 +11,7 @@ function ChaosModifierScreenShake:update(t, dt)
 		return
 	end
 
-	local duration = math.min(math.rand(1.5, 3), self._activation_t + self.duration - t)
+	local duration = math.min(math.rand(1.5, 3), self:time_left(t))
 	local feedback = managers.feedback:create("mission_triggered")
 
 	feedback:set_unit(player_unit)

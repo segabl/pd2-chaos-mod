@@ -173,8 +173,8 @@ function ChaosModifierFollowPlayer:update(t, dt)
 	end
 end
 
-function ChaosModifierFollowPlayer:expired(t, dt)
-	return not alive(self._unit) or self.super.expired(self, t, dt)
+function ChaosModifierFollowPlayer:expired(t)
+	return not alive(self._unit) or self.super.expired(self, t)
 end
 
 function ChaosModifierFollowPlayer:stop()

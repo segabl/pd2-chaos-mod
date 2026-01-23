@@ -198,8 +198,8 @@ function ChaosModifierPlayerShields:spawn_unit(player_unit)
 	managers.groupai:state():on_criminal_jobless(unit)
 end
 
-function ChaosModifierPlayerShields:expired(t, dt)
-	if ChaosModifierPlayerShields.super.expired(self, t, dt) then
+function ChaosModifierPlayerShields:expired(t)
+	if ChaosModifierPlayerShields.super.expired(self, t) then
 		return true
 	elseif Network:is_server() then
 		for _, data in pairs(self._units) do

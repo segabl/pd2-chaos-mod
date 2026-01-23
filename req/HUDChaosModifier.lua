@@ -122,7 +122,7 @@ function HUDChaosModifier:update(t, dt, index)
 	end
 
 	if self._modifier.duration > 0 then
-		self._progress:set_w((self._panel:w() - 6) * (1 - math.clamp(self._modifier:progress(t, dt), 0, 1)))
+		self._progress:set_w((self._panel:w() - 6) * (1 - math.clamp(self._modifier:progress(t), 0, 1)))
 	end
 end
 
@@ -153,8 +153,8 @@ function HUDChaosModifier:complete(peer_id)
 	end
 end
 
-function HUDChaosModifier:expired(t, dt)
-	return self._expired or self._modifier:expired(t, dt) and (self._modifier.duration > 0 or self._modifier._activation_t + 5 < t)
+function HUDChaosModifier:expired(t)
+	return self._expired or self._modifier:expired(t) and (self._modifier.duration > 0 or self._modifier._activation_t + 5 < t)
 end
 
 function HUDChaosModifier:destroy()

@@ -51,9 +51,9 @@ function ChaosModifierTruce:start()
 		input.btn_primary_attack_release = false
 	end)
 
-	self:override(GroupAIStateBesiege, "_chk_group_use_flash_grenade", function()end)
-	self:override(GroupAIStateBesiege, "_chk_group_use_smoke_grenade", function()end)
-	self:override(GroupAIStateBesiege, "_chk_group_use_grenade", function()end)
+	self:override(GroupAIStateBesiege, "_chk_group_use_flash_grenade", function() end)
+	self:override(GroupAIStateBesiege, "_chk_group_use_smoke_grenade", function() end)
+	self:override(GroupAIStateBesiege, "_chk_group_use_grenade", function() end)
 
 	self:override(SentryGunBrain, "_select_focus_attention", function(brain)
 		if brain._attention_obj then
@@ -67,10 +67,11 @@ end
 
 function ChaosModifierTruce:update(t, dt)
 	local vol = 0
-	if t < self._activation_t + 0.5 then
-		vol = math.map_range(t, self._activation_t, self._activation_t + 0.5, managers.user:get_setting("music_volume"), 0)
-	elseif t > self._activation_t + self.duration - 0.5 then
-		vol = math.map_range(t, self._activation_t + self.duration - 0.5, self._activation_t + self.duration, 0, managers.user:get_setting("music_volume"))
+	local time_elapsed, time_left = self:time_elapsed(t), self:time_left(t)
+	if time_elapsed < 0.5 then
+		vol = math.map_range(time_elapsed, 0, 0.5, managers.user:get_setting("music_volume"), 0)
+	elseif time_left < 0.5 then
+		vol = math.map_range(time_left, 0.5, 0, 0, managers.user:get_setting("music_volume"))
 	end
 	SoundDevice:set_rtpc("option_music_volume", vol)
 	XAudio._base_gains.music = vol / 100

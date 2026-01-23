@@ -7,10 +7,11 @@ end
 
 function ChaosModifierNoSound:update(t, dt)
 	local vol = 0
-	if t < self._activation_t + 0.5 then
-		vol = math.map_range(t, self._activation_t, self._activation_t + 0.5, managers.user:get_setting("sfx_volume"), 0)
-	elseif t > self._activation_t + self.duration - 0.5 then
-		vol = math.map_range(t, self._activation_t + self.duration - 0.5, self._activation_t + self.duration, 0, managers.user:get_setting("sfx_volume"))
+	local time_elapsed, time_left = self:time_elapsed(t), self:time_left(t)
+	if time_elapsed < 0.5 then
+		vol = math.map_range(time_elapsed, 0, 0.5, managers.user:get_setting("sfx_volume"), 0)
+	elseif time_left < 0.5 then
+		vol = math.map_range(time_left, 0.5, 0, 0, managers.user:get_setting("sfx_volume"))
 	end
 	SoundDevice:set_rtpc("option_sfx_volume", vol)
 	XAudio._base_gains.sfx = vol / 100

@@ -15,16 +15,17 @@ function ChaosModifierLightMultiplier:start()
 end
 
 function ChaosModifierLightMultiplier:update(t, dt)
-	if t < self._activation_t + 5 then
+	local time_elapsed, time_left = self:time_elapsed(t), self:time_left(t)
+	if time_elapsed < 5 then
 		for _, light_data in pairs(self._lights) do
 			if alive(light_data[1]) then
-				light_data[1]:set_multiplier(math.map_range(t, self._activation_t, self._activation_t + 5, light_data[2], light_data[2] * 50))
+				light_data[1]:set_multiplier(math.map_range(time_elapsed, 0, 5, light_data[2], light_data[2] * 50))
 			end
 		end
-	elseif t > self._activation_t + self.duration - 5 then
+	elseif time_left < 5 then
 		for _, light_data in pairs(self._lights) do
 			if alive(light_data[1]) then
-				light_data[1]:set_multiplier(math.map_range(t, self._activation_t + self.duration - 5, self._activation_t + self.duration, light_data[2] * 50, light_data[2]))
+				light_data[1]:set_multiplier(math.map_range(time_left, 5, 0, light_data[2] * 50, light_data[2]))
 			end
 		end
 	end
