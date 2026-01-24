@@ -23,6 +23,7 @@
 		{ "hook_id" : "lib/units/beings/player/playerdamage", "script_path" : "mod.lua" },
 		{ "hook_id" : "lib/units/beings/player/playerinventory", "script_path" : "mod.lua" },
 		{ "hook_id" : "lib/units/enemies/cop/actions/full_body/copactionhurt", "script_path" : "mod.lua" },
+		{ "hook_id" : "lib/units/enemies/cop/logics/coplogicattack", "script_path" : "mod.lua" },
 		{ "hook_id" : "lib/units/enemies/cop/copinventory", "script_path" : "mod.lua" },
 		{ "hook_id" : "lib/units/enemies/cop/copmovement", "script_path" : "mod.lua" },
 		{ "hook_id" : "lib/units/enemies/cop/huskcopinventory", "script_path" : "mod.lua" },
