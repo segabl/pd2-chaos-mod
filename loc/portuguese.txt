@@ -129,6 +129,7 @@
 	"ChaosModifierPocketMedicHelperName": "a Medic",
 	"ChaosModifierPopups": "Pop-Ups",
 	"ChaosModifierPortraitMode": "Modo Retrato",
+	"ChaosModifierProximityEnemies": "Creeper, Aw Man",
 	"ChaosModifierPulsingFov": "Tontura",
 	"ChaosModifierPushUp": "Pula, pu-pula, filha da pula!",
 	"ChaosModifierQuickTimeEvent": "Quick Time Event",

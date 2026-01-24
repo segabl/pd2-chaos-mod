@@ -129,6 +129,7 @@
 	"ChaosModifierPocketMedicHelperName": "Медик",
 	"ChaosModifierPopups": "Pop-Ups",
 	"ChaosModifierPortraitMode": "Портретный режим",
+	"ChaosModifierProximityEnemies": "Creeper, Aw Man",
 	"ChaosModifierPulsingFov": "Тошнота",
 	"ChaosModifierPushUp": "Пружина",
 	"ChaosModifierQuickTimeEvent": "Быстрое событие",

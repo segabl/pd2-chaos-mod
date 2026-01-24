@@ -129,6 +129,7 @@
 	"ChaosModifierPocketMedicHelperName": "a Medic",
 	"ChaosModifierPopups": "Pop-Ups",
 	"ChaosModifierPortraitMode": "短视频模式",
+	"ChaosModifierProximityEnemies": "Creeper, Aw Man",
 	"ChaosModifierPulsingFov": "Nausea",
 	"ChaosModifierPushUp": "弹跳杆",
 	"ChaosModifierQuickTimeEvent": "Quick Time Event",
