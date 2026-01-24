@@ -28,7 +28,7 @@ function ChaosModifierDrawEnemyBodies:start()
 		{ "shield", Color(0.3, 0.3, 0.3) },
 		{ "medic", Color.green },
 		{ "special", Color.white },
-		{ "civilian", Color.cyan }
+		{ "civilian", Color(0, 1, 1) }
 	}
 	self._default_color = Color.blue
 end
