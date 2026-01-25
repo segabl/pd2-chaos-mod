@@ -38,6 +38,7 @@
 	"ChaosModifierBouncyProjectiles": "Пружинный курок",
 	"ChaosModifierBreakVehicles": "Требуется механик",
 	"ChaosModifierBulletHose": "Пуля Шланг",
+	"ChaosModifierBurstFire": "Burst Mode",
 	"ChaosModifierCaptcha": "Капча",
 	"ChaosModifierCaptchaPrompt": "Выберите все навыки ##$SUBTREE; ($TREE;)##.",
 	"ChaosModifierCaptchaVerify": "Подтвердить",

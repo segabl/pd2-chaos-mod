@@ -38,6 +38,7 @@
 	"ChaosModifierBouncyProjectiles": "Spring-Loaded Trigger",
 	"ChaosModifierBreakVehicles": "Mechanic Needed",
 	"ChaosModifierBulletHose": "Bullet Hose",
+	"ChaosModifierBurstFire": "Burst Mode",
 	"ChaosModifierCaptcha": "Captcha",
 	"ChaosModifierCaptchaPrompt": "Select all skills from the ##$SUBTREE; ($TREE;)## tree.",
 	"ChaosModifierCaptchaVerify": "Verify",

@@ -38,6 +38,7 @@
 	"ChaosModifierBouncyProjectiles": "弹簧扳机",
 	"ChaosModifierBreakVehicles": "叫那个技师过来！",
 	"ChaosModifierBulletHose": "弹幕地狱",
+	"ChaosModifierBurstFire": "Burst Mode",
 	"ChaosModifierCaptcha": "验证码",
 	"ChaosModifierCaptchaPrompt": "选择所有来自##$SUBTREE; ($TREE;)##树的技能。",
 	"ChaosModifierCaptchaVerify": "验证",

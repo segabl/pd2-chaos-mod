@@ -38,6 +38,7 @@
 	"ChaosModifierBouncyProjectiles": "Projéteis Quicando",
 	"ChaosModifierBreakVehicles": "Tem Carburador?",
 	"ChaosModifierBulletHose": "Mangueira de Bala",
+	"ChaosModifierBurstFire": "Burst Mode",
 	"ChaosModifierCaptcha": "Captcha",
 	"ChaosModifierCaptchaPrompt": "Selecione todas as skills da árvore ##$SUBTREE; ($TREE;)##.",
 	"ChaosModifierCaptchaVerify": "Verificar",
