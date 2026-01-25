@@ -1,5 +1,6 @@
 ChaosModifierForceMove = ChaosModifier.class("ChaosModifierForceMove")
-ChaosModifierForceMove.conflict_tags = { "PlayerMovement" }
+ChaosModifierForceMove.tags = { "MovementRestriction" }
+ChaosModifierForceMove.conflict_tags = { "MovementRestriction" }
 ChaosModifierForceMove.duration = 20
 
 function ChaosModifierForceMove:start()

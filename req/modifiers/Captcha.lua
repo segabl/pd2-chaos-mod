@@ -1,5 +1,6 @@
 ChaosModifierCaptcha = ChaosModifier.class("ChaosModifierCaptcha")
-ChaosModifierCaptcha.conflict_tags = { "UserInterface" }
+ChaosModifierCaptcha.tags = { "Minigame" }
+ChaosModifierCaptcha.conflict_tags = { "Minigame" }
 ChaosModifierCaptcha.color = "player_specific"
 ChaosModifierCaptcha.duration = 60
 

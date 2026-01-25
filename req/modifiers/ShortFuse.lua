@@ -1,4 +1,5 @@
 ChaosModifierShortFuse = ChaosModifier.class("ChaosModifierShortFuse")
+ChaosModifierShortFuse.tags = { "ProjectileFuse" }
 ChaosModifierShortFuse.conflict_tags = { "ProjectileFuse" }
 ChaosModifierShortFuse.duration = 60
 

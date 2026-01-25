@@ -1,5 +1,6 @@
 ChaosModifierEmptyReloadOnly = ChaosModifier.class("ChaosModifierEmptyReloadOnly")
-ChaosModifierEmptyReloadOnly.conflict_tags = { "PlayerReload", "PlayerReloadRestriction" }
+ChaosModifierEmptyReloadOnly.tags = { "ReloadRestriction" }
+ChaosModifierEmptyReloadOnly.conflict_tags = { "ReloadRestriction", "InfiniteAmmo" }
 ChaosModifierEmptyReloadOnly.duration = 30
 
 function ChaosModifierEmptyReloadOnly:start()

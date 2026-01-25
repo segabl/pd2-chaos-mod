@@ -1,5 +1,6 @@
 ChaosModifierAlbedoVisualization = ChaosModifier.class("ChaosModifierAlbedoVisualization")
-ChaosModifierAlbedoVisualization.conflict_tags = { "ScreenEffect", "NoLights" }
+ChaosModifierAlbedoVisualization.tags = { "ScreenEffect", "NoLights" }
+ChaosModifierAlbedoVisualization.conflict_tags = { "ScreenEffect" }
 ChaosModifierAlbedoVisualization.duration = 60
 
 function ChaosModifierAlbedoVisualization:start()

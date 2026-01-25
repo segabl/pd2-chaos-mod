@@ -1,4 +1,5 @@
 ChaosModifierAmmoLeak = ChaosModifier.class("ChaosModifierAmmoLeak")
+ChaosModifierAmmoLeak.conflict_tags = { "InfiniteAmmo" }
 ChaosModifierAmmoLeak.duration = 20
 
 function ChaosModifierAmmoLeak:start()

@@ -1,4 +1,5 @@
 ChaosModifierConcussionBullets = ChaosModifier.class("ChaosModifierConcussionBullets")
+ChaosModifierConcussionBullets.tags = { "BulletChange" }
 ChaosModifierConcussionBullets.conflict_tags = { "BulletChange" }
 ChaosModifierConcussionBullets.duration = 30
 

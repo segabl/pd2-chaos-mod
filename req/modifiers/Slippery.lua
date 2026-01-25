@@ -1,5 +1,4 @@
 ChaosModifierSlippery = ChaosModifier.class("ChaosModifierSlippery")
-ChaosModifierSlippery.conflict_tags = { "PlayerMovement" }
 ChaosModifierSlippery.duration = 40
 
 function ChaosModifierSlippery:start()

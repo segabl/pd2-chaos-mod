@@ -1,5 +1,5 @@
 ChaosModifierAutoAim = ChaosModifier.class("ChaosModifierAutoAim")
-ChaosModifierAutoAim.conflict_tags = { "NoGunsUsable" }
+ChaosModifierAutoAim.conflict_tags = { "NoGuns" }
 ChaosModifierAutoAim.duration = 30
 
 function ChaosModifierAutoAim:start()

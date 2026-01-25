@@ -1,4 +1,5 @@
 ChaosModifierTimeStop = ChaosModifier.class("ChaosModifierTimeStop")
+ChaosModifierTimeStop.tags = { "TimeSpeed" }
 ChaosModifierTimeStop.conflict_tags = { "TimeSpeed" }
 ChaosModifierTimeStop.duration = 15
 ChaosModifierTimeStop.weight_mul = 0.75

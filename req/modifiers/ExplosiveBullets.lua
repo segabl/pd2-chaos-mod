@@ -1,4 +1,5 @@
 ChaosModifierExplosiveBullets = ChaosModifier.class("ChaosModifierExplosiveBullets")
+ChaosModifierExplosiveBullets.tags = { "BulletChange" }
 ChaosModifierExplosiveBullets.conflict_tags = { "BulletChange" }
 ChaosModifierExplosiveBullets.stealth_safe = false
 ChaosModifierExplosiveBullets.duration = 30

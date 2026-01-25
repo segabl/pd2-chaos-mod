@@ -1,5 +1,6 @@
 ChaosModifierForceMelee = ChaosModifier.class("ChaosModifierForceMelee")
-ChaosModifierForceMelee.conflict_tags = { "NoGunsUsable" }
+ChaosModifierForceMelee.tags = { "NoGuns" }
+ChaosModifierForceMelee.conflict_tags = { "NoMelee" }
 ChaosModifierForceMelee.duration = 45
 
 function ChaosModifierForceMelee:start()

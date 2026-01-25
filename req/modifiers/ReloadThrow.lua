@@ -1,5 +1,5 @@
 ChaosModifierReloadThrow = ChaosModifier.class("ChaosModifierReloadThrow")
-ChaosModifierReloadThrow.conflict_tags = { "NoGunsUsable", "InfiniteAmmo" }
+ChaosModifierReloadThrow.conflict_tags = { "NoGuns", "InfiniteAmmo" }
 ChaosModifierReloadThrow.duration = 60
 
 function ChaosModifierReloadThrow:start()

@@ -1,4 +1,5 @@
 ChaosModifierLowGravity = ChaosModifier.class("ChaosModifierLowGravity")
+ChaosModifierLowGravity.tags = { "Gravity" }
 ChaosModifierLowGravity.conflict_tags = { "Gravity" }
 ChaosModifierLowGravity.duration = 40
 ChaosModifierLowGravity.gravity_mul = 0.25

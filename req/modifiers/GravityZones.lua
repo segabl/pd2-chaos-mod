@@ -1,4 +1,5 @@
 ChaosModifierGravityZones = ChaosModifier.class("ChaosModifierGravityZones")
+ChaosModifierGravityZones.tags = { "Gravity" }
 ChaosModifierGravityZones.conflict_tags = { "Gravity" }
 ChaosModifierGravityZones.duration = 40
 ChaosModifierGravityZones.string_ids = {

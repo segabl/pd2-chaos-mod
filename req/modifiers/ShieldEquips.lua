@@ -1,5 +1,6 @@
 ChaosModifierShieldEquips = ChaosModifier.class("ChaosModifierShieldEquips")
-ChaosModifierShieldEquips.conflict_tags = { "NoGunsUsable" }
+ChaosModifierShieldEquips.tags = { "WeaponViewmodel", "NoMelee" }
+ChaosModifierShieldEquips.conflict_tags = { "WeaponViewmodel", "NoGuns" }
 ChaosModifierShieldEquips.loud_only = true
 ChaosModifierShieldEquips.duration = 90
 

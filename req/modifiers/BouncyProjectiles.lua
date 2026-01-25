@@ -1,4 +1,5 @@
 ChaosModifierBouncyProjectiles = ChaosModifier.class("ChaosModifierBouncyProjectiles")
+ChaosModifierBouncyProjectiles.tags = { "ProjectileFuse" }
 ChaosModifierBouncyProjectiles.conflict_tags = { "ProjectileFuse" }
 ChaosModifierBouncyProjectiles.duration = 60
 

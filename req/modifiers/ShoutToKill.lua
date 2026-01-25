@@ -1,5 +1,6 @@
 ChaosModifierShoutToKill = ChaosModifier.class("ChaosModifierShoutToKill")
-ChaosModifierShoutToKill.conflict_tags = { "NoGunsUsable" }
+ChaosModifierShoutToKill.tags = { "NoGuns" }
+ChaosModifierShoutToKill.conflict_tags = { "NoGuns" }
 ChaosModifierShoutToKill.duration = 45
 
 function ChaosModifierShoutToKill:start()

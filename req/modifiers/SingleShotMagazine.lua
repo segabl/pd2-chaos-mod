@@ -1,4 +1,5 @@
 ChaosModifierSingleShotMagazine = ChaosModifier.class("ChaosModifierSingleShotMagazine")
+ChaosModifierSingleShotMagazine.conflict_tags = { "InfiniteAmmo", "NoGuns" }
 ChaosModifierSingleShotMagazine.duration = 20
 
 function ChaosModifierSingleShotMagazine:start()

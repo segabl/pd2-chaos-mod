@@ -1,4 +1,5 @@
 ChaosModifierRainbowOverlay = ChaosModifier.class("ChaosModifierRainbowOverlay")
+ChaosModifierRainbowOverlay.tags = { "ScreenEffect" }
 ChaosModifierRainbowOverlay.conflict_tags = { "ScreenEffect" }
 ChaosModifierRainbowOverlay.duration = 45
 

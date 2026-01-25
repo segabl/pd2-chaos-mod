@@ -1,5 +1,6 @@
 ChaosModifierGangstaGrip = ChaosModifier.class("ChaosModifierGangstaGrip")
-ChaosModifierGangstaGrip.conflict_tags = { "NoGunsUsable" }
+ChaosModifierGangstaGrip.tags = { "WeaponViewmodel" }
+ChaosModifierGangstaGrip.conflict_tags = { "NoGuns", "WeaponViewmodel" }
 ChaosModifierGangstaGrip.duration = 60
 
 function ChaosModifierGangstaGrip:start()

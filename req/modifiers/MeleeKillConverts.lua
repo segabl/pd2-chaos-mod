@@ -1,4 +1,5 @@
 ChaosModifierMeleeKillConverts = ChaosModifier.class("ChaosModifierMeleeKillConverts")
+ChaosModifierMeleeKillConverts.conflict_tags = { "NoMelee" }
 ChaosModifierMeleeKillConverts.loud_only = true
 ChaosModifierMeleeKillConverts.duration = 30
 

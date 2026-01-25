@@ -1,5 +1,6 @@
 ChaosModifierRedGreenLight = ChaosModifier.class("ChaosModifierRedGreenLight")
-ChaosModifierRedGreenLight.conflict_tags = { "PlayerMovement", "Minigame" }
+ChaosModifierRedGreenLight.tags = { "Minigame" }
+ChaosModifierRedGreenLight.conflict_tags = { "Minigame", "NoLights" }
 ChaosModifierRedGreenLight.light_time = 2.5
 ChaosModifierRedGreenLight.pause_time = 1.5
 ChaosModifierRedGreenLight.amount = 8

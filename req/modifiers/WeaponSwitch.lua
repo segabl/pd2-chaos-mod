@@ -1,4 +1,5 @@
 ChaosModifierWeaponSwitch = ChaosModifier.class("ChaosModifierWeaponSwitch")
+ChaosModifierWeaponSwitch.conflict_tags = { "NoGuns" }
 ChaosModifierWeaponSwitch.duration = 30
 
 function ChaosModifierWeaponSwitch:start()

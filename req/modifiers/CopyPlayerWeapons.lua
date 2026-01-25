@@ -1,4 +1,5 @@
 ChaosModifierCopyPlayerWeapons = ChaosModifier.class("ChaosModifierCopyPlayerWeapons")
+ChaosModifierCopyPlayerWeapons.tags = { "EnemyWeapons" }
 ChaosModifierCopyPlayerWeapons.conflict_tags = { "EnemyWeapons" }
 ChaosModifierCopyPlayerWeapons.run_as_client = false
 ChaosModifierCopyPlayerWeapons.loud_only = true

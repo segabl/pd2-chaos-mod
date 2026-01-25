@@ -1,5 +1,5 @@
 ChaosModifierAutoReload = ChaosModifier.class("ChaosModifierAutoReload")
-ChaosModifierAutoReload.conflict_tags = { "PlayerReload", "PlayerReloadRestriction" }
+ChaosModifierAutoReload.conflict_tags = { "ReloadRestriction", "InfiniteAmmo" }
 ChaosModifierAutoReload.duration = 30
 
 function ChaosModifierAutoReload:start()

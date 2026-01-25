@@ -1,4 +1,5 @@
 ChaosModifierSlowMotion = ChaosModifier.class("ChaosModifierSlowMotion")
+ChaosModifierSlowMotion.tags = { "TimeSpeed" }
 ChaosModifierSlowMotion.conflict_tags = { "TimeSpeed" }
 ChaosModifierSlowMotion.duration = 20
 ChaosModifierSlowMotion.speed = 0.5

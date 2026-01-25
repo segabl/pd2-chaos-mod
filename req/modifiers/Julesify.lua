@@ -1,4 +1,5 @@
 ChaosModifierJulesify = ChaosModifier.class("ChaosModifierJulesify")
+ChaosModifierJulesify.tags = { "UnitCategories" }
 ChaosModifierJulesify.conflict_tags = { "UnitCategories" }
 ChaosModifierJulesify.run_as_client = false
 ChaosModifierJulesify.loud_only = true

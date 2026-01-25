@@ -1,4 +1,5 @@
 ChaosModifierQuickTimeEvent = ChaosModifier.class("ChaosModifierQuickTimeEvent")
+ChaosModifierQuickTimeEvent.tags = { "PlayerInteraction" }
 ChaosModifierQuickTimeEvent.conflict_tags = { "PlayerInteraction" }
 ChaosModifierQuickTimeEvent.duration = 120
 

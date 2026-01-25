@@ -1,4 +1,5 @@
 ChaosModifierPlayerGrouping = ChaosModifier.class("ChaosModifierPlayerGrouping")
+ChaosModifierPlayerGrouping.tags = { "PlayerDistance" }
 ChaosModifierPlayerGrouping.conflict_tags = { "PlayerDistance" }
 ChaosModifierPlayerGrouping.duration = 45
 ChaosModifierPlayerGrouping.radius = 600

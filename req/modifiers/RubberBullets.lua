@@ -1,4 +1,5 @@
 ChaosModifierRubberBullets = ChaosModifier.class("ChaosModifierRubberBullets")
+ChaosModifierRubberBullets.tags = { "BulletChange" }
 ChaosModifierRubberBullets.conflict_tags = { "BulletChange" }
 ChaosModifierRubberBullets.loud_only = true
 ChaosModifierRubberBullets.duration = 30

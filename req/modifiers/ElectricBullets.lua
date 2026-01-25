@@ -1,4 +1,5 @@
 ChaosModifierElectricBullets = ChaosModifier.class("ChaosModifierElectricBullets")
+ChaosModifierElectricBullets.tags = { "BulletChange" }
 ChaosModifierElectricBullets.conflict_tags = { "BulletChange" }
 ChaosModifierElectricBullets.stealth_safe = false
 ChaosModifierElectricBullets.duration = 30

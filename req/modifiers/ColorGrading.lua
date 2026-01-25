@@ -1,4 +1,5 @@
 ChaosModifierColorGrading = ChaosModifier.class("ChaosModifierColorGrading")
+ChaosModifierColorGrading.tags = { "ScreenEffect" }
 ChaosModifierColorGrading.conflict_tags = { "ScreenEffect" }
 ChaosModifierColorGrading.duration = 60
 

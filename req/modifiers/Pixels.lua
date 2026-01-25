@@ -1,4 +1,5 @@
 ChaosModifierPixels = ChaosModifier.class("ChaosModifierPixels")
+ChaosModifierPixels.tags = { "ScreenEffect", "NoLights" }
 ChaosModifierPixels.conflict_tags = { "ScreenEffect", "ScreenRestriction" }
 ChaosModifierPixels.duration = 30
 ChaosModifierPixels.weight_mul = 0.75

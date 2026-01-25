@@ -1,4 +1,5 @@
 ChaosModifierMeleeKnockback = ChaosModifier.class("ChaosModifierMeleeKnockback")
+ChaosModifierMeleeKnockback.tags = { "EnemyMelee" }
 ChaosModifierMeleeKnockback.conflict_tags = { "EnemyMelee" }
 ChaosModifierMeleeKnockback.loud_only = true
 ChaosModifierMeleeKnockback.duration = 60

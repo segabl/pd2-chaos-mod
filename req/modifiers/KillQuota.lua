@@ -1,4 +1,5 @@
 ChaosModifierKillQuota = ChaosModifier.class("ChaosModifierKillQuota")
+ChaosModifierKillQuota.tags = { "Minigame" }
 ChaosModifierKillQuota.conflict_tags = { "Minigame" }
 ChaosModifierKillQuota.loud_only = true
 ChaosModifierKillQuota.color = "player_specific"

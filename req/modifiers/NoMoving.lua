@@ -1,5 +1,6 @@
 ChaosModifierNoMoving = ChaosModifier.class("ChaosModifierNoMoving")
-ChaosModifierNoMoving.conflict_tags = { "PlayerMovement" }
+ChaosModifierNoMoving.tags = { "MovementRestriction" }
+ChaosModifierNoMoving.conflict_tags = { "MovementRestriction" }
 ChaosModifierNoMoving.duration = 3
 
 function ChaosModifierNoMoving:start()

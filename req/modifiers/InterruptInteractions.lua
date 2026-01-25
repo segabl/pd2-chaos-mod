@@ -1,4 +1,5 @@
 ChaosModifierInterruptInteractions = ChaosModifier.class("ChaosModifierInterruptInteractions")
+ChaosModifierInterruptInteractions.tags = { "PlayerInteraction" }
 ChaosModifierInterruptInteractions.conflict_tags = { "PlayerInteraction" }
 ChaosModifierInterruptInteractions.duration = 30
 

@@ -1,4 +1,5 @@
 ChaosModifierGlassCannons = ChaosModifier.class("ChaosModifierGlassCannons")
+ChaosModifierGlassCannons.tags = { "UnitCategories" }
 ChaosModifierGlassCannons.conflict_tags = { "UnitCategories" }
 ChaosModifierGlassCannons.run_as_client = false
 ChaosModifierGlassCannons.loud_only = true

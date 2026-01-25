@@ -1,4 +1,5 @@
 ChaosModifierRubberbanding = ChaosModifier.class("ChaosModifierRubberbanding")
+ChaosModifierRubberbanding.tags = { "Teleport" }
 ChaosModifierRubberbanding.conflict_tags = { "Teleport" }
 ChaosModifierRubberbanding.duration = 30
 

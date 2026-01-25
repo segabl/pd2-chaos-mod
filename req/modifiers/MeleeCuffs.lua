@@ -1,4 +1,5 @@
 ChaosModifierMeleeCuffs = ChaosModifier.class("ChaosModifierMeleeCuffs")
+ChaosModifierMeleeCuffs.tags = { "EnemyMelee" }
 ChaosModifierMeleeCuffs.conflict_tags = { "EnemyMelee" }
 ChaosModifierMeleeCuffs.loud_only = true
 ChaosModifierMeleeCuffs.duration = 60

@@ -1,4 +1,5 @@
 ChaosModifierPlayerDamageAura = ChaosModifier.class("ChaosModifierPlayerDamageAura")
+ChaosModifierPlayerDamageAura.tags = { "PlayerDistance" }
 ChaosModifierPlayerDamageAura.conflict_tags = { "PlayerDistance" }
 ChaosModifierPlayerDamageAura.duration = 45
 

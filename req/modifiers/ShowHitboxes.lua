@@ -1,4 +1,5 @@
 ChaosModifierShowHitboxes = ChaosModifier.class("ChaosModifierShowHitboxes")
+ChaosModifierShowHitboxes.tags = { "DrawBrush" }
 ChaosModifierShowHitboxes.conflict_tags = { "DrawBrush" }
 ChaosModifierShowHitboxes.duration = 40
 

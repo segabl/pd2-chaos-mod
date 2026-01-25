@@ -1,4 +1,5 @@
 ChaosModifierRandomEnemyWeapons = ChaosModifier.class("ChaosModifierRandomEnemyWeapons")
+ChaosModifierRandomEnemyWeapons.tags = { "EnemyWeapons" }
 ChaosModifierRandomEnemyWeapons.conflict_tags = { "EnemyWeapons" }
 ChaosModifierRandomEnemyWeapons.run_as_client = false
 ChaosModifierRandomEnemyWeapons.loud_only = true

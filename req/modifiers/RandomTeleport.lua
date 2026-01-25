@@ -1,4 +1,5 @@
 ChaosModifierRandomTeleport = ChaosModifier.class("ChaosModifierRandomTeleport")
+ChaosModifierRandomTeleport.tags = { "Teleport" }
 ChaosModifierRandomTeleport.conflict_tags = { "Teleport" }
 ChaosModifierRandomTeleport.stealth_safe = false
 ChaosModifierRandomTeleport.duration = 18

@@ -1,5 +1,6 @@
 ChaosModifierSimonSays = ChaosModifier.class("ChaosModifierSimonSays")
-ChaosModifierSimonSays.conflict_tags = { "PlayerMovement", "Minigame" }
+ChaosModifierSimonSays.tags = { "Minigame" }
+ChaosModifierSimonSays.conflict_tags = { "Minigame", "MovementRestriction" }
 ChaosModifierSimonSays.activity_time = 3
 ChaosModifierSimonSays.pause_time = 2
 ChaosModifierSimonSays.num_activities = 6

@@ -1,4 +1,5 @@
 ChaosModifierNormalVisualization = ChaosModifier.class("ChaosModifierNormalVisualization")
+ChaosModifierNormalVisualization.tags = { "ScreenEffect", "NoLights" }
 ChaosModifierNormalVisualization.conflict_tags = { "ScreenEffect" }
 ChaosModifierNormalVisualization.duration = 40
 

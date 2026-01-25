@@ -1,4 +1,5 @@
 ChaosModifierMoreSpecials = ChaosModifier.class("ChaosModifierMoreSpecials")
+ChaosModifierMoreSpecials.tags = { "UnitCategories" }
 ChaosModifierMoreSpecials.conflict_tags = { "UnitCategories" }
 ChaosModifierMoreSpecials.run_as_client = false
 ChaosModifierMoreSpecials.loud_only = true

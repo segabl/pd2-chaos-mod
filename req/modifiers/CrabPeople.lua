@@ -1,5 +1,6 @@
 ChaosModifierCrabPeople = ChaosModifier.class("ChaosModifierCrabPeople")
-ChaosModifierCrabPeople.conflict_tags = { "PlayerMovement" }
+ChaosModifierCrabPeople.tags = { "MovementRestriction" }
+ChaosModifierCrabPeople.conflict_tags = { "MovementRestriction" }
 ChaosModifierCrabPeople.duration = 20
 
 function ChaosModifierCrabPeople:start()

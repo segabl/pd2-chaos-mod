@@ -1,4 +1,5 @@
 ChaosModifierMeme = ChaosModifier.class("ChaosModifierMeme")
+ChaosModifierMeme.tags = { "ScreenRestriction" }
 ChaosModifierMeme.conflict_tags = { "ScreenRestriction" }
 ChaosModifierMeme.duration = 30
 

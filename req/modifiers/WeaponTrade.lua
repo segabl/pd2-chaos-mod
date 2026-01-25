@@ -1,5 +1,5 @@
 ChaosModifierWeaponTrade = ChaosModifier.class("ChaosModifierWeaponTrade")
-ChaosModifierWeaponTrade.conflict_tags = { "NoGunsUsable" }
+ChaosModifierWeaponTrade.conflict_tags = { "NoGuns" }
 ChaosModifierWeaponTrade.duration = 60
 
 function ChaosModifierWeaponTrade:can_trigger()
