@@ -50,6 +50,9 @@ Gives players auto aim onto a randomly chosen enemy
 **Bullet Time**  
 Slows down game time
 
+**Burst Mode**  
+Forces all weapons to shoot in burst fire
+
 **Captcha**  
 Players need to solve a captcha in time to continue playing, failing to do so downs them
 
@@ -91,6 +94,9 @@ Caps frame rate at 25fps
 
 **Crab People**  
 Players can only move sideways
+
+**Creeper, Aw Man**  
+Enemies that get close to players will explode after a short duration
 
 **Deadly Deaths**  
 Enemies explode upon death, dealing damage to players
