@@ -32,6 +32,9 @@ Forces players to move forward
 **Bad Meme**  
 Shrinks the screen and muffles sound
 
+**Bluescreen**  
+Blocks the screen with a fake bluescreen for a short duration
+
 **Boys in Blue**  
 Replaces all non-special enemy spawns with Bronco cops
 
