@@ -53,7 +53,7 @@ function ChaosModifierPixels:update(t, dt)
 			local color = Color.white
 			local unit = res.unit:in_slot(8) and res.unit:parent() or res.unit
 			local team = unit:movement() and type(unit:movement().team) == "function" and unit:movement():team()
-			if team and team.foes[self._player_team] and not unit:character_damage()._dead and unit:brain() and not unit:brain():is_hostage() then
+			if team and team.foes[self._player_team] and not unit:character_damage()._dead and unit:brain() and not (unit:brain().is_hostage and unit:brain():is_hostage()) then
 				color = self._enemy_color
 			else
 				s = s ^ 3
