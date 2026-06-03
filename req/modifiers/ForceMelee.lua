@@ -33,6 +33,23 @@ function ChaosModifierForceMelee:start()
 	self:pre_hook(PlayerDamage, "damage_bullet", function(damage, attack_data)
 		attack_data.damage = attack_data.damage * 0.25
 	end)
+
+	self:override(PlayerStandard, "_start_action_running", function(playerstate, ...)
+		local _is_meleeing = PlayerStandard._is_meleeing
+		PlayerStandard._is_meleeing = function() return false end
+		self:get_override(PlayerStandard, "_start_action_running")(playerstate, ...)
+		PlayerStandard._is_meleeing = _is_meleeing
+	end)
+
+	self:override(PlayerCamera, "play_redirect", function(camera, redirect, ...)
+		for state, data in pairs(PlayerStandard.ANIM_STATES) do
+			for name, ids in pairs(data) do
+				if ids == redirect and name:match("^melee") then
+					return self:get_override(PlayerCamera, "play_redirect")(camera, redirect, ...)
+				end
+			end
+		end
+	end)
 end
 
 function ChaosModifierForceMelee:stop()
