@@ -18,6 +18,30 @@ function ChaosModifierAutoAim:start()
 			mvector3.direction(direction, from_pos, direction)
 		end
 	end)
+
+	local dir = Vector3()
+	self:override(FPCameraPlayerBase, "set_rotation", function(cam, rot, ...)
+		local t = ChaosMod:time()
+
+		local dt
+		if alive(self._autoaim_enemy) then
+			self._autoaim_smooth_t = t
+			mvector3.set(dir, self._autoaim_enemy:position())
+			mvector3.subtract(dir, cam._parent_unit:position())
+			mvector3.set_z(dir, dir.z * 0.5)
+			rot = Rotation:look_at(dir, math.UP)
+			dt = math.min(1, ChaosMod:delta_time() * 10)
+		elseif self._autoaim_smooth_t then
+			rot = Rotation(rot:yaw(), rot:pitch(), rot:roll())
+			dt = math.map_range_clamped(t, self._autoaim_smooth_t, self._autoaim_smooth_t + 1, 0, 1)
+		end
+
+		if dt then
+			mrotation.slerp(rot, cam._unit:rotation(), rot, dt)
+		end
+
+		return self:get_override(FPCameraPlayerBase, "set_rotation")(cam, rot, ...)
+	end)
 end
 
 function ChaosModifierAutoAim:update(t, dt)
@@ -48,14 +72,14 @@ function ChaosModifierAutoAim:update(t, dt)
 		end
 		self._autoaim_enemy = enemies[table.random_key(enemies)]
 		self._next_t = t + math.rand(0.75, 1.5)
-		if alive(self._autoaim_enemy)then
+		if alive(self._autoaim_enemy) then
 			self._autoaim_enemy:contour():add("vulnerable_character", false, 1, Color(1, 0.35, 0))
 		end
 	end
 end
 
 function ChaosModifierAutoAim:stop()
-	if alive(self._autoaim_enemy)then
+	if alive(self._autoaim_enemy) then
 		self._autoaim_enemy:contour():remove("vulnerable_character")
 	end
 end
