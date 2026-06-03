@@ -1,4 +1,5 @@
 ChaosModifierNoSound = ChaosModifier.class("ChaosModifierNoSound")
+ChaosModifierNoSound.tags = { "NoSound" }
 ChaosModifierNoSound.duration = 30
 
 function ChaosModifierNoSound:start()

@@ -1,6 +1,6 @@
 ChaosModifierRandomVoices = ChaosModifier.class("ChaosModifierRandomVoices")
 ChaosModifierRandomVoices.tags = { "VoiceChange" }
-ChaosModifierRandomVoices.conflict_tags = { "VoiceChange" }
+ChaosModifierRandomVoices.conflict_tags = { "VoiceChange", "NoSound" }
 ChaosModifierRandomVoices.duration = 90
 
 function ChaosModifierRandomVoices:start()

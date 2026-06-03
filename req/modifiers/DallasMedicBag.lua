@@ -1,6 +1,6 @@
 ChaosModifierDallasMedicBag = ChaosModifier.class("ChaosModifierDallasMedicBag")
 ChaosModifierDallasMedicBag.tags = { "VoiceChange" }
-ChaosModifierDallasMedicBag.conflict_tags = { "VoiceChange" }
+ChaosModifierDallasMedicBag.conflict_tags = { "VoiceChange", "NoSound" }
 ChaosModifierDallasMedicBag.duration = 60
 
 function ChaosModifierDallasMedicBag:start()
