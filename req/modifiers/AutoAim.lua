@@ -3,21 +3,17 @@ ChaosModifierAutoAim.conflict_tags = { "NoGuns" }
 ChaosModifierAutoAim.duration = 30
 
 function ChaosModifierAutoAim:start()
-	self:pre_hook(NewRaycastWeaponBase, "_fire_raycast", function(_, user_unit, from_pos, direction)
+	local function _fire_raycast(weapon, user_unit, from_pos, direction)
 		if user_unit == managers.player:local_player() and alive(self._autoaim_enemy) then
 			local movement = self._autoaim_enemy:movement()
 			mvector3.lerp(direction, movement._obj_spine:position(), movement._obj_head:position(), math.rand(0.75, 1))
 			mvector3.direction(direction, from_pos, direction)
 		end
-	end)
+	end
 
-	self:pre_hook(ShotgunBase, "_fire_raycast", function(_, user_unit, from_pos, direction)
-		if user_unit == managers.player:local_player() and alive(self._autoaim_enemy) then
-			local movement = self._autoaim_enemy:movement()
-			mvector3.lerp(direction, movement._obj_spine:position(), movement._obj_head:position(), math.rand(0.75, 1))
-			mvector3.direction(direction, from_pos, direction)
-		end
-	end)
+	self:pre_hook(NewRaycastWeaponBase, "_fire_raycast", _fire_raycast)
+	self:pre_hook(ShotgunBase, "_fire_raycast", _fire_raycast)
+	self:pre_hook(ProjectileWeaponBase, "_fire_raycast", _fire_raycast)
 
 	local dir = Vector3()
 	self:override(FPCameraPlayerBase, "set_rotation", function(cam, rot, ...)
