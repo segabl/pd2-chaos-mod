@@ -21,7 +21,7 @@ function ChaosModifierSlowOnHit:start()
 			if t > slow.expire_t then
 				table.remove(slows, i)
 			else
-				speed_mul = speed_mul * math.map_range(t, slow.start_t, slow.expire_t, 0, 1)
+				speed_mul = speed_mul * math.map_range(t, slow.start_t, slow.expire_t, 0, 1) ^ 2
 			end
 		end
 		return Hooks:GetReturn() * speed_mul
