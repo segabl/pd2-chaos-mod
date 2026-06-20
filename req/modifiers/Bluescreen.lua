@@ -1,6 +1,6 @@
 ChaosModifierBluescreen = ChaosModifier.class("ChaosModifierBluescreen")
 ChaosModifierBluescreen.tags = { "ScreenRestriction" }
-ChaosModifierBluescreen.conflict_tags = { "ScreenRestriction" }
+ChaosModifierBluescreen.conflict_tags = { "ScreenRestriction", "TimeSpeed" }
 ChaosModifierBluescreen.duration = 5
 
 function ChaosModifierBluescreen:start()
@@ -44,6 +44,9 @@ function ChaosModifierBluescreen:start()
 		font = tweak_data.menu.pd2_large_font,
 		font_size = 18
 	})
+
+	TimerManager:pausable():set_multiplier(0)
+	TimerManager:game_animation():set_multiplier(0)
 end
 
 function ChaosModifierBluescreen:update(t, dt)
@@ -65,6 +68,9 @@ function ChaosModifierBluescreen:update(t, dt)
 end
 
 function ChaosModifierBluescreen:stop()
+	TimerManager:pausable():set_multiplier(1)
+	TimerManager:game_animation():set_multiplier(1)
+
 	local sfx_volume = managers.user:get_setting("sfx_volume")
 	local music_volume = managers.user:get_setting("music_volume")
 	SoundDevice:set_rtpc("option_sfx_volume", sfx_volume)
