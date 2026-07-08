@@ -146,14 +146,15 @@ function ChaosModifierQuickTimeEvent:update_sequence(playerstate, t)
 	local button_distance = self._panel:world_center_y() - current_button:world_center_y()
 
 	local pressed_direction
-	if playerstate._stick_move and playerstate._stick_move:dot(self._last_stick_move) < 0.75 then
+	if playerstate._stick_move and playerstate._stick_move:dot(self._last_stick_move) < 0.5 then
 		mvector3.set(self._last_stick_move, playerstate._stick_move)
 		if self._last_stick_move:length() > 0 then
 			pressed_direction = self._last_stick_move
 		end
 	end
 
-	if pressed_direction and self._rotations[current_button:rotation()]:dot(pressed_direction) > 0.75 and math.abs(button_distance) <= self._size * 0.75 then
+	local rotation = self._rotations[math.round(current_button:rotation(), 1)]
+	if pressed_direction and rotation and rotation:dot(pressed_direction) > 0.5 and math.abs(button_distance) <= self._size * 0.75 then
 		managers.hud:post_event("prompt_enter")
 		if self._index >= #self._sequence then
 			playerstate:_end_action_interact(t)
