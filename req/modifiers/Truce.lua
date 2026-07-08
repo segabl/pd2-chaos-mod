@@ -74,8 +74,7 @@ function ChaosModifierTruce:update(t, dt)
 	elseif time_left < 0.5 then
 		vol = math.map_range(time_left, 0.5, 0, 0, managers.user:get_setting("music_volume"))
 	end
-	SoundDevice:set_rtpc("option_music_volume", vol)
-	XAudio._base_gains.music = vol / 100
+	ChaosMod:set_volume(nil, vol)
 
 	if self._next_t and self._next_t > t then
 		return
@@ -96,9 +95,7 @@ function ChaosModifierTruce:update(t, dt)
 end
 
 function ChaosModifierTruce:stop()
-	local vol = managers.user:get_setting("music_volume")
-	SoundDevice:set_rtpc("option_music_volume", vol)
-	XAudio._base_gains.music = vol / 100
+	ChaosMod:set_volume(nil, managers.user:get_setting("music_volume"))
 end
 
 return ChaosModifierTruce

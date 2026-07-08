@@ -264,6 +264,21 @@ if not ChaosMod then
 		return self._world_gui
 	end
 
+	function ChaosMod:set_volume(sfx_vol, music_vol)
+		if sfx_vol then
+			SoundDevice:set_rtpc("option_sfx_volume", sfx_vol)
+			if XAudio then
+				XAudio._base_gains.sfx = sfx_vol / 100
+			end
+		end
+		if music_vol then
+			SoundDevice:set_rtpc("option_music_volume", music_vol)
+			if XAudio then
+				XAudio._base_gains.music = music_vol / 100
+			end
+		end
+	end
+
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitChaosMod", function(loc)
 		if HopLib then
 			HopLib:load_localization(ChaosMod.mod_path .. "loc/", loc)

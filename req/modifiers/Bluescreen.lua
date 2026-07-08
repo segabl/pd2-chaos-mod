@@ -61,22 +61,14 @@ function ChaosModifierBluescreen:update(t, dt)
 	end
 	self._error_text:set_text(managers.localization:text("ChaosModifierBluescreenMainText", { PERCENTAGE = tostring(percentage) }))
 
-	SoundDevice:set_rtpc("option_sfx_volume", 0)
-	SoundDevice:set_rtpc("option_music_volume", 0)
-	XAudio._base_gains.sfx = 0
-	XAudio._base_gains.music = 0
+	ChaosMod:set_volume(0, 0)
 end
 
 function ChaosModifierBluescreen:stop()
 	TimerManager:pausable():set_multiplier(1)
 	TimerManager:game_animation():set_multiplier(1)
 
-	local sfx_volume = managers.user:get_setting("sfx_volume")
-	local music_volume = managers.user:get_setting("music_volume")
-	SoundDevice:set_rtpc("option_sfx_volume", sfx_volume)
-	SoundDevice:set_rtpc("option_music_volume", music_volume)
-	XAudio._base_gains.sfx = sfx_volume / 100
-	XAudio._base_gains.music = music_volume / 100
+	ChaosMod:set_volume(managers.user:get_setting("sfx_volume"), managers.user:get_setting("music_volume"))
 
 	if alive(self._panel) then
 		self._panel:parent():remove(self._panel)
