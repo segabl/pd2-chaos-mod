@@ -45,6 +45,7 @@
 	"ChaosModifierCaptcha": "Captcha",
 	"ChaosModifierCaptchaPrompt": "Selecione todas as skills da árvore ##$SUBTREE; ($TREE;)##.",
 	"ChaosModifierCaptchaVerify": "Verificar",
+	"ChaosModifierCensor": "Low Violence Mode",
 	"ChaosModifierChargingCloakers": "Olhe para trás",
 	"ChaosModifierCivilianMagnet": "Imã de Civis",
 	"ChaosModifierColorGrading": "Correção de Cor",

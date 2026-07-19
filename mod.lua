@@ -248,12 +248,17 @@ if not ChaosMod then
 		func(1)
 	end
 
-	---@return Panel
-	function ChaosMod:panel(can_be_hidden)
+	---@return Workspace
+	function ChaosMod:ws()
 		if not self._ws then
 			self._ws = managers.gui_data:create_fullscreen_workspace()
 		end
-		return can_be_hidden and managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2) or self._ws:panel()
+		return self._ws
+	end
+
+	---@return Panel
+	function ChaosMod:panel(can_be_hidden)
+		return can_be_hidden and managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2) or self:ws():panel()
 	end
 
 	---@return Gui

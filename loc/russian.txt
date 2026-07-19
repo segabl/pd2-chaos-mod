@@ -45,6 +45,7 @@
 	"ChaosModifierCaptcha": "Капча",
 	"ChaosModifierCaptchaPrompt": "Выберите все навыки ##$SUBTREE; ($TREE;)##.",
 	"ChaosModifierCaptchaVerify": "Подтвердить",
+	"ChaosModifierCensor": "Low Violence Mode",
 	"ChaosModifierChargingCloakers": "Проверьте спину",
 	"ChaosModifierCivilianMagnet": "Гражданский магнит",
 	"ChaosModifierColorGrading": "Цветокоррекция",
