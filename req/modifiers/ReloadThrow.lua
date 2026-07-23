@@ -39,8 +39,8 @@ function ChaosModifierReloadThrow:start()
 		managers.network:session():send_to_peers_synched("play_distance_interact_redirect", playerstate._unit, "throw_grenade")
 
 		local ammo_base = weapon_base:ammo_base()
-		ammo_usage = ammo_base:get_ammo_remaining_in_clip()
-		grenade_damage = weapon_base._damage * (1 + ammo_usage)
+		local ammo_usage = ammo_base:get_ammo_remaining_in_clip()
+		grenade_damage = 50 + weapon_base._damage * ammo_usage
 		ammo_base:set_ammo_remaining_in_clip(0)
 		weapon_base:use_ammo(ammo_base, ammo_usage)
 		managers.hud:set_ammo_amount(weapon_base:selection_index(), weapon_base:ammo_info())
@@ -70,7 +70,7 @@ function ChaosModifierReloadThrow:start()
 
 		local peer_id = managers.network:session():local_peer():id()
 		grenade_base._damage = grenade_damage
-		grenade_base._player_damage = grenade_damage * 0.2
+		grenade_base._player_damage = grenade_damage * 0.1
 		grenade_base._range = 300
 		grenade_base._curve_pow = 0.5
 		grenade_base:set_thrower_unit_by_peer_id(peer_id)
