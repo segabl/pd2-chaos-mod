@@ -11,12 +11,12 @@ function ChaosModifierBluescreen:start()
 	end
 
 	self._panel = ChaosMod:panel():panel({
-		layer = 10000000000
+		layer = 1000000000
 	})
 
 	self._panel:rect({
 		color = Color("1f67b3"),
-		layer = -1
+		layer = -100
 	})
 
 	self._panel:text({
