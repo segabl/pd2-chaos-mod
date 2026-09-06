@@ -84,8 +84,10 @@ function ChaosModifierDrawEnemyBodies:update(t, dt)
 		if self:draw_unit_bodies(unit, self._allowed_names) then
 			unit:set_visible(false)
 			for _, child in pairs(unit:children()) do
-				child:set_visible(false)
-				self:draw_unit_bodies(child)
+				if not child:carry_data() then
+					child:set_visible(false)
+					self:draw_unit_bodies(child)
+				end
 			end
 		end
 	end
