@@ -191,6 +191,9 @@ Increases the duration of modifiers
 **Louder Enemies**  
 Makes all enemies play burning voicelines
 
+**Low Violence Mode**  
+Blocks all blood splatters with a parental advisory texture
+
 **Lunar Expedition**  
 Lowers gravity
 
