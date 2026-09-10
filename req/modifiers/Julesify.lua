@@ -77,6 +77,17 @@ function ChaosModifierJulesify:start()
 	self:override(tweak_data.group_ai.besiege.assault, "force_balance_mul", { 1.5, 3, 4.5, 6 })
 	self:override(tweak_data.group_ai.besiege.assault, "force_pool", { 150, 175, 225 })
 	self:override(tweak_data.group_ai.besiege.assault, "force_pool_balance_mul", { 1.5, 3, 4.5, 6 })
+
+	self:override(tweak_data.group_ai.besiege.reenforce, "groups", {})
+
+	for _, group in pairs(managers.groupai:state()._groups) do
+		if group.type:match("shotgun") or group.objective and group.objective.type:match("reenforce") then
+			for _, u_data in pairs(group.units) do
+				u_data.unit:brain():set_active(false)
+				u_data.unit:set_slot(0)
+			end
+		end
+	end
 end
 
 return ChaosModifierJulesify
