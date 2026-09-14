@@ -29,6 +29,9 @@ function ChaosModifierPixels:start()
 	self._draw_index = 1
 	self._draw_amount = math.ceil(w / tile_size) * 10
 	self._tiles = self._panel:children()
+
+	self._max_dis = 2000
+	self._tmp_vec = Vector3()
 end
 
 function ChaosModifierPixels:update(t, dt)
@@ -37,19 +40,16 @@ function ChaosModifierPixels:update(t, dt)
 		return
 	end
 
-	local max_dis = 2000
-	local tmp_vec = Vector3()
+	local cam_pos = cam:position()
 	for i = self._draw_index, self._draw_index + self._draw_amount - 1 do
 		local tile = self._tiles[((i - 1) % #self._tiles) + 1]
-		mvector3.set_static(tmp_vec, tile:center_x(), tile:center_y(), 10)
-		local pos_from = managers.hud._fullscreen_workspace:screen_to_world(cam, tmp_vec)
-		mvector3.set_z(tmp_vec, max_dis)
-		local pos_to = managers.hud._fullscreen_workspace:screen_to_world(cam, tmp_vec)
-		local res = World:raycast("ray", pos_from, pos_to, "slot_mask", self._slot_mask)
+		mvector3.set_static(self._tmp_vec, tile:center_x(), tile:center_y(), self._max_dis)
+		local pos_to = managers.hud._fullscreen_workspace:screen_to_world(cam, self._tmp_vec)
+		local res = World:raycast("ray", cam_pos, pos_to, "slot_mask", self._slot_mask)
 		if not res or not alive(res.unit) then
 			tile:set_color(Color.black)
 		else
-			local s = 1 - res.distance / max_dis
+			local s = 1 - res.distance / self._max_dis
 			local color = Color.white
 			local unit = res.unit:in_slot(8) and res.unit:parent() or res.unit
 			local team = unit:movement() and type(unit:movement().team) == "function" and unit:movement():team()
