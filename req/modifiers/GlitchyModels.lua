@@ -1,4 +1,5 @@
 ChaosModifierGlitchyModels = ChaosModifier.class("ChaosModifierGlitchyModels")
+ChaosModifierGlitchyModels.stealth_safe = false
 ChaosModifierGlitchyModels.duration = 30
 
 function ChaosModifierGlitchyModels:start()
