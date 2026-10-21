@@ -395,6 +395,9 @@ Enemies and heisters can't attack each other
 **True Slav**  
 Forces players to crouch
 
+**Try Something Else**  
+Switches players' weapons to random weapons
+
 **Turtle Master**  
 Slows down players massively but gives them double health and armor and makes them immune to Cloakers
 

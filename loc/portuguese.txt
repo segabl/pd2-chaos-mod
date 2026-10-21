@@ -142,6 +142,7 @@
 	"ChaosModifierRandomCallouts": "Cérebro Travando",
 	"ChaosModifierRandomEnemies": "Gente Aleatória",
 	"ChaosModifierRandomEnemyWeapons": "Armamento diverso",
+	"ChaosModifierRandomWeapons": "Try Something Else",
 	"ChaosModifierRandomPush": "Pinball",
 	"ChaosModifierRandomTeleport": "Teleporte Aleatório",
 	"ChaosModifierRandomVoices": "Voz Aleatória",

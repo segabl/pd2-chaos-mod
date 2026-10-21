@@ -142,6 +142,7 @@
 	"ChaosModifierRandomCallouts": "Газлайтинг",
 	"ChaosModifierRandomEnemies": "Шальная карта",
 	"ChaosModifierRandomEnemyWeapons": "Разнообразное вооружение",
+	"ChaosModifierRandomWeapons": "Try Something Else",
 	"ChaosModifierRandomPush": "Пинбол",
 	"ChaosModifierRandomTeleport": "Провал телепорта",
 	"ChaosModifierRandomVoices": "Треск голоса",

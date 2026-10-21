@@ -1,5 +1,6 @@
 ChaosModifierWeaponTrade = ChaosModifier.class("ChaosModifierWeaponTrade")
-ChaosModifierWeaponTrade.conflict_tags = { "NoGuns" }
+ChaosModifierWeaponTrade.tags = { "WeaponChange" }
+ChaosModifierWeaponTrade.conflict_tags = { "NoGuns", "WeaponChange" }
 ChaosModifierWeaponTrade.duration = 60
 
 function ChaosModifierWeaponTrade:can_trigger()
@@ -59,6 +60,12 @@ function ChaosModifierWeaponTrade:stop()
 		return
 	end
 
+	local player_inventory = player_unit:inventory()
+	local equipped_unit = player_inventory:equipped_unit()
+	if not alive(equipped_unit) then
+		return
+	end
+
 	local player_state = player_unit:movement():current_state()
 	player_state:_check_stop_shooting()
 	player_state:set_stance_switch_delay(0.5)
@@ -71,21 +78,21 @@ function ChaosModifierWeaponTrade:stop()
 	if primary then
 		local primary_slot = managers.blackmarket:equipped_weapon_slot("primaries")
 		local texture_switches = managers.blackmarket:get_weapon_texture_switches("primaries", primary_slot, primary)
-		player_unit:inventory():add_unit_by_factory_name(primary.factory_id, false, false, primary.blueprint, primary.cosmetics, texture_switches)
+		player_inventory:add_unit_by_factory_name(primary.factory_id, false, false, primary.blueprint, primary.cosmetics, texture_switches)
 	end
 
 	local secondary = managers.blackmarket:equipped_secondary()
 	if secondary then
 		local secondary_slot = managers.blackmarket:equipped_weapon_slot("secondaries")
 		local texture_switches = managers.blackmarket:get_weapon_texture_switches("secondaries", secondary_slot, secondary)
-		player_unit:inventory():add_unit_by_factory_name(secondary.factory_id, false, false, secondary.blueprint, secondary.cosmetics, texture_switches)
+		player_inventory:add_unit_by_factory_name(secondary.factory_id, false, false, secondary.blueprint, secondary.cosmetics, texture_switches)
 	end
 
 	local speed_multiplier = player_state:_get_swap_speed_multiplier()
-	player_unit:inventory():equipped_unit():base():tweak_data_anim_play("equip", speed_multiplier)
+	player_inventory:equipped_unit():base():tweak_data_anim_play("equip", speed_multiplier)
 	player_unit:camera():play_redirect(player_state:get_animation("equip"), speed_multiplier)
 
-	for index, weapon in pairs(player_unit:inventory():available_selections()) do
+	for index, weapon in pairs(player_inventory:available_selections()) do
 		managers.hud:set_ammo_amount(index, weapon.unit:base():ammo_info())
 	end
 end
