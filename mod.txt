@@ -10,10 +10,12 @@
 		"host": { "meta": "https://updates.hoppip.at/pd2-chaos-mod" }
 	}],
 	"hooks" : [
+		{ "hook_id" : "lib/managers/dynamicresourcemanager", "script_path" : "mod.lua" },
 		{ "hook_id" : "lib/managers/gameplaycentralmanager", "script_path" : "mod.lua" },
 		{ "hook_id" : "lib/managers/hudmanager", "script_path" : "mod.lua" },
 		{ "hook_id" : "lib/managers/jobmanager", "script_path" : "mod.lua" },
 		{ "hook_id" : "lib/managers/menumanager", "script_path" : "mod.lua" },
+		{ "hook_id" : "lib/setups/gamesetup", "script_path" : "mod.lua" },
 		{ "hook_id" : "lib/states/missionendstate", "script_path" : "mod.lua" },
 		{ "hook_id" : "lib/tweak_data/charactertweakdata", "script_path" : "mod.lua" },
 		{ "hook_id" : "lib/tweak_data/groupaitweakdata", "script_path" : "mod.lua" },
