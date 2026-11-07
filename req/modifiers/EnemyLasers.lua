@@ -3,7 +3,11 @@ ChaosModifierEnemyLasers.loud_only = true
 ChaosModifierEnemyLasers.duration = 60
 
 function ChaosModifierEnemyLasers:set_laser_enabled(unit, enabled)
-	local weapon = alive(unit) and unit:inventory():equipped_unit()
+	if not alive(unit) or managers.groupai:state():is_unit_team_AI(unit) then
+		return
+	end
+
+	local weapon = unit:inventory():equipped_unit()
 	if not alive(weapon) or not weapon:base().set_laser_enabled or not unit:base().char_tweak then
 		return
 	end
@@ -14,9 +18,13 @@ function ChaosModifierEnemyLasers:set_laser_enabled(unit, enabled)
 
 	weapon:base():set_laser_enabled(enabled)
 	unit:base():prevent_main_bones_disabling(enabled)
+
+	self._enabled_lasers[unit:key()] = enabled and unit or nil
 end
 
 function ChaosModifierEnemyLasers:start()
+	self._enabled_lasers = {}
+
 	self:pre_hook(NPCRaycastWeaponBase, "destroy", function(weaponbase)
 		weaponbase:set_laser_enabled(false)
 	end)
@@ -35,8 +43,8 @@ function ChaosModifierEnemyLasers:start()
 end
 
 function ChaosModifierEnemyLasers:stop()
-	for _, data in pairs(managers.enemy:all_enemies()) do
-		self:set_laser_enabled(data.unit, false)
+	for _, unit in pairs(self._enabled_lasers) do
+		self:set_laser_enabled(unit, false)
 	end
 end
 
