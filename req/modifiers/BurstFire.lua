@@ -9,39 +9,37 @@ function ChaosModifierBurstFire:start()
 		[Idstring("auto"):key()] = true
 	}
 
+	local function valid_weapon(weaponbase)
+		return weaponbase._fire_mode and self._valid_modes[weaponbase._fire_mode:key()] and not weaponbase:fire_on_release()
+	end
+
 	self:post_hook(NewRaycastWeaponBase, "start_shooting", function(weaponbase)
-		if weaponbase._fire_mode and self._valid_modes[weaponbase._fire_mode:key()] then
+		if valid_weapon(weaponbase) then
 			weaponbase._shooting_count = math.clamp(math.ceil(weaponbase:weapon_tweak_data().CLIP_AMMO_MAX / 10), 3, 10)
 		end
 	end)
 
 	self:post_hook(NewRaycastWeaponBase, "stop_shooting", function(weaponbase)
-		if not weaponbase._fire_mode or not self._valid_modes[weaponbase._fire_mode:key()] then
-			return
+		if valid_weapon(weaponbase) then
+			weaponbase._next_fire_allowed = math.max(weaponbase._next_fire_allowed, weaponbase._unit:timer():time() + 0.35)
+			weaponbase._shooting_count = 0
 		end
-
-		weaponbase._next_fire_allowed = math.max(weaponbase._next_fire_allowed, weaponbase._unit:timer():time() + 0.35)
-		weaponbase._shooting_count = 0
 	end)
 
 	self:post_hook(NewRaycastWeaponBase, "fire", function(weaponbase)
-		if not weaponbase._fire_mode or not self._valid_modes[weaponbase._fire_mode:key()] then
-			return
-		end
-
-		if weaponbase._bullets_fired and weaponbase._bullets_fired > 1 and not weaponbase:weapon_tweak_data().sounds.fire_single then
+		if valid_weapon(weaponbase) and weaponbase._bullets_fired and weaponbase._bullets_fired > 1 and not weaponbase:weapon_tweak_data().sounds.fire_single then
 			weaponbase:_fire_sound()
 		end
 	end)
 
 	self:post_hook(NewRaycastWeaponBase, "recoil", function(weaponbase)
-		if weaponbase._fire_mode and self._valid_modes[weaponbase._fire_mode:key()] then
+		if valid_weapon(weaponbase) then
 			return Hooks:GetReturn() * 0.5
 		end
 	end)
 
 	self:override(NewRaycastWeaponBase, "trigger_held", function(weaponbase, ...)
-		if not weaponbase._fire_mode or not self._valid_modes[weaponbase._fire_mode:key()] then
+		if not valid_weapon(weaponbase) then
 			return self:get_override(NewRaycastWeaponBase, "trigger_held")(weaponbase, ...)
 		end
 
